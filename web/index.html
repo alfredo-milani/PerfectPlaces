@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Places</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<style>
+    table {
+        height: 200px;
+        display: table;
+    }
+
+    h2 {
+        margin-top: 4%;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        font-size: 25px;
+        color: #717777;
+    }
+
+    input {
+        padding:5px;
+        border:2px solid #ccc;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    input[type=submit] {
+        padding:5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        background-color: #717777;
+        width: 100px;
+        height: 35px;
+    }
+</style>
+
+<body>
+    <div id="logo">
+        <h1><img src="css/images/logo.png" /></h1>
+    </div>
+        <div id="page">
+            <table width="1400" height="380" background="css/images/header-wrapper-bg.jpg" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td valign="middle">
+                        <p>
+                            <font color="#ffffff">
+                                Il modo più semplice per trovare il tuo alloggio ideale
+                                <input type="button" class="cta pie" value="Vedi come..." >
+                            </font>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <!-- end #content -->
+                    <table width="100%" border="0">
+                        <tr valign="top">
+
+                            <td align="center" id="login">
+                                <h2><strong>LOGIN</strong></h2>
+                                <form action="utente.jsp" method="POST">
+                                    <table>
+                                        <tr>
+                                            <td>Username:</td><td><input type="text" name="username" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password:</td><td><input type="password" name="password" /></td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <input type="submit" value="Login" /><br /><br />
+                                    <br />
+                                </form>
+                            </td>
+
+                            <td align="center">
+                                <h2 class="title"><strong>REGISTRAZIONE</strong></h2>
+                                <form action="registrazione.jsp">
+                                    <table>
+                                        <tr>
+                                            <td>Nome:</td><td><input type="text" name="nome" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cognome:</td><td><input type="text" name="cognome" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email:</td><td><input type="text" name="email" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username:</td><td><input type="text" name="username" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password:</td><td><input type="password" name="password" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Conferma Password:</td><td><input type="password" name="password2" /></td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <input type="submit" value="Registrati" />
+                                    <br />
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- end #bar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+
+    <div id="footer">
+    </div>
+<!-- end #footer -->
+</body>
+</html>

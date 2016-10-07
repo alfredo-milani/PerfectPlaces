@@ -9,7 +9,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<!-- ciao a tutti -->
+
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
 
 	<div id="menu-wrapper">

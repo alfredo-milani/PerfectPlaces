@@ -85,7 +85,7 @@ String idNumber;
 							<td>
 								<center>
 								<a href="rimuoviLocazione2.jsp?id=<% out.println(idNumber); %>">
-								<img src="images/x.jpg" width="100" height="100"></img>
+								<img src="css/images/x.jpg" width="100" height="100" alt="Press image to remove">
 								</a>
 								</center>
 							

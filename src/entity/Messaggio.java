@@ -78,14 +78,14 @@ public class Messaggio implements java.io.Serializable {
 	public int assegnaCodice() throws DeserializzazioneException{
 		
 		
-		//Se non c'è nessun messaggio ritorna il codice 0
+		//Se non c'Ã¨ nessun messaggio ritorna il codice 0
 		
 		File file = new File(percorsoMessaggi);
 		if(file.length()==0){
 			return 0;
 		}
 		
-		//Se il file non è vuoto calcola il primo codice disponibile
+		//Se il file non Ã¨ vuoto calcola il primo codice disponibile
 		
 		ArrayList<Messaggio> elencoMessaggi = new ArrayList<Messaggio>();
 		DeserializzaOggetti dobj = new DeserializzaOggetti();

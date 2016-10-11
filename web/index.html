@@ -69,24 +69,34 @@
 
                             <td align="center" id="login">
                                 <h2><strong>LOGIN</strong></h2>
-                                <form action="utente.jsp" method="POST">
+                                <form action="utente.jsp" method="post">
                                     <table>
                                         <tr>
-                                            <td>Username:</td><td><input type="text" name="username" /></td>
+                                            <td>
+                                                <label for="username"> Username: </label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="username" id="username"/>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Password:</td><td><input type="password" name="password" /></td>
+                                            <td>
+                                                <label for="password"> Password: </label>
+                                            </td>
+                                            <td>
+                                                <input type="password" name="password" id="password"/>
+                                            </td>
                                         </tr>
                                     </table>
                                     <br />
-                                    <input type="submit" value="Login" /><br /><br />
+                                        <input type="submit" value="Login" /><br /><br />
                                     <br />
                                 </form>
                             </td>
 
                             <td align="center">
                                 <h2 class="title"><strong>REGISTRAZIONE</strong></h2>
-                                <form action="registrazione.jsp">
+                                <form action="registrazione.jsp" method="post">
                                     <table>
                                         <tr>
                                             <td>Nome:</td><td><input type="text" name="nome" /></td>
@@ -120,10 +130,8 @@
             </div>
         </div>
         <!-- end #page -->
-    </div>
 
-    <div id="footer">
-    </div>
+    <div id="footer"></div>
 <!-- end #footer -->
 </body>
 </html>

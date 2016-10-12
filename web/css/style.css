@@ -34,7 +34,7 @@ input[type=submit].btn_2 {
 body {
 	margin: 0;
 	padding: 0;
-	background: #554842 url(images/texture_background.jpg) repeat;
+	background: #484848 url(images/texture_background.jpg) repeat;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 13px;
 	color: #737373;

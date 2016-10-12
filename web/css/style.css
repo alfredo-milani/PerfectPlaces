@@ -1,3 +1,35 @@
+/* Buttons' style */
+input.btn {
+	padding:5px;
+	border:2px solid #ccc;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+input[type=submit].btn_2 {
+	padding:5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #717777;
+	width: 100px;
+	height: 35px;
+}
+
+#p_1 {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-family: 'Droid serif', serif;
+    font-style: italic;
+    padding-left: 10%;
+    padding-right: 60%;
+}
+
+#table_main {
+    width: 1400px;
+    height: 350px;
+    text-align: center;
+    background: url(images/header-wrapper-bg.jpg);
+}
 
 body {
 	margin: 0;
@@ -6,6 +38,13 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 13px;
 	color: #737373;
+}
+
+h2.main {
+    margin-top: 4%;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 25px;
+    color: #717777;
 }
 
 
@@ -90,8 +129,7 @@ img.aligncenter {
 #logo {
 	width: 980px;
 	height: 100px;
-	margin: 0px auto;
-	padding: 80px 0px 0px 0px;
+	margin: 0 auto;
 	color: #FFFFFF;
 }
 
@@ -102,7 +140,7 @@ img.aligncenter {
 }
 
 #logo h1 {
-	margin: 0px;
+	margin: 0;
 	letter-spacing: -1px;
 	text-align: center;
 	text-transform: uppercase;

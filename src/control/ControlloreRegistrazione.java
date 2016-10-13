@@ -29,26 +29,29 @@ public class ControlloreRegistrazione {
 	
 	//Inserimento nuovo utente nel file utenti. Viene restituito un intero che indica il tipo di errore.
 	// 0 --> Tutto ok
-	// 1 --> C'� qualche campo del form vuoto
+	// 1 --> C'è qualche campo del form vuoto
 	// 2 --> Le due password non sono uguali
-	// 3 --> Lo username inserito � gi� stato utilizzato
+	// 3 --> Lo username inserito è già stato utilizzato
 	
 	@SuppressWarnings("unchecked")
 	public int registrazione(String username, String password, String password2, String nome, String cognome,
-			String email) throws DeserializzazioneException, SerializzazioneException{
+			String email) throws DeserializzazioneException, SerializzazioneException, NullPointerException{
 		
-		if(username.equals("") ||
+		if(username == null ||
+                password == null ||
+                password2 == null ||
+                nome == null ||
+                cognome == null ||
+                email == null ||
+                username.equals("") ||
 				password.equals("") ||
 				password.equals("") ||
 				nome.equals("") ||
 				cognome.equals("") ||
-				email.equals("")) {
-			return 1;
-		}
+				email.equals("")) return 1;
 		
-		if(!password.equals(password2)){
-			return 2;
-		}
+		if(!password.equals(password2)) return 2;
+
 		Utente ut = new Utente(username,password,nome,cognome,email,immagine);
 		File file = new File(percorsoUtenti);
 		SerializzaOggetti sobj = new SerializzaOggetti();
@@ -61,12 +64,11 @@ public class ControlloreRegistrazione {
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
 
-		for(int i = 0; i<utenti.size();i++){
-			if(utenti.get(i).getUsername().equals(username)){
-				return 3;
-			}
-		}
-		utenti.add(ut);
+        for (Utente anUtenti : utenti)
+            if (anUtenti.getUsername().equals(username))
+                return 3;
+
+        utenti.add(ut);
 		sobj.serializza(utenti, percorsoUtenti);
 		
 		return 0;

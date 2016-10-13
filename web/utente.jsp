@@ -13,9 +13,6 @@
 <%
 String un = request.getParameter("username");
 String pw = request.getParameter("password");
-    StringBuffer d = request.getRequestURL();
-	System.err.println("username: " + un + "\t\tpassword: " + pw + "\n\nrequest: " + d);
-
 
 b.login(un, pw);
 %>

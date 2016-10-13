@@ -8,13 +8,11 @@ import exception.DeserializzazioneException;
 public class DeserializzaOggetti {
 	
 	// Costruttore
-	
 	public DeserializzaOggetti(){
 		
 	}
 	
 	// Metodo che prende come input il percorso del file, effettua la deserializzazione e ritorna l'oggetto che verr� castato dal chiamante.
-	
 	public Object deserializza(String percorso) throws DeserializzazioneException {
 		try{
 			FileInputStream f = new FileInputStream(percorso);
@@ -26,5 +24,4 @@ public class DeserializzaOggetti {
 			throw new DeserializzazioneException("Oggetto non deserializzabile");
 		}
 	}
-
 }

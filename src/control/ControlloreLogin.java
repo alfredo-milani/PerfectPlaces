@@ -41,7 +41,7 @@ public class ControlloreLogin {
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
 
-        /* controlla  perche senza questo statement non funziona anche se dovrebbe */
+        /* controlla perche senza questo statement non funziona anche se dovrebbe */
         if (username == null ||
                 username.equals("") ||
                 password == null ||

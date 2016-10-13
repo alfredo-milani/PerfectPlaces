@@ -8,8 +8,8 @@ import entity.Messaggio;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import util.DeserializzaOggetti;
-import util.SerializzaOggetti;
+import utils.DeserializzaOggetti;
+import utils.SerializzaOggetti;
 
 // Classe che si occupa della gestione della posta, sia dell'invio dei messaggi che della ricerca.
 

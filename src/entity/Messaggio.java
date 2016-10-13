@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import exception.DeserializzazioneException;
-import util.DeserializzaOggetti;
+import utils.DeserializzaOggetti;
 
 public class Messaggio implements java.io.Serializable {
 	

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import constants.Constants;
 import entity.Utente;
 import exception.DeserializzazioneException;
-import util.DeserializzaOggetti;
+import utils.DeserializzaOggetti;
 
 public class ThreadRimozione implements Runnable {
 	

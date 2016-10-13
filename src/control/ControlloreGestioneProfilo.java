@@ -12,7 +12,7 @@ import constants.Constants;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import util.*;
+import utils.*;
 
 // Classe che consente la gestione del profilo personale, in particolare la restituzione dei valori
 // associati ad un particolare utente, modificarli, e modificare l'immagine.

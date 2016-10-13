@@ -7,7 +7,7 @@ import standAlone_UseCase.boundary.ConfineAvvio;
 import constants.Constants;
 import entity.Utente;
 import exception.SerializzazioneException;
-import util.SerializzaOggetti;
+import utils.SerializzaOggetti;
 
 public class AvvioProgramma {
 	

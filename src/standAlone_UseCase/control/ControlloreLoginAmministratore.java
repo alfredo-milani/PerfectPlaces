@@ -7,7 +7,7 @@ import standAlone_UseCase.boundary.ConfineAmministrazione;
 import standAlone_UseCase.boundary.ConfineLoginErrato;
 import entity.Utente;
 import exception.DeserializzazioneException;
-import util.DeserializzaOggetti;
+import utils.DeserializzaOggetti;
 
 public class ControlloreLoginAmministratore {
 	

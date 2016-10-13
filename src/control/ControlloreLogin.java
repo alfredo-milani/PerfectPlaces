@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import constants.Constants;
 import entity.Utente;
 import exception.DeserializzazioneException;
-import util.DeserializzaOggetti;
+import utils.DeserializzaOggetti;
 
 // Classe che gestisce il login al sistema e altri piccoli metodi utili.
 

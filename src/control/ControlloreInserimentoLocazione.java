@@ -7,8 +7,8 @@ import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import util.DeserializzaOggetti;
-import util.SerializzaOggetti;
+import utils.DeserializzaOggetti;
+import utils.SerializzaOggetti;
 
 // Classe che consente l'inserimento di nuove locazioni all'interno del sistema.
 

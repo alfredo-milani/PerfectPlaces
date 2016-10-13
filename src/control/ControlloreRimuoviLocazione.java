@@ -6,8 +6,8 @@ import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import util.DeserializzaOggetti;
-import util.SerializzaOggetti;
+import utils.DeserializzaOggetti;
+import utils.SerializzaOggetti;
 
 // Questa classe serve a rimuovere una locazione dal sistema da parte del proprietario. 
 

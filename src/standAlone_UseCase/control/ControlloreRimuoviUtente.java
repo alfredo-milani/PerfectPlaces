@@ -9,7 +9,7 @@ import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import standAlone_UseCase.thread.ThreadRimozione;
-import util.*;
+import utils.*;
 
 public class ControlloreRimuoviUtente {
 	

@@ -10,7 +10,7 @@ import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import util.*;
+import utils.*;
 
 // Classe che gestisce la prenotazione a seconda della tipologia di locazione scelta.
 

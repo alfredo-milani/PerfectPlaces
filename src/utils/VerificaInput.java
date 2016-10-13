@@ -1,4 +1,4 @@
-package util;
+package utils;
 
 // Questa classe � utilizzata per effettuare alcuni controlli sugli input dei form nelle pagine JSP.
 

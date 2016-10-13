@@ -7,7 +7,7 @@ import constants.Constants;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import util.*;
+import utils.*;
 
 // Questa classe si occupa della registrazione degli utenti.
 

@@ -10,7 +10,7 @@
 </head>
 <body>
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
-<%@page import="util.VerificaInput" %>
+<%@page import="utils.VerificaInput" %>
 <%@page import="entity.*" %>
 <%@page import="control.ControlloreRicercaLocazione" %>
 <%@page import="java.util.ArrayList" %>
@@ -162,11 +162,11 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="0"></input>
-										<input type="hidden" name="id" value="<%out.println(i);%>"></input>
-										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>"></input>
-										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>"></input>
-										<input type="submit" value="PRENOTA!"></input>
+										<input type="hidden" name="command" value="0">
+										<input type="hidden" name="id" value="<%out.println(i);%>">
+										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
+										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
+										<input type="submit" value="PRENOTA!">
 									</div>
 									</form>
 								</div>	
@@ -240,11 +240,11 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="1"></input>
-										<input type="hidden" name="id" value="<%out.println(i);%>"></input>
-										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>"></input>
-										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>"></input>
-										<input type="submit" value="PRENOTA!"></input>
+										<input type="hidden" name="command" value="1">
+										<input type="hidden" name="id" value="<%out.println(i);%>">
+										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
+										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
+										<input type="submit" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	
@@ -306,11 +306,11 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="2"></input>
-										<input type="hidden" name="id" value="<%out.println(i);%>"></input>
-										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>"></input>
-										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>"></input>
-										<input type="submit" value="PRENOTA!"></input>
+										<input type="hidden" name="command" value="2">
+										<input type="hidden" name="id" value="<%out.println(i);%>">
+										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
+										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
+										<input type="submit" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	
@@ -385,11 +385,11 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="3"></input>
-										<input type="hidden" name="id" value="<%out.println(i);%>"></input>
-										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>"></input>
-										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>"></input>
-										<input type="submit" value="PRENOTA!"></input>
+										<input type="hidden" name="command" value="3">
+										<input type="hidden" name="id" value="<%out.println(i);%>">
+										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
+										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
+										<input type="submit" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	
@@ -447,11 +447,11 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="4"></input>
-										<input type="hidden" name="id" value="<%out.println(i);%>"></input>
-										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>"></input>
-										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>"></input>
-										<input type="submit" value="PRENOTA!"></input>
+										<input type="hidden" name="command" value="4">
+										<input type="hidden" name="id" value="<%out.println(i);%>">
+										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
+										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
+										<input type="submit" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	

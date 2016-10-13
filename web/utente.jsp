@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
@@ -8,26 +10,22 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
+
 <body>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="d" scope="session" class="control.ControlloreLogin"/>
 
 <%
 String un = request.getParameter("username");
 String pw = request.getParameter("password");
-
-b.login(un, pw);
+    System.out.println("un: " + un + "\npsw: " + pw);
+d.login(un, pw);
 %>
-	<div id="menu-wrapper">
-		<div id="menu">
-		</div>
-		<!-- end #menu -->
-	</div>
 
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#"><% out.println(b.getTitle(un));%></a></h1>
+				<h1><a href="#"><% out.println(d.getTitle(un));%></a></h1>
 				
 			</div>
 		</div>
@@ -40,7 +38,7 @@ b.login(un, pw);
 				
 				<!--  Parte utente loggato -->							
 				
-					<% if(b.getLogged()) { %>
+					<% if(d.getLogged()) { %>
 					<div class="post">
 						<h2 class="title">SCEGLI COSA FARE!</h2>
 						<table>
@@ -72,7 +70,7 @@ b.login(un, pw);
 					
 					<!--  Parte utente non loggato -->
 					
-					<% if (!b.getLogged()) {  %>
+					<% if (!d.getLogged()) {  %>
 					<div class="post">
 						<h2 class="title">Errore!</h2>
 						
@@ -95,7 +93,7 @@ b.login(un, pw);
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (d.getLogged()) {  %>
 					
 					<ul>
 						<li>

@@ -23,9 +23,9 @@ public class ControlloreLogin {
 	// Costruttore
 	
 	public ControlloreLogin(){
-		
-		
-	}	
+
+
+	}
 	
 	
 	// Deserializza gli Utenti del file utenti e li posiziona in un ArrayList. Viene fatta una scansione
@@ -33,34 +33,38 @@ public class ControlloreLogin {
 	
 	@SuppressWarnings("unchecked")
 	public boolean login(String username, String password) throws DeserializzazioneException{
-		
-		
-		
 		File file = new File(percorsoUtenti);
 		
-		if(file.length()==0){
+		if(file.length()==0)
 			return false;
-		}
-		
 		
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
-		
-		for(int i=0; i<utenti.size();i++){
-			if(utenti.get(i).getUsername().equals(username)){
-				if(utenti.get(i).getPassword().equals(password)){
+
+        /* controlla  perche senza questo statement non funziona anche se dovrebbe */
+        if (username == null ||
+                username.equals("") ||
+                password == null ||
+                password.equals("")) {
+            System.out.println("un2: " + username + "\tpsw2: " + password);
+            logged_in = false;
+            return false;
+        }
+
+		for (Utente anUtenti : utenti) {
+			if (anUtenti.getUsername().equals(username)) {
+				if (anUtenti.getPassword().equals(password)) {
 					logged_in = true;
 					this.username = username;
 					return true;
-				} else {
-					return false;
 				}
+				return false;
 			}
 		}
 		return false;
 	}
 	
-	// Check se l'utente � loggato o meno
+	// Check se l'utente è loggato o meno
 	
 	public boolean getLogged(){
 		return logged_in;
@@ -76,9 +80,8 @@ public class ControlloreLogin {
 	
 	public String getTitle(String un) {
 		if (logged_in)
-			return "Benvenuto!";
-		else
-			return "Attenzione!";
+			return un + "\tBenvenuto!";
+		return "Attenzione!";
 	}
 	
 	// Restituisce l'username associato all'istanza 

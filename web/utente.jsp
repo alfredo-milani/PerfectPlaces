@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+
 <%
 String un = request.getParameter("username");
 String pw = request.getParameter("password");

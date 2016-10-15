@@ -15,7 +15,7 @@
 <jsp:useBean id="b" class="control.ControlloreRegistrazione" scope="session"/>
 
 <%
-    String un = request.getParameter("username");
+    String un = request.getParameter("username_2");
     String pw = request.getParameter("password");
     String pw2 = request.getParameter("password2");
     String nome = request.getParameter("nome");

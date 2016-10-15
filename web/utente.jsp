@@ -12,20 +12,19 @@
 </head>
 
 <body>
-<jsp:useBean id="d" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="page" class="control.ControlloreLogin"/>
 
 <%
 String un = request.getParameter("username");
 String pw = request.getParameter("password");
-    System.out.println("un: " + un + "\npsw: " + pw);
-d.login(un, pw);
+c.login(un, pw);
 %>
 
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#"><% out.println(d.getTitle(un));%></a></h1>
+				<h1><a href="#"><% out.println(c.getTitle(un));%></a></h1>
 				
 			</div>
 		</div>
@@ -36,9 +35,8 @@ d.login(un, pw);
 			<div id="page-bgbtm">
 				<div id="content">
 				
-				<!--  Parte utente loggato -->							
-				
-					<% if(d.getLogged()) { %>
+				<!--  Parte utente loggato -->
+					<% if(c.getLogged()) { %>
 					<div class="post">
 						<h2 class="title">SCEGLI COSA FARE!</h2>
 						<table>
@@ -70,7 +68,7 @@ d.login(un, pw);
 					
 					<!--  Parte utente non loggato -->
 					
-					<% if (!d.getLogged()) {  %>
+					<% if (!c.getLogged()) {  %>
 					<div class="post">
 						<h2 class="title">Errore!</h2>
 						
@@ -93,7 +91,7 @@ d.login(un, pw);
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (d.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

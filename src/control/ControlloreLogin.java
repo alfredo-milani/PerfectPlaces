@@ -8,14 +8,14 @@ import entity.Utente;
 import exception.DeserializzazioneException;
 import utils.DeserializzaOggetti;
 
-// Classe che gestisce il login al sistema e altri piccoli metodi utili.
+// Classe che gestisce il login al sistema.
 
 public class ControlloreLogin {
 	
 	// Variabili
 	
 	private String username;
-	private ArrayList<Utente> utenti = new ArrayList<Utente>();
+	private ArrayList<Utente> utenti;
 	private boolean logged_in = false;
 	private String percorsoUtenti = Constants.UTENTI_PATH;
 	
@@ -32,37 +32,24 @@ public class ControlloreLogin {
 	// di tutti gli elementi e viene verificata la corrispondenza di Username e Password inserite
 	
 	@SuppressWarnings("unchecked")
-	public boolean login(String username, String password) throws DeserializzazioneException{
+	public void login(String username, String password) throws DeserializzazioneException{
 		File file = new File(percorsoUtenti);
 		
-		if(file.length()==0)
-			return false;
+		if(file.length() == 0)
+			return;
 		
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
 
-        /* controlla perche senza questo statement non funziona anche se dovrebbe */
-        if (username == null ||
-                username.equals("") ||
-                password == null ||
-                password.equals("")) {
-            System.out.println("un2: " + username + "\tpsw2: " + password);
-            logged_in = false;
-            return false;
-        }
-
-		for (Utente anUtenti : utenti) {
+		for (Utente anUtenti : utenti)
 			if (anUtenti.getUsername().equals(username)) {
 				if (anUtenti.getPassword().equals(password)) {
 					logged_in = true;
 					this.username = username;
-					return true;
 				}
-				return false;
+				break;
 			}
-		}
-		return false;
-	}
+    }
 	
 	// Check se l'utente è loggato o meno
 	

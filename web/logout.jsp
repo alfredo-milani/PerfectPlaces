@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="page" class="control.ControlloreLogin"/>
 <%
 c.logout();
 %>

@@ -35,7 +35,7 @@ public class ControlloreRegistrazione {
 	
 	@SuppressWarnings("unchecked")
 	public int registrazione(String username, String password, String password2, String nome, String cognome,
-			String email) throws DeserializzazioneException, SerializzazioneException, NullPointerException{
+			String email) throws DeserializzazioneException, SerializzazioneException {
 		
 		if(username == null ||
                 password == null ||

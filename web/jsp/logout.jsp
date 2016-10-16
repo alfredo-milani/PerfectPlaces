@@ -36,7 +36,7 @@ c.logout();
 						<h2 class="title">LOGOUT EFFETTUATO CON SUCCESSO!</h2>
 						<br /><br /><br />
 						
-						<h2><a href="../html/index.html">TORNA ALLA HOME PAGE</a></h2>
+						<h2><a href="../html/_0_index.html">TORNA ALLA HOME PAGE</a></h2>
 											
 				</div>
 				<!-- end #content -->

@@ -80,7 +80,7 @@ c.login(un, pw);
 						
 						<br />
 						
-						<a href="../html/index.html">Torna alla Home Page</a>
+						<a href="../html/_0_index.html">Torna alla Home Page</a>
 					</div>
 					<% } %>
 					

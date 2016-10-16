@@ -47,7 +47,7 @@
 						        <td>
 						            <br /><br /><br /><br />
 						            Non puoi lasciare campi del form vuoti! <br/>
-						            <a href="../html/index.html"> TORNA ALLA HOME PAGE E RIPROVA</a> <br/>
+						            <a href="../html/_0_index.html"> TORNA ALLA HOME PAGE E RIPROVA</a> <br/>
 						        </td>
 						    </tr>
 						</table>
@@ -62,7 +62,7 @@
 						<td>
 						<br /><br /><br /><br />
 						Le password di conferma deve essere uguale a quella inserita!<br />
-						<a href="../html/index.html"> TORNA ALLA HOME PAGE E RIPROVA</a><br />
+						<a href="../html/_0_index.html"> TORNA ALLA HOME PAGE E RIPROVA</a><br />
 						</td>
 						</tr>
 						</table>
@@ -78,7 +78,7 @@
 						<td>
 						<br /><br /><br /><br />
 						Lo Username inserito e' gia' stato utilizzato!<br />
-						<a href="../html/index.html"> REGISTRATI CON UN ALTRO USERNAME! </a><br />
+						<a href="../html/_0_index.html"> REGISTRATI CON UN ALTRO USERNAME! </a><br />
 						</td>
 						</tr>
 						</table>
@@ -93,7 +93,7 @@
                                 <td>
                                     <br /><br /><br /><br />
                                     Registrazione effettuata con successo<br />
-                                    <a href="../html/index.html"> TORNA ALLA HOME PAGE ED EFFETTUA IL LOGIN!</a><br />
+                                    <a href="../html/_0_index.html"> TORNA ALLA HOME PAGE ED EFFETTUA IL LOGIN!</a><br />
                                 </td>
                             </tr>
                         </table>

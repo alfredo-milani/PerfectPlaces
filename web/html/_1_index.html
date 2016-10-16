@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title> Perfect Places </title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../js/functions.js"></script>
+</head>
+
+<body>
+<div id="logo">
+    <img src="../css/images/logo.png" alt="Logo"/>
+</div>
+
+<div class="language">
+    <table width="100%" border="0">
+        <tr>
+            <td>
+                <label for="select"> Language: </label>
+            </td>
+            <td>
+                <select id="select" class="btn" onchange="changeLang(this)">
+                    <option id="1" value="english">English</option>
+                    <option id="0" value="italian">Italian</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="page">
+    <table id="table_main">
+        <tr>
+            <td>
+                <p id="p_1"> The easiest way to find your ideal accommodation </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- inserire nel bottone la referenza alla pagina degli aiuti -->
+                <input type="button" id="btn_help" value="See how to..." >
+            </td>
+        </tr>
+    </table>
+
+    <div id="page-bgtop">
+        <div id="page-bgbtm">
+            <!-- end #content -->
+            <table width="100%" border="0">
+                <tr valign="top">
+
+                    <td align="center" id="login">
+                        <h2 class="main"><strong>LOGIN</strong></h2>
+                        <form action="../jsp/utente.jsp" method="post">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="username"> Username: </label>
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="text" name="username" id="username"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="password"> Password: </label>
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="password" name="password" id="password"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <input class="btn_2" type="submit" value="Login" /><br /><br />
+                            <br />
+                        </form>
+                    </td>
+
+                    <td align="center">
+                        <h2 class="main"><strong>SIGN UP</strong></h2>
+                        <form action="../jsp/registrazione.jsp" method="post">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="username_2"> Username: </label>
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="text" name="username_2" id="username_2" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="password_2"> Password: </label>
+                                    </td>
+                                    <td><input class="btn" type="password" name="password" id="password_2"/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="conf_psw"> Confirm Password: </label>
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="password" name="password2" id="conf_psw"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="nome"> First name: </label>
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="text" name="nome" id="nome"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="cognome"> Last name: </label>
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="text" name="cognome" id="cognome"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="email"> Email: </label>
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="text" name="email" id="email"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <input class="btn_2" type="submit" value="Sign Up" />
+                            <br />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <!-- end #bar -->
+            <!-- to keep space -->
+            <div style="clear: both;">&nbsp;</div>
+        </div>
+    </div>
+</div>
+<!-- end #page -->
+
+<!-- MJ: qui nel footer potresti mettere le FAQ e gli aiuti (NOTA: per gli aiuti ho me anche il bottone con
+    la scritta: "Vedi come..." -->
+<div id="footer"></div>
+<!-- end #footer -->
+</body>
+</html>

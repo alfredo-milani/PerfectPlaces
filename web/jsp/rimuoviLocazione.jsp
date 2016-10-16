@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>S&amp;M</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
 <%@page import="control.ControlloreRicercaLocazione" %>
@@ -24,6 +24,8 @@ String nomeLocazione;
 String indirizzo;
 String prezzo; 
 String descrizione;
+
+String idNumber;
 
 
 %>
@@ -57,20 +59,46 @@ String descrizione;
 					</div>
 					
 					
+					
+					
+					
 					<% for(int i=0;i<locazioni.size();i++){
 						 nomeLocazione = locazioni.get(i).getNomeLocazione();
 						 indirizzo = locazioni.get(i).getIndirizzo();
 						 prezzo = locazioni.get(i).getPrezzo();
 						 descrizione = locazioni.get(i).getDescrizione();
+						 idNumber = ""+i;
 						 
 					
 					%>
 					
 					<div class="post">
-						<h2>Nome Locazione:<%out.println(nomeLocazione);%></h2>
-						<h1>Indirizzo: <%out.println(indirizzo); %></h1>
-						<h1>Prezzo: <%out.println(prezzo); %></h1>
-						<h1>Descrizione: <%out.println(descrizione); %></h1>
+					
+					<table style="width:100%">
+						<tr>
+							<td>
+								<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+								<h1>Indirizzo: <%out.println(indirizzo); %></h1>
+								<h1>Prezzo: <%out.println(prezzo); %></h1>
+								<h1>Descrizione: <%out.println(descrizione); %></h1>
+							</td>
+							<td>
+								<center>
+								<a href="rimuoviLocazione2.jsp?id=<% out.println(idNumber); %>">
+								<img src="../css/images/x.jpg" width="100" height="100" alt="Press image to remove">
+								</a>
+								</center>
+							
+							</td>
+						</tr>
+					
+					
+					
+					
+					</table>
+					
+					
+						
 					</div>
 					
 					<% } %>

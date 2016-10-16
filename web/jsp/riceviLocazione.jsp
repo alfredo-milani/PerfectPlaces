@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>PP</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
 <%@page import="control.ControlloreInserimentoLocazione"  %>

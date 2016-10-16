@@ -63,14 +63,6 @@ public class ControlloreLogin {
 		logged_in = false;
 	}
 	
-	// Metodo per il titolo in JSP
-	
-	public String getTitle(String un) {
-		if (logged_in)
-			return un + "\tBenvenuto!";
-		return "Attenzione!";
-	}
-	
 	// Restituisce l'username associato all'istanza 
 	
 	public String getUser(){

@@ -22,21 +22,18 @@ public class ThreadRimozione implements Runnable {
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		String elenco = "Utenti: [";
 		try {
-			
 			utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
 			
 			if(utenti.size()==0){
 				elenco = elenco + " ]";
 			}
 			
-			for (int i = 0; i < utenti.size(); i++) {
-				
-				 if(i==(utenti.size()-1)){
-					elenco = elenco + utenti.get(i).getUsername() + "]";
-				} else {				
-					elenco = elenco + utenti.get(i).getUsername() + ", ";
-				}
-			}	
+			for (int i = 0; i < utenti.size(); i++)
+				if (i == (utenti.size() - 1))
+				    elenco = elenco + utenti.get(i).getUsername() + "]";
+                else
+                    elenco = elenco + utenti.get(i).getUsername() + ", ";
+
 			System.out.println(elenco);
 		} catch (DeserializzazioneException e) {
 			e.printStackTrace();

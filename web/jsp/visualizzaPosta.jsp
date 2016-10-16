@@ -6,31 +6,28 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>S&amp;M</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<body>
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreGestioneProfilo"%>
+<%@page import="control.ControlloreGestionePosta" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="entity.Messaggio" %>
 <%
+
 String username = b.getUser();
-String nome = request.getParameter("nome");
-String cognome = request.getParameter("cognome");
-String email = request.getParameter("email");
-String vecchiaPassword = request.getParameter("vecchiaPassword");
-String nuovaPassword = request.getParameter("nuovaPassword");
-String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
-String indirizzoImmagine = request.getParameter("indirizzoImmagine");
-int controllo;
+String oggetto;
+String mittente;
 
-ControlloreGestioneProfilo cgp = new ControlloreGestioneProfilo();
+ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<Messaggio>();
 
-controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
 
-if(!indirizzoImmagine.equals(""))
-	cgp.copiaImmagine(indirizzoImmagine, username);
+elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
 
 
 %>
+
+<body>
 	<div id="menu-wrapper">
 		<div id="menu">
 			
@@ -42,7 +39,7 @@ if(!indirizzoImmagine.equals(""))
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">Profilo Personale</a></h1>
+				<h1><a href="#">Visualizza i tuoi messaggi</a></h1>
 				
 			</div>
 		</div>
@@ -52,44 +49,52 @@ if(!indirizzoImmagine.equals(""))
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
-					
-					<% if(controllo==0){ %>
-					
-					<div class="post">
-						
-						<h2>Profilo modificato correttamente!<br></br>
-						<a href="profiloUtente.jsp">Torna al tuo profilo</a></h2>
 				
-					</div>
-				
-					<% }else if(controllo==1){ %>
 					
 					<div class="post">
-						
-						<h2>La vecchia password inserita non &egrave; corretta!<br></br>
-						<a href="modificaProfiloUtente.jsp">Riprova</a></h2>
+							<h2><strong>Questi sono i tuoi messaggi</strong></h2>
+							
 					</div>
-					
-					<%} else if(controllo == 2){ %>
 					
 					<div class="post">
+						<table width="100%">
+							<tr>
+								<td><strong>Mittente</strong></td>
+								<td><strong>Oggetto</strong></td>
+							</tr>
+					
+					
+					<% for(int i=0;i<elencoMessaggiUser.size();i++){
+						 oggetto = elencoMessaggiUser.get(i).getOggetto();
+						 mittente = elencoMessaggiUser.get(i).getMittente();						 
+					
+					%>
+							<tr>
+								<td>
+									<%out.println(elencoMessaggiUser.get(i).getMittente());%>
+								</td>
+								<td>
+									<%out.println(elencoMessaggiUser.get(i).getOggetto());%>
+								</td>
+								<td>
+									<form action="visualizzaPosta2.jsp">
+									<div>
+									<input type="hidden" name="codice" value="<%out.println(elencoMessaggiUser.get(i).getCodice());%>" /> 
+									<input type="submit" value="Leggi"/>
+									</div>
+									</form>
+								</td>		
+							</tr>
 						
-						<h2>La nuova password e la conferma della nuova password sono diverse!<br></br>
-						<a href="modificaProfiloUtente.jsp">Riprova</a></h2>
+					<% } %>
+					
+					</table>
+					
+					
 					</div>
 					
 					
-					<%} else if(controllo == 3){ %>
-					
-					<div class="post">
-						
-						<h2>La nuova password non pu&ograve; essere vuota!<br></br>
-						<a href="modificaProfiloUtente.jsp">Riprova</a></h2>
-					</div>
-					
-					<% }%>
-					
-				<div style="clear: both;">&nbsp;</div>
+					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
 				<!-- Menu -->
@@ -139,7 +144,7 @@ if(!indirizzoImmagine.equals(""))
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<!-- end #page -->
 </div>
 <div id="footer">

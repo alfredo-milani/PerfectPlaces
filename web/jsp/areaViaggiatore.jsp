@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>S&amp;M</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
@@ -30,9 +30,7 @@
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
-				
-				
-				
+
 					<div class="post">
 						<h2 class="title">Seleziona la locazione adatta a te!</h2>
 					
@@ -67,27 +65,27 @@
 							<tr>
 								<td>
 									<center>
-									<img src="images/albergo.jpg" width="150" height="150"></img>
+									<img src="images/albergo.jpg" width="150" height="150"/>
 									</center>
 								</td>
 								<td>
 									<center>
-									<img src="images/appartamento.jpg" width="150" height="150"></img>	
+									<img src="images/appartamento.jpg" width="150" height="150"/>
 									</center>
 								</td>
 								<td>
 									<center>
-									<img src="images/beb.jpg"  width="150" height="150"></img>	
+									<img src="images/beb.jpg"  width="150" height="150"/>
 									</center>
 								</td>
 								<td>
 									<center>
-									<img src="images/vacanza.jpg"  width="150" height="150"></img>	
+									<img src="images/vacanza.jpg"  width="150" height="150"/>
 									</center>
 								</td>
 								<td>
 									<center>
-									<img src="images/ostello.jpg"  width="150" height="150"></img>	
+									<img src="images/ostello.jpg"  width="150" height="150"/>
 									</center>
 								</td>
 							</tr>
@@ -98,49 +96,29 @@
 							<h2><strong>Ricerca la tua locazione!</strong></h2>
 							
 							<!-- Script JavaScript per far vedere solo i parametri di ricerca del tipo di locazione cliccato -->
+							<script type="text/javascript" src="../js/visualizza_scelte.js" ></script>
 							
-							<script type="text/javascript">
-							function visualizza(id, id1, id2, id3, id4){
-
- 							document.getElementById(id1).style.display = 'none';
- 							document.getElementById(id2).style.display = 'none';
- 							document.getElementById(id3).style.display = 'none';
- 							document.getElementById(id4).style.display = 'none';
-
- 								 if (document.getElementById){
-   								 if(document.getElementById(id).style.display == 'none'){
-     							 document.getElementById(id).style.display = 'block';
- 							   }else{
-  							    document.getElementById(id).style.display = 'none';
-    							}
-  								}
-							}
-							</script>
-							
-							
-	<input type="radio" name="command" value="0" onclick="visualizza('albform','aptform','bebform','cvzform','ostform')"></input>Albergo<br />
+	<input type="radio" name="command" value="0" onclick="visualizza('albform','aptform','bebform','cvzform','ostform')"/>Albergo<br />
 
 	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="albform" style="display:none">
 	
 	<div>
-
-		<input type="hidden" name="command" id="command" value="0"></input>
-		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
+		<input type="hidden" name="command" id="command_1" value="0"/>
+        Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
 		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
 		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
 		<input type="submit" value="Ricerca" /><br />
-		
 	</div>
 
-	</form>									
-							
-	<input type="radio" name="command" value="1" onclick="visualizza('aptform','albform','bebform','cvzform','ostform')"></input>Appartamento<br />
+	</form>
+
+	<input type="radio" name="command" value="1" onclick="visualizza('aptform','albform','bebform','cvzform','ostform')"/>Appartamento<br />
 
 	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="aptform" style="display:none">
 
 	<div>
 	
-		<input type="hidden" name="command" id="command" value="1"></input>
+		<input type="hidden" name="command" id="command_2" value="1"/>
 		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
 		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
 		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
@@ -150,13 +128,13 @@
 	
 	</form>			
 	
-	<input type="radio" name="command" value="2" onclick="visualizza('bebform','aptform','albform','cvzform','ostform')"></input>Bed&amp;Breakfast<br />
+	<input type="radio" name="command" value="2" onclick="visualizza('bebform','aptform','albform','cvzform','ostform')"/>Bed&amp;Breakfast<br />
 
 	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="bebform" style="display:none">
 	
 		<div>
 
-		<input type="hidden" name="command" id="command" value="2"></input>
+		<input type="hidden" name="command" id="command_3" value="2"/>
 		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
 		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
 		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
@@ -166,13 +144,13 @@
 		
 	</form>			
 	
-	<input type="radio" name="command" value="3" onclick="visualizza('cvzform','aptform','bebform','albform','ostform')"></input>Casa Vacanza<br />
+	<input type="radio" name="command" value="3" onclick="visualizza('cvzform','aptform','bebform','albform','ostform')"/>Casa Vacanza<br />
 
 	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="cvzform" style="display:none">
 	
 	<div>
 
-		<input type="hidden" name="command" id="command" value="3"></input>
+		<input type="hidden" name="command" id="command_4" value="3"/>
 		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
 		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
 		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
@@ -182,13 +160,13 @@
 
 	</form>			
 	
-	<input type="radio" name="command" value="4" onclick="visualizza('ostform','aptform','bebform','cvzform','albform')"></input>Ostello<br />
+	<input type="radio" name="command" value="4" onclick="visualizza('ostform','aptform','bebform','cvzform','albform')"/>Ostello<br />
 
 	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="ostform" style="display:none">
 	
 	<div>
 
-		<input type="hidden" name="command" id="command" value="4"></input>
+		<input type="hidden" name="command" id="command" value="4"/>
 		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
 		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
 		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />

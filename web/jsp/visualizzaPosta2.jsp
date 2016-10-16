@@ -1,36 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>S&amp;M</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
+
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
 <%@page import="control.ControlloreGestionePosta" %>
-<%@page import="java.util.ArrayList" %>
 <%@page import="entity.Messaggio" %>
 <%
-
-String username = b.getUser();
-String oggetto;
-String mittente;
-
-ControlloreGestionePosta cgp = new ControlloreGestionePosta();
-ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<Messaggio>();
-
-
-elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
-
-
+    String strCodice = request.getParameter("codice");
+	strCodice = strCodice.substring(0,1);
+	int codice = Integer.parseInt(strCodice);
+	ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+	Messaggio messaggio = cgp.ricercaMessaggioPerCodice(codice);
 %>
 
 <body>
 	<div id="menu-wrapper">
 		<div id="menu">
-			
 		</div>
 		<!-- end #menu -->
 	</div>
@@ -52,44 +46,35 @@ elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
 				
 					
 					<div class="post">
-							<h2><strong>Questi sono i tuoi messaggi</strong></h2>
+							<h2><strong>Messaggio selezionato:</strong></h2>
 							
 					</div>
 					
 					<div class="post">
 						<table width="100%">
 							<tr>
-								<td><strong>Mittente</strong></td>
-								<td><strong>Oggetto</strong></td>
+								<td><strong>Mittente:</strong></td>
+								<td><%out.println(messaggio.getMittente());%></td>
 							</tr>
-					
-					
-					<% for(int i=0;i<elencoMessaggiUser.size();i++){
-						 oggetto = elencoMessaggiUser.get(i).getOggetto();
-						 mittente = elencoMessaggiUser.get(i).getMittente();						 
-					
-					%>
 							<tr>
-								<td>
-									<%out.println(elencoMessaggiUser.get(i).getMittente());%>
-								</td>
-								<td>
-									<%out.println(elencoMessaggiUser.get(i).getOggetto());%>
-								</td>
-								<td>
-									<form action="visualizzaPosta2.jsp">
-									<div>
-									<input type="hidden" name="codice" value="<%out.println(elencoMessaggiUser.get(i).getCodice());%>" /> 
-									<input type="submit" value="Leggi"></input>
-									</div>
-									</form>
-								</td>		
+								<td><strong>Oggetto:</strong></td>
+								<td><%out.println(messaggio.getOggetto());%></td>
 							</tr>
-						
-					<% } %>
-					
-					</table>
-					
+							
+							</table>
+							<br />
+							<strong>Contenuto:</strong><br /><br />
+							
+						<div class="break-word">
+							<%out.println(messaggio.getContenuto());%>
+						</div>
+						<br /><br />
+						<form action="scriviMessaggio.jsp">
+						<div>
+							<input type="hidden" name="mittente" value="<%out.println(messaggio.getMittente());%>" /> 
+							<input type="submit" value="Rispondi"/>
+						</div>
+						</form>
 					
 					</div>
 					

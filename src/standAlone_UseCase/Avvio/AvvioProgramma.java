@@ -11,17 +11,15 @@ import utils.SerializzaOggetti;
 
 public class AvvioProgramma {
 	
-	public String percorsoAmministratori = Constants.ADMIN_PATH;
+	private String percorsoAmministratori = Constants.ADMIN_PATH;
 	
 	// Costruttore
-	
-	public AvvioProgramma(){
+	private AvvioProgramma(){
 		
 	}
 	
 	// Se il file percorsoAmministratori è vuoto, il metodo aggiunge l'amministratore root
-	
-	public void checkRoot() throws SerializzazioneException{
+	private void checkRoot() throws SerializzazioneException{
 		File file = new File(percorsoAmministratori);
 		if(file.length() == 0){
 			ArrayList<Utente> amministratori = new ArrayList<Utente>();

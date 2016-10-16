@@ -6,9 +6,9 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>PerfectPlaces</title>
+<title>Perfect Places</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@ c.logout();
 						<h2 class="title">LOGOUT EFFETTUATO CON SUCCESSO!</h2>
 						<br /><br /><br />
 						
-						<h2><a href="index.html">TORNA ALLA HOME PAGE</a></h2>
+						<h2><a href="../html/index.html">TORNA ALLA HOME PAGE</a></h2>
 											
 				</div>
 				<!-- end #content -->

@@ -6,29 +6,34 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>S&amp;M</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
+<body>
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreGestionePosta" %>
-<%@page import="java.util.ArrayList" %>
-<%@page import="entity.Messaggio" %>
+<%@page import="control.ControlloreGestioneProfilo"%>
 <%
-
 String username = b.getUser();
-String strCodice = request.getParameter("codice");
-strCodice = strCodice.substring(0,1);
-int codice = Integer.parseInt(strCodice);
+String nome = request.getParameter("nome");
+String cognome = request.getParameter("cognome");
+String email = request.getParameter("email");
+String vecchiaPassword = request.getParameter("vecchiaPassword");
+String nuovaPassword = request.getParameter("nuovaPassword");
+String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
+String indirizzoImmagine = request.getParameter("indirizzoImmagine");
+int controllo;
 
-ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+ControlloreGestioneProfilo cgp = new ControlloreGestioneProfilo();
 
-Messaggio messaggio = cgp.ricercaMessaggioPerCodice(codice);
+controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+
+if(!indirizzoImmagine.equals(""))
+	cgp.copiaImmagine(indirizzoImmagine, username);
 
 
 %>
-
-<body>
 	<div id="menu-wrapper">
 		<div id="menu">
+			
 		</div>
 		<!-- end #menu -->
 	</div>
@@ -37,7 +42,7 @@ Messaggio messaggio = cgp.ricercaMessaggioPerCodice(codice);
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">Visualizza i tuoi messaggi</a></h1>
+				<h1><a href="#">Profilo Personale</a></h1>
 				
 			</div>
 		</div>
@@ -47,43 +52,44 @@ Messaggio messaggio = cgp.ricercaMessaggioPerCodice(codice);
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
+					
+					<% if(controllo==0){ %>
+					
+					<div class="post">
+						
+						<h2>Profilo modificato correttamente!<br/>
+						<a href="profiloUtente.jsp">Torna al tuo profilo</a></h2>
 				
+					</div>
+				
+					<% }else if(controllo==1){ %>
 					
 					<div class="post">
-							<h2><strong>Messaggio selezionato:</strong></h2>
-							
+						
+						<h2>La vecchia password inserita non &egrave; corretta!<br/>
+						<a href="modificaProfiloUtente.jsp">Riprova</a></h2>
 					</div>
 					
-					<div class="post">
-						<table width="100%">
-							<tr>
-								<td><strong>Mittente:</strong></td>
-								<td><%out.println(messaggio.getMittente());%></td>
-							</tr>
-							<tr>
-								<td><strong>Oggetto:</strong></td>
-								<td><%out.println(messaggio.getOggetto());%></td>
-							</tr>
-							
-							</table>
-							<br />
-							<strong>Contenuto:</strong><br /><br />
-							
-						<div class="break-word">
-							<%out.println(messaggio.getContenuto());%>
-						</div>
-						<br /><br />
-						<form action="scriviMessaggio.jsp">
-						<div>
-							<input type="hidden" name="mittente" value="<%out.println(messaggio.getMittente());%>" /> 
-							<input type="submit" value="Rispondi"></input>
-						</div>
-						</form>
+					<%} else if(controllo == 2){ %>
 					
+					<div class="post">
+						
+						<h2>La nuova password e la conferma della nuova password sono diverse!<br/>
+						<a href="modificaProfiloUtente.jsp">Riprova</a></h2>
 					</div>
 					
 					
-					<div style="clear: both;">&nbsp;</div>
+					<%} else if(controllo == 3){ %>
+					
+					<div class="post">
+						
+						<h2>La nuova password non pu&ograve; essere vuota!<br/>
+						<a href="modificaProfiloUtente.jsp">Riprova</a></h2>
+					</div>
+					
+					<% }%>
+					
+				<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
 				<!-- Menu -->
@@ -133,7 +139,7 @@ Messaggio messaggio = cgp.ricercaMessaggioPerCodice(codice);
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>
-	</div>
+	</div>	
 	<!-- end #page -->
 </div>
 <div id="footer">

@@ -6,13 +6,31 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>S&amp;M</title>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<body>
 <jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<%@page import="control.ControlloreRicercaLocazione" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="entity.Locazione" %>
+<%
+
+ControlloreRicercaLocazione crl = new ControlloreRicercaLocazione();
+
+String username = b.getUser();
+ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
+locazioni = crl.ricercaLocPerUser(username);
+
+String nomeLocazione;
+String indirizzo;
+String prezzo; 
+String descrizione;
+
+
+%>
+
+<body>
 	<div id="menu-wrapper">
 		<div id="menu">
-			
 		</div>
 		<!-- end #menu -->
 	</div>
@@ -21,7 +39,7 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">AREA PROPRIETARIO</a></h1>
+				<h1><a href="#">Visualizza le tue locazioni</a></h1>
 				
 			</div>
 		</div>
@@ -34,29 +52,28 @@
 				
 					
 					<div class="post">
-							<h2><strong>Scegli cosa fare con le tue locazioni!</strong></h2>
+							<h2><strong>Queste sono le tue locazioni</strong></h2>
 							
 					</div>
-					<center>
+					
+					
+					<% for(int i=0;i<locazioni.size();i++){
+						 nomeLocazione = locazioni.get(i).getNomeLocazione();
+						 indirizzo = locazioni.get(i).getIndirizzo();
+						 prezzo = locazioni.get(i).getPrezzo();
+						 descrizione = locazioni.get(i).getDescrizione();
+						 
+					
+					%>
+					
 					<div class="post">
-					<table>
-						<tr>
-							<td><h1><center>Visualizza</center></h1></td>
-							<td><h1><center>Inserisci</center></h1></td>
-							<td><h1><center>Rimuovi</center></h1></td>
-						</tr>
-						<tr>
-							<td><h2 class="title"><center><a href="visualizzaLocazioni.jsp"><img src="images/imgVisualizzaLocazione.jpg" width="250" height="250"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="inserisciLocazione.jsp"><img src="images/imgInserisciLocazione.jpg" width="250" height="250"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="rimuoviLocazione.jsp"><img src="images/imgRimuoviLocazione.jpg" width="250" height="250" /></a></center></h2></td>
-						</tr>
-						
-						
-						
-						</table>
+						<h2>Nome Locazione:<%out.println(nomeLocazione);%></h2>
+						<h1>Indirizzo: <%out.println(indirizzo); %></h1>
+						<h1>Prezzo: <%out.println(prezzo); %></h1>
+						<h1>Descrizione: <%out.println(descrizione); %></h1>
 					</div>
-					</center>
-				
+					
+					<% } %>
 					
 					
 					<div style="clear: both;">&nbsp;</div>

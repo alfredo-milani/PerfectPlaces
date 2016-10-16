@@ -4,7 +4,7 @@ package constants;
  * Created by alfredo on 17/09/16.
  */
 public interface Constants {
-    String ABS_PATH = "/home/alfredo/IdeaProjects/Places/"; /* NON MODIFICARE */
+    String ABS_PATH = "/home/alfredo/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
     String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");

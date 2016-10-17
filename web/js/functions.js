@@ -28,8 +28,7 @@ function changeLang(box, us, psw) {
     var currentLang = Number(URLArray[1]);
     var lang = Number(box[box.selectedIndex].id);
 
-    if (currentLang == lang)
-        return;
+    if (currentLang == lang) return;
 
     // Per mantenere l'utente loggato durante il cambio di lingua
     if (us == null && psw == null) {

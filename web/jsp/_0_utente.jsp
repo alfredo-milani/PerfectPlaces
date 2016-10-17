@@ -45,8 +45,8 @@ c.login(un, pw);
                 </td>
                 <td>
                     <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>')">
-                        <option id="0" value="italian">Italiano</option>
-                        <option id="1" value="english">Inglese</option>
+                        <option id="0" value="italian"> Italiano </option>
+                        <option id="1" value="english"> Inglese </option>
                     </select>
                 </td>
             </tr>

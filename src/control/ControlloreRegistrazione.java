@@ -43,7 +43,7 @@ public class ControlloreRegistrazione {
 		
 		if(!password.equals(password2)) return 2;
 
-		String immagine = "natura.jpg";
+		String immagine = "profiloDefault.png";
 		Utente ut = new Utente(username, password, nome, cognome, email, immagine);
 		File file = new File(percorsoUtenti);
 		SerializzaOggetti sobj = new SerializzaOggetti();

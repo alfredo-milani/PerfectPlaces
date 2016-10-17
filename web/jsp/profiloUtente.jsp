@@ -22,8 +22,7 @@
 <%
     String username = c.getUser();
 	Utente u = cgp.ottieniUtente(username);
-	String indirizzoImmagine = Constants.ABS_PATH.concat(Constants.IMGS_PATH + u.getImmagine());
-    System.out.println("dio: " + indirizzoImmagine);
+	String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();
 	ArrayList<Locazione> locazioni = crl.ricercaLocPerUser(username);
 %>
 
@@ -55,7 +54,7 @@
 								</tr>
 								<tr>
 									<td>
-										<p><img src="<%out.println(indirizzoImmagine);%>" width="150" height="150" alt="Immagine Profilo" /></p>
+										<p><img src="<%= indirizzoImmagine%>" width="150" height="150" alt="Immagine Profilo" /></p>
 									</td>
 									<td>
 										<h3 class="blackclass">

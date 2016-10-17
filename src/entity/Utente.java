@@ -1,10 +1,7 @@
 package entity;
 
-
 public class Utente implements java.io.Serializable {
-	
 	// Variabili
-	
 	private static final long serialVersionUID = 1L;
 	
 	private String username;
@@ -15,8 +12,8 @@ public class Utente implements java.io.Serializable {
 	private String immagine;
 	
 	// Costruttore
-	
-	public Utente(String username, String password, String nome, String cognome, String email, String immagine){
+	public Utente(String username, String password, String nome,
+				  String cognome, String email, String immagine) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
@@ -26,7 +23,6 @@ public class Utente implements java.io.Serializable {
 	}
 	
 	// Getters e Setters
-
 	public String getUsername() {
 		return username;
 	}
@@ -74,9 +70,4 @@ public class Utente implements java.io.Serializable {
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;
 	}
-	
-	
-	
-	
-
 }

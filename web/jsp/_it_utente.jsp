@@ -13,12 +13,11 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="page" class="control.ControlloreLogin"/>
-
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%
-String un = request.getParameter("username");
-String pw = request.getParameter("password");
-c.login(un, pw);
+    String un = request.getParameter("username");
+    String pw = request.getParameter("password");
+    c.login(un, pw);
 %>
 
 <div id="wrapper">
@@ -38,15 +37,15 @@ c.login(un, pw);
 	</div>
 
     <div class="language">
-        <table width="100%" border="0">
+        <table>
             <tr>
                 <td>
                     <label for="select"> Lingua: </label>
                 </td>
                 <td>
                     <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>')">
-                        <option id="0" value="italian"> Italiano </option>
-                        <option id="1" value="english"> Inglese </option>
+                        <option id="it" value="italian"> Italiano </option>
+                        <option id="en" value="english"> Inglese </option>
                     </select>
                 </td>
             </tr>
@@ -97,7 +96,7 @@ c.login(un, pw);
 						
 						<br />
 						
-						<a href="../html/_0_index.html">Torna alla Home Page</a>
+						<a href="../html/_it_index.html">Torna alla Home Page</a>
 					</div>
 					<% } %>
 					
@@ -140,7 +139,7 @@ c.login(un, pw);
 					<ul>
 						<li>
 						<center>
-						<h2><strong><a href="logout.jsp">Esci</a></strong></h2>
+						<h2><strong><a href="_it_logout.jsp">Esci</a></strong></h2>
 						</center>
 						</li>
 					</ul>

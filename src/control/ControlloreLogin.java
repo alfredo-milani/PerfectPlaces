@@ -47,7 +47,9 @@ public class ControlloreLogin {
 					logged_in = true;
 					this.username = username;
                     this.password = password;
+                    break;
 				}
+				logged_in = false;
 				break;
 			}
     }

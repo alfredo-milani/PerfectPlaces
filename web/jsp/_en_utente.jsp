@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="page" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 
 <%
     String un = request.getParameter("username");
@@ -38,15 +38,15 @@
     </div>
 
     <div class="language">
-        <table width="100%" border="0">
+        <table>
             <tr>
                 <td>
                     <label for="select"> Language: </label>
                 </td>
                 <td>
                     <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>')">
-                        <option id="1" value="english">English</option>
-                        <option id="0" value="italian">Italian</option>
+                        <option id="en" value="english">English</option>
+                        <option id="it" value="italian">Italian</option>
                     </select>
                 </td>
             </tr>
@@ -91,13 +91,13 @@
                     <!--  Parte utente non loggato -->
                     <% if (!c.getLogged()) {  %>
                     <div class="post">
-                        <h2 class="title">Errore!</h2>
+                        <h2 class="title">Error!</h2>
 
                         <h1>The user is not present in the system or the entered password is wrong!</h1>
 
                         <br />
 
-                        <a href="../html/_0_index.html">Back to Home Page</a>
+                        <a href="../html/_en_index.html">Back to Home Page</a>
                     </div>
                     <% } %>
 
@@ -140,7 +140,7 @@
                     <ul>
                         <li>
                             <center>
-                                <h2><strong><a href="logout.jsp">Logout</a></strong></h2>
+                                <h2><strong><a href="_en_logout.jsp">Logout</a></strong></h2>
                             </center>
                         </li>
                     </ul>

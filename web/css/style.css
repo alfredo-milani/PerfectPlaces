@@ -45,7 +45,7 @@
 
 /* Languages */
 .language {
-    position: fixed;
+    position: absolute;
     top: 5%;
     right: 10%;
     size: 12px;

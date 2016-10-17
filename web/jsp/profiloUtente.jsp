@@ -1,52 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>S&amp;M</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Perfect Places</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
+
 <body>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin" />
+<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo" />
+<jsp:useBean id="crl" scope="session" class="control.ControlloreRicercaLocazione" />
 <%@page import="entity.*"%>
-<%@page import="control.ControlloreGestioneProfilo"%>
-<%@page import="control.ControlloreRicercaLocazione"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page import="constants.Constants" %>
+<%@page import="constants.Constants" %>
 <%
-
-	String username = b.getUser();
-	
-	
-	ControlloreGestioneProfilo cgp = new ControlloreGestioneProfilo();
-
+    String username = c.getUser();
 	Utente u = cgp.ottieniUtente(username);
-	
-	String indirizzoImmagine = Constants.ABS_PATH.concat("web/images/img"+u.getUsername()+".jpg");
-	
-	ControlloreRicercaLocazione crl = new ControlloreRicercaLocazione();
-	ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-	
-	locazioni = crl.ricercaLocPerUser(username);
-	
-	
-
+	String indirizzoImmagine = Constants.ABS_PATH.concat(Constants.IMGS_PATH + u.getImmagine());
+    System.out.println("dio: " + indirizzoImmagine);
+	ArrayList<Locazione> locazioni = crl.ricercaLocPerUser(username);
 %>
-	<div id="menu-wrapper">
-		<div id="menu">
-			
-		</div>
-		<!-- end #menu -->
-	</div>
 
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">Profilo Personale</a></h1>
-				
+				<h1>Profilo Personale</h1>
 			</div>
 		</div>
 	</div>
@@ -57,7 +42,7 @@
 				<div id="content">
 				
 					<div class="post">
-						<h2 class="title"><a href="#">IL TUO PROFILO</a></h2>
+						<h2 class="title">IL TUO PROFILO</h2>
 						
 							<table width="100%">
 								<tr>
@@ -70,7 +55,7 @@
 								</tr>
 								<tr>
 									<td>
-										<p><img src="<%out.println(indirizzoImmagine);%>" width="150" height="150" alt="" /></p>
+										<p><img src="<%out.println(indirizzoImmagine);%>" width="150" height="150" alt="Immagine Profilo" /></p>
 									</td>
 									<td>
 										<h3 class="blackclass">
@@ -105,8 +90,7 @@
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
-					
+					<% if (c.getLogged()) {  %>
 					<ul>
 						<li>
 						<center>
@@ -138,7 +122,7 @@
 					<ul>
 						<li>
 						<center>
-						<h2><strong><a href="logout.jsp">Logout</a></strong></h2>
+						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
 						</center>
 						</li>
 					</ul>						

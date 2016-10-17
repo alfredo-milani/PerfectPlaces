@@ -12,31 +12,22 @@ import utils.*;
 // Questa classe si occupa della registrazione degli utenti.
 
 public class ControlloreRegistrazione {
-	
-	
-	// Variabili
-	
-	private String immagine = "default";  // Inizialmente l'utente ha un immagine di default.
 	private String percorsoUtenti = Constants.UTENTI_PATH;
 	private ArrayList<Utente> utenti = new ArrayList<Utente>();
 	
 	// Costruttore
-	
 	public ControlloreRegistrazione(){
 		
 	}
-	
 	
 	//Inserimento nuovo utente nel file utenti. Viene restituito un intero che indica il tipo di errore.
 	// 0 --> Tutto ok
 	// 1 --> C'è qualche campo del form vuoto
 	// 2 --> Le due password non sono uguali
 	// 3 --> Lo username inserito è già stato utilizzato
-	
 	@SuppressWarnings("unchecked")
 	public int registrazione(String username, String password, String password2, String nome, String cognome,
 			String email) throws DeserializzazioneException, SerializzazioneException {
-		
 		if(username == null ||
                 password == null ||
                 password2 == null ||
@@ -52,7 +43,8 @@ public class ControlloreRegistrazione {
 		
 		if(!password.equals(password2)) return 2;
 
-		Utente ut = new Utente(username,password,nome,cognome,email,immagine);
+		String immagine = "natura.jpg";
+		Utente ut = new Utente(username, password, nome, cognome, email, immagine);
 		File file = new File(percorsoUtenti);
 		SerializzaOggetti sobj = new SerializzaOggetti();
 		if(file.length()==0){

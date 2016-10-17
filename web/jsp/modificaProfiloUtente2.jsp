@@ -1,18 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>S&amp;M</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Perfect Places</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
+
 <body>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreGestioneProfilo"%>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <%
-String username = b.getUser();
+String username = c.getUser();
 String nome = request.getParameter("nome");
 String cognome = request.getParameter("cognome");
 String email = request.getParameter("email");
@@ -20,23 +23,11 @@ String vecchiaPassword = request.getParameter("vecchiaPassword");
 String nuovaPassword = request.getParameter("nuovaPassword");
 String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
 String indirizzoImmagine = request.getParameter("indirizzoImmagine");
-int controllo;
+int controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
 
-ControlloreGestioneProfilo cgp = new ControlloreGestioneProfilo();
-
-controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
-
-if(!indirizzoImmagine.equals(""))
+if(indirizzoImmagine != null && !indirizzoImmagine.equals(""))
 	cgp.copiaImmagine(indirizzoImmagine, username);
-
-
 %>
-	<div id="menu-wrapper">
-		<div id="menu">
-			
-		</div>
-		<!-- end #menu -->
-	</div>
 
 <div id="wrapper">
 	<div id="header-wrapper">
@@ -95,7 +86,7 @@ if(!indirizzoImmagine.equals(""))
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

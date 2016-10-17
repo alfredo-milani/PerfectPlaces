@@ -57,10 +57,14 @@ public class ControlloreGestioneProfilo {
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
 		SerializzaOggetti sobj = new SerializzaOggetti();
-		
+
+        if (username == null || nome == null ||
+                cognome == null || email == null ||
+                vecchiaPassword == null || nuovaPassword == null ||
+                confermaNuovaPassword == null) return 3;
+
 		for(int i = 0;i<utenti.size();i++){
 			if(utenti.get(i).getUsername().equals(username)){
-				
 				if(!vecchiaPassword.equals("")){
 					if(!vecchiaPassword.equals(utenti.get(i).getPassword()))
 						return 1;
@@ -69,11 +73,10 @@ public class ControlloreGestioneProfilo {
 					if(nuovaPassword.equals(""))
 						return 3;
 				}
-				
+
 				// Se il campo vecchia password è vuoto non viene restituito errore,
                 // infatti un utente potrebbe scegliere di modificare
 				// il suo profilo senza modificare la password.
-				
 				if(vecchiaPassword.equals("")){
 					utenti.get(i).setNome(nome);
 					utenti.get(i).setCognome(cognome);
@@ -94,7 +97,7 @@ public class ControlloreGestioneProfilo {
 	}
 	
 	// Metodo che consente la modifica dell'immagine del profilo. Viene preso un file dal sistema dell'utente e viene salvato nella 
-	// cartella images del progetto con un nome univoco, che fa riferimento all'username dell'utente.
+	// cartella images con un nome univoco legato all'username dell'utente.
 	public void copiaImmagine(String strOrigine, String username) throws IOException {
 		File fOrigine = new File(strOrigine);
 		File fDestinazione = new File(Constants.ABS_PATH.concat(Constants.IMGS_PATH + username + ".jpg"));

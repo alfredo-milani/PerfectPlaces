@@ -1,42 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>S&amp;M</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Perfect Places</title>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
+
 <body>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <%@page import="entity.*"%>
-<%@page import="control.ControlloreGestioneProfilo"%>
 <%
-
-	String username = b.getUser();
-	ControlloreGestioneProfilo cgp = new ControlloreGestioneProfilo();
-
+	String username = c.getUser();
 	Utente u = cgp.ottieniUtente(username);
-	
 %>
-	<div id="menu-wrapper">
-		<div id="menu">
-			
-		</div>
-		<!-- end #menu -->
-	</div>
 
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">Modifica Profilo</a></h1>
-				
+				<h1>Modifica Profilo</h1>
 			</div>
 		</div>
 	</div>
 	<!-- end #header -->
+
 	<div id="page">
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
@@ -45,7 +38,7 @@
 						
 						<h2 class="title">MODIFICA IL TUO PROFILO</h2>
 					
-							<form action="modificaProfiloUtente2.jsp">
+							<form action="modificaProfiloUtente2.jsp" enctype="multipart/form-data">
 							<table>
 							<tr>
 							<td>Nome:</td>
@@ -95,11 +88,7 @@
 							<input type="submit" value="Salva modifiche" />
 							</center>
 							</form>
-											
-				
-						
 					</div>
-				
 										
 					<div style="clear: both;">&nbsp;</div>
 				</div>
@@ -107,7 +96,7 @@
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

@@ -72,9 +72,9 @@
 										<h1 class="title"><strong>Locazioni:</strong></h1>
 										<h3 class="blackclass">
 										<%
-											for(int i = 0; i<locazioni.size();i++){
-												out.println(locazioni.get(i).getNomeLocazione()+" |");
-											}
+                                            for (Locazione aLocazioni : locazioni) {
+                                                out.println(aLocazioni.getNomeLocazione() + " |");
+                                            }
 										%></h3>
 										<br/>
 										<br/>

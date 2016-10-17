@@ -8,9 +8,9 @@
  	-Cambio lingua;
   
 -Gabriele:
-	-
-	-
-	-
+	-Ricerca Locazione
+	-Gestione Locazione( inserimento e cancellazione)
+	-Visualizza Prenotazione
 	
 -Maria J.:
 	-

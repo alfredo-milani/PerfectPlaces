@@ -15,13 +15,13 @@ public class ControlloreLogin {
 	// Variabili
 	
 	private String username;
+	private String password;
 	private ArrayList<Utente> utenti;
 	private boolean logged_in = false;
 	private String percorsoUtenti = Constants.UTENTI_PATH;
 	
 	
 	// Costruttore
-	
 	public ControlloreLogin(){
 
 
@@ -46,6 +46,7 @@ public class ControlloreLogin {
 				if (anUtenti.getPassword().equals(password)) {
 					logged_in = true;
 					this.username = username;
+                    this.password = password;
 				}
 				break;
 			}
@@ -69,5 +70,7 @@ public class ControlloreLogin {
 		return username;
 	}
 	
-	
+	public String getPsw() {
+        return password;
+    }
 }

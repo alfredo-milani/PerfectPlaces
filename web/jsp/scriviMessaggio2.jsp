@@ -77,7 +77,7 @@ controllo = cgp.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
 					<div class="post">
 							<h2>
 							<strong>Messaggio inviato correttamente!</strong><br /><br />
-							<a href="utente.jsp">Torna alla pagina Utente</a>
+							<a href="_0_utente.jsp">Torna alla pagina Utente</a>
 							</h2>
 					</div>
 					<%} %>

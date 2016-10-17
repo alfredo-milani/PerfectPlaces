@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Perfect Places</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Perfect Places</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>
@@ -35,6 +36,22 @@ c.login(un, pw);
 			</div>
 		</div>
 	</div>
+
+    <div class="language">
+        <table width="100%" border="0">
+            <tr>
+                <td>
+                    <label for="select"> Lingua: </label>
+                </td>
+                <td>
+                    <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>')">
+                        <option id="0" value="italian">Italiano</option>
+                        <option id="1" value="english">Inglese</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
 	<!-- end #header -->
 
 	<div id="page">
@@ -123,7 +140,7 @@ c.login(un, pw);
 					<ul>
 						<li>
 						<center>
-						<h2><strong><a href="logout.jsp">Logout</a></strong></h2>
+						<h2><strong><a href="logout.jsp">Esci</a></strong></h2>
 						</center>
 						</li>
 					</ul>

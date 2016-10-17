@@ -107,7 +107,7 @@ crl2.rimuoviLocazione(elemento);
 					<ul>
 						<li>
 						<center>
-						<h2><strong><a href="logout.jsp">Logout</a></strong></h2>
+						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
 						</center>
 						</li>
 					</ul>						

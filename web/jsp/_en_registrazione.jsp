@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Perfect Places</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Perfect Places</title>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>
@@ -28,9 +29,25 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">REGISTRAZIONE</a></h1>
+				<h1><a href="#">SIGN UP</a></h1>
 			</div>
 		</div>
+	</div>
+
+	<div class="language">
+		<table>
+			<tr>
+				<td>
+					<label for="select"> Language: </label>
+				</td>
+				<td>
+					<select id="select" class="btn" onchange="changeLang(this, null, null)">
+						<option id="en" value="english">English</option>
+						<option id="it" value="italian">Italian</option>
+					</select>
+				</td>
+			</tr>
+		</table>
 	</div>
 	<!-- end #header -->
 	<div id="page">
@@ -41,13 +58,13 @@
 				<%if(reg_control==1){ %>
 				
 				<div class="post">
-						<h2 class="title">ERRORE</h2>
+						<h2 class="title">ERROR</h2>
 						<table>
                             <tr>
 						        <td>
 						            <br /><br /><br /><br />
-						            Non puoi lasciare campi del form vuoti! <br/>
-						            <a href="../html/_0_index.html"> TORNA ALLA HOME PAGE E RIPROVA</a> <br/>
+									You can not leave empty form fields! <br/>
+						            <a href="../html/_en_index.html"> BACK TO HOME PAGE AND TRY AGAIN</a> <br/>
 						        </td>
 						    </tr>
 						</table>
@@ -56,13 +73,13 @@
                     <% } else if(reg_control==2){ %>
 
 				<div class="post">
-						<h2 class="title">ERRORE</h2>
+						<h2 class="title">ERROR</h2>
 						<table>
 						<tr>
 						<td>
 						<br /><br /><br /><br />
-						Le password di conferma deve essere uguale a quella inserita!<br />
-						<a href="../html/_0_index.html"> TORNA ALLA HOME PAGE E RIPROVA</a><br />
+							The confirmation password must be the same as inserted!<br />
+						<a href="../html/_en_index.html"> BACK TO HOME PAGE AND TRY AGAIN</a><br />
 						</td>
 						</tr>
 						</table>
@@ -72,13 +89,13 @@
 				<% } else if(reg_control == 3){ %>
 				 	
 				<div class="post">
-						<h2 class="title">BENVENUTO!</h2>
+						<h2 class="title">WELCOME!</h2>
 						<table>
 						<tr>
 						<td>
 						<br /><br /><br /><br />
-						Lo Username inserito e' gia' stato utilizzato!<br />
-						<a href="../html/_0_index.html"> REGISTRATI CON UN ALTRO USERNAME! </a><br />
+							The username entered is already used!<br />
+						<a href="../html/_en_index.html"> YOU MUST REGISTER WITH ANOTHER USERNAME! </a><br />
 						</td>
 						</tr>
 						</table>
@@ -87,13 +104,13 @@
 
                     <% } else if(reg_control == 0){ %>
                     <div class="post">
-                        <h2 class="title">BENVENUTO!</h2>
+                        <h2 class="title">WELCOME!</h2>
                         <table>
                             <tr>
                                 <td>
                                     <br /><br /><br /><br />
-                                    Registrazione effettuata con successo<br />
-                                    <a href="../html/_0_index.html"> TORNA ALLA HOME PAGE ED EFFETTUA IL LOGIN!</a><br />
+									Registered successfully<br />
+                                    <a href="../html/_en_index.html"> BACK TO HOME PAGE AND PLEASE LOGIN!</a><br />
                                 </td>
                             </tr>
                         </table>
@@ -102,8 +119,8 @@
                     <% } %>
 
                     <div style="clear: both;">&nbsp;</div>
-
                     <!-- end #content -->
+
                 </div>
 
                 <div style="clear: both;">&nbsp;</div>
@@ -111,6 +128,7 @@
 		</div>
 	</div>
 	<!-- end #page -->
+
 </div>
 <div id="footer"></div>
 <!-- end #footer -->

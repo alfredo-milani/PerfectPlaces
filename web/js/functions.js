@@ -19,14 +19,14 @@ function visualizza(id, id1, id2, id3, id4) {
 }
 
 /*  Script JavaScript per cambiare la lingua della pagina corrente
- *  0 -> IT, italiano
- *  1 -> EN, english
+ *  it -> IT, italiano
+ *  en -> EN, english
  */
 function changeLang(box, us, psw) {
     var URL = window.location.href;
     var URLArray = URL.split("_");
-    var currentLang = Number(URLArray[1]);
-    var lang = Number(box[box.selectedIndex].id);
+    var currentLang = String(document.documentElement.lang);
+    var lang = String(box[box.selectedIndex].id);
 
     if (currentLang == lang)
         return;

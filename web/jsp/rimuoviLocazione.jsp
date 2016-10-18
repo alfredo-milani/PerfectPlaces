@@ -51,16 +51,11 @@ String idNumber;
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
-				
-					
+
 					<div class="post">
 							<h2><strong>Queste sono le tue locazioni</strong></h2>
 							
 					</div>
-					
-					
-					
-					
 					
 					<% for(int i=0;i<locazioni.size();i++){
 						 nomeLocazione = locazioni.get(i).getNomeLocazione();
@@ -91,14 +86,7 @@ String idNumber;
 							
 							</td>
 						</tr>
-					
-					
-					
-					
 					</table>
-					
-					
-						
 					</div>
 					
 					<% } %>

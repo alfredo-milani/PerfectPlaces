@@ -71,14 +71,21 @@
 									<td>	
 										<h1 class="title"><strong>Locazioni:</strong></h1>
 										<h3 class="blackclass">
-										<%
-                                            for (Locazione aLocazioni : locazioni) {
-                                                out.println(aLocazioni.getNomeLocazione() + " |");
-                                            }
-										%></h3>
+                                            <%
+											    if (locazioni.size() == 0) {
+                                                    out.println("Per ora non hai alcuna locazione.");
+                                                } else {
+                                                    for (Locazione aLocazioni : locazioni) {
+                                                        out.println(aLocazioni.getNomeLocazione() + " |");
+                                                    }
+                                                }
+                                            %>
+                                        </h3>
 										<br/>
 										<br/>
-										<h2><strong><a href="modificaProfiloUtente.jsp">Modifica profilo</a></strong></h2>
+										<h2>
+                                            <strong><a href="modificaProfiloUtente.jsp">Modifica profilo</a></strong>
+                                        </h2>
 									</td>
 								</tr>
 							</table>	

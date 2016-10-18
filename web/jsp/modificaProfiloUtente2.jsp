@@ -15,18 +15,18 @@
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <%
-String username = c.getUser();
-String nome = request.getParameter("nome");
-String cognome = request.getParameter("cognome");
-String email = request.getParameter("email");
-String vecchiaPassword = request.getParameter("vecchiaPassword");
-String nuovaPassword = request.getParameter("nuovaPassword");
-String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
-String indirizzoImmagine = request.getParameter("indirizzoImmagine");
-int controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+	String username = c.getUser();
+	String nome = request.getParameter("nome");
+	String cognome = request.getParameter("cognome");
+	String email = request.getParameter("email");
+	String vecchiaPassword = request.getParameter("vecchiaPassword");
+	String nuovaPassword = request.getParameter("nuovaPassword");
+	String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
+	String indirizzoImmagine = request.getParameter("indirizzoImmagine");
+	int controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
 
-if(indirizzoImmagine != null && !indirizzoImmagine.equals(""))
-	cgp.copiaImmagine(indirizzoImmagine, username);
+	if(indirizzoImmagine != null && !indirizzoImmagine.equals(""))
+		cgp.copiaImmagine(indirizzoImmagine, username);
 %>
 
 <div id="wrapper">

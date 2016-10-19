@@ -10,11 +10,11 @@
  	- Cambio lingua;
   
 -   **Gabriele:**
-	- Ricerca Locazione;
-	- Gestione Locazione (inserimento e cancellazione):
-	- Visualizza Prenotazione;
+	- Ricerca locazione;
+	- Gestione locazione (inserimento e cancellazione):
+	- Visualizza prenotazione;
 	
 -   **Maria Josè:**
-	- 
-	-
-	-
+	- Gestione locazioni;
+	- Prenotazione;
+	- Termini d'uso e FAQ;

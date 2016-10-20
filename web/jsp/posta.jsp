@@ -48,8 +48,8 @@
 						</tr>
 
 						<tr>
-							<td><h2 class="title"><center><a href="scriviMessaggio.jsp?mittente="><img src="images/imgScrivi.jpg" width="250" height="250" /></a></center></h2></td>
-							<td><h2 class="title"><center><a href="visualizzaPosta.jsp"><img src="images/imgLeggi.jpg" width="250" height="250" /></a></center></h2></td>
+							<td><h2 class="title"><center><a href="scriviMessaggio.jsp"><img src="images/imgScrivi.jpg" width="250" height="250" alt="Img scrivi msg"/></a></center></h2></td>
+							<td><h2 class="title"><center><a href="visualizzaPosta.jsp"><img src="images/imgLeggi.jpg" width="250" height="250" alt="Img leggi msg"/></a></center></h2></td>
 						</tr>
 						</table>
 					</div>

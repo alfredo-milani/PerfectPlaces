@@ -7,6 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<%@ page import="control.ControlloreGestionePosta" %>
+<%
+    ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+    String mittente = c.getUser();
+    String oggetto = request.getParameter("oggetto");
+    String destinatario = request.getParameter("destinatario");
+    String contenuto = request.getParameter("contenuto");
+    int controllo = cgp.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -21,18 +30,13 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 
-<%
-    String mittente = request.getParameter("mittente");
-%>
-
 <body>
 <div id="wrapper">
 
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">Scrivi il tuo messaggio</a></h1>
-				
+				<h1>Scrivi il tuo messaggio</h1>
 			</div>
 		</div>
 	</div>
@@ -47,33 +51,62 @@
 					
 					<div class="post">
 					
-						<form action="scriviMessaggio2.jsp">
+						<form action="scriviMessaggio.jsp?Msg=1" method="post">
 						
 							<table width="100%">
+                                <tr>
+                                    <td>
+                                        <label> Mittente: </label>
+
+                                            <%
+                                                String mittenteDefault = c.getUser();
+                                                if (mittente != null) {
+                                                    out.println(mittenteDefault);
+                                                }
+                                            %>
+                                        
+                                    </td>
+                                </tr>
+
 								<tr>
-									<td>Destinatario:</td>
+                                    <td>
+                                        <label for="destinatario">Destinatario:</label>
+                                    </td>
+								</tr>
+								<tr>
+									<td>
+                                        <input id="destinatario" type="text" name="destinatario"/>
+                                    </td>
+								</tr>
+
+								<tr>
+									<td>
+                                        <label for="oggetto">Oggetto:</label>
+                                    </td>
 								</tr>
 								<tr>	
-									<td><input type="text" name="destinatario" value="<%out.println(mittente);%>"/></td>
+									<td>
+                                        <input id="oggetto" type="text" name="oggetto" value=""/>
+                                    </td>
+								</tr>
+
+								<tr>
+								    <td>
+                                        <label for="contenuto">Contenuto:</label>
+                                    </td>
 								</tr>
 								<tr>
-									<td>Oggetto:</td>
+									<td>
+                                        <textarea id="contenuto" name="contenuto" rows="10" cols="100%"></textarea>
+                                    </td>
 								</tr>
-								<tr>	
-									<td><input type="text" name="oggetto" value=""/></td>
-								</tr>
-								<tr>
-								<td>Contenuto:</td>
-								</tr>
-								<tr>
-									<td><textarea name="contenuto" rows="10" cols="100%" maxlength="5000"></textarea></td>
-								</tr>
+
 								<tr>
 									<center>
-									<td>
-									<input type="submit" value="Invia messaggio!" />
-									</td>	
-									</center>
+									    <td style="text-align: center">
+									        <input class="btn_2" type="submit" value="Invia messaggio" />
+									    </td>
+                                    </center>
 								</tr>
 							</table>
 						
@@ -126,6 +159,7 @@
 					</ul>						
 					
 					<%  }  %>
+
 				</div>
 				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>

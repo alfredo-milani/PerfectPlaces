@@ -28,7 +28,6 @@ String destinatario = request.getParameter("destinatario");
 String contenuto = request.getParameter("contenuto");
 int controllo;
 controllo = cgp.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
-
 %>
 
 <body>

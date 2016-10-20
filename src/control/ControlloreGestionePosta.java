@@ -72,13 +72,13 @@ public class ControlloreGestionePosta {
 	//        0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
 	public int scriviMessaggio(String oggetto, String mittente, String destinatario, String contenuto) throws DeserializzazioneException, SerializzazioneException {
-		if(destinatario.equals("")){
+		if(destinatario == null || destinatario.equals("")){
 			return 1;
 		}
-		if(oggetto.equals("")){
+		if(oggetto == null || oggetto.equals("")){
 			return 2;
 		}
-		if(contenuto.equals("")){
+		if(contenuto == null || contenuto.equals("")){
 			return 3;
 		}
 		

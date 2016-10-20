@@ -21,10 +21,10 @@
 <%@page import="control.ControlloreInserimentoLocazione"  %>
 <%@page import="exception.SerializzazioneException" %>
 <%@page import="exception.DeserializzazioneException" %>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%
 	String command = request.getParameter("command");
-	String username = b.getUser();
+	String username = c.getUser();
 	
 	boolean control=false;
 	ControlloreInserimentoLocazione cil = new ControlloreInserimentoLocazione();
@@ -218,7 +218,7 @@
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

@@ -12,7 +12,7 @@
 -   **Gabriele:**
 	- Ricerca locazione;
 	- Gestione locazione (inserimento e cancellazione):
-	- Visualizza prenotazione;
+	- Visualizza prenotazioni;
 	
 -   **Maria Josè:**
 	- Gestione locazioni;

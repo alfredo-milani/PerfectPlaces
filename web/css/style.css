@@ -264,10 +264,11 @@ img.aligncenter {
 .post {
 	clear: both;
 	padding: 30px 0px;
-	border-bottom: 4px solid #4b7091
+	border-bottom: 4px solid #4b7091;
 }
 
 .post .title {
+	text-align: center;
 	padding-top: 10px;
 	letter-spacing: -2px;
 }

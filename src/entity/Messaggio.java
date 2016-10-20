@@ -7,9 +7,7 @@ import exception.DeserializzazioneException;
 import utils.DeserializzaOggetti;
 
 public class Messaggio implements java.io.Serializable {
-	
 	// Variabili
-	
 	private static final long serialVersionUID = 1L;
 	private String oggetto;
 	private String mittente;
@@ -19,7 +17,6 @@ public class Messaggio implements java.io.Serializable {
 	private String percorsoMessaggi = "C:/Users/Marco_000/workspace/MarcoeStefano/messaggi";
 	
 	// Costruttore
-	
 	public Messaggio(String oggetto, String mittente, String destinatario, String contenuto) throws DeserializzazioneException{
 		this.oggetto = oggetto;
 		this.mittente = mittente;
@@ -27,11 +24,8 @@ public class Messaggio implements java.io.Serializable {
 		this.contenuto = contenuto;
 		this.codice = assegnaCodice();
 	}
-
 	
 	// Getters e Setters
-	
-	
 	public String getOggetto() {
 		return oggetto;
 	}
@@ -73,7 +67,6 @@ public class Messaggio implements java.io.Serializable {
 	}
 	
 	// Metodo per assegnare un codice univoco ad un messaggio.
-	
 	@SuppressWarnings("unchecked")
 	public int assegnaCodice() throws DeserializzazioneException{
 		
@@ -107,7 +100,4 @@ public class Messaggio implements java.io.Serializable {
 		
 		return codice;
 	}
-	
-
-	
 }

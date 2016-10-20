@@ -1,27 +1,22 @@
 package entity;
 
 public class Locazione implements java.io.Serializable {
-	
 	// Variabili
-
 	private static final long serialVersionUID = 1L;
 	protected String nomeLocazione;
 	protected String indirizzo;
-	protected String userLocatore;
+	private String userLocatore;
 	protected String prezzo;
 	protected String descrizione;
 	protected boolean parcheggio;
 	protected boolean wifi;
-	protected boolean prenotabile = true;
+	private boolean prenotabile = true;
 	protected boolean pet;
-	protected String tipo;
+	private String tipo;
 	
 	// Costruttore
-
 	public Locazione(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet){
-		
-
+			String descrizione, boolean parcheggio, boolean wifi, boolean pet) {
 		this.nomeLocazione = nomeLocazione;
 		this.indirizzo = indirizzo;
 		this.userLocatore = userLocatore;
@@ -30,11 +25,9 @@ public class Locazione implements java.io.Serializable {
 		this.parcheggio = parcheggio;
 		this.wifi = wifi;
 		this.pet = pet;
-		
 	}
 	
-	// Getters e Setters	
-
+	// Getters e Setters
 	public String getNomeLocazione() {
 		return nomeLocazione;
 	}
@@ -103,20 +96,15 @@ public class Locazione implements java.io.Serializable {
 		return tipo;
 	}
 
-
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
 
 	public boolean isPrenotabile() {
 		return prenotabile;
 	}
 
-
 	public void setPrenotabile(boolean prenotabile) {
 		this.prenotabile = prenotabile;
 	}
-
-	
 }

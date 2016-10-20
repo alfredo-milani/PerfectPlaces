@@ -6,32 +6,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Perfect Places</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
-</head>
-<body>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
-	<div id="menu-wrapper">
-		<div id="menu">
-			
-		</div>
-		<!-- end #menu -->
-	</div>
 
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Perfect Places</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body>
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">POSTA</a></h1>
-				
+				<h1> POSTA </h1>
 			</div>
 		</div>
 	</div>
@@ -40,11 +34,9 @@
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
-				
-					
+
 					<div class="post">
-							<h2><strong>Scegli quale azione intraprendere!</strong></h2>
-							
+							<h2><strong> Scegli cosa fare: </strong></h2>
 					</div>
 					
 					<center>
@@ -54,6 +46,7 @@
 							<td><h1><center>Scrivi Messaggio</center></h1></td>
 							<td><h1><center>Leggi la Posta</center></h1></td>
 						</tr>
+
 						<tr>
 							<td><h2 class="title"><center><a href="scriviMessaggio.jsp?mittente="><img src="images/imgScrivi.jpg" width="250" height="250" /></a></center></h2></td>
 							<td><h2 class="title"><center><a href="visualizzaPosta.jsp"><img src="images/imgLeggi.jpg" width="250" height="250" /></a></center></h2></td>
@@ -61,16 +54,14 @@
 						</table>
 					</div>
 					</center>
-				
-					
-					
+
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

@@ -6,34 +6,31 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Perfect Places</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
-</head>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="control.ControlloreGestionePosta" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Messaggio" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Perfect Places</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
 <%
-
-String username = b.getUser();
-String oggetto;
-String mittente;
-
-ControlloreGestionePosta cgp = new ControlloreGestionePosta();
-ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<Messaggio>();
-
-
-elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
-
-
+    String username = c.getUser();
+    String oggetto;
+    String mittente;
+    ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+    ArrayList<Messaggio> elencoMessaggiUser;
+    elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
 %>
 
 <body>
@@ -71,45 +68,41 @@ elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
 								<td><strong>Mittente</strong></td>
 								<td><strong>Oggetto</strong></td>
 							</tr>
-					
-					
-					<% for(int i=0;i<elencoMessaggiUser.size();i++){
-						 oggetto = elencoMessaggiUser.get(i).getOggetto();
-						 mittente = elencoMessaggiUser.get(i).getMittente();						 
-					
-					%>
-							<tr>
-								<td>
-									<%out.println(elencoMessaggiUser.get(i).getMittente());%>
-								</td>
-								<td>
-									<%out.println(elencoMessaggiUser.get(i).getOggetto());%>
-								</td>
-								<td>
-									<form action="visualizzaPosta2.jsp">
-									<div>
-									<input type="hidden" name="codice" value="<%out.println(elencoMessaggiUser.get(i).getCodice());%>" /> 
-									<input type="submit" value="Leggi"/>
-									</div>
-									</form>
-								</td>		
-							</tr>
-						
-					<% } %>
+
+					<%
+                        for (Messaggio anElencoMessaggiUser : elencoMessaggiUser) {
+                        oggetto = anElencoMessaggiUser.getOggetto();
+                        mittente = anElencoMessaggiUser.getMittente();
+                    %>
+                            <tr>
+                                <td>
+                                    <%out.println(anElencoMessaggiUser.getMittente());%>
+                                </td>
+                                <td>
+                                    <%out.println(anElencoMessaggiUser.getOggetto());%>
+                                </td>
+                                <td>
+                                    <form action="visualizzaPosta2.jsp">
+                                        <div>
+                                            <input type="hidden" name="codice"
+                                                   value="<%out.println(anElencoMessaggiUser.getCodice());%>"/>
+                                            <input type="submit" value="Leggi"/>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <% } %>
 					
 					</table>
-					
-					
 					</div>
-					
-					
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

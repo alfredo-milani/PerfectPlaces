@@ -27,14 +27,12 @@ public class ControlloreLogin {
 	// di tutti gli elementi e viene verificata la corrispondenza di Username e Password inserite
 	@SuppressWarnings("unchecked")
 	public void login(String username, String password) throws DeserializzazioneException{
-        ArrayList<Utente> utenti;
-		File file = new File(percorsoUtenti);
+        File file = new File(percorsoUtenti);
+        DeserializzaOggetti dobj = new DeserializzaOggetti();
+        ArrayList<Utente> utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);;
 		
 		if(file.length() == 0)
 			return;
-		
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
 
 		for (Utente anUtenti : utenti)
 			if (anUtenti.getUsername().equals(username)) {

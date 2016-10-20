@@ -67,7 +67,7 @@
 									</td>
 									<td>
 										<h3 class="blackclass">
-										<strong>Username:</strong><%out.println(" "+u.getUsername());%> <br />
+										<strong>Nome utente:</strong><%out.println(" "+u.getUsername());%> <br />
 										<strong>Nome:</strong><%out.println(" "+u.getNome());%> <br />
 										<strong>Cognome:</strong><%out.println(" "+u.getCognome());%> <br />
 										<strong>Email:</strong><%out.println(" "+u.getEmail());%> <br />
@@ -84,9 +84,13 @@
 											    if (locazioni.size() == 0) {
                                                     out.println("Per ora non hai alcuna locazione.");
                                                 } else {
-                                                    for (Locazione aLocazioni : locazioni) {
-                                                        out.println(aLocazioni.getNomeLocazione() + " |");
+                                                    ArrayList<Locazione> loc = new ArrayList<>();
+                                                    int i;
+                                                    for (i = 0; i < loc.size() - 1; ++i) {
+                                                        Locazione locazione = loc.get(i);
+                                                        out.println(locazione.getNomeLocazione() + " / ");
                                                     }
+                                                    //out.println(loc.get(i).getNomeLocazione());
                                                 }
                                             %>
                                         </h3>

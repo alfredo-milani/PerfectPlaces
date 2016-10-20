@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -22,7 +23,6 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%
     c.logout();
 %>
@@ -30,15 +30,14 @@
 <div id="wrapper">
     <div id="header-wrapper">
         <div id="header">
-            <div id="logo">
-
-            </div>
+            <div id="logo"></div>
         </div>
     </div>
-
 </div>
 <!-- end #header -->
+
 <div id="page">
+
     <div id="page-bgtop">
         <div id="page-bgbtm">
             <div id="content">
@@ -46,24 +45,25 @@
                 <div class="post">
                     <h2 class="title">LOGOUT DONE WITH SUCCESS!</h2>
                     <br /><br /><br />
-
-                    <h2><a href="../jsp/_en_index.jsp">BACK TO HOME PAGE</a></h2>
-
+                    <h2 class="title">
+                        <a href="../jsp/_en_index.jsp">
+                            <font color="#4b7091">BACK TO HOME PAGE</font>
+                        </a>
+                    </h2>
                 </div>
                 <!-- end #content -->
 
-                <div id="sidebar">
-                    <!-- end #sidebar -->
-                    <div style="clear: both;">&nbsp;</div>
-                </div>
+                <div id="sidebar"></div>
+
             </div>
         </div>
         <!-- end #page -->
     </div>
-    <div id="footer">
-    </div>
+
+    <div id="footer"></div>
+    <!-- end #footer -->
 
 </div>
-<!-- end #footer -->
+
 </body>
 </html>

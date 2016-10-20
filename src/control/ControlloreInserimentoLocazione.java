@@ -170,10 +170,14 @@ public class ControlloreInserimentoLocazione {
 	
 	@SuppressWarnings("unchecked")
 	public boolean inserisciOstello(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroLettiTotali )throws SerializzazioneException, DeserializzazioneException{
+			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroLettiTotali ) throws SerializzazioneException, DeserializzazioneException{
 		
-		if(nomeLocazione.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
-				descrizione.equals("")||numeroLettiTotali.equals("")){
+		if (nomeLocazione == null || nomeLocazione.equals("") ||
+				indirizzo == null || indirizzo.equals("") ||
+				userLocatore == null || userLocatore.equals("") ||
+				prezzo == null ||prezzo.equals("") ||
+				descrizione == null || descrizione.equals("") ||
+				numeroLettiTotali == null || numeroLettiTotali.equals("")) {
 			return false;
 		}
 		
@@ -195,6 +199,5 @@ public class ControlloreInserimentoLocazione {
 		ostelloList.add(ostello);
 		sobj.serializza(ostelloList, percorsoOstello);
 		return true;
-			
 	}
 }

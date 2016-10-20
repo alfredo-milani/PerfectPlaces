@@ -27,21 +27,6 @@ c.logout();
 			</div>
 		</div>
 
-    <div class="language">
-        <table>
-            <tr>
-                <td>
-                    <label for="select"> Lingua: </label>
-                </td>
-                <td>
-                    <select id="select" class="btn" onchange="changeLang(this)">
-                        <option id="it" value="italian">Italiano</option>
-                        <option id="en" value="english">Inglese</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-    </div>
 	</div>
 	<!-- end #header -->
 	<div id="page">
@@ -53,7 +38,7 @@ c.logout();
 						<h2 class="title">LOGOUT EFFETTUATO CON SUCCESSO!</h2>
 						<br /><br /><br />
 
-						<h2><a href="../html/_it_index.html">TORNA ALLA HOME PAGE</a></h2>
+						<h2><a href="../jsp/_it_index.jsp">TORNA ALLA HOME PAGE</a></h2>
 
 				</div>
 				<!-- end #content -->

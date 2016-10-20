@@ -1,3 +1,13 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: alfredo
+  Date: 20/10/16
+  Time: 15.41
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="b" class="control.ControlloreRegistrazione" scope="session"/>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -55,6 +65,17 @@
                 <tr valign="top">
 
                     <td align="center" id="login">
+
+                        <%
+                            String paramLog = request.getParameter("errLog");
+                            if (paramLog != null && paramLog.equals("1")) {
+                        %>
+
+                        <h4 class="main"> <font color="red"> The user is not present in the system or the entered password is wrong! </font> </h4>
+                        <h2 class="main"> <strong> LOGIN </strong> </h2>
+
+                        <%  } %>
+
                         <h2 class="main"><strong>LOGIN</strong></h2>
                         <form action="../jsp/_en_utente.jsp" method="post">
                             <table>
@@ -82,8 +103,56 @@
                     </td>
 
                     <td align="center">
+
+                        <%
+                            String paramReg = request.getParameter("Reg");
+                            if (paramReg != null && paramReg.equals("1")) {
+                                String un = request.getParameter("username_2");
+                                String pw = request.getParameter("password");
+                                String pw2 = request.getParameter("password2");
+                                String nome = request.getParameter("nome");
+                                String cognome = request.getParameter("cognome");
+                                String email = request.getParameter("email");
+
+                                int caseReg = b.registrazione(un, pw, pw2, nome, cognome, email);
+                                switch (caseReg) {
+                                    case 0:
+                        %>
+
+                                        <h4 class="main"> <font color="green"> Registered successfully </font> </h4>
+
+                        <%
+                                break;
+
+                            case 1:
+                        %>
+
+                                        <h4 class="main"> <font color="red"> You can not leave empty form fields! </font> </h4>
+
+                        <%
+                                break;
+
+                            case 2:
+                        %>
+
+                                        <h4 class="main"> <font color="red"> The confirmation password must be the same as inserted! </font> </h4>
+
+                        <%
+                                break;
+
+                            case 3:
+                        %>
+
+                                        <h4 class="main"> <font color="red"> The username entered is already used! </font> </h4>
+
+                        <%
+                                        break;
+                                }
+                            }
+                        %>
+
                         <h2 class="main"><strong>SIGN UP</strong></h2>
-                        <form action="../jsp/_en_registrazione.jsp" method="post">
+                        <form action="../jsp/_en_index.jsp?Reg=1" method="post">
                             <table>
                                 <tr>
                                     <td>

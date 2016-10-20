@@ -24,33 +24,23 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
+
                 <%
                     if (c.getLogged()) {
                 %>
+
 				    <h1> Benvenuto! </h1>
                     <h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
-                <%  } else { %>
-                    <h1> Attenzione! </h1>
-                <%  } %>
+
+                <%  } else {
+                        String redirectURL = "http://localhost:1122/jsp/_it_index.jsp?errLog=1";
+                        response.sendRedirect(redirectURL);
+                    }
+                %>
+
 			</div>
 		</div>
 	</div>
-
-    <div class="language">
-        <table>
-            <tr>
-                <td>
-                    <label for="select"> Lingua: </label>
-                </td>
-                <td>
-                    <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>')">
-                        <option id="it" value="italian"> Italiano </option>
-                        <option id="en" value="english"> Inglese </option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-    </div>
 	<!-- end #header -->
 
 	<div id="page">
@@ -59,7 +49,22 @@
 				<div id="content">
 
 				<!--  Parte utente loggato -->
-					<% if(c.getLogged()) { %>
+					<div class="language">
+						<table>
+							<tr>
+								<td>
+									<label for="select"> Lingua: </label>
+								</td>
+								<td>
+									<select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>')">
+										<option id="it" value="italian"> Italiano </option>
+										<option id="en" value="english"> Inglese </option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</div>
+
 					<div class="post">
 						<h2 class="title">SCEGLI COSA FARE!</h2>
 						<table>
@@ -85,29 +90,14 @@
 							</tr>
 						</table>
 					</div>
-					<% } %>
-					
-					<!--  Parte utente non loggato -->
-					<% if (!c.getLogged()) {  %>
-					<div class="post">
-						<h2 class="title">Errore!</h2>
-						
-						<h1>L'utente non &egrave; presente nel sistema o la password inserita &egrave; errata!</h1>
-						
-						<br />
-						
-						<a href="../html/_it_index.html">Torna alla Home Page</a>
-					</div>
-					<% } %>
-					
+
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
 				
 				<!-- Menu -->
 				<div id="sidebar">
-					<% if (c.getLogged()) {  %>
-					
+
 					<ul>
 						<li>
 						<center>
@@ -143,7 +133,7 @@
 						</center>
 						</li>
 					</ul>
-					<%  }  %>
+
 				</div>
 				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>

@@ -27,21 +27,6 @@
         </div>
     </div>
 
-    <div class="language">
-        <table>
-            <tr>
-                <td>
-                    <label for="select"> Language: </label>
-                </td>
-                <td>
-                    <select id="select" class="btn" onchange="changeLang(this)">
-                        <option id="en" value="english">English</option>
-                        <option id="it" value="italian">Italian</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-    </div>
 </div>
 <!-- end #header -->
 <div id="page">
@@ -53,7 +38,7 @@
                     <h2 class="title">LOGOUT DONE WITH SUCCESS!</h2>
                     <br /><br /><br />
 
-                    <h2><a href="../html/_en_index.html">BACK TO HOME PAGE</a></h2>
+                    <h2><a href="../jsp/_en_index.jsp">BACK TO HOME PAGE</a></h2>
 
                 </div>
                 <!-- end #content -->

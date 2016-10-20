@@ -31,8 +31,7 @@ function changeLang(box, us, psw, psw2, nome, cognome, email) {
         return;
 
     // Per mantenere l'utente loggato durante il cambio di lingua
-    // window.open(URLArray[0] + "_" + lang + "_" + URLArray[2], "_self");
-    var params = ["username", "password", "password2", "nome", "cognome", "email"];
+    var params = ["username", "password"];
     var paramsToSend = "";
     for (var i = 1; i < arguments.length; ++i) {
         if (arguments[i] != null) {
@@ -42,8 +41,9 @@ function changeLang(box, us, psw, psw2, nome, cognome, email) {
         }
     }
 
+    var finalURL = URLArray[0] + "_" + lang + "_" + URLArray[2];
     var http = new XMLHttpRequest();
-    http.open("POST", URLArray[0] + "_" + lang + "_" + URLArray[2], true);
+    http.open("POST", finalURL, true);
 
     // Invia informazioni di header con la richiesta
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -51,8 +51,10 @@ function changeLang(box, us, psw, psw2, nome, cognome, email) {
     // Per sapere quando c'è un cambiamento di stato
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
+            // Per sostituire URL
             document.open();
             document.write(http.responseText);
+            window.history.pushState({"html":http.html, "pageTitle":http.pageTitle}, "URL", finalURL);
             document.close();
         }
     };

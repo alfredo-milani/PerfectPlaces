@@ -189,21 +189,16 @@
 			<div id="page-bgbtm">
 				<div id="content">
 				
-					<% if(control){%> 
+					<% if(control){%>
+
 					<div class="post">
 							<h2><strong>Inserimento completato</strong></h2>
-							
-							
-	
-							
 					</div>
+
 					<% }else{ %>
+
 					<div class="post">
 							<h2><strong>Hai lasciato qualche campo vuoto</strong></h2>
-							
-							
-	
-							
 					</div>
 					
 					<% } %>

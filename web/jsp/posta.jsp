@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Properties" %><%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -56,14 +56,45 @@
 					<div class="post">
 					<table>
 						<tr>
+                            <td><h1><center>Usa client esterno</center></h1></td>
 							<td><h1><center>Scrivi Messaggio</center></h1></td>
 							<td><h1><center>Leggi la Posta</center></h1></td>
 						</tr>
 
 						<tr>
-							<td><h2 class="title"><center><a href="scriviMessaggio.jsp"><img src="../css/images/write_email.png" width="250" height="250" alt="Img scrivi msg"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="visualizzaPosta.jsp"><img src="../css/images/read_email.png" width="250" height="250" alt="Img leggi msg"/></a></center></h2></td>
-						</tr>
+                            <td>
+                                <h2 class="title">
+                                    <center>
+                                        <!--
+                                             Per evitare di trasmettere in chiaro gli indirizzi e-mail degli utenti
+                                               si preferisce aprire direttamente il client esterno e comporre ed inviare
+                                               il messaggio direttamente da questo
+                                        -->
+                                        <a href="mailto:">
+                                            <img src="../css/images/email_client.png" width="250" height="250" alt="Img apri clien email"/>
+                                        </a>
+                                    </center>
+                                </h2>
+                            </td>
+							<td>
+                                <h2 class="title">
+                                    <center>
+                                        <a href="scriviMessaggio.jsp">
+                                            <img src="../css/images/write_email.png" width="250" height="250" alt="Img scrivi msg"/>
+                                        </a>
+                                    </center>
+                                </h2>
+                            </td>
+                            <td>
+                                <h2 class="title">
+                                    <center>
+                                        <a href="visualizzaPosta.jsp">
+                                            <img src="../css/images/read_email.png" width="250" height="250" alt="Img leggi msg"/>
+                                        </a>
+                                    </center>
+                                </h2>
+                            </td>
+                        </tr>
 						</table>
 					</div>
 					</center>

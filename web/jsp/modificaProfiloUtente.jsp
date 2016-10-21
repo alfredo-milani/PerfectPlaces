@@ -9,6 +9,8 @@
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <%@page import="entity.*"%>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -45,7 +47,7 @@
 
                             <%
                                 String username = c.getUser();
-                                Utente u = cgp.ottieniUtente(username);
+                                Utente u = null;
 
                                 String param = request.getParameter("Mpu");
                                 if (!c.getLogged()) {
@@ -55,6 +57,11 @@
 
                             <%
                                 } else {
+                                    try {
+                                        u = cgp.ottieniUtente(username);
+                                    } catch (DeserializzazioneException e) {
+                                        e.printStackTrace();
+                                    }
                                     if (param != null) {
                                         String nome = request.getParameter("nome");
                                         String cognome = request.getParameter("cognome");
@@ -63,7 +70,17 @@
                                         String nuovaPassword = request.getParameter("nuovaPassword");
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
                                         String indirizzoImmagine = request.getParameter("indirizzoImmagine");
-                                        int controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+                                        int controllo = 0;
+                                        try {
+                                            controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+                                        } catch (DeserializzazioneException | SerializzazioneException e) {
+                                            e.printStackTrace();
+                                        }
+                                        try {
+                                            u = cgp.ottieniUtente(username);
+                                        } catch (DeserializzazioneException e) {
+                                            e.printStackTrace();
+                                        }
 
                                         if(indirizzoImmagine != null && !indirizzoImmagine.equals(""))
                                             cgp.copiaImmagine(indirizzoImmagine, username);
@@ -123,7 +140,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="nome" type="text" name="nome" size="30" value="<%out.println(u.getNome());%>"/>
+                                        <input class="btn" id="nome" type="text" name="nome" size="30" value="<%out.println(u == null ? "" : u.getNome());%>"/>
                                     </td>
                                 </tr>
 
@@ -134,7 +151,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="cognome" type="text" name="cognome" size="30" value="<%out.println(u.getCognome());%>"/>
+                                        <input class="btn" id="cognome" type="text" name="cognome" size="30" value="<%out.println(u == null ? "" : u.getCognome());%>"/>
                                     </td>
                                 </tr>
 
@@ -145,7 +162,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="email" type="text" name="email" size="30" value="<%out.println(u.getEmail());%>"/>
+                                        <input class="btn" id="email" type="text" name="email" size="30" value="<%out.println(u == null ? "" : u.getEmail());%>"/>
                                     </td>
                                 </tr>
 

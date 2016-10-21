@@ -105,7 +105,7 @@
 
                         <br /><br />
 
-                        <form action="scriviMessaggio.jsp">
+                        <form action="scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
                             <div style="text-align: center">
                                 <input class="btn_2" type="submit" value="Rispondi"/>
                             </div>

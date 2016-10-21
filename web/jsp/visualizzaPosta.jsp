@@ -85,12 +85,7 @@
                                                     <% out.println(data); %>
                                                 </td>
                                                 <td>
-                                                    <form action="visualizzaPosta2.jsp?Cod=0" method="get">
-
-                                                        <%
-                                                            System.out.println("codice: " + anElencoMessaggiUser.getCodice() + "\n");
-                                                        %>
-
+                                                    <form action="visualizzaPosta2.jsp?Cod=<%= String.valueOf(anElencoMessaggiUser.getCodice()) %>" enctype="application/x-www-form-urlencoded" method="post">
                                                         <div>
                                                             <input class="btn" type="submit" value="Leggi"/>
                                                         </div>

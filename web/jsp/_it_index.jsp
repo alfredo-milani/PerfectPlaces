@@ -31,7 +31,9 @@
     <table>
         <tr>
             <td>
-                <label for="select"> Lingua: </label>
+                <strong>
+                    <label for="select"> Lingua: </label>
+                </strong>
             </td>
             <td>
                 <select id="select" class="btn" onchange="changeLang(this)">

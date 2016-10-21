@@ -136,7 +136,7 @@
                                         <input id="destinatario" type="text" name="destinatario" class="btn"
 
                                                <%
-                                                   if (param != null && destinatario != null) {
+                                                   if (destinatario != null) {
                                                %>
 
                                                         value="<%= destinatario %>"

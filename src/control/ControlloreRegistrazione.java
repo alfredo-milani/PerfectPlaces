@@ -16,8 +16,7 @@ public class ControlloreRegistrazione {
 	private ArrayList<Utente> utenti = new ArrayList<Utente>();
 	
 	// Costruttore
-	public ControlloreRegistrazione(){
-		
+	public ControlloreRegistrazione() {
 	}
 	
 	//Inserimento nuovo utente nel file utenti. Viene restituito un intero che indica il tipo di errore.
@@ -47,7 +46,7 @@ public class ControlloreRegistrazione {
 		Utente ut = new Utente(username, password, nome, cognome, email, immagine);
 		File file = new File(percorsoUtenti);
 		SerializzaOggetti sobj = new SerializzaOggetti();
-		if(file.length()==0){
+		if(file.length() == 0){
 			utenti.add(ut);
 			sobj.serializza(utenti, percorsoUtenti);
 			return 0;

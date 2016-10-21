@@ -69,7 +69,6 @@
                                         String vecchiaPassword = request.getParameter("vecchiaPassword");
                                         String nuovaPassword = request.getParameter("nuovaPassword");
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
-                                        String indirizzoImmagine = request.getParameter("indirizzoImmagine");
                                         int controllo = 0;
 
                                         try {
@@ -82,9 +81,6 @@
                                         } catch (DeserializzazioneException e) {
                                             e.printStackTrace();
                                         }
-
-                                        if(indirizzoImmagine != null && !indirizzoImmagine.equals(""))
-                                            cgp.copiaImmagine(indirizzoImmagine, username);
 
                                         switch (controllo) {
                                             case 0:
@@ -200,12 +196,6 @@
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <td>Cambia Immagine:</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="file" name="indirizzoImmagine" size="30"/></td>
-                                </tr>
                             </table>
                             <center>
                                 <br/><br/><br/>

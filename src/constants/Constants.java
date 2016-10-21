@@ -15,5 +15,6 @@ public interface Constants {
     String TMPDATE_PATH =     ABS_PATH.concat("data/tempdate");
     String UTENTI_PATH =      ABS_PATH.concat("data/utenti");
     String IMGS_PATH =        ABS_PATH.concat("web/css/images/");
+    String HOST_PORT =        "localhost:1122/";
     String IMGS_PATH_REL_S =  "../css/images/";
 }

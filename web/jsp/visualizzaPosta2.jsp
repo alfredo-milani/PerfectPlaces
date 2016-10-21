@@ -7,9 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <%@page import="control.ControlloreGestionePosta" %>
 <%@page import="entity.Messaggio" %>
 <%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="entity.Utente" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -49,9 +51,9 @@
                                     if (c.getLogged()) {
                                         if (strCodice != null) {
                                             int codice = Integer.parseInt(strCodice);
-                                            ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+                                            ControlloreGestionePosta cgposta = new ControlloreGestionePosta();
                                             try {
-                                                messaggio = cgp.ricercaMessaggioPerCodice(codice);
+                                                messaggio = cgposta.ricercaMessaggioPerCodice(codice);
                                             } catch (DeserializzazioneException e) {
                                                 e.printStackTrace();
                                             }
@@ -110,11 +112,34 @@
 
                         <br /><br />
 
-                        <form action="scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
-                            <div style="text-align: center">
-                                <input class="btn_2" type="submit" value="Rispondi"/>
-                            </div>
-                        </form>
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <form action="scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
+                                        <div>
+                                            <input class="btn_2" type="submit" value="Rispondi"/>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td>
+                                    <%
+                                        Utente des = null;
+                                        if (messaggio != null) {
+                                            try {
+                                                des = cgp.ottieniUtente(messaggio.getMittente());
+                                            } catch (DeserializzazioneException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    %>
+                                    <form action="mailto:<%= des == null ? "" : des.getEmail() %>?subject=<%= messaggio == null ? "" : messaggio.getOggetto() %>" enctype="application/x-www-form-urlencoded" method="post">
+                                        <div>
+                                            <input style="width: 200px" class="btn_2" type="submit" value="Rispondi con Client esterno" />
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
 					
 					

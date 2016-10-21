@@ -1,4 +1,4 @@
-<%@ page import="exception.DeserializzazioneException" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="constants.Constants" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -46,7 +48,7 @@
                     <h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
 
                 <%  } else {
-                        String redirectURL = "http://localhost:1122/jsp/_it_index.jsp?errLog=1";
+                        String redirectURL = "http://" + Constants.HOST_PORT + "jsp/_it_index.jsp?errLog=1";
                         response.sendRedirect(redirectURL);
                     }
                 %>

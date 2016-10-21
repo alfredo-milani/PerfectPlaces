@@ -10,7 +10,7 @@
 <%@page import="control.ControlloreGestionePosta" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Messaggio" %>
-<%@ page import="java.util.concurrent.SynchronousQueue" %>
+<%@ page import="exception.DeserializzazioneException" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -32,8 +32,12 @@
     String mittente;
     String data;
     ControlloreGestionePosta cgp = new ControlloreGestionePosta();
-    ArrayList<Messaggio> elencoMessaggiUser;
-    elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
+    ArrayList<Messaggio> elencoMessaggiUser = null;
+    try {
+        elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
+    } catch (DeserializzazioneException e) {
+        e.printStackTrace();
+    }
 %>
 
 <body>
@@ -67,7 +71,7 @@
 
                             <%
                                 if (loggedin) {
-                                    if (elencoMessaggiUser.size() != 0) {
+                                    if (elencoMessaggiUser != null && elencoMessaggiUser.size() != 0) {
                                         for (Messaggio anElencoMessaggiUser : elencoMessaggiUser) {
                                             oggetto = anElencoMessaggiUser.getOggetto();
                                             mittente = anElencoMessaggiUser.getMittente();

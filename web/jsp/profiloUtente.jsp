@@ -28,11 +28,22 @@
 <%@page import="entity.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="constants.Constants" %>
+<%@ page import="exception.DeserializzazioneException" %>
 <%
     String username = c.getUser();
-	Utente u = cgp.ottieniUtente(username);
-	String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();
-	ArrayList<Locazione> locazioni = crl.ricercaLocPerUser(username);
+    Utente u = null;
+    try {
+        u = cgp.ottieniUtente(username);
+    } catch (DeserializzazioneException e) {
+        e.printStackTrace();
+    }
+    String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();
+    ArrayList<Locazione> locazioni = null;
+    try {
+        locazioni = crl.ricercaLocPerUser(username);
+    } catch (DeserializzazioneException e) {
+        e.printStackTrace();
+    }
 %>
 
 <div id="wrapper">

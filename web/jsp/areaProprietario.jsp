@@ -55,9 +55,9 @@
 							<td><h1><center>Rimuovi</center></h1></td>
 						</tr>
 						<tr>
-							<td><h2 class="title"><center><a href="visualizzaLocazioni.jsp"><img src="images/imgVisualizzaLocazione.jpg" width="250" height="250"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="inserisciLocazione.jsp"><img src="images/imgInserisciLocazione.jpg" width="250" height="250"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="rimuoviLocazione.jsp"><img src="images/imgRimuoviLocazione.jpg" width="250" height="250" /></a></center></h2></td>
+							<td><h2 class="title"><center><a href="visualizzaLocazioni.jsp"><img src="images/imgVisualizzaLocazione.jpg" width="250" height="250" alt="vis locazione"/></a></center></h2></td>
+							<td><h2 class="title"><center><a href="inserisciLocazione.jsp"><img src="images/imgInserisciLocazione.jpg" width="250" height="250" alt="ins locazione"/></a></center></h2></td>
+							<td><h2 class="title"><center><a href="rimuoviLocazione.jsp"><img src="images/imgRimuoviLocazione.jpg" width="250" height="250" alt="rem locazione"/></a></center></h2></td>
 						</tr>
 						
 						

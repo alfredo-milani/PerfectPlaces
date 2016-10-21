@@ -1,4 +1,4 @@
-<%--
+<%@ page import="exception.DeserializzazioneException" %><%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -28,7 +28,11 @@
 <%
     String un = request.getParameter("username");
     String pw = request.getParameter("password");
-    c.login(un, pw);
+    try {
+        c.login(un, pw);
+    } catch (DeserializzazioneException e) {
+        e.printStackTrace();
+    }
 %>
 
 <div id="wrapper">

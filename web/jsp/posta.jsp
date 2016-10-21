@@ -1,4 +1,4 @@
-<%@ page import="java.util.Properties" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16

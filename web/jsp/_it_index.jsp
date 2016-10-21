@@ -1,4 +1,5 @@
-<%--
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %><%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -115,7 +116,12 @@
                                 String cognome = request.getParameter("cognome");
                                 String email = request.getParameter("email");
 
-                                int caseReg = b.registrazione(un, pw, pw2, nome, cognome, email);
+                                int caseReg = 0;
+                                try {
+                                    caseReg = b.registrazione(un, pw, pw2, nome, cognome, email);
+                                } catch (DeserializzazioneException | SerializzazioneException e) {
+                                    e.printStackTrace();
+                                }
                                 switch (caseReg) {
                                     case 0:
                         %>

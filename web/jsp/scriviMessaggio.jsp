@@ -1,4 +1,5 @@
-<%--
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %><%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -21,7 +22,11 @@
         oggetto = request.getParameter("oggetto");
         destinatario = request.getParameter("destinatario");
         contenuto = request.getParameter("contenuto");
-        controllo = p.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
+        try {
+            controllo = p.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
+        } catch (DeserializzazioneException | SerializzazioneException e) {
+            e.printStackTrace();
+        }
     }
 %>
 

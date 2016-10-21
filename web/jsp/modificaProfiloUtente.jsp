@@ -71,6 +71,7 @@
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
                                         String indirizzoImmagine = request.getParameter("indirizzoImmagine");
                                         int controllo = 0;
+
                                         try {
                                             controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
                                         } catch (DeserializzazioneException | SerializzazioneException e) {

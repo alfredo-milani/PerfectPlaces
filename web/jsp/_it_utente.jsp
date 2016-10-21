@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -22,7 +23,6 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%
     String un = request.getParameter("username");
     String pw = request.getParameter("password");

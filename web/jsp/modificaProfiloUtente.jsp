@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
+<%@page import="entity.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -21,19 +24,12 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
-<%@page import="entity.*"%>
-<%
-	String username = c.getUser();
-	Utente u = cgp.ottieniUtente(username);
-%>
-
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
 				<h1>Modifica Profilo</h1>
+				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
 			</div>
 		</div>
 	</div>
@@ -45,58 +41,159 @@
 				<div id="content">
 					<div class="post">
 						
-						<h2 class="title">MODIFICA IL TUO PROFILO</h2>
-					
-							<form action="modificaProfiloUtente2.jsp" enctype="multipart/form-data">
-							<table>
-							<tr>
-							<td>Nome:</td>
-							</tr>
-							<tr>	
-							<td><input type="text" name="nome" size="30" value="<%out.println(u.getNome());%>"/></td>
-							</tr>
-							<tr>
-							<td>Cognome:</td>
-							</tr>
-							<tr>
-							<td><input type="text" name="cognome" size="30" value="<%out.println(u.getCognome());%>"/></td>
-							</tr>
-							<tr>
-							<td>Email:</td>
-							</tr>
-							<tr>
-							<td><input type="text" name="email" size="30" value="<%out.println(u.getEmail());%>"/></td>
-							</tr>
-							<tr>
-							<td>Vecchia Password:</td>
-							</tr>
-							<tr>
-							<td><input type="password" name="vecchiaPassword" size="30" value=""/></td>
-							</tr>	
-							<tr>
-							<td>Nuova Password:</td>
-							</tr>
-							<tr>
-							<td><input type="password" name="nuovaPassword" size="30" value=""/></td>
-							</tr>
-							<tr>
-							<td>Conferma Nuova Password:</td>
-							</tr>
-							<tr>
-							<td><input type="password" name="confermaNuovaPassword" size="30" value=""/></td>
-							</tr>
-							<tr>
-							<td>Cambia Immagine:</td>
-							</tr>
-							<tr>
-							<td><input type="file" name="indirizzoImmagine" size="30" /></td>
-							</tr>
-							</table>				
-							<center>
-							<br /><br /><br />
-							<input type="submit" value="Salva modifiche" />
-							</center>
-							</form>
+						<h2 class="title"> MODIFICA IL TUO PROFILO
+
+                            <%
+                                String username = c.getUser();
+                                Utente u = cgp.ottieniUtente(username);
+
+                                String param = request.getParameter("Mpu");
+                                if (!c.getLogged()) {
+                            %>
+
+                                    <font color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+                            <%
+                                } else {
+                                    if (param != null) {
+                                        String nome = request.getParameter("nome");
+                                        String cognome = request.getParameter("cognome");
+                                        String email = request.getParameter("email");
+                                        String vecchiaPassword = request.getParameter("vecchiaPassword");
+                                        String nuovaPassword = request.getParameter("nuovaPassword");
+                                        String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
+                                        String indirizzoImmagine = request.getParameter("indirizzoImmagine");
+                                        int controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+
+                                        if(indirizzoImmagine != null && !indirizzoImmagine.equals(""))
+                                            cgp.copiaImmagine(indirizzoImmagine, username);
+
+                                        switch (controllo) {
+                                            case 0:
+                            %>
+
+                                                <font color="green"> Profilo modificato correttamente </font>
+
+                            <%
+                                                break;
+
+                                            case 1:
+                            %>
+
+                                                <font color="red"> Vecchia password scorretta </font>
+
+                            <%
+                                                break;
+
+                                            case 2:
+                            %>
+
+                                                <font color="red"> La nuova password e la conferma della nuova password non sono uguali </font>
+
+                            <%
+                                                break;
+
+                                            case 3:
+                            %>
+
+                                                <font color="red"> Il campo 'nuova password' risulta essere vuoto </font>
+
+                            <%
+                                                break;
+
+                                            case 4:
+                            %>
+
+                                                <font color="red"> Sessione utente scaduta. Effettua di nuovo l'accesso per continuare </font>
+
+                            <%
+                                                break;
+                                        }
+                                    }
+                                }
+                            %>
+
+                        </h2>
+                        <form action="modificaProfiloUtente.jsp?Mpu=1" enctype="application/x-www-form-urlencoded" method="post">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="nome">Nome:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="nome" type="text" name="nome" size="30" value="<%out.println(u.getNome());%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="cognome">Cognome:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="cognome" type="text" name="cognome" size="30" value="<%out.println(u.getCognome());%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="email">Email:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="email" type="text" name="email" size="30" value="<%out.println(u.getEmail());%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="vecchia_psw">Vecchia Password:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="vecchia_psw" type="password" name="vecchiaPassword" size="30" value=""/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="nuova_psw">Nuova Password:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="nuova_psw" type="password" name="nuovaPassword" size="30" value=""/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="conferma_new_psw">Conferma Nuova Password:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="conferma_new_psw" type="password" name="confermaNuovaPassword" size="30" value=""/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Cambia Immagine:</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="file" name="indirizzoImmagine" size="30"/></td>
+                                </tr>
+                            </table>
+                            <center>
+                                <br/><br/><br/>
+                                <input class="btn_2" type="submit" value="Salva modifiche"/>
+                            </center>
+                        </form>
 					</div>
 										
 					<div style="clear: both;">&nbsp;</div>

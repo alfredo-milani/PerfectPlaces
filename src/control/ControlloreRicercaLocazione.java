@@ -39,21 +39,21 @@ public class ControlloreRicercaLocazione {
 	public ArrayList<Locazione> ricercaLocPerUser(String username) throws DeserializzazioneException{
 		
 		ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-		ArrayList<Locazione> locazioniProvvisorio = new ArrayList<Locazione>();
+		ArrayList<Locazione> locazioniProvvisorio;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		
 		File file = new File(percorsoAlbergo);
-		if(file.length()==0){
+		if(file.length() == 0){
 			
 			;
 			
 		} else {
 		
 			locazioniProvvisorio = (ArrayList<Locazione>) dobj.deserializza(percorsoAlbergo);
-			for(int i=0;i<locazioniProvvisorio.size();i++){
-				if(locazioniProvvisorio.get(i).getUserLocatore().equals(username)){
-					locazioniProvvisorio.get(i).setTipo("albergo");
-					locazioni.add(locazioniProvvisorio.get(i));
+			for (Locazione aLocazioniProvvisorio : locazioniProvvisorio) {
+				if (aLocazioniProvvisorio.getUserLocatore().equals(username)) {
+					aLocazioniProvvisorio.setTipo("albergo");
+					locazioni.add(aLocazioniProvvisorio);
 				}
 			}
 		}

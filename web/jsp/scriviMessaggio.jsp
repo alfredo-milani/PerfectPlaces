@@ -7,14 +7,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@ page import="control.ControlloreGestionePosta" %>
+<jsp:useBean id="p" scope="session" class="control.ControlloreGestionePosta"/>
+
 <%
-    ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+    String param = request.getParameter("Msg");
+    String dest = request.getParameter("Dest");
     String mittente = c.getUser();
-    String oggetto = request.getParameter("oggetto");
-    String destinatario = request.getParameter("destinatario");
-    String contenuto = request.getParameter("contenuto");
-    int controllo = cgp.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
+    String destinatario = dest == null ? "" : dest;
+    String oggetto = "";
+    String contenuto = "";
+    int controllo = -1;
+    if (param != null && param.equals("1")) {
+        oggetto = request.getParameter("oggetto");
+        destinatario = request.getParameter("destinatario");
+        contenuto = request.getParameter("contenuto");
+        controllo = p.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
+    }
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -37,6 +45,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1>Scrivi il tuo messaggio</h1>
+				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
 			</div>
 		</div>
 	</div>
@@ -47,24 +56,73 @@
 			<div id="page-bgbtm">
 				<div id="content">
 
-					<div class="post"><h2><strong>Messaggio:</strong></h2></div>
+					<div class="post">
+                        <h2>
+                            <strong> Messaggio: </strong>
+
+                            <%
+                                switch (controllo) {
+                                    case 0:
+                            %>
+
+                                        <font color="green"> Messaggio inviato correttamente </font>
+
+                            <%
+                                        break;
+
+                                    case 1:
+                            %>
+
+                                        <font color="red"> Errore! Iserisci almeno un destinatario </font>
+
+                            <%
+                                        break;
+
+                                    case 2:
+                            %>
+
+                                        <font color="red"> Errore! Inserisci l'oggetto del messaggio </font>
+
+                            <%
+                                        break;
+
+                                    case 3:
+                            %>
+
+                                        <font color="red"> Errore! Inserisci il contenuto del messaggio </font>
+
+                            <%
+                                        break;
+
+                                    case 4:
+                            %>
+
+                                        <font color="red"> Errore! Hai inserito un destinatario inesistente </font>
+
+                            <%
+                                        break;
+
+                                    case 5:
+                            %>
+
+                                        <font color="red"> Sessione scaduta. Effettua di nuovo l'accesso. </font>
+
+                            <%
+                                        break;
+                                }
+                            %>
+
+                        </h2>
+                    </div>
 					
 					<div class="post">
-					
-						<form action="scriviMessaggio.jsp?Msg=1" method="post">
-						
+						<form action="scriviMessaggio.jsp?Msg=1" enctype="application/x-www-form-urlencoded" method="post">
 							<table width="100%">
                                 <tr>
                                     <td>
-                                        <label> Mittente: </label>
-
-                                            <%
-                                                String mittenteDefault = c.getUser();
-                                                if (mittente != null) {
-                                                    out.println(mittenteDefault);
-                                                }
-                                            %>
-                                        
+                                        <label>
+                                            Mittente: <font color="#1268b3"> <% out.println(mittente); %> </font>
+                                        </label>
                                     </td>
                                 </tr>
 
@@ -75,7 +133,17 @@
 								</tr>
 								<tr>
 									<td>
-                                        <input id="destinatario" type="text" name="destinatario"/>
+                                        <input id="destinatario" type="text" name="destinatario" class="btn"
+
+                                               <%
+                                                   if (param != null && destinatario != null) {
+                                               %>
+
+                                                        value="<%= destinatario %>"
+
+                                               <% } %>
+
+                                        />
                                     </td>
 								</tr>
 
@@ -86,7 +154,16 @@
 								</tr>
 								<tr>	
 									<td>
-                                        <input id="oggetto" type="text" name="oggetto" value=""/>
+                                        <input id="oggetto" type="text" name="oggetto" class="btn"
+
+                                        <%
+                                            if (param != null && oggetto != null) {
+                                        %>
+                                                value="<%= oggetto %>"
+
+                                                <% } %>
+
+                                        />
                                     </td>
 								</tr>
 
@@ -97,7 +174,15 @@
 								</tr>
 								<tr>
 									<td>
-                                        <textarea id="contenuto" name="contenuto" rows="10" cols="100%"></textarea>
+                                        <textarea id="contenuto" name="contenuto" class="btn" rows="10" cols="100%">
+
+                                            <%
+                                                if (param != null && contenuto != null) {
+                                                    out.println(contenuto);
+                                                }
+                                            %>
+
+                                        </textarea>
                                     </td>
 								</tr>
 
@@ -109,16 +194,13 @@
                                     </center>
 								</tr>
 							</table>
-						
 						</form>
-
 					</div>
 
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
-				<!-- Menu -->
-				
+
 				<div id="sidebar">
 					<% if (c.getLogged()) {  %>
 					

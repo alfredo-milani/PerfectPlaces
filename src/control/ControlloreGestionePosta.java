@@ -25,13 +25,13 @@ public class ControlloreGestionePosta {
 	// destinatario e li restituisce in un Array List. In questo modo quando un utente controlla la posta verrà effettuata una ricerca
 	// con il suo username e gli verranno presentati tutti i messaggi che lo vedono come destinatario.
 	@SuppressWarnings("unchecked")
-	public ArrayList<Messaggio> ricercaMessaggiPerDestinatario(String username) throws DeserializzazioneException{
+	public ArrayList<Messaggio> ricercaMessaggiPerDestinatario(String username) throws DeserializzazioneException {
 		ArrayList<Messaggio> elencoMessaggi;
 		ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<Messaggio>();
 		
 		File file = new File(percorsoMessaggi);
 
-		if(file.length()==0){
+		if (file.length() == 0){
 			return elencoMessaggiUser;
 		} else {
 			DeserializzaOggetti dobj = new DeserializzaOggetti();
@@ -44,20 +44,20 @@ public class ControlloreGestionePosta {
 			return elencoMessaggiUser;		
 		}
 	}
-	
+
 	// Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del file messaggi e, se lo trova, lo restituisce.
 	@SuppressWarnings("unchecked")
 	public Messaggio ricercaMessaggioPerCodice(int codice) throws DeserializzazioneException{
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		ArrayList<Messaggio> elencoMessaggi;
 		elencoMessaggi = (ArrayList<Messaggio>)dobj.deserializza(percorsoMessaggi);
-		
+
 		Messaggio messaggio;
 
         for (Messaggio anElencoMessaggi : elencoMessaggi)
             if (anElencoMessaggi.getCodice() == codice)
                 return anElencoMessaggi;
-		
+
 		messaggio = new Messaggio("errore","errore", "errore","errore");
 		return messaggio;
 	}
@@ -68,19 +68,19 @@ public class ControlloreGestionePosta {
 	// Torna: 1 --> Se il destinatario è vuoto
 	// 		  2 --> Se l'oggetto è vuoto
 	//        3 --> Se il contenuto è vuoto
-	//        4 --> Se il destinatario non esiste 
+	//        4 --> Se il destinatario non esiste
+    //        5 --> Se la sessione dell'utente è scaduta
 	//        0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
 	public int scriviMessaggio(String oggetto, String mittente, String destinatario, String contenuto) throws DeserializzazioneException, SerializzazioneException {
-		if(destinatario == null || destinatario.equals("")){
+		if (destinatario == null || destinatario.equals(""))
 			return 1;
-		}
-		if(oggetto == null || oggetto.equals("")){
+		else if (oggetto == null || oggetto.equals(""))
 			return 2;
-		}
-		if(contenuto == null || contenuto.equals("")){
+		else if (contenuto == null || contenuto.equals(""))
 			return 3;
-		}
+        else if (mittente == null || mittente.equals(""))
+            return 5;
 		
 		ArrayList<Utente> elencoUtenti;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
@@ -90,20 +90,19 @@ public class ControlloreGestionePosta {
             if (anElencoUtenti.getUsername().equals(destinatario))
                 controllo = true;
 
-		if(!controllo){
+		if(!controllo)
 			return 4;
-		}
-		ArrayList<Messaggio> elencoMessaggi = new ArrayList<Messaggio>();
-		
-		File file = new File(percorsoMessaggi);
-		if(file.length()!=0){
-			elencoMessaggi = (ArrayList<Messaggio>)dobj.deserializza(percorsoMessaggi);
-		}
 
-		Messaggio messaggio = new Messaggio(oggetto, mittente, destinatario,contenuto);
+		ArrayList<Messaggio> elencoMessaggi = new ArrayList<Messaggio>();
+		File file = new File(percorsoMessaggi);
+		if(file.length() != 0)
+			elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(percorsoMessaggi);
+
+		Messaggio messaggio = new Messaggio(oggetto, mittente, destinatario, contenuto);
 		elencoMessaggi.add(messaggio);
 		SerializzaOggetti sobj = new SerializzaOggetti();
 		sobj.serializza(elencoMessaggi, percorsoMessaggi);
+
 		return 0;
 	}
 }

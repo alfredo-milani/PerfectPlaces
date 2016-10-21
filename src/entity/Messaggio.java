@@ -1,8 +1,13 @@
 package entity;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.StringJoiner;
 
+import constants.Constants;
 import exception.DeserializzazioneException;
 import utils.DeserializzaOggetti;
 
@@ -13,16 +18,18 @@ public class Messaggio implements java.io.Serializable {
 	private String mittente;
 	private String destinatario;
 	private String contenuto;
+	private String data;
 	private int codice;
-	private String percorsoMessaggi = "C:/Users/Marco_000/workspace/MarcoeStefano/messaggi";
-	
+
 	// Costruttore
-	public Messaggio(String oggetto, String mittente, String destinatario, String contenuto) throws DeserializzazioneException{
+	public Messaggio(String oggetto, String mittente,
+					 String destinatario, String contenuto) throws DeserializzazioneException {
 		this.oggetto = oggetto;
 		this.mittente = mittente;
 		this.destinatario = destinatario;
 		this.contenuto = contenuto;
 		this.codice = assegnaCodice();
+        this.data = calcolaData();
 	}
 	
 	// Getters e Setters
@@ -58,6 +65,21 @@ public class Messaggio implements java.io.Serializable {
 		this.contenuto = contenuto;
 	}
 
+	public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    private String calcolaData() {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        Date date = new Date();
+
+        return dateFormat.format(date);
+    }
+
 	public int getCodice() {
 		return codice;
 	}
@@ -68,36 +90,19 @@ public class Messaggio implements java.io.Serializable {
 	
 	// Metodo per assegnare un codice univoco ad un messaggio.
 	@SuppressWarnings("unchecked")
-	public int assegnaCodice() throws DeserializzazioneException{
-		
-		
+	private int assegnaCodice() throws DeserializzazioneException{
 		//Se non c'è nessun messaggio ritorna il codice 0
-		
-		File file = new File(percorsoMessaggi);
-		if(file.length()==0){
+		File file = new File(Constants.MSG_PATH);
+		if(file.length() == 0)
 			return 0;
-		}
 		
-		//Se il file non è vuoto calcola il primo codice disponibile
-		
-		ArrayList<Messaggio> elencoMessaggi = new ArrayList<Messaggio>();
+		// Se il file non è vuoto calcola il primo codice disponibile
+		ArrayList<Messaggio> elencoMessaggi;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		elencoMessaggi = (ArrayList<Messaggio>)dobj.deserializza(percorsoMessaggi);
+		elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(Constants.MSG_PATH);
 		
-		boolean controllo = false;
-		int codice = 0;
+		int codice = elencoMessaggi.get(elencoMessaggi.size() - 1).getCodice();
 		
-		while(!controllo){
-			controllo = true;
-			for(int i=0;i<elencoMessaggi.size();i++){
-				if(elencoMessaggi.get(i).getCodice()==codice){
-					codice = codice + 1;
-					controllo = false;
-					break;
-				}
-			}
-		}
-		
-		return codice;
+		return ++codice;
 	}
 }

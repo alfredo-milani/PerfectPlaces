@@ -6,44 +6,30 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<%@page import="control.ControlloreGestionePosta" %>
+<%@page import="entity.Messaggio" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Perfect Places</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Perfect Places</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreGestionePosta" %>
-<%@page import="entity.Messaggio" %>
-<%
-    String strCodice = request.getParameter("codice");
-	strCodice = strCodice.substring(0,1);
-	int codice = Integer.parseInt(strCodice);
-	ControlloreGestionePosta cgp = new ControlloreGestionePosta();
-	Messaggio messaggio = cgp.ricercaMessaggioPerCodice(codice);
-%>
-
 <body>
-	<div id="menu-wrapper">
-		<div id="menu">
-		</div>
-		<!-- end #menu -->
-	</div>
-
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">Visualizza i tuoi messaggi</a></h1>
-				
+				<h1>Visualizza i tuoi messaggi</h1>
+				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
 			</div>
 		</div>
 	</div>
@@ -52,40 +38,79 @@
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
-				
 					
 					<div class="post">
-							<h2><strong>Messaggio selezionato:</strong></h2>
-							
+							<h2><strong>Messaggio selezionato:</strong>
+
+                                <%
+                                    String strCodice = request.getParameter("Cod");
+                                    Messaggio messaggio = null;
+                                    if (c.getLogged()) {
+                                        if (strCodice != null) {
+                                            int codice = Integer.parseInt(strCodice);
+                                            ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+                                            messaggio = cgp.ricercaMessaggioPerCodice(codice);
+                                        }
+                                    } else {
+                                %>
+
+                                        <font color="red"> Errore! Effettua di nuovo l'accesso per visualizzare i messaggi </font>
+
+                                <% } %>
+
+                            </h2>
 					</div>
 					
 					<div class="post">
 						<table width="100%">
 							<tr>
-								<td><strong>Mittente:</strong></td>
-								<td><%out.println(messaggio.getMittente());%></td>
+								<td><label>Mittente:</label></td>
+
+                                <%
+                                    if (c.getLogged() && strCodice != null && messaggio != null) {
+                                %>
+
+								        <td><%out.println(messaggio.getMittente());%></td>
+
+                                <% } %>
+
 							</tr>
+
 							<tr>
-								<td><strong>Oggetto:</strong></td>
-								<td><%out.println(messaggio.getOggetto());%></td>
+								<td><label>Oggetto:</label></td>
+
+                                <%
+                                    if (c.getLogged() && strCodice != null && messaggio != null) {
+                                %>
+
+								        <td><%out.println(messaggio.getOggetto());%></td>
+
+                                <% } %>
+
 							</tr>
-							
-							</table>
-							<br />
-							<strong>Contenuto:</strong><br /><br />
-							
-						<div class="break-word">
-							<%out.println(messaggio.getContenuto());%>
-						</div>
-						<br /><br />
-						<form action="scriviMessaggio.jsp">
-						<div>
-							<input type="hidden" name="mittente" value="<%out.println(messaggio.getMittente());%>" /> 
-							<input type="submit" value="Rispondi"/>
-						</div>
-						</form>
-					
-					</div>
+                        </table>
+
+                        <br />
+						<label>Contenuto:</label><br /><br />
+
+                        <%
+                            if (c.getLogged() && strCodice != null && messaggio != null) {
+                        %>
+
+                                <div class="break-word">
+                                    <%out.println(messaggio.getContenuto());%>
+                                </div>
+
+                        <% } %>
+
+                        <br /><br />
+
+                        <form action="scriviMessaggio.jsp">
+                            <div style="text-align: center">
+                                <input class="btn_2" type="submit" value="Rispondi"/>
+                            </div>
+                        </form>
+                    </div>
 					
 					
 					<div style="clear: both;">&nbsp;</div>
@@ -94,7 +119,7 @@
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

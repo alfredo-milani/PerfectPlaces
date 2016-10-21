@@ -21,7 +21,7 @@ function visualizza(id, id1, id2, id3, id4) {
  *  it -> IT, italiano
  *  en -> EN, english
  */
-function changeLang(box, us, psw, psw2, nome, cognome, email) {
+function changeLang(box, us, psw) {
     var URL = window.location.href;
     var URLArray = URL.split("_");
     var currentLang = String(document.documentElement.lang);

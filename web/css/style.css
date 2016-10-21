@@ -95,7 +95,7 @@ h3 {
 }
 
 .blackclass{
-	color: black;
+	color: #405668;
 }
 
 p, ul, ol {
@@ -268,7 +268,6 @@ img.aligncenter {
 }
 
 .post .title {
-	text-align: center;
 	padding-top: 10px;
 	letter-spacing: -2px;
 }

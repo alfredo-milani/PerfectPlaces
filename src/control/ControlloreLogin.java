@@ -11,16 +11,14 @@ import utils.DeserializzaOggetti;
 // Classe che gestisce il login al sistema.
 public class ControlloreLogin {
 	// Variabili
-	private String username;
-	private String password;
+	private String username = "";
+	private String password = "";
 	private boolean logged_in = false;
 	private String percorsoUtenti = Constants.UTENTI_PATH;
 
 
 	// Costruttore
 	public ControlloreLogin(){
-
-
 	}
 
 	// Deserializza gli Utenti del file utenti e li posiziona in un ArrayList. Viene fatta una scansione
@@ -54,6 +52,8 @@ public class ControlloreLogin {
 	
 	// Viene effettuato il logout settando la variabile logged_in
 	public void logout(){
+		username = "";
+		password = "";
 		logged_in = false;
 	}
 	

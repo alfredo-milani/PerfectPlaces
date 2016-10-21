@@ -26,6 +26,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1> POSTA </h1>
+				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
 			</div>
 		</div>
 	</div>
@@ -36,7 +37,19 @@
 				<div id="content">
 
 					<div class="post">
-							<h2><strong> Scegli cosa fare: </strong></h2>
+							<h2><strong> Scegli cosa fare: </strong>
+
+                                <%
+                                    if (!c.getLogged()) {
+                                %>
+
+                                        <font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+                                <%
+                                    }
+                                %>
+
+                            </h2>
 					</div>
 					
 					<center>
@@ -48,8 +61,8 @@
 						</tr>
 
 						<tr>
-							<td><h2 class="title"><center><a href="scriviMessaggio.jsp"><img src="images/imgScrivi.jpg" width="250" height="250" alt="Img scrivi msg"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="visualizzaPosta.jsp"><img src="images/imgLeggi.jpg" width="250" height="250" alt="Img leggi msg"/></a></center></h2></td>
+							<td><h2 class="title"><center><a href="scriviMessaggio.jsp"><img src="../css/images/write_email.png" width="250" height="250" alt="Img scrivi msg"/></a></center></h2></td>
+							<td><h2 class="title"><center><a href="visualizzaPosta.jsp"><img src="../css/images/read_email.png" width="250" height="250" alt="Img leggi msg"/></a></center></h2></td>
 						</tr>
 						</table>
 					</div>
@@ -65,23 +78,23 @@
 					
 					<ul>
 						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
+							<center>
+								<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
+							</center>
 						</li>
 					</ul>
 					<ul>
 						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
+							<center>
+								<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
+							</center>
 						</li>
 					</ul>
 					<ul>
 						<li>
-						<center>
-						<h2><strong><a href="profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
+							<center>
+								<h2><strong><a href="profiloUtente.jsp">Visualizza profilo</a></strong></h2>
+							</center>
 						</li>
 					</ul>		
 					<ul>
@@ -93,9 +106,9 @@
 					</ul>	
 					<ul>
 						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
+							<center>
+								<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
+							</center>
 						</li>
 					</ul>						
 					

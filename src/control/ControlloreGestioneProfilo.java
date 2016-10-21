@@ -49,35 +49,36 @@ public class ControlloreGestioneProfilo {
 	// Ritorna: 1 --> Password vecchia non corretta
 	// 		    2 --> La nuova password e la conferma della nuova password non sono uguali
 	//			3 --> La nuova password è vuota
+	//			4 --> Sessione utente scaduta
 	//			0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
 	public int modificaProfilo(String username, String nome, String cognome, 
 			String email, String vecchiaPassword, String nuovaPassword, String confermaNuovaPassword) throws DeserializzazioneException, SerializzazioneException{
 		ArrayList<Utente> utenti;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
+		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
 		SerializzaOggetti sobj = new SerializzaOggetti();
 
         if (username == null || nome == null ||
                 cognome == null || email == null ||
                 vecchiaPassword == null || nuovaPassword == null ||
-                confermaNuovaPassword == null) return 3;
+                confermaNuovaPassword == null) return 4;
 
-		for(int i = 0;i<utenti.size();i++){
+		for (int i = 0; i < utenti.size(); ++i){
 			if(utenti.get(i).getUsername().equals(username)){
 				if(!vecchiaPassword.equals("")){
 					if(!vecchiaPassword.equals(utenti.get(i).getPassword()))
 						return 1;
-					if(!nuovaPassword.equals(confermaNuovaPassword))
+					else if(!nuovaPassword.equals(confermaNuovaPassword))
 						return 2;
-					if(nuovaPassword.equals(""))
+					else if(nuovaPassword.equals(""))
 						return 3;
 				}
 
 				// Se il campo vecchia password è vuoto non viene restituito errore,
                 // infatti un utente potrebbe scegliere di modificare
 				// il suo profilo senza modificare la password.
-				if(vecchiaPassword.equals("")){
+				if (vecchiaPassword.equals("")){
 					utenti.get(i).setNome(nome);
 					utenti.get(i).setCognome(cognome);
 					utenti.get(i).setEmail(email);

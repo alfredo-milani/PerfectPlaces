@@ -24,7 +24,7 @@ public class ControlloreLogin {
 	// Deserializza gli Utenti del file utenti e li posiziona in un ArrayList. Viene fatta una scansione
 	// di tutti gli elementi e viene verificata la corrispondenza di Username e Password inserite
 	@SuppressWarnings("unchecked")
-	public void login(String username, String password) throws DeserializzazioneException{
+	public synchronized void login(String username, String password) throws DeserializzazioneException{
         File file = new File(percorsoUtenti);
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         ArrayList<Utente> utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);;

@@ -58,6 +58,16 @@
 
 	<div id="page">
 		<div id="page-bgtop">
+            <!-- Menu -->
+            <ul class="topnav" id=myTopnav">
+                <li><a href="_it_utente.jsp">HOME</a></li>
+                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
+                <li><a href="posta.jsp">Posta</a></li>
+                <li><a href="_it_logout.jsp">Esci</a></li>
+            </ul>
+
 			<div id="page-bgbtm">
 				<div id="content">
 
@@ -111,6 +121,14 @@
                             %>
 
                                         <font color="red"> Sessione scaduta. Effettua di nuovo l'accesso. </font>
+
+                            <%
+                                        break;
+
+                                    case 6:
+                            %>
+
+                                        <font color="red"> Attenzione! Mittente e destinatario coincidono! </font>
 
                             <%
                                         break;
@@ -179,15 +197,11 @@
 								</tr>
 								<tr>
 									<td>
-                                        <textarea id="contenuto" name="contenuto" class="btn" rows="10" cols="100%">
-
-                                            <%
+                                        <textarea id="contenuto" name="contenuto" class="btn" rows="10" cols="100%"><%
                                                 if (param != null && contenuto != null) {
                                                     out.println(contenuto);
                                                 }
-                                            %>
-
-                                        </textarea>
+                                            %></textarea>
                                     </td>
 								</tr>
 
@@ -206,49 +220,6 @@
 				</div>
 				<!-- end #content -->
 
-				<div id="sidebar">
-					<% if (c.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-
-				</div>
-				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>

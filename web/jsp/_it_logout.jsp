@@ -31,13 +31,10 @@ c.logout();
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header">
-			<div id="logo">
-			
-				</div>
-			</div>
+			<div id="logo"></div>
 		</div>
-
 	</div>
+</div>
 	<!-- end #header -->
 	<div id="page">
 		<div id="page-bgtop">

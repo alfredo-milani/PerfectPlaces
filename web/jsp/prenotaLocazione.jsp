@@ -18,7 +18,7 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="utils.VerificaInput" %>
 <%@page import="entity.*" %>
 <%@page import="control.ControlloreRicercaLocazione" %>
@@ -479,7 +479,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

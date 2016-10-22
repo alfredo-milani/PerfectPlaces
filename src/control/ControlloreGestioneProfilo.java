@@ -27,7 +27,7 @@ public class ControlloreGestioneProfilo {
 	
 	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
 	@SuppressWarnings("unchecked")
-	public Utente ottieniUtente(String username) throws DeserializzazioneException {
+	public synchronized Utente ottieniUtente(String username) throws DeserializzazioneException {
 		// Caso di default in cui non venga trovato l'utente nel file
 		Utente u = new Utente("errore", "errore", "errore", "errore", "errore", "errore");
 		
@@ -52,7 +52,7 @@ public class ControlloreGestioneProfilo {
 	//			4 --> Sessione utente scaduta
 	//			0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
-	public int modificaProfilo(String username, String nome, String cognome, 
+	public synchronized int modificaProfilo(String username, String nome, String cognome,
 			String email, String vecchiaPassword, String nuovaPassword, String confermaNuovaPassword) throws DeserializzazioneException, SerializzazioneException{
 		ArrayList<Utente> utenti;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
@@ -95,20 +95,5 @@ public class ControlloreGestioneProfilo {
 		
 		sobj.serializza(utenti, percorsoUtenti);
 		return 0;
-	}
-	
-	// Metodo che consente la modifica dell'immagine del profilo. Viene preso un file dal sistema dell'utente e viene salvato nella 
-	// cartella images con un nome univoco legato all'username dell'utente.
-	public void copiaImmagine(String strOrigine, String username) throws IOException {
-		File fOrigine = new File(strOrigine);
-		File fDestinazione = new File(Constants.ABS_PATH.concat(Constants.IMGS_PATH + username + ".jpg"));
-
-		try (InputStream input = new FileInputStream(fOrigine); OutputStream output = new FileOutputStream(fDestinazione)) {
-			byte[] buf = new byte[1024000];
-			int bytesRead;
-			while ((bytesRead = input.read(buf)) > 0) {
-				output.write(buf, 0, bytesRead);
-			}
-		}
 	}
 }

@@ -25,9 +25,9 @@ public class ControlloreGestionePosta {
 	// destinatario e li restituisce in un Array List. In questo modo quando un utente controlla la posta verrà effettuata una ricerca
 	// con il suo username e gli verranno presentati tutti i messaggi che lo vedono come destinatario.
 	@SuppressWarnings("unchecked")
-	public ArrayList<Messaggio> ricercaMessaggiPerDestinatario(String username) throws DeserializzazioneException {
+	public synchronized ArrayList<Messaggio> ricercaMessaggiPerDestinatario(String username) throws DeserializzazioneException {
 		ArrayList<Messaggio> elencoMessaggi;
-		ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<Messaggio>();
+		ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<>();
 		
 		File file = new File(percorsoMessaggi);
 
@@ -47,10 +47,10 @@ public class ControlloreGestionePosta {
 
 	// Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del file messaggi e, se lo trova, lo restituisce.
 	@SuppressWarnings("unchecked")
-	public Messaggio ricercaMessaggioPerCodice(int codice) throws DeserializzazioneException{
+	public synchronized Messaggio ricercaMessaggioPerCodice(int codice) throws DeserializzazioneException{
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		ArrayList<Messaggio> elencoMessaggi;
-		elencoMessaggi = (ArrayList<Messaggio>)dobj.deserializza(percorsoMessaggi);
+		elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(percorsoMessaggi);
 
 		Messaggio messaggio;
 
@@ -70,9 +70,10 @@ public class ControlloreGestionePosta {
 	//        3 --> Se il contenuto è vuoto
 	//        4 --> Se il destinatario non esiste
     //        5 --> Se la sessione dell'utente è scaduta
+	//        6 --> Se il mittente e il destinatario coincidono
 	//        0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
-	public int scriviMessaggio(String oggetto, String mittente, String destinatario, String contenuto) throws DeserializzazioneException, SerializzazioneException {
+	public synchronized int scriviMessaggio(String oggetto, String mittente, String destinatario, String contenuto) throws DeserializzazioneException, SerializzazioneException {
 		if (destinatario == null || destinatario.equals(""))
 			return 1;
 		else if (oggetto == null || oggetto.equals(""))
@@ -81,6 +82,8 @@ public class ControlloreGestionePosta {
 			return 3;
         else if (mittente == null || mittente.equals(""))
             return 5;
+        else if (mittente.equals(destinatario))
+            return 6;
 		
 		ArrayList<Utente> elencoUtenti;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();

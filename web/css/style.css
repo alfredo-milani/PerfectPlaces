@@ -319,71 +319,71 @@ img.aligncenter {
 	color: #FFFFFF;
 }
 
-/* Sidebar */
-
-#sidebar {
-	float: right;
-	width: 280px;
-	padding: 30px 0px 0px 0px;
+/* Topbar */
+body {
+    margin:0;
 }
 
-#sidebar ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
 
-#sidebar li {
-	margin: 0;
-	padding: 0;
+ul.topnav li {
+    float: left;
 }
 
-#sidebar li ul {
-	margin: 0px 15px;
-	padding-bottom: 30px;
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
 }
 
-#sidebar li li {
-	padding-left: 20px;
-	line-height: 35px;
-	background: url(images/img07.jpg) no-repeat left 14px;
+ul.topnav li a:hover {
+    background-color: #555;
 }
 
-#sidebar li li span {
-	display: block;
-	margin-top: -20px;
-	padding: 0;
-	font-size: 11px;
-	font-style: italic;
+ul.topnav li.icon {
+    display: none;
 }
 
-#sidebar h2 {
-	height: 38px;
-	margin-bottom: 20px;
-	padding: 12px 0 0 0;
-	border-bottom: 4px solid #4b7091;
-	letter-spacing: -1px;
-	font-size: 24px;
-	color: #484848;
+@media screen and (max-width:680px) {
+    ul.topnav li:not(:first-child) {
+        display: none;
+    }
+    ul.topnav li.icon {
+        float: right;
+        display: inline-block;
+    }
 }
 
-#sidebar p {
-	margin: 0 0px;
-	padding: 0px 20px 20px 20px;
-	text-align: justify;
-}
-
-#sidebar a {
-	border: none;
-	color: #737373;
-}
-
-#sidebar a:hover {
-	text-decoration: underline;
+@media screen and (max-width:680px) {
+    ul.topnav.responsive {
+        position: relative;
+    }
+    ul.topnav.responsive li.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    ul.topnav.responsive li {
+        float: none;
+        display: inline;
+    }
+    ul.topnav.responsive li a {
+        display: block;
+        text-align: left;
+    }
 }
 
 /* Calendar */
-
 #calendar {
 }
 

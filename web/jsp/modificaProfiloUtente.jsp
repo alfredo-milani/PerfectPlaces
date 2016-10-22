@@ -39,6 +39,16 @@
 
 	<div id="page">
 		<div id="page-bgtop">
+            <!-- Menu -->
+            <ul class="topnav" id=myTopnav">
+                <li><a href="_it_utente.jsp">HOME</a></li>
+                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
+                <li><a href="posta.jsp">Posta</a></li>
+                <li><a href="_it_logout.jsp">Esci</a></li>
+            </ul>
+
 			<div id="page-bgbtm">
 				<div id="content">
 					<div class="post">
@@ -207,50 +217,7 @@
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
-				<!-- Menu -->
-				
-				<div id="sidebar">
-					<% if (c.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-				</div>
-				<!-- end #sidebar -->
+
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>

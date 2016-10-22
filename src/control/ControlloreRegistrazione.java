@@ -25,7 +25,7 @@ public class ControlloreRegistrazione {
 	// 2 --> Le due password non sono uguali
 	// 3 --> Lo username inserito è già stato utilizzato
 	@SuppressWarnings("unchecked")
-	public int registrazione(String username, String password, String password2, String nome, String cognome,
+	public synchronized int registrazione(String username, String password, String password2, String nome, String cognome,
 			String email) throws DeserializzazioneException, SerializzazioneException {
 		if(username == null ||
                 password == null ||

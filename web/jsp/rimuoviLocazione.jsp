@@ -17,7 +17,7 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="control.ControlloreRicercaLocazione" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Locazione" %>
@@ -25,7 +25,7 @@
 
 ControlloreRicercaLocazione crl = new ControlloreRicercaLocazione();
 
-String username = b.getUser();
+String username = c.getUser();
 ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
 locazioni = crl.ricercaLocPerUser(username);
 
@@ -89,7 +89,7 @@ String idNumber;
 							<td>
 								<center>
 								<a href="rimuoviLocazione2.jsp?id=<% out.println(idNumber); %>">
-								<img src="../css/images/x.jpg" width="100" height="100" alt="Press image to remove">
+								<img src="../css/images/delete.jpg" width="150" height="100" alt="Press image to remove">
 								</a>
 								</center>
 							
@@ -107,7 +107,7 @@ String idNumber;
 				<!-- Menu -->
 				
 				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
+					<% if (c.getLogged()) {  %>
 					
 					<ul>
 						<li>

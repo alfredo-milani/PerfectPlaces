@@ -20,4 +20,3 @@
 	- _Gestione locazioni;_
 	- _Prenotazione;_
 	- _Termini d'uso e FAQ;_
-***

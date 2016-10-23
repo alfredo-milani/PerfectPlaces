@@ -9,7 +9,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -47,37 +47,37 @@
 %>
 
 <div id="wrapper">
-	<div id="header-wrapper">
-		<div id="header">
-			<div id="logo">
-				<h1>Profilo Personale</h1>
-				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
-			</div>
-		</div>
-	</div>
-	<!-- end #header -->
-	<div id="page">
-		<div id="page-bgtop">
+    <div id="header-wrapper">
+        <div id="header">
+            <div id="logo">
+                <h1>Personal Profile</h1>
+                <h2> You are logged in as: <% out.println(c.getUser()); %> </h2>
+            </div>
+        </div>
+    </div>
+    <!-- end #header -->
+    <div id="page">
+        <div id="page-bgtop">
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
-                <li><a href="_it_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="posta.jsp">Posta</a></li>
-                <li><a href="_it_logout.jsp">Esci</a></li>
+                <li><a href="_en_utente.jsp">HOME</a></li>
+                <li><a href="areaViaggiatore.jsp">Traveller Area</a></li>
+                <li><a href="areaProprietario.jsp">Owner Area</a></li>
+                <li><a href="_en_profiloUtente.jsp">View Profile</a></li>
+                <li><a href="_en_posta.jsp">Mail</a></li>
+                <li><a href="_en_logout.jsp">Logout</a></li>
             </ul>
 
-			<div id="page-bgbtm">
-				<div id="content">
-				
-					<div class="post">
-						<h2 class="title">IL TUO PROFILO</h2>
+            <div id="page-bgbtm">
+                <div id="content">
+
+                    <div class="post">
+                        <h2 class="title">YOUR PROFILE</h2>
 
                         <table width="100%">
                             <tr>
                                 <td>
-                                    <h2 class="title"><strong>I tuoi dati</strong></h2>
+                                    <h2 class="title"><strong>Your data</strong></h2>
                                 </td>
                                 <td>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -90,10 +90,10 @@
                                 </td>
                                 <td>
                                     <h3 class="blackclass">
-                                        <strong>Nome utente:</strong><%out.println(" " + u.getUsername());%> <br/>
-                                        <strong>Nome:</strong><%out.println(" " + u.getNome());%> <br/>
-                                        <strong>Cognome:</strong><%out.println(" " + u.getCognome());%> <br/>
-                                        <strong>Email:</strong><%out.println(" " + u.getEmail());%> <br/>
+                                        <strong>Username:</strong><%out.println(" " + u.getUsername());%> <br/>
+                                        <strong>First Name:</strong><%out.println(" " + u.getNome());%> <br/>
+                                        <strong>Last Name:</strong><%out.println(" " + u.getCognome());%> <br/>
+                                        <strong>E-Mail:</strong><%out.println(" " + u.getEmail());%> <br/>
                                     </h3>
                                 </td>
                             </tr>
@@ -102,12 +102,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h1 class="title"><strong>Locazioni:</strong></h1>
+                                    <h1 class="title"><strong>Location:</strong></h1>
                                     <h3 class="blackclass">
 
                                         <%
                                             if (locazioni.size() == 0) {
-                                                out.println("Per ora non hai alcuna locazione.");
+                                                out.println("\n" +
+                                                        "For now you have no location.");
                                             } else {
                                                 int i;
                                                 for (i = 0; i < locazioni.size() - 1; ++i) {
@@ -122,24 +123,24 @@
                                     <br/>
                                     <br/>
                                     <h2>
-                                        <strong><a href="modificaProfiloUtente.jsp">Modifica profilo</a></strong>
+                                        <strong><a href="_en_modificaProfiloUtente.jsp">Edit Profile</a></strong>
                                     </h2>
                                 </td>
                             </tr>
                         </table>
-					</div>
-					<div style="clear: both;">&nbsp;</div>
-				</div>
-				<!-- end #content -->
+                    </div>
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+                <!-- end #content -->
 
-				<div style="clear: both;">&nbsp;</div>
-			</div>
-		</div>
-	</div>
-	<!-- end #page -->
+                <div style="clear: both;">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <!-- end #page -->
 </div>
 <div id="footer">
-	
+
 </div>
 <!-- end #footer -->
 </body>

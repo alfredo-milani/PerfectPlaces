@@ -2,19 +2,22 @@
 
                                 ------------------  Divisione UC:  ------------------
                                   --------------------------------------------------
-                                
+***
                                  
 -   **Alfredo:**
-    - Gestione profilo personale;
-  	- Gestione posta;
- 	- Cambio lingua;
+    - ~~_Gestione profilo personale;_~~
+  	- ~~_Gestione posta;_~~
+ 	- ~~_Cambio lingua;_~~
+  
   
 -   **Gabriele:**
-	- Ricerca locazione;
-	- Gestione locazione (inserimento e cancellazione):
-	- Visualizza prenotazioni;
+	- _Ricerca locazione;_
+	- _Gestione locazione (inserimento e cancellazione);_
+	- _Visualizza prenotazioni;_
+	
 	
 -   **Maria Josè:**
-	- Gestione locazioni;
-	- Prenotazione;
-	- Termini d'uso e FAQ;
+	- _Gestione locazioni;_
+	- _Prenotazione;_
+	- _Termini d'uso e FAQ;_
+***

@@ -80,7 +80,7 @@
                         <% } %>
 
                         <h2 class="main"> <strong> ACCEDI </strong> </h2>
-                        <form action="../jsp/_it_utente.jsp" enctype="application/x-www-form-urlencoded" method="post">
+                        <form action="_it_utente.jsp" enctype="application/x-www-form-urlencoded" method="post">
                             <table>
                                 <tr>
                                     <td>
@@ -160,7 +160,7 @@
                         %>
 
                         <h2 class="main"><strong>REGISTRAZIONE</strong></h2>
-                        <form action="../jsp/_it_index.jsp?Reg=1" enctype="application/x-www-form-urlencoded" method="post">
+                        <form action="_it_index.jsp?Reg=1" enctype="application/x-www-form-urlencoded" method="post">
                             <table>
                                 <tr>
                                     <td>

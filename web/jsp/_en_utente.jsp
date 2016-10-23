@@ -64,11 +64,11 @@
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
                 <li><a href="_en_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="posta.jsp">Posta</a></li>
-                <li><a href="_en_logout.jsp">Esci</a></li>
+                <li><a href="areaViaggiatore.jsp">Traveller Area</a></li>
+                <li><a href="areaProprietario.jsp">Owner Area</a></li>
+                <li><a href="_en_profiloUtente.jsp">View Profile</a></li>
+                <li><a href="_en_posta.jsp">Mail</a></li>
+                <li><a href="_en_logout.jsp">Logout</a></li>
             </ul>
 
             <div id="page-bgbtm">
@@ -98,9 +98,9 @@
                                     <br /><br />
                                     <h1 class="title">
                                         <strong>
-                                            <a href="areaViaggiatore.jsp?username=<%=request.getParameter("username")%>">TRAVELLER AREA</a>
+                                            <a href="areaViaggiatore.jsp?username=<%=request.getParameter("username")%>\">TRAVELLER AREA</a>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="areaProprietario.jsp?username=<%=request.getParameter("username")%>">OWNER AREA</a>
+                                            <a href="areaProprietario.jsp?username=<%=request.getParameter("username")%>\">OWNER AREA</a>
                                         </strong>
                                     </h1>
                                 </td>

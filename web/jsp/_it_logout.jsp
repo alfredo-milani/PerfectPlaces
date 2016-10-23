@@ -45,15 +45,13 @@ c.logout();
 						<h2 class="title">LOGOUT EFFETTUATO CON SUCCESSO!</h2>
 						<br /><br /><br />
 						<h2 class="title">
-                            <a href="../jsp/_it_index.jsp">
+                            <a href="_it_index.jsp">
                                 <font color="#4b7091">TORNA ALLA HOME PAGE</font>
                             </a>
                         </h2>
 				    </div>
 				    <!-- end #content -->
-				
-				    <div id="sidebar"></div>
-                    <!-- end #sidebar -->
+					<br/>
 
 		        </div>
 	        </div>

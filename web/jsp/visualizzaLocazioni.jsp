@@ -110,14 +110,14 @@ String descrizione;
 					<ul>
 						<li>
 						<center>
-						<h2><strong><a href="profiloUtente.jsp">Visualizza profilo</a></strong></h2>
+						<h2><strong><a href="_it_profiloUtente.jsp">Visualizza profilo</a></strong></h2>
 						</center>
 						</li>
 					</ul>		
 					<ul>
 						<li>
 						<center>
-						<h2><strong><a href="posta.jsp">Posta</a></strong></h2>
+						<h2><strong><a href="_it_posta.jsp">Posta</a></strong></h2>
 						</center>
 						</li>
 					</ul>	

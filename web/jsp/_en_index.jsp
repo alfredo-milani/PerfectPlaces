@@ -78,7 +78,7 @@
                         <%  } %>
 
                         <h2 class="main"><strong>LOGIN</strong></h2>
-                        <form action="../jsp/_en_utente.jsp" enctype="application/x-www-form-urlencoded" method="post">
+                        <form action="_en_utente.jsp" enctype="application/x-www-form-urlencoded" method="post">
                             <table>
                                 <tr>
                                     <td>
@@ -158,7 +158,7 @@
                         %>
 
                         <h2 class="main"><strong>SIGN UP</strong></h2>
-                        <form action="../jsp/_en_index.jsp?Reg=1" enctype="application/x-www-form-urlencoded" method="post">
+                        <form action="_en_index.jsp?Reg=1" enctype="application/x-www-form-urlencoded" method="post">
                             <table>
                                 <tr>
                                     <td>

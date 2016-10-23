@@ -14,7 +14,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content=""/>
@@ -45,8 +45,8 @@
     <div id="header-wrapper">
         <div id="header">
             <div id="logo">
-                <h1>Visualizza i tuoi messaggi</h1>
-                <h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
+                <h1>View your posts</h1>
+                <h2> You are logged in as: <% out.println(c.getUser()); %> </h2>
             </div>
         </div>
     </div>
@@ -55,28 +55,28 @@
         <div id="page-bgtop">
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
-                <li><a href="_it_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="posta.jsp">Posta</a></li>
-                <li><a href="_it_logout.jsp">Esci</a></li>
+                <li><a href="_en_utente.jsp">HOME</a></li>
+                <li><a href="areaViaggiatore.jsp">Traveller Area</a></li>
+                <li><a href="areaProprietario.jsp">Owner Area</a></li>
+                <li><a href="_en_profiloUtente.jsp">View Profile</a></li>
+                <li><a href="_en_posta.jsp">Mail</a></li>
+                <li><a href="_en_logout.jsp">Logout</a></li>
             </ul>
 
             <div id="page-bgbtm">
                 <div id="content">
 
                     <div class="post">
-                        <h2><strong> Posta in entrata </strong></h2>
+                        <h2><strong> Inbox </strong></h2>
                     </div>
 
                     <div class="post">
                         <table width="100%">
                             <tr>
-                                <td><label>Mittente</label></td>
-                                <td><label>Oggetto</label></td>
-                                <td><label>Data</label></td>
-                                <td><label>Contenuto</label></td>
+                                <td><label>Sender</label></td>
+                                <td><label>Object</label></td>
+                                <td><label>Date</label></td>
+                                <td><label>Content</label></td>
                             </tr>
 
                             <%
@@ -88,38 +88,38 @@
                                             data = anElencoMessaggiUser.getData();
                             %>
 
-                                            <tr>
-                                                <td>
-                                                    <% out.println(mittente); %>
-                                                </td>
-                                                <td>
-                                                    <% out.println(oggetto); %>
-                                                </td>
-                                                <td>
-                                                    <% out.println(data); %>
-                                                </td>
-                                                <td>
-                                                    <form action="visualizzaPosta2.jsp?Cod=<%= String.valueOf(anElencoMessaggiUser.getCodice()) %>" enctype="application/x-www-form-urlencoded" method="post">
-                                                        <div>
-                                                            <input class="btn" type="submit" value="Leggi"/>
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                            <tr>
+                                <td>
+                                    <% out.println(mittente); %>
+                                </td>
+                                <td>
+                                    <% out.println(oggetto); %>
+                                </td>
+                                <td>
+                                    <% out.println(data); %>
+                                </td>
+                                <td>
+                                    <form action="_en_visualizzaPosta2.jsp?Cod=<%= String.valueOf(anElencoMessaggiUser.getCodice()) %>" enctype="application/x-www-form-urlencoded" method="post">
+                                        <div>
+                                            <input class="btn" type="submit" value="Read"/>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
 
                             <%
-                                        }
-                                    } else {
-
-                                        %> <tr><td><font size="4px"> <% out.println("Per il momento non ci sono messaggi da mostrare"); %> </font></td></tr> <%
-
-                                    }
-                                } else {
-
-                                        %> <tr><td><font size="4px" color="red"> <% out.println("Errore! Effettua di nuovo l'accesso per leggere i tuoi messaggi"); %> </font></td></tr> <%
-
                                 }
-                            %>
+                            } else {
+
+                            %> <tr><td><font size="4px"> <% out.println("For the moment there are no posts to display"); %> </font></td></tr> <%
+
+                            }
+                        } else {
+
+                        %> <tr><td><font size="4px" color="red"> <% out.println("Error! Redo access to read your posts"); %> </font></td></tr> <%
+
+                            }
+                        %>
 
                         </table>
                     </div>
@@ -133,7 +133,7 @@
     </div>
     <!-- end #page -->
 </div>
-    <div id="footer"></div>
+<div id="footer"></div>
 <!-- end #footer -->
 </body>
 </html>

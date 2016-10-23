@@ -10,8 +10,9 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -38,8 +39,8 @@
                 <li><a href="_it_utente.jsp">HOME</a></li>
                 <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
                 <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="posta.jsp">Posta</a></li>
+                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+                <li><a href="_it_posta.jsp">Posta</a></li>
                 <li><a href="_it_logout.jsp">Esci</a></li>
             </ul>
 
@@ -89,7 +90,7 @@
 							<td>
                                 <h2 class="title">
                                     <center>
-                                        <a href="scriviMessaggio.jsp">
+                                        <a href="_it_scriviMessaggio.jsp">
                                             <img src="../css/images/write_email.png" width="250" height="250" alt="Img scrivi msg"/>
                                         </a>
                                     </center>
@@ -98,7 +99,7 @@
                             <td>
                                 <h2 class="title">
                                     <center>
-                                        <a href="visualizzaPosta.jsp">
+                                        <a href="_it_visualizzaPosta.jsp">
                                             <img src="../css/images/read_email.png" width="250" height="250" alt="Img leggi msg"/>
                                         </a>
                                     </center>

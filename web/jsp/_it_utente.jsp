@@ -65,8 +65,8 @@
                 <li><a href="_it_utente.jsp">HOME</a></li>
                 <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
                 <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="posta.jsp">Posta</a></li>
+                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+                <li><a href="_it_posta.jsp">Posta</a></li>
                 <li><a href="_it_logout.jsp">Esci</a></li>
             </ul>
 
@@ -98,9 +98,9 @@
 						<br /><br />
 						<h1 class="title">
 						<strong>
-							<a href="areaViaggiatore.jsp?username=<%=request.getParameter("username")%>">AREA VIAGGIATORE</a>
+							<a href="areaViaggiatore.jsp?username=<%=request.getParameter("username")%>\">AREA VIAGGIATORE</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="areaProprietario.jsp?username=<%=request.getParameter("username")%>">AREA PROPRIETARIO</a>
+							<a href="areaProprietario.jsp?username=<%=request.getParameter("username")%>\">AREA PROPRIETARIO</a>
 						</strong>
 						</h1>
 						</td>

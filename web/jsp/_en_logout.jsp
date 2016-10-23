@@ -39,6 +39,7 @@
 <div id="page">
 
     <div id="page-bgtop">
+
         <div id="page-bgbtm">
             <div id="content">
 
@@ -46,14 +47,13 @@
                     <h2 class="title">LOGOUT DONE WITH SUCCESS!</h2>
                     <br /><br /><br />
                     <h2 class="title">
-                        <a href="../jsp/_en_index.jsp">
+                        <a href="_en_index.jsp">
                             <font color="#4b7091">BACK TO HOME PAGE</font>
                         </a>
                     </h2>
                 </div>
                 <!-- end #content -->
-
-                <div id="sidebar"></div>
+                <br/>
 
             </div>
         </div>

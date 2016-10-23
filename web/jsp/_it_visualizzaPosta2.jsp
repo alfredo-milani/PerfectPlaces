@@ -15,7 +15,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -44,8 +44,8 @@
                 <li><a href="_it_utente.jsp">HOME</a></li>
                 <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
                 <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="posta.jsp">Posta</a></li>
+                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+                <li><a href="_it_posta.jsp">Posta</a></li>
                 <li><a href="_it_logout.jsp">Esci</a></li>
             </ul>
 
@@ -125,7 +125,7 @@
                         <table align="center">
                             <tr>
                                 <td>
-                                    <form action="scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
+                                    <form action="_it_scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
                                         <div>
                                             <input class="btn_2" type="submit" value="Rispondi"/>
                                         </div>

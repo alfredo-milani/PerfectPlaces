@@ -102,7 +102,4 @@ public class Albergo extends Locazione{
 	public void setDate(ArrayList<GregorianCalendar> date) {
 		this.date = date;
 	}
-	
-	
-	
 }

@@ -18,7 +18,7 @@ public class ControlloreGestionePosta {
 	private String percorsoUtenti = Constants.UTENTI_PATH;
 
 	// Costruttore
-	public ControlloreGestionePosta(){
+	public ControlloreGestionePosta() {
 	}
 	
 	// Metodo che riceve in input uno username, ricerca nel file messaggi tutti i messaggi che hanno quello username come

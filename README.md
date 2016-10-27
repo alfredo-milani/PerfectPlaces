@@ -12,11 +12,11 @@
   
 -   **Gabriele:**
 	- _Ricerca locazione;_
-	- _Gestione locazione (inserimento e cancellazione);_
+	- _?Registrazione? Già fatta_
 	- _Visualizza prenotazioni;_
 	
 	
 -   **Maria Josè:**
-	- _Gestione locazioni;_
+	- _Gestione locazione (inserimento e cancellazione);_
 	- _Prenotazione;_
 	- _Termini d'uso e FAQ;_

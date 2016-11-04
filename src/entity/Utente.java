@@ -70,4 +70,5 @@ public class Utente implements java.io.Serializable {
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;
 	}
+
 }

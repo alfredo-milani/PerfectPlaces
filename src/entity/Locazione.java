@@ -4,6 +4,7 @@ public class Locazione implements java.io.Serializable {
 	// Variabili
 	private static final long serialVersionUID = 1L;
 	protected String nomeLocazione;
+	protected String provincia;
 	protected String indirizzo;
 	private String userLocatore;
 	protected String prezzo;

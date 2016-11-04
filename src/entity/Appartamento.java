@@ -16,9 +16,9 @@ public class Appartamento extends Locazione {
 	
 	// Costruttore	
 	
-	public Appartamento(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
+	public Appartamento(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroStanze, String numeroBagni, boolean giardino, String numeroLetti) {
-		super(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
+		super(nomeLocazione,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
 		
 		this.numeroStanze = numeroStanze;
 		this.numeroBagni = numeroBagni;

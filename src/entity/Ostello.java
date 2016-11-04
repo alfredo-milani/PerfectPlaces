@@ -14,9 +14,9 @@ public class Ostello extends Locazione {
 	
 	// Costruttore
 	
-	public Ostello(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
+	public Ostello(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroLettiTotali) {
-		super(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
+		super(nomeLocazione,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
 		
 		this.numeroLettiTotali = numeroLettiTotali;
 	}

@@ -16,9 +16,10 @@ public class Locazione implements java.io.Serializable {
 	private String tipo;
 	
 	// Costruttore
-	public Locazione(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
+	public Locazione(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet) {
 		this.nomeLocazione = nomeLocazione;
+		this.provincia= provincia;
 		this.indirizzo = indirizzo;
 		this.userLocatore = userLocatore;
 		this.prezzo = prezzo;
@@ -36,6 +37,10 @@ public class Locazione implements java.io.Serializable {
 	public void setNomeLocazione(String nomeLocazione) {
 		this.nomeLocazione = nomeLocazione;
 	}
+
+	public String getProvincia(){return provincia;}
+
+	public String setProvincia(){return provincia;}
 
 	public String getIndirizzo() {
 		return indirizzo;

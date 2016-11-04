@@ -15,9 +15,9 @@ public class Beb extends Locazione {
 	
 	// Costruttore
 	
-	public Beb(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
+	public Beb(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String camereTotali, String orarioColazione) {
-		super(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
+		super(nomeLocazione,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
 		this.camereTotali = camereTotali;
 		this.orarioColazione = orarioColazione;
 	}

@@ -17,6 +17,6 @@
 	
 	
 -   **Maria Josè:**
-	- _Gestione locazione (inserimento e cancellazione e visualizza);_
+	- _Gestione locazione (inserimento e cancellazione e visualizzaf);_
 	- _Prenotazione;_
 	- _Termini d'uso e FAQ;_

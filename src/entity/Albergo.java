@@ -18,10 +18,10 @@ public class Albergo extends Locazione{
 
 	// Costruttore
 	
-	public Albergo(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
+	public Albergo(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String camereTotali,
 			String tipoPensione, String orarioColazione, String orarioPranzo, String orarioCena) {
-		super(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
+		super(nomeLocazione,provincia,indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
 		
 		this.camereTotali = camereTotali;
 		this.tipoPensione = tipoPensione;

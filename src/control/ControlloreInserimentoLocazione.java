@@ -2,15 +2,15 @@ package control;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
+import utils.VerificaInput;
 
-// Classe che consente l'inserimento di nuove locazioni all'interno del sistema.
+// Classe che gestisce l'inserimento di nuove locazioni all'interno del sistema.
 
 public class ControlloreInserimentoLocazione {
 	
@@ -36,18 +36,18 @@ public class ControlloreInserimentoLocazione {
 	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo Albergo nel file alberghi.
 	
 	@SuppressWarnings("unchecked")
-	public boolean inserisciAlbergo(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String camereTotali,
+	public boolean inserisciAlbergo(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
+			String descrizione, boolean parcheggio, boolean wifi, boolean pet,
 			String tipoPensione, String orarioColazione, String orarioPranzo, String orarioCena)throws SerializzazioneException, DeserializzazioneException{
 		
-		if(nomeLocazione.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
-				descrizione.equals("")||camereTotali.equals("")||tipoPensione.equals("")||orarioColazione.equals("")||
+		if(nomeLocazione.equals("")||postiTotali.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
+				descrizione.equals("")||tipoPensione.equals("")||orarioColazione.equals("")||
 				orarioPranzo.equals("")||orarioCena.equals("")){
 			return false;
 		}
-		
-		Albergo albergo = new Albergo(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet, 
-				camereTotali, tipoPensione, orarioColazione, orarioPranzo, orarioCena);
+
+
+		Albergo albergo = new Albergo(nomeLocazione,postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet, tipoPensione, orarioColazione, orarioPranzo, orarioCena);
 
 		File file = new File(percorsoAlbergo);
 		
@@ -72,16 +72,16 @@ public class ControlloreInserimentoLocazione {
 	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo appartamento nel file appartamenti.
 	
 	@SuppressWarnings("unchecked")
-	public boolean inserisciAppartamento(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
+	public boolean inserisciAppartamento(String nomeLocazione, String postiTotali, String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroStanze, 
 			String numeroBagni, boolean giardino, String numeroLetti)throws SerializzazioneException, DeserializzazioneException{
 		
-		if(nomeLocazione.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
+		if(nomeLocazione.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
 				descrizione.equals("")||numeroStanze.equals("")||numeroBagni.equals("")||numeroLetti.equals("")){
 			return false;
 		}
 		
-		Appartamento appartamento = new Appartamento(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, 
+		Appartamento appartamento = new Appartamento(nomeLocazione, postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio,
 				wifi, pet, numeroStanze, numeroBagni, giardino, numeroLetti);
 
 		File file = new File(percorsoAppartamento);
@@ -106,14 +106,14 @@ public class ControlloreInserimentoLocazione {
 	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo B&B nel file beb.
 	
 	@SuppressWarnings("unchecked")
-	public boolean inserisciBeb(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String camereTotali, String orarioColazione) throws SerializzazioneException, DeserializzazioneException{
-		if(nomeLocazione.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
-				descrizione.equals("")||camereTotali.equals("")||orarioColazione.equals("")){
+	public boolean inserisciBeb(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
+			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String orarioColazione) throws SerializzazioneException, DeserializzazioneException{
+		if(nomeLocazione.equals("")||postiTotali.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
+				descrizione.equals("")||orarioColazione.equals("")){
 			return false;
 		}
 		
-		Beb beb = new Beb(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet, camereTotali, orarioColazione);
+		Beb beb = new Beb(nomeLocazione,postiTotali,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet, orarioColazione);
 
 		File file = new File(percorsoBeb);
 		
@@ -136,16 +136,16 @@ public class ControlloreInserimentoLocazione {
 	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce una nuova Casa Vacanze nel file casevacanza.
 	
 	@SuppressWarnings("unchecked")
-	public boolean inserisciCasaVacanza(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
+	public boolean inserisciCasaVacanza(String nomeLocazione, String postiTotali, String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroCamere, String numeroBagni, 
 			boolean giardino, String numeroLetti )throws SerializzazioneException, DeserializzazioneException{
 		
-		if(nomeLocazione.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
+		if(nomeLocazione.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
 				descrizione.equals("")||numeroCamere.equals("")||numeroBagni.equals("")||numeroLetti.equals("")){
 			return false;
 		}
 		
-		CasaVacanza casavacanza = new CasaVacanza(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, 
+		CasaVacanza casavacanza = new CasaVacanza(nomeLocazione, postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio,
 				wifi, pet, numeroCamere, numeroBagni, giardino, numeroLetti);
 
 		File file = new File(percorsoCasaVacanza);
@@ -169,20 +169,21 @@ public class ControlloreInserimentoLocazione {
 	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo Ostello nel file ostelli.
 	
 	@SuppressWarnings("unchecked")
-	public boolean inserisciOstello(String nomeLocazione, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroLettiTotali ) throws SerializzazioneException, DeserializzazioneException{
+	public boolean inserisciOstello(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
+			String descrizione, boolean parcheggio, boolean wifi, boolean pet) throws SerializzazioneException, DeserializzazioneException{
 		
 		if (nomeLocazione == null || nomeLocazione.equals("") ||
+				postiTotali==null|| postiTotali.equals("")||
+				provincia ==null ||provincia.equals("") ||
 				indirizzo == null || indirizzo.equals("") ||
 				userLocatore == null || userLocatore.equals("") ||
 				prezzo == null ||prezzo.equals("") ||
-				descrizione == null || descrizione.equals("") ||
-				numeroLettiTotali == null || numeroLettiTotali.equals("")) {
+				descrizione == null || descrizione.equals("") ) {
 			return false;
 		}
 		
-		Ostello ostello = new Ostello(nomeLocazione, indirizzo, userLocatore, prezzo, descrizione, parcheggio, 
-				wifi, pet, numeroLettiTotali);
+		Ostello ostello = new Ostello(nomeLocazione,postiTotali,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio,
+				wifi, pet);
 
 		File file = new File(percorsoOstello);
 		

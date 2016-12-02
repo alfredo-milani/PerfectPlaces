@@ -17,19 +17,26 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="control.*" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Locazione" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %>
 <%
 
-ControlloreRicercaLocazione crl = new ControlloreRicercaLocazione();
+ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
-String username = b.getUser();
+String username = c.getUser();
 ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-locazioni = crl.ricercaLocPerUser(username);
+	try {
+		locazioni = crl.visualizzaLocazioni(username);
+	} catch (DeserializzazioneException e) {
+		e.printStackTrace();
+	}
 
-String nomeLocazione;
+	String nomeLocazione;
+String provincia;
 String indirizzo;
 String prezzo; 
 String descrizione;
@@ -41,9 +48,11 @@ Locazione elemento = locazioni.get(idNumberInt);
 
 ControlloreRimuoviLocazione crl2 = new ControlloreRimuoviLocazione();
 
-crl2.rimuoviLocazione(elemento);
-
-
+	try {
+		crl2.rimuoviLocazione(elemento);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
 
 
 %>
@@ -68,62 +77,38 @@ crl2.rimuoviLocazione(elemento);
 	<!-- end #header -->
 	<div id="page">
 		<div id="page-bgtop">
+			<ul class="topnav" id=myTopnav">
+				<li><a href="_it_utente.jsp">HOME</a></li>
+				<li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+				<li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+				<li><a href="_it_posta.jsp">Posta</a></li>
+				<li><a href="_it_logout.jsp">Esci</a></li>
+			</ul>
+			<div class="post">
+				<%
+					if (!c.getLogged()) {
+				%>
+
+				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+				<%
+					}
+				%>
+
+			</div>
+
 			<div id="page-bgbtm">
 				<div id="content">
 				
 					
 					<div class="post">
-							<h2><strong>La tua locazione � stata rimossa con successo</strong></h2>
+							<h2><strong>La tua locazione è stata rimossa con successo</strong></h2>
 							
 					</div>
 					
 					<div style="clear: both;">&nbsp;</div>
 				</div>
-				<!-- end #content -->
-				<!-- Menu -->
-				
-				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-				</div>
-				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>

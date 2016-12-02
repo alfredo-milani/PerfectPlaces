@@ -8,8 +8,6 @@ public class Albergo extends Locazione{
 	// Variabili
 	
 	private static final long serialVersionUID = 1L;
-	private String camereTotali;
-	private String camereOccupate;
 	private String tipoPensione;
 	private String orarioColazione;
 	private String orarioPranzo;
@@ -18,12 +16,11 @@ public class Albergo extends Locazione{
 
 	// Costruttore
 	
-	public Albergo(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String camereTotali,
+	public Albergo(String nomeLocazione,String postTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
+			String descrizione, boolean parcheggio, boolean wifi, boolean pet,
 			String tipoPensione, String orarioColazione, String orarioPranzo, String orarioCena) {
-		super(nomeLocazione,provincia,indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
-		
-		this.camereTotali = camereTotali;
+		super(nomeLocazione,postTotali,provincia,indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
+
 		this.tipoPensione = tipoPensione;
 		this.orarioColazione = orarioColazione;
 		this.orarioPranzo = orarioPranzo;
@@ -33,21 +30,6 @@ public class Albergo extends Locazione{
 	
 	// Getters e Setters
 
-	public String getCamereTotali() {
-		return camereTotali;
-	}
-
-	public void setCamereTotali(String camereTotali) {
-		this.camereTotali = camereTotali;
-	}
-
-	public String getCamereOccupate() {
-		return camereOccupate;
-	}
-
-	public void setCamereOccupate(String camereOccupate) {
-		this.camereOccupate = camereOccupate;
-	}
 
 	public String getTipoPensione() {
 		return tipoPensione;
@@ -80,20 +62,7 @@ public class Albergo extends Locazione{
 	public void setOrarioCena(String orarioCena) {
 		this.orarioCena = orarioCena;
 	}
-	
-	// Aumenta di 1 le camere occupate, se viene raggiunto il limite di camere prenotabili, imposta la variabile booleana prenotabile a false.
-	
-	public void aumentaOccupate(){
-		int camereOccupateInt = Integer.parseInt(camereOccupate);
-		int camereTotaliInt = Integer.parseInt(camereTotali);
-		
-		camereOccupateInt = camereOccupateInt + 1;
-		if(camereOccupateInt == camereTotaliInt){
-			setPrenotabile(false);
-		}
-		
-		camereOccupate = camereOccupateInt + "";
-	}
+
 
 	public ArrayList<GregorianCalendar> getDate() {
 		return date;

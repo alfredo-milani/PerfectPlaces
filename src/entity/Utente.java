@@ -13,7 +13,7 @@ public class Utente implements java.io.Serializable {
 	
 	// Costruttore
 	public Utente(String username, String password, String nome,
-				  String cognome, String email, String immagine) {
+				  String cognome, String email,String immagine) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;

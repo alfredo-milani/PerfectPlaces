@@ -33,7 +33,7 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#">Ricerca la tua locazione!</a></h1>
+				<h1><a href="#">Ricerca la tua locazione</a></h1>
 				
 			</div>
 		</div>
@@ -41,200 +41,143 @@
 	<!-- end #header -->
 	<div id="page">
 		<div id="page-bgtop">
+			<ul class="topnav" id=myTopnav">
+				<li><a href="_it_utente.jsp">HOME</a></li>
+				<li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+				<li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+				<li><a href="_it_posta.jsp">Posta</a></li>
+				<li><a href="_it_logout.jsp">Esci</a></li>
+			</ul>
+			<div class="post">
+				<%
+					if (!c.getLogged()) {
+				%>
+
+				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+				<%
+					}
+				%>
+
+				</h2>
+			</div>
 			<div id="page-bgbtm">
 				<div id="content">
-
 					<div class="post">
-						<h2 class="title">Seleziona la locazione adatta a te!</h2>
-					
-						<table style="width:100%">
-							<tr>
-								<td>
-									<center>
-									<h1 style="color:black">ALBERGHI</h1>
-									</center>
-								</td>
-								<td>
-									<center>
-									<h1 style="color:black">APPARTAMENTI</h1>
-									</center>
-								</td>
-								<td>
-									<center>
-									<h1 style="color:black">B&amp;B</h1>
-									</center>
-								</td>
-								<td>
-									<center>
-									<h1 style="color:black">CASE VACANZA</h1>
-									</center>
-								</td>
-								<td>
-									<center>
-									<h1 style="color:black">OSTELLI</h1>
-									</center>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<center>
-									<img src="images/albergo.jpg" width="150" height="150"/>
-									</center>
-								</td>
-								<td>
-									<center>
-									<img src="images/appartamento.jpg" width="150" height="150"/>
-									</center>
-								</td>
-								<td>
-									<center>
-									<img src="images/beb.jpg"  width="150" height="150"/>
-									</center>
-								</td>
-								<td>
-									<center>
-									<img src="images/vacanza.jpg"  width="150" height="150"/>
-									</center>
-								</td>
-								<td>
-									<center>
-									<img src="images/ostello.jpg"  width="150" height="150"/>
-									</center>
-								</td>
-							</tr>
-						</table>
-					</div>
-					
-					<div class="post">
-							<h2><strong>Ricerca la tua locazione!</strong></h2>
+							<h2><strong>Clicca sulla locazione desiderata</strong></h2>
 
-							
-	<input type="radio" name="command" value="0" onclick="visualizza('albform','aptform','bebform','cvzform','ostform')"/>Albergo<br />
+            <br><br><br>
+    <div>
+        <div style="float: left; width: 400px" >
+            <h3>Albergo</h3>
+            <input id ="albergo" type="radio" style="display: none" name="command" value="0" onclick="visualizza('albform','aptform','bebform','cvzform','ostform')" />
+            <label class="drinkcard-cc albergo" for="albergo"></label>
+        </div>
+            <form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="albform" style="display:none">
+        <div style="float: left">
+            <br><br>
+            <input type="hidden" name="command" id="command_1" value="0"/>
+            Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
+            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
+            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            <input type="submit" class="btnBlue" value="Ricerca" /><br />
+        </div>
+        </form>
+    </div>
+    <div style="clear: both"></div>
 
-	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="albform" style="display:none">
-	
-	<div>
-		<input type="hidden" name="command" id="command_1" value="0"/>
-        Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
-		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
-		<input type="submit" value="Ricerca" /><br />
-	</div>
-
-	</form>
-
-	<input type="radio" name="command" value="1" onclick="visualizza('aptform','albform','bebform','cvzform','ostform')"/>Appartamento<br />
-
-	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="aptform" style="display:none">
+    <div>
+		<div style="float: left; width: 400px">
+            <h3>Appartamento</h3>
+        	<input id="appartamento" type="radio" style="display: none" name="command" value="1" onclick="visualizza('aptform','albform','bebform','cvzform','ostform')"/>
+			<label class="drinkcard-cc appartamento" for="appartamento"></label>
+		</div>
+        	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="aptform" style="display:none">
+        <div style="float: left">
+            <br><br>
+            <input type="hidden" name="command" id="command_2" value="1"/>
+            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br />
+            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            <input type="submit"class="btnBlue" value="Ricerca" /><br />
+        </div>
+            </form>
+    </div>
+	<div style="clear: both"></div>
 
 	<div>
+		<div style="float: left; width: 400px">
+            <h3>Bed and Breakfast</h3>
+			<input id="beb"type="radio" style="display:none" name="command" value="2" onclick="visualizza('bebform','aptform','albform','cvzform','ostform')"/>
+			<label class=" drinkcard-cc beb" for="beb"></label>
+		</div>
+			<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="bebform" style="display:none">
 	
-		<input type="hidden" name="command" id="command_2" value="1"/>
-		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
-		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
-		<input type="submit" value="Ricerca" /><br />
-	
-	</div>
-	
-	</form>			
-	
-	<input type="radio" name="command" value="2" onclick="visualizza('bebform','aptform','albform','cvzform','ostform')"/>Bed&amp;Breakfast<br />
-
-	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="bebform" style="display:none">
-	
-		<div>
-
-		<input type="hidden" name="command" id="command_3" value="2"/>
-		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
-		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
-		<input type="submit" value="Ricerca" /><br />
-		
+		<div style="float: left">
+            <br><br>
+            <input type="hidden" name="command" id="command_3" value="2"/>
+            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" name="provincia" value ="" /><br /><br />
+            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br/>
+            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            <input type="submit" class="btnBlue" value="Ricerca" /><br />
 		</div>
 		
-	</form>			
-	
-	<input type="radio" name="command" value="3" onclick="visualizza('cvzform','aptform','bebform','albform','ostform')"/>Casa Vacanza<br />
-
-	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="cvzform" style="display:none">
-	
-	<div>
-
-		<input type="hidden" name="command" id="command_4" value="3"/>
-		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
-		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
-		<input type="submit" value="Ricerca" /><br />
-		
-		</div>
-
-	</form>			
-	
-	<input type="radio" name="command" value="4" onclick="visualizza('ostform','aptform','bebform','cvzform','albform')"/>Ostello<br />
-
-	<form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="ostform" style="display:none">
-	
-	<div>
-
-		<input type="hidden" name="command" id="command" value="4"/>
-		Prezzo:<br /><input type="text" name="prezzo" value="" />&euro;<br /><br />
-		Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-		Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
-		<input type="submit" value="Ricerca" /><br />
-
+	        </form>
 	</div>
+    <div style="clear: both"></div>
 
-	</form>			
+	<div>
+      <div style="float:left; width: 400px">
+        <h3>Casa Vacanza</h3>
+          <br>
+        <input id="casaVacanza" type="radio" style="display:none" name="command" value="3" onclick="visualizza('cvzform','aptform','bebform','albform','ostform')"/>
+        <label class="drinkcard-cc casaVacanza" for="casaVacanza"></label>
+      </div>
+        <form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="cvzform" style="display:none">
+
+	    <div style="float:left">
+            <br><br>
+            <input type="hidden" name="command" id="command_4" value="3"/>
+            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br/>
+            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            <input type="submit" class="btnBlue" value="Ricerca" /><br />
+        </div>
+
+	    </form>
+    </div>
+    <div style="clear: both"></div>
+
+	<div>
+        <div style="float:left; width: 400px">
+          <h3>Ostello</h3>
+          <input id="ostello" type="radio" style="display:none" name="command" value="4" onclick="visualizza('ostform','aptform','bebform','cvzform','albform')"/>
+          <label class="drinkcard-cc ostello" for="ostello" ></label>
+        </div>
+	      <form method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="ostform" style="display:none">
+
+	    <div style="float: left">
+            <br><br>
+            <input type="hidden" name="command" id="command" value="4"/>
+            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br/>
+            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            <input type="submit" class="btnBlue" value="Ricerca" /><br />
+	    </div>
+	     </form>
+    </div>
+    <div style="clear: both"></div>
 		
 </div>		
 
 </div>
-					<!-- Menu -->
-				
-				<div id="sidebar">
-					<% if (c.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-				</div>
-				<!-- end #sidebar -->
-					<div style="clear: both;">&nbsp;</div>
+				<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>

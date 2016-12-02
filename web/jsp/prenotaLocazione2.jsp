@@ -18,10 +18,12 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<jsp:useBean id="b" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.*" %>
 <%@page import="control.*" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %>
 
 <%
 
@@ -38,24 +40,44 @@ boolean controllo = false;
 if(commandInt==0){
 	ArrayList<Albergo> elencoAlberghi = (ArrayList<Albergo>) request.getSession().getAttribute("alb");
 	request.getSession().removeAttribute("alb");
-	controllo = cp.prenotaAlbergo(elencoAlberghi.get(Integer.parseInt(id)),dataInizio,dataFine);
-	
+	try {
+		controllo = cp.prenotaAlbergo(elencoAlberghi.get(Integer.parseInt(id)),dataInizio,dataFine);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
+
 } else if(commandInt==1){
 	ArrayList<Appartamento> elencoAppartamenti = (ArrayList<Appartamento>) request.getSession().getAttribute("apt");
 	request.getSession().removeAttribute("apt");
-	controllo = cp.prenotaAppartamento(elencoAppartamenti.get(Integer.parseInt(id)),dataInizio,dataFine);
+	try {
+		controllo = cp.prenotaAppartamento(elencoAppartamenti.get(Integer.parseInt(id)),dataInizio,dataFine);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
 } else if(commandInt==2){
 	ArrayList<Beb> elencoBeb = (ArrayList<Beb>) request.getSession().getAttribute("beb");
 	request.getSession().removeAttribute("beb");
-	controllo = cp.prenotaBeb(elencoBeb.get(Integer.parseInt(id)),dataInizio,dataFine);
+	try {
+		controllo = cp.prenotaBeb(elencoBeb.get(Integer.parseInt(id)),dataInizio,dataFine);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
 } else if(commandInt == 3){
 	ArrayList<CasaVacanza> elencoCasaVacanze = (ArrayList<CasaVacanza>) request.getSession().getAttribute("cvz");
 	request.getSession().removeAttribute("cvz");
-	controllo = cp.prenotaCasaVacanza(elencoCasaVacanze.get(Integer.parseInt(id)),dataInizio,dataFine);
+	try {
+		controllo = cp.prenotaCasaVacanza(elencoCasaVacanze.get(Integer.parseInt(id)),dataInizio,dataFine);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
 } else if(commandInt == 4){
 	ArrayList<Ostello> elencoOstelli = (ArrayList<Ostello>) request.getSession().getAttribute("ost");
 	request.getSession().removeAttribute("ost");
-	controllo = cp.prenotaOstello(elencoOstelli.get(Integer.parseInt(id)),dataInizio,dataFine);
+	try {
+		controllo = cp.prenotaOstello(elencoOstelli.get(Integer.parseInt(id)),dataInizio,dataFine);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
 }
 
 
@@ -81,6 +103,25 @@ if(commandInt==0){
 	<!-- end #header -->
 	<div id="page">
 		<div id="page-bgtop">
+			<ul class="topnav" id=myTopnav">
+				<li><a href="_it_utente.jsp">HOME</a></li>
+				<li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+				<li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+				<li><a href="_it_posta.jsp">Posta</a></li>
+				<li><a href="_it_logout.jsp">Esci</a></li>
+			</ul>
+			<div class="post">
+				<%
+					if (!c.getLogged()) {
+				%>
+
+				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+				<%
+					}
+				%>
+			</div>
 			<div id="page-bgbtm">
 				<div id="content">
 				
@@ -89,16 +130,15 @@ if(commandInt==0){
 				
 					<div class="post">
 						
-						<h1>Prenotazione effettuata con successo!</h1>
+						<h1>Prenotazione effettuata con successo</h1>
 						
 					</div>
 
 					<%} else { %>
 						
 						<div class="post">
-						
-						<h1>Errore in fase di prenotazione: Non &egrave; pi&ugrave; possibile prenotare nella data selezionata!</h1>
-						<a href="areaViaggiatore.jsp">Torna alla pagina di ricerca!</a>
+						<h1>Prenotazione fallita: Non &egrave; pi&ugrave; possibile prenotare nella data selezionata</h1>
+						<a href="areaViaggiatore.jsp">Torna alla pagina di ricerca</a>
 						
 					</div>
 					
@@ -112,50 +152,6 @@ if(commandInt==0){
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
-				<!-- Menu -->
-				
-				<div id="sidebar">
-					<% if (b.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-				</div>
-				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>

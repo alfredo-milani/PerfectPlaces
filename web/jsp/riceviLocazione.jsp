@@ -18,9 +18,11 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+<%@page import="java.lang.String" %>
 <%@page import="control.ControlloreInserimentoLocazione"  %>
 <%@page import="exception.SerializzazioneException" %>
 <%@page import="exception.DeserializzazioneException" %>
+<%@ page import="entity.Locazione" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%
 	String command = request.getParameter("command");
@@ -30,6 +32,7 @@
 	ControlloreInserimentoLocazione cil = new ControlloreInserimentoLocazione();
 
     String nomeLocazione = request.getParameter("nomeLocazione");
+    String provincia = request.getParameter("provincia");
     String indirizzo = request.getParameter("indirizzo");
     String prezzo = request.getParameter("prezzo");
     String descrizione = request.getParameter("descrizione");
@@ -53,16 +56,15 @@
             if (pet.equals("true")) {
                 bpet = true;
             }
-
-            String camereTotali = request.getParameter("camereTotali");
+            String postiTotali = request.getParameter("postiTotali");
             String tipoPensione = request.getParameter("tipoPensione");
             String orarioColazione = request.getParameter("orarioColazione");
             String orarioPranzo = request.getParameter("orarioPranzo");
             String orarioCena = request.getParameter("orarioCena");
 
             try {
-                control = cil.inserisciAlbergo(nomeLocazione, indirizzo, username, prezzo,
-                        descrizione, bpark, bwifi, bpet, camereTotali,
+                control = cil.inserisciAlbergo(nomeLocazione,postiTotali,provincia, indirizzo, username, prezzo,
+                        descrizione, bpark, bwifi, bpet,
                         tipoPensione, orarioColazione, orarioPranzo, orarioCena);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
@@ -80,7 +82,6 @@
             if (pet.equals("true")) {
                 bpet = true;
             }
-
             String numeroLetti = request.getParameter("numeroLetti");
             String numeroStanze = request.getParameter("numeroStanze");
             String numeroBagni = request.getParameter("numeroBagni");
@@ -89,9 +90,11 @@
             if (giardino.equals("true")) {
                 bgiardino = true;
             }
-
+            Integer i = 1;
+            String s = Integer.toString(i);
+            out.println(s);
             try {
-                control = cil.inserisciAppartamento(nomeLocazione, indirizzo, username, prezzo, descrizione,
+                control = cil.inserisciAppartamento(nomeLocazione,s, provincia, indirizzo, username, prezzo, descrizione,
                         bpark, bwifi, bpet, numeroStanze, numeroBagni, bgiardino, numeroLetti);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
@@ -109,13 +112,12 @@
             if (pet.equals("true")) {
                 bpet = true;
             }
-
-            String camereTotali = request.getParameter("camereTotali");
+            String postiTotali = request.getParameter("postiTotali");
             String orarioColazione = request.getParameter("orarioColazione");
 
             try {
-                control = cil.inserisciBeb(nomeLocazione, indirizzo, username, prezzo, descrizione,
-                        bpark, bwifi, bpet, camereTotali, orarioColazione);
+                control = cil.inserisciBeb(nomeLocazione,postiTotali,provincia, indirizzo, username, prezzo, descrizione,
+                        bpark, bwifi, bpet, orarioColazione);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -142,9 +144,10 @@
             if (giardino.equals("true")) {
                 bgiardino = true;
             }
-
+            Integer i = 1;
+            String s = Integer.toString(i);
             try {
-                control = cil.inserisciCasaVacanza(nomeLocazione, indirizzo, username, prezzo, descrizione,
+                control = cil.inserisciCasaVacanza(nomeLocazione, s, provincia, indirizzo, username, prezzo, descrizione,
                         bpark, bwifi, bpet, numeroCamere, numeroBagni, bgiardino, numeroLetti);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
@@ -153,7 +156,6 @@
         }
         case "4": {
             // Caso Ostello
-            String numeroLetti = request.getParameter("numeroLetti");
             if (parcheggio.equals("true")) {
                 bpark = true;
             }
@@ -163,10 +165,11 @@
             if (pet.equals("true")) {
                 bpet = true;
             }
+            String postiTotali = request.getParameter("postiTotali");
 
             try {
-                control = cil.inserisciOstello(nomeLocazione, indirizzo, username, prezzo, descrizione,
-                        bpark, bwifi, bpet, numeroLetti);
+                control = cil.inserisciOstello(nomeLocazione,postiTotali,provincia, indirizzo, username, prezzo, descrizione,
+                        bpark, bwifi, bpet);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -195,6 +198,27 @@
 	<!-- end #header -->
 	<div id="page">
 		<div id="page-bgtop">
+            <ul class="topnav" id=myTopnav">
+                <li><a href="_it_utente.jsp">HOME</a></li>
+                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+                <li><a href="_it_posta.jsp">Posta</a></li>
+                <li><a href="_it_logout.jsp">Esci</a></li>
+            </ul>
+            <div class="post">
+                <%
+                    if (!c.getLogged()) {
+                %>
+
+                <font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+                <%
+                    }
+                %>
+
+                </h2>
+            </div>
 			<div id="page-bgbtm">
 				<div id="content">
 				
@@ -215,50 +239,6 @@
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
-				<!-- Menu -->
-				
-				<div id="sidebar">
-					<% if (c.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-				</div>
-				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>

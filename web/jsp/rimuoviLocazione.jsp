@@ -18,18 +18,24 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreRicercaLocazione" %>
+<%@page import="control.ControlloreVisualizzaLocazioni" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Locazione" %>
+<%@ page import="exception.DeserializzazioneException" %>
 <%
 
-ControlloreRicercaLocazione crl = new ControlloreRicercaLocazione();
+ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
 String username = c.getUser();
 ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-locazioni = crl.ricercaLocPerUser(username);
+	try {
+		locazioni = crl.visualizzaLocazioni(username);
+	} catch (DeserializzazioneException e) {
+		e.printStackTrace();
+	}
 
-String nomeLocazione;
+	String nomeLocazione;
+String provincia;
 String indirizzo;
 String prezzo; 
 String descrizione;
@@ -58,6 +64,26 @@ String idNumber;
 	<!-- end #header -->
 	<div id="page">
 		<div id="page-bgtop">
+			<ul class="topnav" id=myTopnav">
+				<li><a href="_it_utente.jsp">HOME</a></li>
+				<li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+				<li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+				<li><a href="_it_posta.jsp">Posta</a></li>
+				<li><a href="_it_logout.jsp">Esci</a></li>
+			</ul>
+			<div class="post">
+				<%
+					if (!c.getLogged()) {
+				%>
+
+				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+				<%
+					}
+				%>
+
+			</div>
 			<div id="page-bgbtm">
 				<div id="content">
 
@@ -68,6 +94,7 @@ String idNumber;
 					
 					<% for(int i=0;i<locazioni.size();i++){
 						 nomeLocazione = locazioni.get(i).getNomeLocazione();
+						 provincia = locazioni.get(i).getProvincia();
 						 indirizzo = locazioni.get(i).getIndirizzo();
 						 prezzo = locazioni.get(i).getPrezzo();
 						 descrizione = locazioni.get(i).getDescrizione();
@@ -82,6 +109,7 @@ String idNumber;
 						<tr>
 							<td>
 								<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+								<h1>Provincia: <%out.println(provincia); %></h1>
 								<h1>Indirizzo: <%out.println(indirizzo); %></h1>
 								<h1>Prezzo: <%out.println(prezzo); %></h1>
 								<h1>Descrizione: <%out.println(descrizione); %></h1>
@@ -104,50 +132,6 @@ String idNumber;
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
-				<!-- Menu -->
-				
-				<div id="sidebar">
-					<% if (c.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-				</div>
-				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>

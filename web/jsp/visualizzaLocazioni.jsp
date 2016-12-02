@@ -18,18 +18,25 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreRicercaLocazione" %>
+<%@page import="control.ControlloreVisualizzaLocazioni" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Locazione" %>
+<%@ page import="control.ControlloreVisualizzaLocazioni" %>
+<%@ page import="exception.DeserializzazioneException" %>
 <%
 
-ControlloreRicercaLocazione crl = new ControlloreRicercaLocazione();
+ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
 String username = c.getUser();
 ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-locazioni = crl.ricercaLocPerUser(username);
+	try {
+		locazioni = crl.visualizzaLocazioni(username);
+	} catch (DeserializzazioneException e) {
+		e.printStackTrace();
+	}
 
-String nomeLocazione;
+	String nomeLocazione;
+String provincia;
 String indirizzo;
 String prezzo; 
 String descrizione;
@@ -66,8 +73,6 @@ String descrizione;
 				<li><a href="_it_logout.jsp">Esci</a></li>
 			</ul>
             <div class="post">
-                <h2><strong> Scegli cosa fare: </strong>
-
                     <%
                         if (!c.getLogged()) {
                     %>
@@ -77,11 +82,7 @@ String descrizione;
                     <%
                         }
                     %>
-
-                </h2>
             </div>
-
-                <div class="post">
 			<div id="page-bgbtm">
 				<div id="content">
 					
@@ -91,17 +92,19 @@ String descrizione;
 					</div>
 					
 					
-					<% for(int i=0;i<locazioni.size();i++){
-						 nomeLocazione = locazioni.get(i).getNomeLocazione();
-						 indirizzo = locazioni.get(i).getIndirizzo();
-						 prezzo = locazioni.get(i).getPrezzo();
-						 descrizione = locazioni.get(i).getDescrizione();
+					<% for(Locazione locazione:locazioni){
+						 nomeLocazione = locazione.getNomeLocazione();
+						 provincia = locazione.getProvincia();
+						 indirizzo = locazione.getIndirizzo();
+						 prezzo = locazione.getPrezzo();
+						 descrizione = locazione.getDescrizione();
 						 
 					
 					%>
 					
 					<div class="post">
 						<h2>Nome Locazione:<%out.println(nomeLocazione);%></h2>
+                        <h1>Provincia: <%out.println(provincia); %></h1>
 						<h1>Indirizzo: <%out.println(indirizzo); %></h1>
 						<h1>Prezzo: <%out.println(prezzo); %></h1>
 						<h1>Descrizione: <%out.println(descrizione); %></h1>

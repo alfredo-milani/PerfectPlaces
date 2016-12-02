@@ -1,9 +1,12 @@
 package entity;
 
-public class Locazione implements java.io.Serializable {
+import java.io.Serializable;
+
+public class Locazione implements Serializable {
 	// Variabili
 	private static final long serialVersionUID = 1L;
 	protected String nomeLocazione;
+	protected String postiTotali;
 	protected String provincia;
 	protected String indirizzo;
 	private String userLocatore;
@@ -16,9 +19,10 @@ public class Locazione implements java.io.Serializable {
 	private String tipo;
 	
 	// Costruttore
-	public Locazione(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
+	public Locazione(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet) {
 		this.nomeLocazione = nomeLocazione;
+		this.postiTotali=postiTotali;
 		this.provincia= provincia;
 		this.indirizzo = indirizzo;
 		this.userLocatore = userLocatore;
@@ -38,9 +42,12 @@ public class Locazione implements java.io.Serializable {
 		this.nomeLocazione = nomeLocazione;
 	}
 
+	public String getPostiTotali(){return postiTotali;}
+
 	public String getProvincia(){return provincia;}
 
-	public String setProvincia(){return provincia;}
+	public void setProvincia(String provincia){
+		this.provincia = provincia;}
 
 	public String getIndirizzo() {
 		return indirizzo;

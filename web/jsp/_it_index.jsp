@@ -10,6 +10,7 @@
 <%@ page import="exception.SerializzazioneException" %>
 <jsp:useBean id="b" class="control.ControlloreRegistrazione" scope="session"/>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
@@ -55,10 +56,6 @@
             </td>
         </tr>
         <tr>
-            <td>
-                <!-- inserire nel bottone la referenza alla pagina degli aiuti -->
-                <input type="button" id="btn_help" value="Vedi come..." >
-            </td>
         </tr>
     </table>
 
@@ -223,10 +220,10 @@
     </div>
 </div>
 <!-- end #page -->
-
-<!-- MJ: qui nel footer potresti mettere le FAQ e gli aiuti (NOTA: per gli aiuti ho me anche il bottone con
-    la scritta: "Vedi come..." -->
-<div id="footer"></div>
+<div id="footer">
+    <p><a href="faq.jsp">FAQ</a></p>
+    <p><a href="faq.jsp"> Termini d'uso</a></p>
+</div>
 <!-- end #footer -->
 </body>
 </html>

@@ -16,10 +16,10 @@ public class CasaVacanza extends Locazione {
 	
 	// Costruttore
 
-	public CasaVacanza(String nomeLocazione,String provincia, String indirizzo, String userLocatore, String prezzo,
+	public CasaVacanza(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroCamere, String numeroBagni, 
 			boolean giardino, String numeroLetti) {
-		super(nomeLocazione, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
+		super(nomeLocazione,postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
 		
 		this.numeroCamere = numeroCamere;
 		this.numeroBagni = numeroBagni;

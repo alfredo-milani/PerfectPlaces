@@ -55,8 +55,8 @@ public class ControlloreRegistrazione {
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
 
-        for (Utente anUtenti : utenti)
-            if (anUtenti.getUsername().equals(username))
+        for (Utente utente : utenti)
+            if (utente.getUsername().equals(username))
                 return 3;
 
         utenti.add(ut);

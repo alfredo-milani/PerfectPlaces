@@ -10,12 +10,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Perfect Places</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Perfect Places</title>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
@@ -23,6 +23,9 @@
 <%@page import="entity.*" %>
 <%@page import="control.ControlloreRicercaLocazione" %>
 <%@page import="java.util.ArrayList" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %>
+<%@ page import="java.io.IOException" %>
 <%
 
 VerificaInput vi = new VerificaInput();
@@ -37,41 +40,65 @@ boolean parcheggio;
 boolean wifi;
 boolean pet;
 
+boolean control=false;
 
+String provincia = request.getParameter("provincia");
 String prezzo = request.getParameter("prezzo");
 String dataInizio=request.getParameter("dataInizio");
 String dataFine = request.getParameter("dataFine");
 String command = request.getParameter("command");
 int commandInt = Integer.parseInt(command);
-boolean control;
 ArrayList<Albergo> elencoAlberghi = new ArrayList<Albergo>();
 ArrayList<Appartamento> elencoAppartamenti = new ArrayList<Appartamento>();
 ArrayList<Beb> elencoBeb = new ArrayList<Beb>();
 ArrayList<CasaVacanza> elencoCasaVacanze = new ArrayList<CasaVacanza>();
 ArrayList<Ostello> elencoOstelli = new ArrayList<Ostello>();
 
-if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo(prezzo)){
-	
-	if(commandInt==0){
-		elencoAlberghi=crl.ricercaAlbergo(prezzo,dataInizio,dataFine);
-	} else if(commandInt == 1){
-		elencoAppartamenti=crl.ricercaAppartamento(prezzo,dataInizio,dataFine);
-	} else if(commandInt==2){
-		elencoBeb=crl.ricercaBeb(prezzo,dataInizio,dataFine);
-	} else if(commandInt==3){
-		elencoCasaVacanze=crl.ricercaCasaVacanze(prezzo,dataInizio,dataFine);
-	} else if(commandInt==4){
-		elencoOstelli=crl.ricercaOstello(prezzo,dataInizio,dataFine);
+	try {
+		if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo(prezzo)&& vi.verificaProvincia(provincia)){
+
+                if(commandInt==0){
+                    try {
+                    elencoAlberghi=crl.ricercaAlbergo(provincia,prezzo);
+                    } catch (DeserializzazioneException | SerializzazioneException e) {
+                    e.printStackTrace();
+                }
+                } else if (commandInt == 1) {
+                    try {
+                        elencoAppartamenti = crl.ricercaAppartamento(provincia, prezzo);
+                    } catch (DeserializzazioneException | SerializzazioneException e) {
+                        e.printStackTrace();
+                    }
+                } else if (commandInt == 2) {
+                    try {
+                        elencoBeb = crl.ricercaBeb(provincia, prezzo);
+                    } catch (DeserializzazioneException | SerializzazioneException e) {
+                        e.printStackTrace();
+                    }
+                } else if (commandInt == 3) {
+                    try {
+                        elencoCasaVacanze = crl.ricercaCasaVacanze(provincia, prezzo);
+                    } catch (DeserializzazioneException | SerializzazioneException e) {
+                        e.printStackTrace();
+                    }
+                } else if (commandInt == 4) {
+                    try {
+                        elencoOstelli = crl.ricercaOstello(provincia, prezzo);
+                    } catch (DeserializzazioneException | SerializzazioneException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            control=true;
+
+
+        } else {
+            control = false;
+        }
+	} catch (IOException e) {
+		e.printStackTrace();
 	}
-	
-	control=true;
-	
-	
-} else {
-	control = false;
-}
-
-
 
 
 %>
@@ -94,6 +121,26 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 	<!-- end #header -->
 	<div id="page">
 		<div id="page-bgtop">
+			<ul class="topnav" id=myTopnav">
+				<li><a href="_it_utente.jsp">HOME</a></li>
+				<li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+				<li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
+				<li><a href="_it_posta.jsp">Posta</a></li>
+				<li><a href="_it_logout.jsp">Esci</a></li>
+			</ul>
+			<div class="post">
+				<%
+					if (!c.getLogged()) {
+				%>
+
+				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+
+				<%
+					}
+				%>
+
+			</div>
 			<div id="page-bgbtm">
 				<div id="content">
 				
@@ -102,9 +149,14 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 				
 					<div class="post">
 						<h2>
-						Il prezzo o le date inserite non sono accettabili!<br />
-						<a href="areaViaggiatore.jsp">Torna all'area viaggiatore!</a>
+						Il prezzo,le date inserite o la provincia non sono accettabili
 						</h2>
+						<br><br>
+						<h4>Ricorda di completare tutti i campi, di inserire una provincia con il primo carattere in maiuscolo(es. Roma),<br>
+							se la provincia è composta da più parole ognuna di queste deve essere inserita con il primo carattere in maiuscolo (es. Reggio Di Calabria)<br>
+							e di inserire date nel formato gg/mm/aaaa (es. 10/10/2016)</h4>
+						<br>
+						<h2><a href="areaViaggiatore.jsp">Torna all'area viaggiatore</a></h2>
 					</div>
 							
 					<% } else { 
@@ -113,6 +165,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 								for(int i=0;i<elencoAlberghi.size();i++){
 									
 									nomeLocazione = elencoAlberghi.get(i).getNomeLocazione();
+									provincia = elencoAlberghi.get(i).getProvincia();
 									indirizzo = elencoAlberghi.get(i).getIndirizzo();
 									userLocatore = elencoAlberghi.get(i).getUserLocatore();
 									descrizione = elencoAlberghi.get(i).getDescrizione();
@@ -121,17 +174,17 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									String sPet;
 																		
 									if(elencoAlberghi.get(i).isParcheggio()){
-										sParcheggio = "S�";
+										sParcheggio = "Si";
 									} else {
 										sParcheggio = "No";
 									}
 									if(elencoAlberghi.get(i).isWifi()){
-										sWifi = "S�";
+										sWifi = "Si";
 									} else {
 										sWifi = "No";
 									}
 									if(elencoAlberghi.get(i).isPet()){
-										sPet = "S�";
+										sPet = "Si";
 									} else {
 										sPet = "No";
 									}
@@ -147,6 +200,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
 										<tr>
+											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
 											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
@@ -186,6 +240,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 							for(int i=0;i<elencoAppartamenti.size();i++){
 								
 								nomeLocazione = elencoAppartamenti.get(i).getNomeLocazione();
+								provincia = elencoAppartamenti.get(i).getProvincia();
 								indirizzo = elencoAppartamenti.get(i).getIndirizzo();
 								userLocatore = elencoAppartamenti.get(i).getUserLocatore();
 								descrizione = elencoAppartamenti.get(i).getDescrizione();
@@ -194,17 +249,17 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 								String sPet;
 																	
 								if(elencoAppartamenti.get(i).isParcheggio()){
-									sParcheggio = "S�";
+									sParcheggio = "Si";
 								} else {
 									sParcheggio = "No";
 								}
 								if(elencoAppartamenti.get(i).isWifi()){
-									sWifi = "S�";
+									sWifi = "Si";
 								} else {
 									sWifi = "No";
 								}
 								if(elencoAppartamenti.get(i).isPet()){
-									sPet = "S�";
+									sPet = "Si";
 								} else {
 									sPet = "No";
 								}
@@ -212,7 +267,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 								String numeroBagni = elencoAppartamenti.get(i).getNumeroBagni();
 								String sGiardino;
 								if(elencoAppartamenti.get(i).isGiardino()){
-									sGiardino = "S�";
+									sGiardino = "Si";
 								} else {
 									sGiardino = "No";
 								}
@@ -225,6 +280,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
 										<tr>
+											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
 											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
@@ -266,6 +322,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 								for(int i=0;i<elencoBeb.size();i++){
 								
 								nomeLocazione = elencoBeb.get(i).getNomeLocazione();
+								provincia = elencoBeb.get(i).getProvincia();
 								indirizzo = elencoBeb.get(i).getIndirizzo();
 								userLocatore = elencoBeb.get(i).getUserLocatore();
 								descrizione = elencoBeb.get(i).getDescrizione();
@@ -274,17 +331,17 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 								String sPet;
 																	
 								if(elencoBeb.get(i).isParcheggio()){
-									sParcheggio = "S�";
+									sParcheggio = "Si";
 								} else {
 									sParcheggio = "No";
 								}
 								if(elencoBeb.get(i).isWifi()){
-									sWifi = "S�";
+									sWifi = "Si";
 								} else {
 									sWifi = "No";
 								}
 								if(elencoBeb.get(i).isPet()){
-									sPet = "S�";
+									sPet = "Si";
 								} else {
 									sPet = "No";
 								}
@@ -298,6 +355,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 								
 								<table style="width:100%">
 										<tr>
+											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
 											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
@@ -330,6 +388,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 						for(int i=0;i<elencoCasaVacanze.size();i++){
 							
 							nomeLocazione = elencoCasaVacanze.get(i).getNomeLocazione();
+							provincia = elencoCasaVacanze.get(i).getProvincia();
 							indirizzo = elencoCasaVacanze.get(i).getIndirizzo();
 							userLocatore = elencoCasaVacanze.get(i).getUserLocatore();
 							descrizione = elencoCasaVacanze.get(i).getDescrizione();
@@ -338,17 +397,17 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 							String sPet;
 																
 							if(elencoCasaVacanze.get(i).isParcheggio()){
-								sParcheggio = "S�";
+								sParcheggio = "Si";
 							} else {
 								sParcheggio = "No";
 							}
 							if(elencoCasaVacanze.get(i).isWifi()){
-								sWifi = "S�";
+								sWifi = "Si";
 							} else {
 								sWifi = "No";
 							}
 							if(elencoCasaVacanze.get(i).isPet()){
-								sPet = "S�";
+								sPet = "Si";
 							} else {
 								sPet = "No";
 							}
@@ -356,7 +415,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 							String numeroBagni = elencoCasaVacanze.get(i).getNumeroBagni();
 							String sGiardino;
 							if(elencoCasaVacanze.get(i).isGiardino()){
-								sGiardino = "S�";
+								sGiardino = "Si";
 							} else {
 								sGiardino = "No";
 							}
@@ -370,6 +429,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
 										<tr>
+											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
 											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
@@ -410,6 +470,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 						for(int i=0;i<elencoOstelli.size();i++){
 							
 							nomeLocazione = elencoOstelli.get(i).getNomeLocazione();
+							provincia = elencoOstelli.get(i).getProvincia();
 							indirizzo = elencoOstelli.get(i).getIndirizzo();
 							userLocatore = elencoOstelli.get(i).getUserLocatore();
 							descrizione = elencoOstelli.get(i).getDescrizione();
@@ -418,17 +479,17 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 							String sPet;
 																
 							if(elencoOstelli.get(i).isParcheggio()){
-								sParcheggio = "S�";
+								sParcheggio = "Si";
 							} else {
 								sParcheggio = "No";
 							}
 							if(elencoOstelli.get(i).isWifi()){
-								sWifi = "S�";
+								sWifi = "Si";
 							} else {
 								sWifi = "No";
 							}
 							if(elencoOstelli.get(i).isPet()){
-								sPet = "S�";
+								sPet = "Si";
 							} else {
 								sPet = "No";
 							}
@@ -440,6 +501,7 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
 										<tr>
+											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
 											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
@@ -476,50 +538,6 @@ if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
-				<!-- Menu -->
-				
-				<div id="sidebar">
-					<% if (c.getLogged()) {  %>
-					
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaViaggiatore.jsp">Area viaggiatore</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="areaProprietario.jsp">Area proprietario</a></strong></h2>
-						</center>
-						</li>
-					</ul>
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_profiloUtente.jsp">Visualizza profilo</a></strong></h2>
-						</center>
-						</li>
-					</ul>		
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_posta.jsp">Posta</a></strong></h2>
-						</center>
-						</li>
-					</ul>	
-					<ul>
-						<li>
-						<center>
-						<h2><strong><a href="_it_logout.jsp">Logout</a></strong></h2>
-						</center>
-						</li>
-					</ul>						
-					
-					<%  }  %>
-				</div>
-				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>

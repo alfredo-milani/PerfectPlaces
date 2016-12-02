@@ -34,6 +34,7 @@ public class ControlloreRimuoviLocazione {
 	public void rimuoviLocazione(Locazione elemento) throws DeserializzazioneException, SerializzazioneException{
 		String tipo = elemento.getTipo();
 		String nomeLocazione = elemento.getNomeLocazione();
+		String provincia =elemento.getProvincia();
 		String indirizzo = elemento.getIndirizzo();
 		String userLocatore = elemento.getUserLocatore();
 		String prezzo = elemento.getPrezzo();
@@ -55,6 +56,7 @@ public class ControlloreRimuoviLocazione {
 			albergoList = (ArrayList<Albergo>) dobj.deserializza(percorsoAlbergo);
 			for(int i=0;i<albergoList.size();i++){
 				if(albergoList.get(i).getNomeLocazione().equals(nomeLocazione)&&
+						albergoList.get(i).getProvincia().equals(provincia)&&
 						albergoList.get(i).getIndirizzo().equals(indirizzo)&&
 						albergoList.get(i).getUserLocatore().equals(userLocatore)&&
 						albergoList.get(i).getPrezzo().equals(prezzo)&&
@@ -74,6 +76,7 @@ public class ControlloreRimuoviLocazione {
 			appartamentoList = (ArrayList<Appartamento>) dobj.deserializza(percorsoAppartamento);
 			for(int i=0;i<appartamentoList.size();i++){
 				if(albergoList.get(i).getNomeLocazione().equals(nomeLocazione)&&
+						appartamentoList.get(i).getProvincia().equals(provincia)&&
 						appartamentoList.get(i).getIndirizzo().equals(indirizzo)&&
 						appartamentoList.get(i).getUserLocatore().equals(userLocatore)&&
 						appartamentoList.get(i).getPrezzo().equals(prezzo)&&
@@ -92,6 +95,7 @@ public class ControlloreRimuoviLocazione {
 			bebList = (ArrayList<Beb>) dobj.deserializza(percorsoBeb);
 			for(int i=0;i<bebList.size();i++){
 				if(bebList.get(i).getNomeLocazione().equals(nomeLocazione)&&
+						bebList.get(i).getProvincia().equals(provincia)&&
 						bebList.get(i).getIndirizzo().equals(indirizzo)&&
 						bebList.get(i).getUserLocatore().equals(userLocatore)&&
 						bebList.get(i).getPrezzo().equals(prezzo)&&
@@ -110,6 +114,7 @@ public class ControlloreRimuoviLocazione {
 			casavacanzeList = (ArrayList<CasaVacanza>) dobj.deserializza(percorsoCasaVacanza);
 			for(int i=0;i<casavacanzeList.size();i++){
 				if(casavacanzeList.get(i).getNomeLocazione().equals(nomeLocazione)&&
+						casavacanzeList.get(i).getProvincia().equals(provincia)&&
 						casavacanzeList.get(i).getIndirizzo().equals(indirizzo)&&
 						casavacanzeList.get(i).getUserLocatore().equals(userLocatore)&&
 						casavacanzeList.get(i).getPrezzo().equals(prezzo)&&
@@ -128,6 +133,7 @@ public class ControlloreRimuoviLocazione {
 			ostelloList = (ArrayList<Ostello>) dobj.deserializza(percorsoOstello);
 			for(int i=0;i<ostelloList.size();i++){
 				if(ostelloList.get(i).getNomeLocazione().equals(nomeLocazione)&&
+						ostelloList.get(i).getProvincia().equals(provincia)&&
 						ostelloList.get(i).getIndirizzo().equals(indirizzo)&&
 						ostelloList.get(i).getUserLocatore().equals(userLocatore)&&
 						ostelloList.get(i).getPrezzo().equals(prezzo)&&

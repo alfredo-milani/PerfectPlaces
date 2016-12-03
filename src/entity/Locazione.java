@@ -18,7 +18,10 @@ public class Locazione implements Serializable {
 	protected boolean pet;
 	private String tipo;
 	
-	// Costruttore
+	// Costruttori
+	public Locazione(){
+
+	}
 	public Locazione(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet) {
 		this.nomeLocazione = nomeLocazione;
@@ -111,13 +114,5 @@ public class Locazione implements Serializable {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public boolean isPrenotabile() {
-		return prenotabile;
-	}
-
-	public void setPrenotabile(boolean prenotabile) {
-		this.prenotabile = prenotabile;
 	}
 }

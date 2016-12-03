@@ -17,6 +17,60 @@ function visualizza(id, id1, id2, id3, id4) {
     }
 }
 
+//funzioni per Area viaggiatore
+function visualizzaPerViaggiatore(id, id1, id2, id3, id4, btnAvanzata,formAvanzataAttuale,formAvanzata1,formAvanzata2,formAvanzata3,formAvanzata4) {
+
+    if (document.getElementById) {
+        if (document.getElementById(id).style.display == 'none' && document.getElementById(btnAvanzata).style.display == 'none') {
+            document.getElementById(id).style.display = 'block';
+            document.getElementById(btnAvanzata).style.display = 'block';
+
+            //nascondi tutti gli altri form
+            document.getElementById(id1).style.display = 'none';
+            document.getElementById(id2).style.display = 'none';
+            document.getElementById(id3).style.display = 'none';
+            document.getElementById(id4).style.display = 'none';
+            document.getElementById(formAvanzataAttuale).style.display = 'none';
+            document.getElementById(formAvanzata1).style.display = 'none';
+            document.getElementById(formAvanzata2).style.display = 'none';
+            document.getElementById(formAvanzata3).style.display = 'none';
+            document.getElementById(formAvanzata4).style.display = 'none';
+        }
+        else {
+            document.getElementById(id).style.display = 'none';
+            document.getElementById(btnAvanzata).style.display = 'none';
+            document.getElementById(formAvanzataAttuale).style.display = 'none';
+        }
+    }
+}
+function visualizzaRicercaAvanzata(bottoneRicerca,bottoneAvanzata,formStandard, formAvanzata) {
+    if(document.getElementById) {
+        if(document.getElementById(bottoneAvanzata).value =="+ opzioni")
+            document.getElementById(bottoneAvanzata).value ="- opzioni";
+        else
+            document.getElementById(bottoneAvanzata).value ="+ opzioni";
+
+        if (document.getElementById(formAvanzata).style.display == 'none') {
+            document.getElementById(formAvanzata).style.display = 'block';
+            document.getElementById(bottoneRicerca).style.display = 'none';
+            document.getElementById(formStandard).style.display = 'none';
+        } else {
+            document.getElementById(formStandard).style.display = 'block';
+            document.getElementById(formAvanzata).style.display = 'none';
+            if (document.getElementById(bottoneRicerca).style.display = 'none')
+                document.getElementById(bottoneRicerca).style.display = 'block';
+        }
+    }
+}
+function nascondiBtnAvanzata(btn1,btn2,btn3,btn4){
+    if(document.getElementById) {
+        document.getElementById(btn1).style.display = 'none';
+        document.getElementById(btn2).style.display = 'none';
+        document.getElementById(btn3).style.display = 'none';
+        document.getElementById(btn4).style.display = 'none';
+    }
+}
+
 /*  Script JavaScript per cambiare la lingua della pagina corrente
  *  it -> IT, italiano
  *  en -> EN, english

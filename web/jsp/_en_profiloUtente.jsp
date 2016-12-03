@@ -24,7 +24,7 @@
 <body>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin" />
 <jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo" />
-<jsp:useBean id="crl" scope="session" class="control.ControlloreRicercaLocazione" />
+<jsp:useBean id="crl" scope="session" class="control.ControlloreVisualizzaLocazioni" />
 <%@page import="entity.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="constants.Constants" %>
@@ -40,7 +40,7 @@
     String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();
     ArrayList<Locazione> locazioni = null;
     try {
-        locazioni = crl.ricercaLocPerUser(username);
+        locazioni = crl.visualizzaLocazioni(username);
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }

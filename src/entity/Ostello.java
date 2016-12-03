@@ -11,7 +11,10 @@ public class Ostello extends Locazione {
 
 	private ArrayList<GregorianCalendar> date = new ArrayList<GregorianCalendar>();
 	
-	// Costruttore
+	// Costruttori
+	public Ostello(){
+
+	}
 	
 	public Ostello(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet) {

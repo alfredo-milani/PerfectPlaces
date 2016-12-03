@@ -11,7 +11,10 @@ public class Beb extends Locazione {
 	private String orarioColazione;
 	private ArrayList<GregorianCalendar> date = new ArrayList<GregorianCalendar>();
 	
-	// Costruttore
+	// Costruttori
+	public Beb(){
+
+	}
 	
 	public Beb(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String orarioColazione) {

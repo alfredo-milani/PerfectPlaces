@@ -14,7 +14,9 @@ public class Albergo extends Locazione{
 	private String orarioCena;
 	private ArrayList<GregorianCalendar> date = new ArrayList<GregorianCalendar>();
 
-	// Costruttore
+	// Costruttori
+	public Albergo(){
+	}
 	
 	public Albergo(String nomeLocazione,String postTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet,

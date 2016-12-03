@@ -22,6 +22,9 @@ public class VerificaInput {
 	// superiore a 1'000'000.
 	
 	public boolean verificaPrezzo(String prezzo){
+        if(prezzo.trim().equals(""))
+            return false;
+
 		int prezzoInt;
 		
 		try{
@@ -66,12 +69,14 @@ public class VerificaInput {
         int mese;
         int anno;
 
+        if(data.trim().equals(""))
+            return false;
+
         if(data.length()!=10){
             return false;
         }
 
         try{
-
             giorno = Integer.parseInt(data.substring(0,2));
             mese = Integer.parseInt(data.substring(3,5));
             anno = Integer.parseInt(data.substring(6,10));

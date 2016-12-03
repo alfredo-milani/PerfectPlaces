@@ -11,6 +11,7 @@ public class CamerePrenotate implements Serializable {
     private GregorianCalendar data;
     private int contatore;
 
+
     public CamerePrenotate (String nomeLocazione, GregorianCalendar data){
         this.nomeLocazione = nomeLocazione;
         this.data = data;

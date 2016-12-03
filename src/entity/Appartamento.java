@@ -14,7 +14,10 @@ public class Appartamento extends Locazione {
 	private String numeroLetti;
 	private ArrayList<GregorianCalendar> date = new ArrayList<GregorianCalendar>();
 	
-	// Costruttore	
+	// Costruttori
+	public Appartamento(){
+
+	}
 	
 	public Appartamento(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroStanze, String numeroBagni, boolean giardino, String numeroLetti) {

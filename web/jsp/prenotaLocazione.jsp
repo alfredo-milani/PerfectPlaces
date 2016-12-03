@@ -21,74 +21,109 @@
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="utils.VerificaInput" %>
 <%@page import="entity.*" %>
-<%@page import="control.ControlloreRicercaLocazione" %>
 <%@page import="java.util.ArrayList" %>
-<%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="exception.SerializzazioneException" %>
-<%@ page import="java.io.IOException" %>
+<%@ page import="control.ControlloreRicerca" %>
+<%@ page import="control.AdapterRicercaLocazione" %>
 <%
 
 VerificaInput vi = new VerificaInput();
 
-ControlloreRicercaLocazione crl = new ControlloreRicercaLocazione();
+	ControlloreRicerca 	ctrl = AdapterRicercaLocazione.getSingletonInstance();
 
 String nomeLocazione;
 String indirizzo;
 String userLocatore;
 String descrizione;
-boolean parcheggio;
-boolean wifi;
-boolean pet;
+String parcheggio;
+String wifi;
+String pet;
 
 boolean control=false;
 
-String provincia = request.getParameter("provincia");
-String prezzo = request.getParameter("prezzo");
-String dataInizio=request.getParameter("dataInizio");
-String dataFine = request.getParameter("dataFine");
+String provincia;
+String prezzo ;
+String dataInizio ;
+String dataFine;
+provincia = request.getParameter("provincia");
+prezzo = request.getParameter("prezzo");
+dataInizio=request.getParameter("dataInizio");
+dataFine = request.getParameter("dataFine");
 String command = request.getParameter("command");
-int commandInt = Integer.parseInt(command);
+String commandAvanzata = request.getParameter("commandAvanzata");
+System.out.println("command: "+ command +" command Avanzata:  "+commandAvanzata);
+	System.out.println("provincia prezzo date : " + provincia+ prezzo + dataInizio + dataFine);
+int commandInt=10;
+int commandavAnzataInt=10;
+
+
+//necessario per determinare se la ricerca sara normale o avanzata
+if(command !=null &&commandAvanzata==null){
+	commandInt = Integer.parseInt(command);
+	commandavAnzataInt=Integer.parseInt("10");
+}
+if(commandAvanzata!=null){
+	commandInt = Integer.parseInt(commandAvanzata);
+	commandavAnzataInt = Integer.parseInt(commandAvanzata);
+}
+
+
+
 ArrayList<Albergo> elencoAlberghi = new ArrayList<Albergo>();
+	ArrayList<Albergo> elencoAlberghiA = new ArrayList<Albergo>();
 ArrayList<Appartamento> elencoAppartamenti = new ArrayList<Appartamento>();
+	ArrayList<Appartamento> elencoAppartamentiA = new ArrayList<Appartamento>();
 ArrayList<Beb> elencoBeb = new ArrayList<Beb>();
+	ArrayList<Beb> elencoBebA = new ArrayList<Beb>();
 ArrayList<CasaVacanza> elencoCasaVacanze = new ArrayList<CasaVacanza>();
+	ArrayList<CasaVacanza> elencoCasaVacanzeA = new ArrayList<CasaVacanza>();
 ArrayList<Ostello> elencoOstelli = new ArrayList<Ostello>();
+	ArrayList<Ostello> elencoOstelliA = new ArrayList<Ostello>();
+Albergo albergo =new Albergo();
+Appartamento appartamento = new Appartamento();
+Beb beb = new Beb();
+CasaVacanza casa = new CasaVacanza();
+Ostello ostello = new Ostello();
 
-	try {
-		if(vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo(prezzo)&& vi.verificaProvincia(provincia)){
+	if(vi.verificaProvincia(provincia)&&vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo(prezzo)){
+			if(commandavAnzataInt==10) {
+				if (commandInt == 0) {
+						elencoAlberghi = (ArrayList<Albergo>) ctrl.ricerca(albergo, provincia, prezzo);
+				} else if (commandInt == 1) {
+						elencoAppartamenti = (ArrayList<Appartamento>) ctrl.ricerca(appartamento, provincia, prezzo);
+				} else if (commandInt == 2) {
+						elencoBeb = (ArrayList<Beb>) ctrl.ricerca(beb, provincia, prezzo);
+				} else if (commandInt == 3) {
+						elencoCasaVacanze = (ArrayList<CasaVacanza>) ctrl.ricerca(casa, provincia, prezzo);
 
-                if(commandInt==0){
-                    try {
-                    elencoAlberghi=crl.ricercaAlbergo(provincia,prezzo);
-                    } catch (DeserializzazioneException | SerializzazioneException e) {
-                    e.printStackTrace();
-                }
-                } else if (commandInt == 1) {
-                    try {
-                        elencoAppartamenti = crl.ricercaAppartamento(provincia, prezzo);
-                    } catch (DeserializzazioneException | SerializzazioneException e) {
-                        e.printStackTrace();
-                    }
-                } else if (commandInt == 2) {
-                    try {
-                        elencoBeb = crl.ricercaBeb(provincia, prezzo);
-                    } catch (DeserializzazioneException | SerializzazioneException e) {
-                        e.printStackTrace();
-                    }
-                } else if (commandInt == 3) {
-                    try {
-                        elencoCasaVacanze = crl.ricercaCasaVacanze(provincia, prezzo);
-                    } catch (DeserializzazioneException | SerializzazioneException e) {
-                        e.printStackTrace();
-                    }
-                } else if (commandInt == 4) {
-                    try {
-                        elencoOstelli = crl.ricercaOstello(provincia, prezzo);
-                    } catch (DeserializzazioneException | SerializzazioneException e) {
-                        e.printStackTrace();
-                    }
-                }
+				} else if (commandInt == 4) {
+						elencoOstelli = (ArrayList<Ostello>) ctrl.ricerca(ostello, provincia, prezzo);
+				}
+			}else{
+				parcheggio = request.getParameter("parcheggio");
+				wifi = request.getParameter("wifi");
+				pet = request.getParameter("pet");
+				if(commandavAnzataInt==0) {
+						elencoAlberghiA = (ArrayList<Albergo>) ctrl.ricerca(albergo, provincia, prezzo);
+						elencoAlberghi = (ArrayList<Albergo>) ctrl.ricercaAvanzata(albergo, elencoAlberghiA, parcheggio, wifi, pet);
+					}
+				else if(commandavAnzataInt==1) {
+						elencoAppartamentiA = (ArrayList<Appartamento>) ctrl.ricerca(appartamento, provincia, prezzo);
+						elencoAppartamenti = (ArrayList<Appartamento>) ctrl.ricercaAvanzata(appartamento, elencoAppartamentiA, parcheggio, wifi, pet);
+					}
+				else if(commandavAnzataInt==2) {
+						elencoBebA = (ArrayList<Beb>) ctrl.ricerca(beb, provincia, prezzo);
+						elencoBeb = (ArrayList<Beb>) ctrl.ricercaAvanzata(beb, elencoBebA, parcheggio, wifi, pet);
+					}
+				else if(commandavAnzataInt==3) {
+					elencoCasaVacanzeA = (ArrayList<CasaVacanza>) ctrl.ricerca(casa, provincia, prezzo);
+					elencoCasaVacanze = (ArrayList<CasaVacanza>) ctrl.ricercaAvanzata(casa, elencoCasaVacanzeA, parcheggio, wifi, pet);
+				}
+				else if(commandavAnzataInt==4) {
+					elencoOstelliA = (ArrayList<Ostello>) ctrl.ricerca(ostello, provincia, prezzo);
+					elencoOstelli = (ArrayList<Ostello>) ctrl.ricercaAvanzata(ostello, elencoOstelliA, parcheggio, wifi, pet);
+				}
 
+			}
 
             control=true;
 
@@ -96,9 +131,6 @@ ArrayList<Ostello> elencoOstelli = new ArrayList<Ostello>();
         } else {
             control = false;
         }
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
 
 
 %>

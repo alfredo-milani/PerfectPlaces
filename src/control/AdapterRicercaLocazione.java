@@ -197,7 +197,7 @@ public class AdapterRicercaLocazione implements ControlloreRicerca {
         }else{
             ArrayList<Ostello> elencoOstelli=(ArrayList<Ostello>)elencoLocazioni;
             ArrayList<Ostello> ostelliDisponibili = new ArrayList<Ostello>(); //Qui verranno inseriti gli ostelli da restituire all'utente
-            System.err.println("numero Ostelli: " + elencoOstelli!.size());
+            System.err.println("numero Ostelli: " + elencoOstelli.size());
 
             for (Ostello ostello:elencoOstelli) {
                 if ((ostello.isParcheggio()==parcheggio)&&

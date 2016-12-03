@@ -197,6 +197,7 @@ Ostello ostello = new Ostello();
 								for(int i=0;i<elencoAlberghi.size();i++){
 									
 									nomeLocazione = elencoAlberghi.get(i).getNomeLocazione();
+                                    prezzo = elencoAlberghi.get(i).getPrezzo();
 									provincia = elencoAlberghi.get(i).getProvincia();
 									indirizzo = elencoAlberghi.get(i).getIndirizzo();
 									userLocatore = elencoAlberghi.get(i).getUserLocatore();
@@ -231,24 +232,27 @@ Ostello ostello = new Ostello();
 						
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
+                                        <tr>
+                                            <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
+                                            <td><b>Prezzo :</b> <%out.println(prezzo);%></td>
+                                        </tr>
 										<tr>
 											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
-											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
+
 										</tr>
+                                        <tr>
+                                            <td><b>Tipo pensione:</b> <%out.println(tipoPensione);%></td>
+
+                                        </tr>
 										<tr>
-											<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
 											<td><b>Orario colazione:</b> <%out.println(orarioColazione);%></td>
-										</tr>
-										<tr>
-											<td><b>Wifi:</b> <%out.println(sWifi);%></td>
 											<td><b>Orario pranzo:</b> <%out.println(orarioPranzo);%></td>
-										</tr>
-										<tr>
-											<td><b>Tipo pensione:</b> <%out.println(tipoPensione);%></td>
 											<td><b>Orario cena:</b> <%out.println(orarioCena);%></td>
 										</tr>
 										<tr>
+											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
+											<td><b>Wifi:</b> <%out.println(sWifi);%></td>
 											<td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
 										</tr>
 									</table>
@@ -261,7 +265,7 @@ Ostello ostello = new Ostello();
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA!">
 									</div>
 									</form>
 								</div>	
@@ -272,6 +276,7 @@ Ostello ostello = new Ostello();
 							for(int i=0;i<elencoAppartamenti.size();i++){
 								
 								nomeLocazione = elencoAppartamenti.get(i).getNomeLocazione();
+                                prezzo =elencoAppartamenti.get(i).getPrezzo();
 								provincia = elencoAppartamenti.get(i).getProvincia();
 								indirizzo = elencoAppartamenti.get(i).getIndirizzo();
 								userLocatore = elencoAppartamenti.get(i).getUserLocatore();
@@ -311,25 +316,26 @@ Ostello ostello = new Ostello();
 						
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
+                                        <tr>
+                                            <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
+                                            <td><b>Prezzo :</b> <%out.println(prezzo);%></td>
+                                        </tr>
 										<tr>
 											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
-											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
 										<tr>
-											<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
-											<td><b>Numero stanze:</b> <%out.println(numeroStanze);%></td>
-										</tr>
-										<tr>
+                                            <td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 											<td><b>Wifi:</b> <%out.println(sWifi);%></td>
-											<td><b>Numero bagni:</b> <%out.println(numeroBagni);%></td>
+                                            <td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
 										</tr>
 										<tr>
-											<td><b>Giardino:</b> <%out.println(sGiardino);%></td>
+                                            <td><b>Numero stanze:</b> <%out.println(numeroStanze);%></td>
 											<td><b>Numero letti:</b> <%out.println(numeroLetti);%></td>
+                                            <td><b>Numero bagni:</b> <%out.println(numeroBagni);%></td>
 										</tr>
 										<tr>
-											<td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
+                                            <td><b>Giardino:</b> <%out.println(sGiardino);%></td>
 										</tr>
 									</table>
 									<div class="break-word">
@@ -341,7 +347,7 @@ Ostello ostello = new Ostello();
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" value="PRENOTA!">
+										<input type="submit"class="btnBlue200" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	
@@ -354,6 +360,7 @@ Ostello ostello = new Ostello();
 								for(int i=0;i<elencoBeb.size();i++){
 								
 								nomeLocazione = elencoBeb.get(i).getNomeLocazione();
+                                prezzo = elencoBeb.get(i).getPrezzo();
 								provincia = elencoBeb.get(i).getProvincia();
 								indirizzo = elencoBeb.get(i).getIndirizzo();
 								userLocatore = elencoBeb.get(i).getUserLocatore();
@@ -386,19 +393,22 @@ Ostello ostello = new Ostello();
 								<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 								
 								<table style="width:100%">
+                                         <tr>
+                                             <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
+                                             <td><b>Prezzo :</b> <%out.println(prezzo);%></td>
+                                         </tr>
 										<tr>
 											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
-											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
 										<tr>
-											<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
-											<td><b>Orario colazione:</b> <%out.println(orarioColazione);%></td>
-										</tr>
-										<tr>
+                                            <td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 											<td><b>Wifi:</b> <%out.println(sWifi);%></td>
 											<td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
 										</tr>
+                                        <tr>
+                                            <td><b>Orario colazione:</b> <%out.println(orarioColazione);%></td>
+                                        </tr>
 									</table>
 									<div class="break-word">
 									<p><b>Descrizione:</b> <%out.println(descrizione);%></p>
@@ -409,7 +419,7 @@ Ostello ostello = new Ostello();
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	
@@ -420,6 +430,7 @@ Ostello ostello = new Ostello();
 						for(int i=0;i<elencoCasaVacanze.size();i++){
 							
 							nomeLocazione = elencoCasaVacanze.get(i).getNomeLocazione();
+                            prezzo = elencoCasaVacanze.get(i).getPrezzo();
 							provincia = elencoCasaVacanze.get(i).getProvincia();
 							indirizzo = elencoCasaVacanze.get(i).getIndirizzo();
 							userLocatore = elencoCasaVacanze.get(i).getUserLocatore();
@@ -460,25 +471,27 @@ Ostello ostello = new Ostello();
 						
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
+                                        <tr>
+                                            <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
+                                            <td><b>Prezzo :</b> <%out.println(prezzo);%></td>
+                                        </tr>
 										<tr>
 											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
-											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
 										<tr>
-											<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
-											<td><b>Numero camere:</b> <%out.println(numeroCamere);%></td>
-										</tr>
-										<tr>
+                                            <td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 											<td><b>Wifi:</b> <%out.println(sWifi);%></td>
-											<td><b>Numero bagni:</b> <%out.println(numeroBagni);%></td>
+                                            <td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
+
 										</tr>
 										<tr>
-											<td><b>Giardino:</b> <%out.println(sGiardino);%></td>
+                                            <td><b>Numero camere:</b> <%out.println(numeroCamere);%></td>
 											<td><b>Numero letti:</b> <%out.println(numeroLetti);%></td>
+                                            <td><b>Numero bagni:</b> <%out.println(numeroBagni);%></td>
 										</tr>
 										<tr>
-											<td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
+                                            <td><b>Giardino:</b> <%out.println(sGiardino);%></td>
 										</tr>
 									</table>
 									<div class="break-word">
@@ -490,7 +503,7 @@ Ostello ostello = new Ostello();
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	
@@ -502,6 +515,7 @@ Ostello ostello = new Ostello();
 						for(int i=0;i<elencoOstelli.size();i++){
 							
 							nomeLocazione = elencoOstelli.get(i).getNomeLocazione();
+                            prezzo = elencoOstelli.get(i).getPrezzo();
 							provincia = elencoOstelli.get(i).getProvincia();
 							indirizzo = elencoOstelli.get(i).getIndirizzo();
 							userLocatore = elencoOstelli.get(i).getUserLocatore();
@@ -532,17 +546,18 @@ Ostello ostello = new Ostello();
 						
 									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
 									<table style="width:100%">
+                                        <tr>
+                                            <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
+                                            <td><b>Prezzo :</b> <%out.println(prezzo);%></td>
+                                        </tr>
 										<tr>
 											<td><b>Provincia:</b> <%out.println(provincia);%></td>
 											<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
-											<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 										</tr>
 										<tr>
-											<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
-											<td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
-										</tr>
-										<tr>
+                                            <td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
 											<td><b>Wifi:</b> <%out.println(sWifi);%></td>
+                                            <td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
 										</tr>
 									</table>
 									<div class="break-word">
@@ -554,7 +569,7 @@ Ostello ostello = new Ostello();
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA!">
 										</div>
 									</form>
 								</div>	

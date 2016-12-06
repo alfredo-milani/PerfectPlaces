@@ -55,8 +55,6 @@
                 <p id="p_1"> Il modo più semplice per trovare il tuo alloggio ideale </p>
             </td>
         </tr>
-        <tr>
-        </tr>
     </table>
 
     <div id="page-bgtop">

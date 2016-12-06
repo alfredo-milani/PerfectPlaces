@@ -52,12 +52,6 @@
                 <p id="p_1"> The easiest way to find your ideal accommodation </p>
             </td>
         </tr>
-        <tr>
-            <td>
-                <!-- inserire nel bottone la referenza alla pagina degli aiuti -->
-                <input type="button" id="btn_help" value="See how to..." >
-            </td>
-        </tr>
     </table>
 
     <div id="page-bgtop">

@@ -94,6 +94,18 @@
                                         <strong>First Name:</strong><%out.println(" " + u.getNome());%> <br/>
                                         <strong>Last Name:</strong><%out.println(" " + u.getCognome());%> <br/>
                                         <strong>E-Mail:</strong><%out.println(" " + u.getEmail());%> <br/>
+
+                                        <% if (u.getSesso() == null) { %>
+                                        <strong>Sex:</strong><%out.println(" Not updated"); %> <br/>
+                                        <% } else { %>
+                                        <strong>Sex:</strong><%out.println(" " + u.getSesso()); %> <br/>
+                                        <% } %>
+
+                                        <% if (u.getNascita() == null) { %>
+                                        <strong>Birth date:</strong><%out.println(" Not updated"); %> <br/>
+                                        <% } else { %>
+                                        <strong>Birth date</strong><%out.println(" " + u.getNascita()); %> <br/>
+                                        <% } %>
                                     </h3>
                                 </td>
                             </tr>

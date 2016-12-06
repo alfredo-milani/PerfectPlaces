@@ -37,7 +37,18 @@
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
+
     String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();
+    if (u.getSesso() != null) {
+        String format = ".png";
+        indirizzoImmagine = indirizzoImmagine.substring(0, indirizzoImmagine.length() - format.length());
+        if (u.getSesso().equals("M"))
+            indirizzoImmagine = indirizzoImmagine.concat("_M" + format);
+        else if (u.getSesso().equals("F"))
+            indirizzoImmagine = indirizzoImmagine.concat("_F" + format);
+    }
+
+
     ArrayList<Locazione> locazioni = null;
     try {
         locazioni = crl.visualizzaLocazioni(username);
@@ -94,6 +105,18 @@
                                         <strong>Nome:</strong><%out.println(" " + u.getNome());%> <br/>
                                         <strong>Cognome:</strong><%out.println(" " + u.getCognome());%> <br/>
                                         <strong>Email:</strong><%out.println(" " + u.getEmail());%> <br/>
+
+                                        <% if (u.getSesso() == null) { %>
+                                            <strong>Sesso:</strong><%out.println(" Non pervenuto"); %> <br/>
+                                        <% } else { %>
+                                            <strong>Sesso:</strong><%out.println(" " + u.getSesso()); %> <br/>
+                                        <% } %>
+
+                                        <% if (u.getNascita() == null) { %>
+                                            <strong>Data di nascita:</strong><%out.println(" Non pervenuto"); %> <br/>
+                                        <% } else { %>
+                                            <strong>Data di nascita:</strong><%out.println(" " + u.getNascita()); %> <br/>
+                                        <% } %>
                                     </h3>
                                 </td>
                             </tr>

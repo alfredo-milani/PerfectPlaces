@@ -51,7 +51,7 @@
     }
 
     try {
-        elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
+        elencoMessaggiUser = cgp.ricercaMessaggi(username);
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }

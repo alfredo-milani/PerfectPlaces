@@ -23,10 +23,10 @@ public class ControlloreGestionePosta {
 	}
 	
 	// Metodo che riceve in input uno username, ricerca nel file messaggi tutti i messaggi che hanno quello username come
-	// destinatario e li restituisce in un Array List. In questo modo quando un utente controlla la posta verrà effettuata una ricerca
-	// con il suo username e gli verranno presentati tutti i messaggi che lo vedono come destinatario.
+	// destinatario e li restituisce in un Array List.
 	@SuppressWarnings("unchecked")
-	public synchronized ArrayList<Messaggio> ricercaMessaggiPerDestinatario(String username) throws DeserializzazioneException {
+	public synchronized ArrayList<Messaggio> ricercaMessaggi(String username)
+            throws DeserializzazioneException {
 		ArrayList<Messaggio> elencoMessaggi;
 		ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<>();
 		
@@ -73,7 +73,9 @@ public class ControlloreGestionePosta {
 	//        6 --> Se il mittente e il destinatario coincidono
 	//        0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
-	public synchronized int scriviMessaggio(String oggetto, String mittente, String destinatario, String contenuto) throws DeserializzazioneException, SerializzazioneException {
+	public synchronized int scriviMessaggio(String oggetto, String mittente,
+											String destinatario, String contenuto)
+			throws DeserializzazioneException, SerializzazioneException {
 		if (destinatario == null || destinatario.equals(""))
 			return 1;
 		else if (oggetto == null || oggetto.equals(""))
@@ -112,7 +114,8 @@ public class ControlloreGestionePosta {
 	// Metodo che riceve in input il codice di un messaggio e si occupa della sua eliminazione
     // Ritorna il vaolre 0 se il messaggio non è stato rimosso correttamente altrimenti ritorna il valore 1
     @SuppressWarnings("unchecked")
-	public synchronized String eliminaMessaggio(int oggetto) throws DeserializzazioneException, SerializzazioneException {
+	public synchronized String eliminaMessaggio(int oggetto)
+            throws DeserializzazioneException, SerializzazioneException {
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();
         ArrayList<Messaggio> elencoMessaggi;

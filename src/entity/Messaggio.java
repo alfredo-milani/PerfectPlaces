@@ -23,7 +23,8 @@ public class Messaggio implements java.io.Serializable {
 
 	// Costruttore
 	public Messaggio(String oggetto, String mittente,
-					 String destinatario, String contenuto) throws DeserializzazioneException {
+					 String destinatario, String contenuto)
+			throws DeserializzazioneException {
 		this.oggetto = oggetto;
 		this.mittente = mittente;
 		this.destinatario = destinatario;

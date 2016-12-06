@@ -76,13 +76,16 @@
                                     String nome = request.getParameter("nome");
                                     String cognome = request.getParameter("cognome");
                                     String email = request.getParameter("email");
+                                    String sesso = request.getParameter("sesso");
+                                    String nascita = request.getParameter("nascita");
                                     String vecchiaPassword = request.getParameter("vecchiaPassword");
                                     String nuovaPassword = request.getParameter("nuovaPassword");
                                     String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
+
                                     int controllo = 0;
 
                                     try {
-                                        controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+                                        controllo = cgp.modificaProfilo(username, nome, cognome, email, sesso, nascita, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
                                     } catch (DeserializzazioneException | SerializzazioneException e) {
                                         e.printStackTrace();
                                     }
@@ -131,6 +134,22 @@
                             <font color="red"> Session has timed out. Please sign back in to continue </font>
 
                             <%
+                                    break;
+
+                                case 5:
+                            %>
+
+                            <font color="red"> The field "Sex" must be 'M' o 'F' </font>
+
+                            <%
+                                    break;
+
+                                case 6:
+                            %>
+
+                            <font color="red"> The bith date must be in format: dd/mm/yyyy </font>
+
+                            <%
                                                 break;
                                         }
                                     }
@@ -170,6 +189,28 @@
                                 <tr>
                                     <td>
                                         <input class="btn" id="email" type="text" name="email" size="30" value="<%out.println(u == null ? "" : u.getEmail());%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="sesso">Sex:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="sesso" type="text" name="sesso" size="30" value="<%out.println(u == null ? "" : (u.getSesso() == null ? "" : u.getSesso()) );%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="nascita">Birth date:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="nascita" type="text" name="nascita" size="30" value="<%out.println(u == null ? "" : (u.getNascita() == null ? "" : u.getNascita()) );%>"/>
                                     </td>
                                 </tr>
 

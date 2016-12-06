@@ -32,17 +32,18 @@ public class ControlloreLogin {
 		if(file.length() == 0)
 			return;
 
-		for (Utente anUtenti : utenti)
-			if (anUtenti.getUsername().equals(username)) {
-				if (anUtenti.getPassword().equals(password)) {
-					logged_in = true;
-					this.username = username;
+		for (Utente anUtenti : utenti) {
+            if (anUtenti.getUsername().equals(username)) {
+                if (anUtenti.getPassword().equals(password)) {
+                    logged_in = true;
+                    this.username = username;
                     this.password = password;
                     break;
-				}
-				logged_in = false;
-				break;
-			}
+                }
+                logged_in = false;
+                break;
+            }
+        }
     }
 	
 	// Check se l'utente è loggato o meno

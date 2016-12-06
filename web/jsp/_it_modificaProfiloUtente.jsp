@@ -76,13 +76,16 @@
                                         String nome = request.getParameter("nome");
                                         String cognome = request.getParameter("cognome");
                                         String email = request.getParameter("email");
+                                        String sesso = request.getParameter("sesso");
+                                        String nascita = request.getParameter("nascita");
                                         String vecchiaPassword = request.getParameter("vecchiaPassword");
                                         String nuovaPassword = request.getParameter("nuovaPassword");
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
+
                                         int controllo = 0;
 
                                         try {
-                                            controllo = cgp.modificaProfilo(username, nome, cognome, email, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+                                            controllo = cgp.modificaProfilo(username, nome, cognome, email, sesso, nascita, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
                                         } catch (DeserializzazioneException | SerializzazioneException e) {
                                             e.printStackTrace();
                                         }
@@ -132,6 +135,22 @@
 
                             <%
                                                 break;
+
+                                            case 5:
+                            %>
+
+                                                <font color="red"> Il campo "Sesso" permette solo 'M' o 'F' </font>
+
+                            <%
+                                                break;
+
+                                            case 6:
+                            %>
+
+                                                <font color="red"> La data di nascita deve essere in formato: dd/mm/aaaa </font>
+
+                            <%
+                                                break;
                                         }
                                     }
                                 }
@@ -170,6 +189,28 @@
                                 <tr>
                                     <td>
                                         <input class="btn" id="email" type="text" name="email" size="30" value="<%out.println(u == null ? "" : u.getEmail());%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="sesso">Sesso:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="sesso" type="text" name="sesso" size="30" value="<%out.println(u == null ? "" : (u.getSesso() == null ? "" : u.getSesso()) );%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="nascita">Data di nascita:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="nascita" type="text" name="nascita" size="30" value="<%out.println(u == null ? "" : (u.getNascita() == null ? "" : u.getNascita()) );%>"/>
                                     </td>
                                 </tr>
 

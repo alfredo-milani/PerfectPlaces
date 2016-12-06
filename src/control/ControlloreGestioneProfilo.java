@@ -6,7 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import constants.Constants;
 import entity.Utente;
@@ -50,10 +53,12 @@ public class ControlloreGestioneProfilo {
 	// 		    2 --> La nuova password e la conferma della nuova password non sono uguali
 	//			3 --> La nuova password è vuota
 	//			4 --> Sessione utente scaduta
+    //          5 --> Informazini campo "Sesso" errate
+    //          6 --> Formato data errato
 	//			0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
 	public synchronized int modificaProfilo(String username, String nome, String cognome,
-			String email, String vecchiaPassword, String nuovaPassword, String confermaNuovaPassword) throws DeserializzazioneException, SerializzazioneException{
+			String email, String sesso, String nascita, String vecchiaPassword, String nuovaPassword, String confermaNuovaPassword) throws DeserializzazioneException, SerializzazioneException{
 		ArrayList<Utente> utenti;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
@@ -64,34 +69,47 @@ public class ControlloreGestioneProfilo {
                 vecchiaPassword == null || nuovaPassword == null ||
                 confermaNuovaPassword == null) return 4;
 
-		for (int i = 0; i < utenti.size(); ++i){
-			if(utenti.get(i).getUsername().equals(username)){
-				if(!vecchiaPassword.equals("")){
-					if(!vecchiaPassword.equals(utenti.get(i).getPassword()))
-						return 1;
-					else if(!nuovaPassword.equals(confermaNuovaPassword))
-						return 2;
-					else if(nuovaPassword.equals(""))
-						return 3;
-				}
+        for (Utente anUtenti : utenti) {
+            if (anUtenti.getUsername().equals(username)) {
+                if (!vecchiaPassword.equals("")) {
+                    if (!vecchiaPassword.equals(anUtenti.getPassword()))
+                        return 1;
+                    else if (!nuovaPassword.equals(confermaNuovaPassword))
+                        return 2;
+                    else if (nuovaPassword.equals(""))
+                        return 3;
+                }
 
-				// Se il campo vecchia password è vuoto non viene restituito errore,
-                // infatti un utente potrebbe scegliere di modificare
-				// il suo profilo senza modificare la password.
-				if (vecchiaPassword.equals("")){
-					utenti.get(i).setNome(nome);
-					utenti.get(i).setCognome(cognome);
-					utenti.get(i).setEmail(email);
-					sobj.serializza(utenti, percorsoUtenti);
-					return 0;
-				}
+                if (sesso != null && (!sesso.equals(""))) {
+                    if (sesso.equals("M") || sesso.equals("F"))
+                        anUtenti.setSesso(sesso);
+                    else
+                        return 5;
+                }
 
-				utenti.get(i).setNome(nome);
-				utenti.get(i).setCognome(cognome);
-				utenti.get(i).setEmail(email);
-				utenti.get(i).setPassword(nuovaPassword);
-			}
-		}
+                if (nascita != null && (!nascita.equals(""))) {
+                    Date date = null;
+                    try {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        date = sdf.parse(nascita);
+                        if (!nascita.equals(sdf.format(date))) {
+                            date = null;
+                        }
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+                    if (date == null)
+                        return 6;
+
+                    anUtenti.setNascita(nascita);
+                }
+
+                anUtenti.setNome(nome);
+                anUtenti.setCognome(cognome);
+                anUtenti.setEmail(email);
+                anUtenti.setPassword(nuovaPassword);
+            }
+        }
 		
 		sobj.serializza(utenti, percorsoUtenti);
 		return 0;

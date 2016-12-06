@@ -10,16 +10,20 @@ public class Utente implements java.io.Serializable {
 	private String cognome;
 	private String email;
 	private String immagine;
+	private String nascita;
+	private String sesso;
 	
 	// Costruttore
 	public Utente(String username, String password, String nome,
-				  String cognome, String email,String immagine) {
+				  String cognome, String email, String immagine) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
 		this.immagine = immagine;
+		this.nascita = null;
+		this.sesso = null;
 	}
 	
 	// Getters e Setters
@@ -71,4 +75,19 @@ public class Utente implements java.io.Serializable {
 		this.immagine = immagine;
 	}
 
+    public String getSesso() {
+        return sesso;
+    }
+
+    public void setSesso(String sesso) {
+        this.sesso = sesso;
+    }
+
+    public String getNascita() {
+        return nascita;
+    }
+
+    public void setNascita(String nascita) {
+        this.nascita = nascita;
+    }
 }

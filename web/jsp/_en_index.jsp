@@ -166,7 +166,9 @@
                                     <td>
                                         <label for="password_2"> Password: </label>
                                     </td>
-                                    <td><input class="btn" type="password" name="password" id="password_2"/></td>
+                                    <td>
+                                        <input class="btn" type="password" name="password" id="password_2"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>

@@ -26,6 +26,7 @@ public class AvvioProgramma {
 			Utente u = new Utente("root","root","root","root","root","root");
 			amministratori.add(u);
 			SerializzaOggetti sobj = new SerializzaOggetti();
+			System.out.println("Dio: " + percorsoAmministratori);
 			sobj.serializza(amministratori, percorsoAmministratori);
 		}
 	}

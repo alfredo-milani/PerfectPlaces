@@ -2,6 +2,7 @@ package control;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import constants.Constants;
 import entity.Messaggio;
@@ -58,8 +59,7 @@ public class ControlloreGestionePosta {
             if (anElencoMessaggi.getCodice() == codice)
                 return anElencoMessaggi;
 
-		messaggio = new Messaggio("errore","errore", "errore","errore");
-		return messaggio;
+		return null;
 	}
 	
 	// Metodo che permette di inviare un messaggio. Effettua un controllo sull'input ritornando un codice specifico se
@@ -107,5 +107,20 @@ public class ControlloreGestionePosta {
 		sobj.serializza(elencoMessaggi, percorsoMessaggi);
 
 		return 0;
+	}
+
+	// Metodo che riceve in input il codice di un messaggio e si occupa della sua eliminazione
+    // Ritorna il vaolre 0 se il messaggio non è stato rimosso correttamente altrimenti ritorna il valore 1
+    @SuppressWarnings("unchecked")
+	public synchronized String eliminaMessaggio(int oggetto) throws DeserializzazioneException, SerializzazioneException {
+        DeserializzaOggetti dobj = new DeserializzaOggetti();
+        SerializzaOggetti sobj = new SerializzaOggetti();
+        ArrayList<Messaggio> elencoMessaggi;
+        elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(percorsoMessaggi);
+
+        boolean esito = elencoMessaggi.removeIf(messaggio -> messaggio.getCodice() == oggetto);
+        sobj.serializza(elencoMessaggi, percorsoMessaggi);
+
+        return esito ? "1" : "0";
 	}
 }

@@ -68,6 +68,16 @@
                                                 e.printStackTrace();
                                             }
                                         }
+
+                                        if (messaggio == null) {
+                                %>
+
+                                            <h4>
+                                                <font color="red"> Il messaggio è stato eliminato </font>
+                                            </h4>
+
+                                <%
+                                        }
                                     } else {
                                 %>
 
@@ -144,7 +154,7 @@
                                     %>
                                     <form action="mailto:<%= des == null ? "" : des.getEmail() %>?subject=<%= messaggio == null ? "" : messaggio.getOggetto() %>" enctype="application/x-www-form-urlencoded" method="post">
                                         <div>
-                                            <input style="width: 200px" class="btn_2" type="submit" value="Rispondi con Client esterno" />
+                                            <input style="width: 300px" class="btn_2" type="submit" value="Rispondi con Client esterno" />
                                         </div>
                                     </form>
                                 </td>

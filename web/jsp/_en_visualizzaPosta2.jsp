@@ -68,7 +68,17 @@
                                             e.printStackTrace();
                                         }
                                     }
-                                } else {
+
+                                    if (messaggio == null) {
+                            %>
+
+                                        <h4>
+                                            <font color="red"> Message deleted </font>
+                                        </h4>
+
+                            <%
+                                        }
+                                    } else {
                             %>
 
                             <font color="red"> Error! Redo access to view messages </font>

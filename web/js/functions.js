@@ -43,6 +43,7 @@ function visualizzaPerViaggiatore(id, id1, id2, id3, id4, btnAvanzata,formAvanza
         }
     }
 }
+
 function visualizzaRicercaAvanzata(bottoneRicerca,bottoneAvanzata,formStandard, formAvanzata) {
     if(document.getElementById) {
         if(document.getElementById(bottoneAvanzata).value =="+ opzioni")
@@ -62,6 +63,7 @@ function visualizzaRicercaAvanzata(bottoneRicerca,bottoneAvanzata,formStandard, 
         }
     }
 }
+
 function nascondiBtnAvanzata(btn1,btn2,btn3,btn4){
     if(document.getElementById) {
         document.getElementById(btn1).style.display = 'none';

@@ -11,6 +11,7 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Messaggio" %>
 <%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -31,13 +32,30 @@
     String oggetto;
     String mittente;
     String data;
+    String eliminazione = null;
     ControlloreGestionePosta cgp = new ControlloreGestionePosta();
     ArrayList<Messaggio> elencoMessaggiUser = null;
+
+    String codeMsg = request.getParameter("Cod");
+    // Per maggiore robustezza
+    String codeDel = request.getParameter("Del");
+    if (codeMsg != null && codeDel != null) {
+        if (c.getLogged() && Integer.parseInt(codeDel) == 1) {
+            int intMsg = Integer.parseInt(codeMsg);
+            try {
+                eliminazione = cgp.eliminaMessaggio(intMsg);
+            } catch (SerializzazioneException | DeserializzazioneException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     try {
         elencoMessaggiUser = cgp.ricercaMessaggiPerDestinatario(username);
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
+
 %>
 
 <body>
@@ -68,6 +86,24 @@
 
                     <div class="post">
                         <h2><strong> Posta in entrata </strong></h2>
+
+                        <%  if (eliminazione != null) {
+                                if (Integer.parseInt(eliminazione) == 0) { %>
+
+                                <h5>
+                                    <font color="red"> Impossibile eliminare il messaggio selezionato </font>
+                                </h5>
+
+                            <% } else if (Integer.parseInt(eliminazione) == 1){ %>
+
+                                <h4>
+                                    <font color="green"> Messaggio eliminato correttamente </font>
+                                </h4>
+
+                        <% }
+                        }
+                        %>
+
                     </div>
 
                     <div class="post">
@@ -102,6 +138,14 @@
                                                     <form action="_it_visualizzaPosta2.jsp?Cod=<%= String.valueOf(anElencoMessaggiUser.getCodice()) %>" enctype="application/x-www-form-urlencoded" method="post">
                                                         <div>
                                                             <input class="btn" type="submit" value="Leggi"/>
+                                                        </div>
+                                                    </form>
+                                                </td>
+
+                                                <td>
+                                                    <form action="_it_visualizzaPosta.jsp?Cod=<%= String.valueOf(anElencoMessaggiUser.getCodice()) %>&Del=1" enctype="application/x-www-form-urlencoded" method="post">
+                                                        <div>
+                                                            <input class="btnDel" type="submit" value="Cancella"/>
                                                         </div>
                                                     </form>
                                                 </td>

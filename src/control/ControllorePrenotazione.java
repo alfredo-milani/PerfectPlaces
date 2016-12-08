@@ -86,8 +86,7 @@ public class ControllorePrenotazione {
         elencoDate.add(dataInizio);
         sobj.serializza(elencoDate, percorsoTemp);
         for(GregorianCalendar elenco: elencoDate){
-            System.out.println("array date: "+ elenco.get(Calendar.DATE)+" " + " "+elenco.get(Calendar.MONTH)+" "+ " "+elenco.get(Calendar.YEAR));
-            System.out.println(elenco);
+            System.out.println("array date: " + elenco.get(Calendar.DATE)+" " + " "+elenco.get(Calendar.MONTH)+" "+ " "+elenco.get(Calendar.YEAR));
         }
 
 		return elencoDate;
@@ -117,29 +116,25 @@ public class ControllorePrenotazione {
 			for (GregorianCalendar data_prenotazione : datePrenotazione) {
 				CamerePrenotate cp = new CamerePrenotate(loc.getNomeLocazione(), data_prenotazione);
 				int contatore_aggiornato = cp.getContatore() + 1;
-				System.out.println("quando faccio +1 e file vuoto " + contatore_aggiornato);
 				cp.setContatore(contatore_aggiornato);
 				prenotateList.add(cp);
 
 			}
 			sobj.serializza(prenotateList, percorsoPrenotazioni);
-			System.out.println("vero 1");
 			return true;
 		} else {
 
 			DeserializzaOggetti dobj = new DeserializzaOggetti();
 			prenotateList = (ArrayList<CamerePrenotate>) dobj.deserializza(percorsoPrenotazioni);
 			for (GregorianCalendar data_prenotazione : datePrenotazione) {
-				System.out.println("iterEST");
+
 				boolean condizione = false;
 				for (CamerePrenotate camera_prenotata : prenotateList) {
-					System.out.println("iterINT");
 					if (camera_prenotata.getNomeLocazion().equals(loc.getNomeLocazione()) && data_prenotazione.equals(camera_prenotata.getData())) {
 						if (totali == camera_prenotata.getContatore())
 							return false;
 						if (!(totali == camera_prenotata.getContatore())) {
 							int contatore_aggiornato = camera_prenotata.getContatore() + 1;
-							System.out.println("quando faccio +1 caso posti disp  " + contatore_aggiornato);
 							camera_prenotata.setContatore(contatore_aggiornato);
 							condizione = true;
 							break;
@@ -150,14 +145,11 @@ public class ControllorePrenotazione {
 					continue;
 				CamerePrenotate nuovaData = new CamerePrenotate(loc.getNomeLocazione(), data_prenotazione);
 				int contatore_aggiornato = nuovaData.getContatore() + 1;
-				System.out.println("quando faccio +1 caso data o albergo non presente" + contatore_aggiornato);
 				nuovaData.setContatore(contatore_aggiornato);
 				temp.add(nuovaData);
-				System.out.println("secondo else");
 			}
 			prenotateList.addAll(temp);
 			sobj.serializza(prenotateList, percorsoPrenotazioni);
-			System.out.println("vero ");
 			return true;
 
 		}
@@ -189,25 +181,20 @@ public class ControllorePrenotazione {
 
 			}
 			sobj.serializza(prenotateList, percorsoPrenotazioni);
-			System.out.println("vero 1");
 			return true;
 		} else {
 			DeserializzaOggetti dobj = new DeserializzaOggetti();
 			prenotateList = (ArrayList<CamerePrenotate>) dobj.deserializza(percorsoPrenotazioni);
 			for (GregorianCalendar data_prenotazione : datePrenotazione) {
-				System.out.println("iterEST");
 				for (CamerePrenotate camera_prenotata : prenotateList) {
-					System.out.println("iterINT");
 					if (camera_prenotata.getNomeLocazion().equals(loc.getNomeLocazione()) && data_prenotazione.equals(camera_prenotata.getData()))
 						return false;
 				}
 				CamerePrenotate nuovaData = new CamerePrenotate(loc.getNomeLocazione(), data_prenotazione);
 				temp.add(nuovaData);
-				System.out.println("secondo else");
 			}
 			prenotateList.addAll(temp);
 			sobj.serializza(prenotateList, percorsoPrenotazioni);
-			System.out.println("vero ");
 			return true;
 
 		}

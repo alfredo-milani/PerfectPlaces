@@ -571,7 +571,12 @@ ul#orizzontale li{
 a:visited{color:#888}
 a{color:#444;text-decoration:none;}
 p{margin-bottom:.3em;}
-
+.span {
+	color: #737373;
+	font-family: arial, sans-serif;
+	font-size: 40px;
+	float: left;
+}
 
 /*stile text box*/
 input[type=text], select {

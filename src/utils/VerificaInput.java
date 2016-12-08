@@ -72,25 +72,12 @@ public class VerificaInput {
 
         GregorianCalendar gcInizio = td.trasformaInGregorianCalendar(dataInizio);
         GregorianCalendar gcFine = td.trasformaInGregorianCalendar(dataFine);
-        if(gcInizio.get(Calendar.YEAR)<2016|| gcFine.get(Calendar.YEAR)<2016){  //controlla che le date non siano di anni passati
+        if(gcInizio.get(Calendar.YEAR)<2017|| gcFine.get(Calendar.YEAR)<2017){  //controlla che le date non siano di anni passati
             return false;
         }
         if(gcInizio.get(Calendar.DAY_OF_YEAR)>gcFine.get(Calendar.DAY_OF_YEAR))//controlla che effettivamente la data inizo sia precedente a data fine
             return false;
         return true;
     }
-
-
-    public static void main(String[] args){
-
-
-        VerificaInput v= new VerificaInput();
-        if(v.verificaDate("2017-01-01","2017-01-12"))
-            System.out.println("v");
-        else
-            System.out.println("f");
-    }
-
-
 
 }

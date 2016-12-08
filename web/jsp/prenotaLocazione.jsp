@@ -52,8 +52,6 @@ dataInizio=request.getParameter("dataInizio");
 dataFine = request.getParameter("dataFine");
 String command = request.getParameter("command");
 String commandAvanzata = request.getParameter("commandAvanzata");
-System.out.println("command: "+ command +" command Avanzata:  "+commandAvanzata);
-	System.out.println("provincia prezzo date : " + provincia+ prezzo + dataInizio + dataFine);
 int commandInt=10;
 int commandavAnzataInt=10;
 
@@ -221,8 +219,38 @@ Ostello ostello = new Ostello();
 								request.getSession().setAttribute("loc", elencoLocazioni);
 								%>
 					<div class="post">
+                        <%
+                            if(elencoLocazioni.get(i).getClass()==Albergo.class){
+                        %>
+                        <img src="../css/images/albergo.png"  style="width:50px;height:50px; float: left">
+                        <span class="span">Albergo: <%out.println(nomeLocazione);%></span>
+                        <%}%>
+                        <%
+                            if(elencoLocazioni.get(i).getClass()==Appartamento.class){
+                        %>
+                        <img src="../css/images/appartamento.png"  style="width:50px;height:50px;float: left">
+                        <span class="span">Appartamento: <%out.println(nomeLocazione);%></span>
+                        <%}%>
+                        <%
+                            if(elencoLocazioni.get(i).getClass()==Beb.class){
+                        %>
+                        <img src="../css/images/beb.jpeg"  style="width:50px;height:50px;float: left;">
+                        <span class="span">B&B: <%out.println(nomeLocazione);%></span>
 
-						<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+                        <%}%>
+                        <%
+                            if(elencoLocazioni.get(i).getClass()==CasaVacanza.class){
+                        %>
+                        <img src="../css/images/casaVacanza.png"  style="width:50px;height:50px;float: left">
+                        <span class="span">Casa vacanza: <%out.println(nomeLocazione);%></span>
+
+                        <%}%>
+                        <%
+                            if(elencoLocazioni.get(i).getClass()==Ostello.class){
+                        %>
+                        <img src="../css/images/ostello.jpeg"  style="width:50px;height:50px;float: left">
+                        <span class="span">Ostello: <%out.println(nomeLocazione);%></span>
+                        <%}%>
 						<table style="width:100%">
 							<tr>
 								<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
@@ -244,11 +272,10 @@ Ostello ostello = new Ostello();
 						</div>
 						<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 							<div>
-								<input type="hidden" name="command" value="100">
 								<input type="hidden" name="id" value="<%out.println(i);%>">
 								<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 								<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-								<input type="submit" class="btnBlue200" value="PRENOTA!">
+								<input type="submit" class="btnBlue200" value="PRENOTA">
 							</div>
 						</form>
 					</div>
@@ -290,8 +317,8 @@ Ostello ostello = new Ostello();
 								%>
 								
 								<div class="post">
-						
-									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+                                    <img src="../css/images/albergo.png"  style="width:50px;height:50px; float: left">
+                                    <span class="span">Nome Locazione: <%out.println(nomeLocazione);%></span>
 									<table style="width:100%">
                                         <tr>
                                             <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
@@ -322,11 +349,10 @@ Ostello ostello = new Ostello();
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="0">
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" class="btnBlue200" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA">
 									</div>
 									</form>
 								</div>	
@@ -374,8 +400,8 @@ Ostello ostello = new Ostello();
 							%>
 							
 							<div class="post">
-						
-									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+                                <img src="../css/images/appartamento.png"  style="width:50px;height:50px;float: left">
+                                <span class="span">Nome Locazione: <%out.println(nomeLocazione);%></span>
 									<table style="width:100%">
                                         <tr>
                                             <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
@@ -404,11 +430,10 @@ Ostello ostello = new Ostello();
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="1">
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit"class="btnBlue200" value="PRENOTA!">
+										<input type="submit"class="btnBlue200" value="PRENOTA">
 										</div>
 									</form>
 								</div>	
@@ -450,8 +475,8 @@ Ostello ostello = new Ostello();
 							%>
 							
 							<div class="post">
-					
-								<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+                                <img src="../css/images/beb.jpeg"  style="width:50px;height:50px;float: left;">
+                                <span class="span">Nome Locazione: <%out.println(nomeLocazione);%></span>
 								
 								<table style="width:100%">
                                          <tr>
@@ -476,11 +501,10 @@ Ostello ostello = new Ostello();
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="2">
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" class="btnBlue200" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA">
 										</div>
 									</form>
 								</div>	
@@ -529,8 +553,8 @@ Ostello ostello = new Ostello();
 						%>
 						
 						<div class="post">
-						
-									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+                            <img src="../css/images/casaVacanza.png"  style="width:50px;height:50px;float: left">
+                            <span class="span">Nome Locazione: <%out.println(nomeLocazione);%></span>
 									<table style="width:100%">
                                         <tr>
                                             <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
@@ -560,11 +584,10 @@ Ostello ostello = new Ostello();
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="3">
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" class="btnBlue200" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA">
 										</div>
 									</form>
 								</div>	
@@ -604,8 +627,8 @@ Ostello ostello = new Ostello();
 						%>
 						
 						<div class="post">
-						
-									<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+                            <img src="../css/images/ostello.jpeg"  style="width:50px;height:50px;float: left">
+                            <span class="span">Nome Locazione: <%out.println(nomeLocazione);%></span>
 									<table style="width:100%">
                                         <tr>
                                             <td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
@@ -626,11 +649,10 @@ Ostello ostello = new Ostello();
 									</div>
 									<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
 									<div>
-										<input type="hidden" name="command" value="4">
 										<input type="hidden" name="id" value="<%out.println(i);%>">
 										<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-										<input type="submit" class="btnBlue200" value="PRENOTA!">
+										<input type="submit" class="btnBlue200" value="PRENOTA">
 										</div>
 									</form>
 								</div>	

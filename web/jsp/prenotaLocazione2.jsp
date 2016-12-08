@@ -29,78 +29,20 @@
 
 ControllorePrenotazione cp = new ControllorePrenotazione();
 
-String command = request.getParameter("command");
-int commandInt = Integer.parseInt(command);
 String dataInizio = request.getParameter("dataInizio");
 String dataFine = request.getParameter("dataFine");
 String id = request.getParameter("id");
 id = id.substring(0,1);
 boolean controllo = false;
 
-///////////////////////DA RIVEDERE //////////////////////////////////////////////////////////
 	ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
-	for(Locazione locazione : elencoLocazioni)
-		out.println(locazione);
 	try {
 		controllo=cp.prenotazione(elencoLocazioni.get(Integer.parseInt(id)),dataInizio,dataFine);
 	} catch (DeserializzazioneException | SerializzazioneException e) {
 		e.printStackTrace();
 	}
 	request.getSession().removeAttribute("loc");
-	/*
-if(commandInt==100){
-	ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
-	request.getSession().removeAttribute("loc");
-	try {
-		controllo=cp.prenotaAlbergo((Albergo) elencoLocazioni.get(Integer.parseInt(id)),dataInizio,dataFine);
-	} catch (DeserializzazioneException | SerializzazioneException e) {
-		e.printStackTrace();
-	}
-}
-if(commandInt==0){
-	ArrayList<Albergo> elencoAlberghi = (ArrayList<Albergo>) request.getSession().getAttribute("alb");
-	request.getSession().removeAttribute("alb");
-	try {
-		controllo = cp.prenotaAlbergo(elencoAlberghi.get(Integer.parseInt(id)),dataInizio,dataFine);
-	} catch (DeserializzazioneException | SerializzazioneException e) {
-		e.printStackTrace();
-	}
 
-} else if(commandInt==1){
-	ArrayList<Appartamento> elencoAppartamenti = (ArrayList<Appartamento>) request.getSession().getAttribute("apt");
-	request.getSession().removeAttribute("apt");
-	try {
-		controllo = cp.prenotaAppartamento(elencoAppartamenti.get(Integer.parseInt(id)),dataInizio,dataFine);
-	} catch (DeserializzazioneException | SerializzazioneException e) {
-		e.printStackTrace();
-	}
-} else if(commandInt==2){
-	ArrayList<Beb> elencoBeb = (ArrayList<Beb>) request.getSession().getAttribute("beb");
-	request.getSession().removeAttribute("beb");
-	try {
-		controllo = cp.prenotaBeb(elencoBeb.get(Integer.parseInt(id)),dataInizio,dataFine);
-	} catch (DeserializzazioneException | SerializzazioneException e) {
-		e.printStackTrace();
-	}
-} else if(commandInt == 3){
-	ArrayList<CasaVacanza> elencoCasaVacanze = (ArrayList<CasaVacanza>) request.getSession().getAttribute("cvz");
-	request.getSession().removeAttribute("cvz");
-	try {
-		controllo = cp.prenotaCasaVacanza(elencoCasaVacanze.get(Integer.parseInt(id)),dataInizio,dataFine);
-	} catch (DeserializzazioneException | SerializzazioneException e) {
-		e.printStackTrace();
-	}
-} else if(commandInt == 4){
-	ArrayList<Ostello> elencoOstelli = (ArrayList<Ostello>) request.getSession().getAttribute("ost");
-	request.getSession().removeAttribute("ost");
-	try {
-		controllo = cp.prenotaOstello(elencoOstelli.get(Integer.parseInt(id)),dataInizio,dataFine);
-	} catch (DeserializzazioneException | SerializzazioneException e) {
-		e.printStackTrace();
-	}
-}
-
-*/
 
 
 %>

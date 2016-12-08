@@ -170,7 +170,7 @@ public class ControlloreInserimentoLocazione {
 	
 	@SuppressWarnings("unchecked")
 	public boolean inserisciOstello(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet) throws SerializzazioneException, DeserializzazioneException{
+			String descrizione, boolean parcheggio, boolean wifi, boolean pet,String tipoPensione) throws SerializzazioneException, DeserializzazioneException{
 		
 		if (nomeLocazione == null || nomeLocazione.equals("") ||
 				postiTotali==null|| postiTotali.equals("")||
@@ -183,7 +183,7 @@ public class ControlloreInserimentoLocazione {
 		}
 		
 		Ostello ostello = new Ostello(nomeLocazione,postiTotali,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio,
-				wifi, pet);
+				wifi, pet, tipoPensione);
 
 		File file = new File(percorsoOstello);
 		

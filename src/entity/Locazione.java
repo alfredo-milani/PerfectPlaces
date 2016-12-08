@@ -6,7 +6,7 @@ public class Locazione implements Serializable {
 	// Variabili
 	private static final long serialVersionUID = 1L;
 	protected String nomeLocazione;
-	protected String postiTotali;
+	private String postiTotali;
 	protected String provincia;
 	protected String indirizzo;
 	private String userLocatore;
@@ -14,7 +14,6 @@ public class Locazione implements Serializable {
 	protected String descrizione;
 	protected boolean parcheggio;
 	protected boolean wifi;
-	private boolean prenotabile = true;
 	protected boolean pet;
 	private String tipo;
 	

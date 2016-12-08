@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="keywords" content="" />
@@ -24,11 +24,13 @@
 <%@page import="java.util.ArrayList" %>
 <%@ page import="control.ControlloreRicerca" %>
 <%@ page import="control.AdapterRicercaLocazione" %>
+<%@ page import="control.ControlloreRicercaGlobale" %>
+<%@ page import="utils.DeserializzaOggetti" %>
 <%
 
 VerificaInput vi = new VerificaInput();
-
-	ControlloreRicerca 	ctrl = AdapterRicercaLocazione.getSingletonInstance();
+ControlloreRicercaGlobale globale =  new ControlloreRicercaGlobale();
+	ControlloreRicerca 	ctrl = new AdapterRicercaLocazione(new ControlloreRicercaGlobale());
 
 String nomeLocazione;
 String indirizzo;
@@ -67,25 +69,23 @@ if(commandAvanzata!=null){
 }
 
 
-
+ArrayList<Locazione> elencoLocazioni = new ArrayList<Locazione>();
 ArrayList<Albergo> elencoAlberghi = new ArrayList<Albergo>();
-	ArrayList<Albergo> elencoAlberghiA = new ArrayList<Albergo>();
 ArrayList<Appartamento> elencoAppartamenti = new ArrayList<Appartamento>();
-	ArrayList<Appartamento> elencoAppartamentiA = new ArrayList<Appartamento>();
 ArrayList<Beb> elencoBeb = new ArrayList<Beb>();
-	ArrayList<Beb> elencoBebA = new ArrayList<Beb>();
 ArrayList<CasaVacanza> elencoCasaVacanze = new ArrayList<CasaVacanza>();
-	ArrayList<CasaVacanza> elencoCasaVacanzeA = new ArrayList<CasaVacanza>();
 ArrayList<Ostello> elencoOstelli = new ArrayList<Ostello>();
-	ArrayList<Ostello> elencoOstelliA = new ArrayList<Ostello>();
 Albergo albergo =new Albergo();
 Appartamento appartamento = new Appartamento();
 Beb beb = new Beb();
 CasaVacanza casa = new CasaVacanza();
 Ostello ostello = new Ostello();
 
-	if(vi.verificaProvincia(provincia)&&vi.verificaGiorno(dataInizio)&&vi.verificaGiorno(dataFine)&&vi.verificaPrezzo(prezzo)){
+	if(vi.verificaProvincia(provincia)&&vi.verificaDate(dataInizio,dataFine)&&vi.verificaPrezzo(prezzo)){
 			if(commandavAnzataInt==10) {
+				if(commandInt==100){
+					elencoLocazioni = globale.ricercaGlobale(provincia,prezzo);
+				}
 				if (commandInt == 0) {
 						elencoAlberghi = (ArrayList<Albergo>) ctrl.ricerca(albergo, provincia, prezzo);
 				} else if (commandInt == 1) {
@@ -103,24 +103,23 @@ Ostello ostello = new Ostello();
 				wifi = request.getParameter("wifi");
 				pet = request.getParameter("pet");
 				if(commandavAnzataInt==0) {
-						elencoAlberghiA = (ArrayList<Albergo>) ctrl.ricerca(albergo, provincia, prezzo);
-						elencoAlberghi = (ArrayList<Albergo>) ctrl.ricercaAvanzata(albergo, elencoAlberghiA, parcheggio, wifi, pet);
+						String tipoPensione = request.getParameter("tipoPensione");
+						elencoAlberghi = (ArrayList<Albergo>) ctrl.ricercaAvanzata(albergo,provincia,prezzo, parcheggio, wifi, pet,tipoPensione);
 					}
 				else if(commandavAnzataInt==1) {
-						elencoAppartamentiA = (ArrayList<Appartamento>) ctrl.ricerca(appartamento, provincia, prezzo);
-						elencoAppartamenti = (ArrayList<Appartamento>) ctrl.ricercaAvanzata(appartamento, elencoAppartamentiA, parcheggio, wifi, pet);
+						String numeroStanze = request.getParameter("numeroStanze");
+						elencoAppartamenti = (ArrayList<Appartamento>) ctrl.ricercaAvanzata(appartamento,provincia,prezzo, parcheggio, wifi, pet,numeroStanze);
 					}
 				else if(commandavAnzataInt==2) {
-						elencoBebA = (ArrayList<Beb>) ctrl.ricerca(beb, provincia, prezzo);
-						elencoBeb = (ArrayList<Beb>) ctrl.ricercaAvanzata(beb, elencoBebA, parcheggio, wifi, pet);
+						elencoBeb = (ArrayList<Beb>) ctrl.ricercaAvanzata(beb,provincia,prezzo, parcheggio, wifi, pet,"caratt");////////////
 					}
 				else if(commandavAnzataInt==3) {
-					elencoCasaVacanzeA = (ArrayList<CasaVacanza>) ctrl.ricerca(casa, provincia, prezzo);
-					elencoCasaVacanze = (ArrayList<CasaVacanza>) ctrl.ricercaAvanzata(casa, elencoCasaVacanzeA, parcheggio, wifi, pet);
+					String numeroCamere = request.getParameter("numeroCamere");
+					elencoCasaVacanze = (ArrayList<CasaVacanza>) ctrl.ricercaAvanzata(casa,provincia,prezzo, parcheggio, wifi, pet, numeroCamere);
 				}
 				else if(commandavAnzataInt==4) {
-					elencoOstelliA = (ArrayList<Ostello>) ctrl.ricerca(ostello, provincia, prezzo);
-					elencoOstelli = (ArrayList<Ostello>) ctrl.ricercaAvanzata(ostello, elencoOstelliA, parcheggio, wifi, pet);
+					String tipoPensione = request.getParameter("tipoPensione");
+					elencoOstelli = (ArrayList<Ostello>) ctrl.ricercaAvanzata(ostello, provincia,prezzo, parcheggio, wifi, pet,tipoPensione);
 				}
 
 			}
@@ -191,9 +190,71 @@ Ostello ostello = new Ostello();
 						<h2><a href="areaViaggiatore.jsp">Torna all'area viaggiatore</a></h2>
 					</div>
 							
-					<% } else { 
-							
-						if(commandInt==0){
+					<% } else {
+						if(commandInt==100){
+							for(int i=0; i<elencoLocazioni.size();i++) {
+								nomeLocazione = elencoLocazioni.get(i).getNomeLocazione();
+								prezzo = elencoLocazioni.get(i).getPrezzo();
+								provincia = elencoLocazioni.get(i).getProvincia();
+								indirizzo = elencoLocazioni.get(i).getIndirizzo();
+								userLocatore = elencoLocazioni.get(i).getUserLocatore();
+								descrizione = elencoLocazioni.get(i).getDescrizione();
+								String sParcheggio;
+								String sWifi;
+								String sPet;
+
+								if (elencoLocazioni.get(i).isParcheggio()) {
+									sParcheggio = "Si";
+								} else {
+									sParcheggio = "No";
+								}
+								if (elencoLocazioni.get(i).isWifi()) {
+									sWifi = "Si";
+								} else {
+									sWifi = "No";
+								}
+								if (elencoLocazioni.get(i).isPet()) {
+									sPet = "Si";
+								} else {
+									sPet = "No";
+								}
+								request.getSession().setAttribute("loc", elencoLocazioni);
+								%>
+					<div class="post">
+
+						<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
+						<table style="width:100%">
+							<tr>
+								<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
+								<td><b>Prezzo :</b> <%out.println(prezzo);%></td>
+							</tr>
+							<tr>
+								<td><b>Provincia:</b> <%out.println(provincia);%></td>
+								<td><b>Indirizzo:</b> <%out.println(indirizzo);%></td>
+
+							</tr>
+							<tr>
+								<td><b>Parcheggio:</b> <%out.println(sParcheggio);%></td>
+								<td><b>Wifi:</b> <%out.println(sWifi);%></td>
+								<td><b>Animali ammessi:</b> <%out.println(sPet);%></td>
+							</tr>
+						</table>
+						<div class="break-word">
+							<p><b>Descrizione:</b> <%out.println(descrizione);%></p>
+						</div>
+						<form method="get" action="prenotaLocazione2.jsp" enctype="text/plain">
+							<div>
+								<input type="hidden" name="command" value="100">
+								<input type="hidden" name="id" value="<%out.println(i);%>">
+								<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
+								<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
+								<input type="submit" class="btnBlue200" value="PRENOTA!">
+							</div>
+						</form>
+					</div>
+					<%} %>
+					<%
+						}else if(commandInt==0){
 								for(int i=0;i<elencoAlberghi.size();i++){
 									
 									nomeLocazione = elencoAlberghi.get(i).getNomeLocazione();
@@ -225,7 +286,7 @@ Ostello ostello = new Ostello();
 									String orarioColazione = elencoAlberghi.get(i).getOrarioColazione();
 									String orarioPranzo = elencoAlberghi.get(i).getOrarioPranzo();
 									String orarioCena = elencoAlberghi.get(i).getOrarioCena();
-									request.getSession().setAttribute("alb", elencoAlberghi);
+									request.getSession().setAttribute("loc", elencoAlberghi);
 								%>
 								
 								<div class="post">
@@ -309,7 +370,7 @@ Ostello ostello = new Ostello();
 									sGiardino = "No";
 								}
 								String numeroLetti = elencoAppartamenti.get(i).getNumeroLetti();
-								request.getSession().setAttribute("apt", elencoAppartamenti);
+								request.getSession().setAttribute("loc", elencoAppartamenti);
 							%>
 							
 							<div class="post">
@@ -385,7 +446,7 @@ Ostello ostello = new Ostello();
 									sPet = "No";
 								}
 								String orarioColazione = elencoBeb.get(i).getOrarioColazione();
-								request.getSession().setAttribute("beb", elencoBeb);
+								request.getSession().setAttribute("loc", elencoBeb);
 							%>
 							
 							<div class="post">
@@ -463,7 +524,7 @@ Ostello ostello = new Ostello();
 								sGiardino = "No";
 							}
 							String numeroLetti = elencoCasaVacanze.get(i).getNumeroLetti();
-							request.getSession().setAttribute("cvz", elencoCasaVacanze);
+							request.getSession().setAttribute("loc", elencoCasaVacanze);
 							
 						%>
 						
@@ -539,7 +600,7 @@ Ostello ostello = new Ostello();
 							} else {
 								sPet = "No";
 							}
-							request.getSession().setAttribute("ost", elencoOstelli);
+							request.getSession().setAttribute("loc", elencoOstelli);
 						%>
 						
 						<div class="post">

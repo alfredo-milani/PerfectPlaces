@@ -166,10 +166,11 @@
                 bpet = true;
             }
             String postiTotali = request.getParameter("postiTotali");
+            String tipoPensione = request.getParameter("tipoPensione");
 
             try {
                 control = cil.inserisciOstello(nomeLocazione,postiTotali,provincia, indirizzo, username, prezzo, descrizione,
-                        bpark, bwifi, bpet);
+                        bpark, bwifi, bpet, tipoPensione);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }

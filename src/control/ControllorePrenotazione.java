@@ -17,12 +17,12 @@ import utils.*;
 public class ControllorePrenotazione {
 
 	// Percorsi
-	private static String percorsoTemp = Constants.TMPDATE_PATH;
 	private static String percorsoPrenotazioniAlberghi = Constants.PRENOTAZIONE_ALBERGO_PATH;
 	private static String percorsoPrenotazioniBeb = Constants.PRENOTAZIONE_BEB_PATH;
 	private static String percorsoPrenotazioniOstelli = Constants.PRENOTAZIONE_OSTELLO_PATH;
 	private static String percorsoPrenotazioniAppartamenti = Constants.PRENOTAZIONE_APPARTAMENTO_PATH;
 	private static String percorsoPrenotazioniCaseVacanza = Constants.PRENOTAZIONE_CASAVACANZA_PATH;
+    private static String percorsoTemp = Constants.TMPDATE_PATH;
 
 
 	// Costruttore
@@ -30,6 +30,31 @@ public class ControllorePrenotazione {
 	public ControllorePrenotazione(){
 
 	}
+
+	public boolean prenotazione(Locazione locazione, String dataInizio, String dataFine) throws DeserializzazioneException, SerializzazioneException, IOException {
+        if(locazione.getClass()==Albergo.class){
+            if(controlloCamerePrenotate(locazione,percorsoPrenotazioniAlberghi,dataInizio,dataInizio))
+                return true;
+        }
+        else if(locazione.getClass()==Appartamento.class){
+           if(controlloCase(locazione,percorsoPrenotazioniAppartamenti,dataInizio,dataFine))
+                 return true;
+        }
+        else if(locazione.getClass()==Beb.class){
+            if(controlloCamerePrenotate(locazione,percorsoPrenotazioniBeb,dataInizio,dataFine))
+                return true;
+        }
+        else if(locazione.getClass()==CasaVacanza.class){
+            if(controlloCase(locazione,percorsoPrenotazioniCaseVacanza,dataInizio,dataFine))
+                return true;
+        }
+        else {
+            if(controlloCamerePrenotate(locazione,percorsoPrenotazioniOstelli,dataInizio,dataFine))
+                 return true;
+        }
+
+        return false;
+    }
 
 	@SuppressWarnings("unchecked")
 	private ArrayList<GregorianCalendar> contaGiorni(GregorianCalendar dataInizio, GregorianCalendar dataFine) throws IOException, SerializzazioneException, DeserializzazioneException{
@@ -61,79 +86,21 @@ public class ControllorePrenotazione {
         elencoDate.add(dataInizio);
         sobj.serializza(elencoDate, percorsoTemp);
         for(GregorianCalendar elenco: elencoDate){
-            System.out.println(elenco.get(Calendar.DATE)+" " + " "+elenco.get(Calendar.MONTH)+" "+ " "+elenco.get(Calendar.YEAR));
+            System.out.println("array date: "+ elenco.get(Calendar.DATE)+" " + " "+elenco.get(Calendar.MONTH)+" "+ " "+elenco.get(Calendar.YEAR));
             System.out.println(elenco);
         }
 
 		return elencoDate;
 	}
 
-	// Metodo che consente di prenotare un appartamento specificando la data di inizio e la data di fine soggiorno.
-
-	@SuppressWarnings("unchecked")
-	public boolean prenotaAppartamento(Appartamento appartamento, String dataInizio, String dataFine) throws DeserializzazioneException, SerializzazioneException, IOException{
-
-		if(controlloCase(appartamento,percorsoPrenotazioniAppartamenti,dataInizio,dataFine))
-			return true;
-		return false;
-	}
-
-
-	// Metodo che consente di prenotare una casa vacanze specificando la data di inizio e la data di fine soggiorno.
-
-	@SuppressWarnings("unchecked")
-	public boolean prenotaCasaVacanza(CasaVacanza casavacanza, String dataInizio, String dataFine) throws DeserializzazioneException, SerializzazioneException, IOException{
-
-		if(controlloCase(casavacanza, percorsoPrenotazioniCaseVacanza,dataInizio,dataFine))
-			return true;
-		return false;
-	}
-
-	// Metodo che consente di prenotare un albergo specificando la data di inizio e la data di fine soggiorno.
-
-	@SuppressWarnings("unchecked")
-	public boolean prenotaAlbergo(Albergo albergo, String dataInizio, String dataFine) throws DeserializzazioneException, SerializzazioneException, IOException {
-		if(controlloCamerePrenotate(albergo,percorsoPrenotazioniAlberghi,dataInizio,dataFine))
-			return true;
-		return false;
-    }
-
-
-	
-	// Metodo che consente di prenotare un bed&breakfast specificando la data di inizio e la data di fine soggiorno. 
-	
-	@SuppressWarnings("unchecked")
-	public boolean prenotaBeb(Beb beb, String dataInizio, String dataFine) throws DeserializzazioneException, SerializzazioneException, IOException{
-		
-		if(controlloCamerePrenotate(beb,percorsoPrenotazioniBeb,dataInizio,dataFine))
-			return true;
-		return false;
-
-	}
-	
-	// Metodo che consente di prenotare un ostello specificando la data di inizio e la data di fine soggiorno. 
-	
-	@SuppressWarnings("unchecked")
-	public boolean prenotaOstello(Ostello ostello, String dataInizio, String dataFine) throws DeserializzazioneException, SerializzazioneException, IOException{
-		
-		if(controlloCamerePrenotate(ostello,percorsoPrenotazioniOstelli,dataInizio,dataFine))
-			return  true;
-		return false;
-	}
-
 	@SuppressWarnings("unchecked")
 	private boolean controlloCamerePrenotate(Locazione loc,String percorsoPrenotazioni, String dataInizio, String dataFine) throws  DeserializzazioneException, SerializzazioneException,IOException {
-		int giornoInizio = Integer.parseInt(dataInizio.substring(0, 2));
-		int meseInizio = Integer.parseInt(dataInizio.substring(3, 5));
-		int annoInizio = Integer.parseInt(dataInizio.substring(6, 10));
-		int giornoFine = Integer.parseInt(dataFine.substring(0, 2));
-		int meseFine = Integer.parseInt(dataFine.substring(3, 5));
-		int annoFine = Integer.parseInt(dataFine.substring(6, 10));
 
+        TrasformaDate td = new TrasformaDate();
 
 		Integer totali = Integer.parseInt(loc.getPostiTotali().trim());
-		GregorianCalendar gcInizio = new GregorianCalendar(annoInizio, meseInizio, giornoInizio);
-		GregorianCalendar gcFine = new GregorianCalendar(annoFine, meseFine, giornoFine);
+		GregorianCalendar gcInizio = td.trasformaInGregorianCalendar(dataInizio);
+		GregorianCalendar gcFine = td.trasformaInGregorianCalendar(dataFine);
 
 		ArrayList<GregorianCalendar> datePrenotazione = new ArrayList<GregorianCalendar>();
 
@@ -198,16 +165,11 @@ public class ControllorePrenotazione {
 
 	@SuppressWarnings("unchecked")
 	private boolean controlloCase(Locazione loc,String percorsoPrenotazioni, String dataInizio, String dataFine) throws  DeserializzazioneException, SerializzazioneException,IOException {
-		int giornoInizio = Integer.parseInt(dataInizio.substring(0, 2));
-		int meseInizio = Integer.parseInt(dataInizio.substring(3, 5));
-		int annoInizio = Integer.parseInt(dataInizio.substring(6, 10));
-		int giornoFine = Integer.parseInt(dataFine.substring(0, 2));
-		int meseFine = Integer.parseInt(dataFine.substring(3, 5));
-		int annoFine = Integer.parseInt(dataFine.substring(6, 10));
 
+        TrasformaDate td = new TrasformaDate();
 
-		GregorianCalendar gcInizio = new GregorianCalendar(annoInizio, meseInizio, giornoInizio);
-		GregorianCalendar gcFine = new GregorianCalendar(annoFine, meseFine, giornoFine);
+		GregorianCalendar gcInizio = td.trasformaInGregorianCalendar(dataInizio);
+		GregorianCalendar gcFine = td.trasformaInGregorianCalendar(dataFine);
 
 		ArrayList<GregorianCalendar> datePrenotazione = new ArrayList<GregorianCalendar>();
 

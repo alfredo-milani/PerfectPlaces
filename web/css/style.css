@@ -86,11 +86,12 @@
 }
 
 .btnBlueborder200 {
-	padding: 15px 32px;
+	padding: 10px 10px;
+	height: 50%;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
+	font-size: 30px;
 	margin: 4px 2px;
 	background-color: white;
 	color: black;
@@ -541,7 +542,7 @@ ul#orizzontale li{
 .appartamento{background-image:url(../css/images/appartamento.png);}
 .beb{background-image:url(../css/images/beb.jpeg);}
 .casaVacanza{background-image:url(../css/images/casaVacanza.png);}
-.ostello{background-image:url(../css/images/ostello.png);}
+.ostello{background-image:url(../css/images/ostello.jpeg);}
 
 
 .cc-selector input:active +.drinkcard-cc{opacity: .9;}
@@ -601,6 +602,23 @@ input[type=number], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+input[type=date], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+input[type=radio]{
+	height: 20px;
+	width: 20px;
+}
+input[type=radio]:checked{
+	height: 30px;
+	width: 30px;
 }
 
 /* Stile FAQ */
@@ -700,6 +718,7 @@ img {
 	text-decoration:none;
 	color:#fff;
 }
+
 
 
 

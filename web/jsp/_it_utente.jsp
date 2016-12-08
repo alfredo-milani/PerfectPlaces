@@ -45,7 +45,7 @@
                 %>
 
 				    <h1> Benvenuto! </h1>
-                    <h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
+                    <h3> Utente: <% out.println(c.getUser()); %> </h3>
 
                 <%  } else {
                         String redirectURL = "http://" + Constants.HOST_PORT + "jsp/_it_index.jsp?errLog=1";
@@ -91,16 +91,20 @@
 					</div>
 
 					<div class="post">
-						<h2 class="title">SCEGLI COSA FARE!</h2>
+						<h2 class="title">Clicca sull'immagine per recarti nell'area desiderata</h2>
 						<table>
 						<tr>
 						<td>
 						<br /><br />
 						<h1 class="title">
 						<strong>
-							<a href="areaViaggiatore.jsp?username=<%=request.getParameter("username")%>\">AREA VIAGGIATORE</a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="areaProprietario.jsp?username=<%=request.getParameter("username")%>\">AREA PROPRIETARIO</a>
+							<a href="areaViaggiatore.jsp" >VIAGGIATORE</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="areaProprietario.jsp">PROPRIETARIO</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="_it_profiloUtente.jsp">VISUALIZZA PROFILO </a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="_it_posta.jsp">POSTA</a>
 						</strong>
 						</h1>
 						</td>
@@ -108,9 +112,8 @@
 							<tr>
 								<td>
 									<br /><br /><br /><br />
-									Puoi accedere alle due aree del sistema:<br /><br />
-									Area Viaggiatore: Dove potrai cercare facilmente le locazioni pi&ugrave; adatte a te e gestire le tue prenotazioni!<br /><br />
-									Area Proprietario: Dove potrai inserire nuovi annunci e gestire le tue locazioni!
+									<br /><br />
+
 								</td>
 							</tr>
 						</table>

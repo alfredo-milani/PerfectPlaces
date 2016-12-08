@@ -37,6 +37,26 @@ String id = request.getParameter("id");
 id = id.substring(0,1);
 boolean controllo = false;
 
+///////////////////////DA RIVEDERE //////////////////////////////////////////////////////////
+	ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
+	for(Locazione locazione : elencoLocazioni)
+		out.println(locazione);
+	try {
+		controllo=cp.prenotazione(elencoLocazioni.get(Integer.parseInt(id)),dataInizio,dataFine);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
+	request.getSession().removeAttribute("loc");
+	/*
+if(commandInt==100){
+	ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
+	request.getSession().removeAttribute("loc");
+	try {
+		controllo=cp.prenotaAlbergo((Albergo) elencoLocazioni.get(Integer.parseInt(id)),dataInizio,dataFine);
+	} catch (DeserializzazioneException | SerializzazioneException e) {
+		e.printStackTrace();
+	}
+}
 if(commandInt==0){
 	ArrayList<Albergo> elencoAlberghi = (ArrayList<Albergo>) request.getSession().getAttribute("alb");
 	request.getSession().removeAttribute("alb");
@@ -80,7 +100,7 @@ if(commandInt==0){
 	}
 }
 
-
+*/
 
 
 %>

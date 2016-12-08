@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 // Questa classe è utilizzata per effettuare controlli sugli input dei form nelle pagine JSP.
 
@@ -60,49 +62,35 @@ public class VerificaInput {
             return false;
         }
     }
+    //metodo che controlla se data inizio e data fine siano state inserite correttamente
+    public boolean verificaDate(String dataInizio, String dataFine){
 
-    // Metodo a cui viene passata una stringa con una data in formato gg/mm/aaaa, viene controllato che i parametri non eccedano
-    // da giorni, mesi e anni reali (il limite degli anni va dal 2016 al 2056)
-
-    public boolean verificaGiorno(String data){
-        int giorno;
-        int mese;
-        int anno;
-
-        if(data.trim().equals(""))
+        if(dataInizio.trim().equals("")||dataInizio.equals(""))
             return false;
 
-        if(data.length()!=10){
-            return false;
-        }
+        TrasformaDate td = new TrasformaDate();
 
-        try{
-            giorno = Integer.parseInt(data.substring(0,2));
-            mese = Integer.parseInt(data.substring(3,5));
-            anno = Integer.parseInt(data.substring(6,10));
-        }catch(Exception e){
+        GregorianCalendar gcInizio = td.trasformaInGregorianCalendar(dataInizio);
+        GregorianCalendar gcFine = td.trasformaInGregorianCalendar(dataFine);
+        if(gcInizio.get(Calendar.YEAR)<2016|| gcFine.get(Calendar.YEAR)<2016){  //controlla che le date non siano di anni passati
             return false;
         }
-        if(anno>2056||anno<2016){
+        if(gcInizio.get(Calendar.DAY_OF_YEAR)>gcFine.get(Calendar.DAY_OF_YEAR))//controlla che effettivamente la data inizo sia precedente a data fine
             return false;
-        }
-        if(mese>12||mese<1){
-            return false;
-        }
-        if(mese==4||mese==6||mese==9||mese==11){
-            if(giorno<1||giorno>30){
-                return false;
-            }
-        }
-        if(mese==2){
-            if(giorno<1||giorno>28){
-                return false;
-            }
-            if(giorno<1||giorno>31)
-                return false;
-        }
         return true;
     }
+
+
+    public static void main(String[] args){
+
+
+        VerificaInput v= new VerificaInput();
+        if(v.verificaDate("2017-01-01","2017-01-12"))
+            System.out.println("v");
+        else
+            System.out.println("f");
+    }
+
 
 
 }

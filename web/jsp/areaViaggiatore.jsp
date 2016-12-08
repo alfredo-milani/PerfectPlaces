@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -60,12 +60,23 @@
 					}
 				%>
 
-				</h2>
 			</div>
 			<div id="page-bgbtm">
 				<div id="content">
-					<div class="post">
-							<h2><strong>Clicca sulla locazione desiderata</strong></h2>
+                    <h2><b>Effettua una ricerca globale delle locazioni</b> </h2>
+                    <form  method="get" action="prenotaLocazione.jsp" enctype="text/plain" id="locform" >
+                        <div >
+                            <input type="hidden" name="command" id="command_0" value="100"/>
+                            Prezzo:<input type="text" style="width:150px" name="prezzo" value="" />
+                            Provincia:<input type="text" style="width:180px" name="provincia" value="" />
+                            Data Inizio:<input type="date" style="width:180px" name="dataInizio" value="" />
+                            Data Fine: <input type="date" style="width:180px" name="dataFine" value="" />
+                            <input id =btnRicercaGlobale type="submit" class="btnBlue200" value="Ricerca" /><br />
+                        </div>
+                    </form>
+                    <br><br><br>
+
+                    <h2><b>Oppure clicca sulla locazione desiderata</b></h2>
 
             <br><br><br>
     <div>
@@ -80,8 +91,8 @@
             <input type="hidden" name="command" id="command_1" value="0"/>
             Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
             Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
+            Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id =btnRicerca0 type="submit" class="btnBlue" value="Ricerca" /><br />
         </div>
              </form>
@@ -97,8 +108,8 @@
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_1" value="0"/>
                     Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
                     Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-                    Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-                    Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+                    Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
+                    Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
                         Parcheggio:<br />
                         S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
@@ -109,6 +120,12 @@
                         Animali ammessi:<br />
                         S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
                         No<input type="radio" name="pet" value="false" /><br /><br />
+                        <p>Tipo Pensione</p>
+                        <select name="tipoPensione"  >
+                            <option value="completa">completa</option>
+                            <option value="mezza pensione">mezza pensione</option>
+                        </select>
+                        <br /><br />
                         <input type="submit"  class="btnBlue" value="Ricerca" /><br />
                     </div>
                 </div>
@@ -129,8 +146,8 @@
             <input type="hidden" name="command" id="command_2" value="1"/>
             Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
             Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br />
-            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br />
+            Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id="btnRicerca1" type="submit"class="btnBlue" value="Ricerca" /><br />
         </div>
             </form>
@@ -144,8 +161,8 @@
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_2" value="1"/>
                     Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
                     Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-                    Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-                    Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+                    Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
+                    Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
                         Parcheggio:<br />
                         S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
@@ -156,6 +173,16 @@
                         Animali ammessi:<br />
                         S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
                         No<input type="radio" name="pet" value="false" /><br /><br />
+                        <p>Numero Stanze</p>
+                        <select name="numeroStanze"  >
+                            <option value="1">una</option>
+                            <option value="2">due</option>
+                            <option value="3">tre</option>
+                            <option value="4">quattro</option>
+                            <option value="5">cinque</option>
+                            <option value="6">sei</option>
+                        </select>
+                        <br/><br/>
                         <input type="submit"  class="btnBlue" value="Ricerca" /><br />
                     </div>
                 </div>
@@ -166,7 +193,7 @@
 
 	<div>
 		<div style="float: left; width: 400px">
-            <h3>Bed and Breakfast</h3>
+            <h3>Bed &amp; Breakfast</h3>
 			<input id="beb"type="radio" style="display:none" name="command" value="2" onclick="visualizzaPerViaggiatore('bebform','aptform','albform','cvzform','ostform','piuOp2','bebformAvanzata','albformAvanzata','aptformAvanzata','cvzformAvanzata','ostformAvanzata') ; nascondiBtnAvanzata('piuOp1','piuOp0','piuOp3','piuOp4')"/>
 			<label class=" drinkcard-cc beb" for="beb"></label>
 		</div>
@@ -177,8 +204,8 @@
             <input type="hidden" name="command" id="command_3" value="2"/>
             Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
             Provincia:<br /><input type="text" name="provincia" value ="" /><br /><br />
-            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br/>
-            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br/>
+            Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id = "btnRicerca2" type="submit" class="btnBlue" value="Ricerca" /><br />
 		</div>
 	        </form>
@@ -192,8 +219,8 @@
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_3" value="2"/>
                     Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
                     Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-                    Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-                    Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+                    Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
+                    Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
                         Parcheggio:<br />
                         S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
@@ -226,8 +253,8 @@
             <input type="hidden" name="command" id="command_4" value="3"/>
             Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
             Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br/>
-            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br/>
+            Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id = "btnRicerca3" type="submit" class="btnBlue" value="Ricerca" /><br />
         </div>
 	    </form>
@@ -241,8 +268,8 @@
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_4" value="3"/>
                     Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
                     Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-                    Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-                    Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+                    Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
+                    Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
                         Parcheggio:<br />
                         S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
@@ -253,6 +280,16 @@
                         Animali ammessi:<br />
                         S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
                         No<input type="radio" name="pet" value="false" /><br /><br />
+                        <p>Numero Camere</p>
+                        <select name="numeroCamere"  >
+                            <option value="1">una</option>
+                            <option value="2">due</option>
+                            <option value="3">tre</option>
+                            <option value="4">quattro</option>
+                            <option value="5">cinque</option>
+                            <option value="6">sei</option>
+                        </select>
+                        <br /><br />
                         <input type="submit"  class="btnBlue" value="Ricerca" /><br />
                     </div>
                 </div>
@@ -274,8 +311,8 @@
             <input type="hidden" name="command" id="command" value="4"/>
             Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
             Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-            Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br/>
-            Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+            Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br/>
+            Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id = "btnRicerca4" type="submit" class="btnBlue" value="Ricerca" /><br />
 	    </div>
 	     </form>
@@ -289,8 +326,8 @@
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_5" value="4"/>
                     Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
                     Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-                    Data Inizio:<br /><input type="text" name="dataInizio" value="gg/mm/aaaa" /><br /><br />
-                    Data Fine:<br /><input type="text" name="dataFine" value="gg/mm/aaaa" /><br /><br />
+                    Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
+                    Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
                         Parcheggio:<br />
                         S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
@@ -301,6 +338,12 @@
                         Animali ammessi:<br />
                         S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
                         No<input type="radio" name="pet" value="false" /><br /><br />
+                        <p>Tipo Pensione</p>
+                        <select name="tipoPensione"  >
+                            <option value="completa">completa</option>
+                            <option value="mezza pensione">mezza pensione</option>
+                        </select>
+                        <br /><br />
                         <input type="submit"  class="btnBlue" value="Ricerca" /><br />
                     </div>
                 </div>

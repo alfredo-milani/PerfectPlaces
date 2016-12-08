@@ -16,6 +16,6 @@ public interface ControlloreRicerca {
             InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException;
 
 
-    Object ricercaAvanzata(Locazione l, Object elencoLocazioni, String parcheggio, String wifi, String pet)throws ClassNotFoundException,
+    Object ricercaAvanzata(Locazione l, String provincia,String prezzo, String parcheggio, String wifi, String pet,String caratteristica)throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException;
 }

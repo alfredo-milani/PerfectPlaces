@@ -7,6 +7,8 @@ import java.util.GregorianCalendar;
  * Created by gabriele on 12/11/16.
  */
 public class CamerePrenotate implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String nomeLocazione;
     private GregorianCalendar data;
     private int contatore;

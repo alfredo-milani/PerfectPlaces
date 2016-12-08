@@ -233,8 +233,8 @@
 		Animali ammessi:<br />
 		S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
 		No<input type="radio" name="pet" value="false" /><br /><br />
-
-	<input type="submit" value="Inserisci" /><br />
+		Tipo Pensione:<br /><input type="text" name="tipoPensione" value="" /><br /><br />
+		<input type="submit" value="Inserisci" /><br />
 
 	</div>
 

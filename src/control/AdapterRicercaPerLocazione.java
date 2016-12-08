@@ -1,10 +1,8 @@
 package control;
 
-import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.DeserializzaOggetti;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,14 +10,14 @@ import java.util.ArrayList;
 /**
  * Created by gabriele on 02/12/16.
  */
-public class AdapterRicercaLocazione implements ControlloreRicerca {
+public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazione {
 
 
     //aggregazione
     ControlloreRicercaGlobale crg;
 
 
-    public AdapterRicercaLocazione(ControlloreRicercaGlobale c){
+    public AdapterRicercaPerLocazione(ControlloreRicercaGlobale c){
         this.crg = c;
     }
 
@@ -189,7 +187,7 @@ public class AdapterRicercaLocazione implements ControlloreRicerca {
 
     public static void main(String[]  argc) throws DeserializzazioneException, ClassNotFoundException, IOException, InstantiationException, SerializzazioneException, IllegalAccessException {
         ControlloreRicercaGlobale g = new ControlloreRicercaGlobale();
-        ControlloreRicerca c = new AdapterRicercaLocazione(g) ;
+        ControlloreRicercaPerLocazione c = new AdapterRicercaPerLocazione(g) ;
         ArrayList<Locazione> l = new ArrayList<Locazione>();
         Appartamento a = new Appartamento();
         /*l = (ArrayList<Locazione>) c.ricerca(a,"Roma","800");

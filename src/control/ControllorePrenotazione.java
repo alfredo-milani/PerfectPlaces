@@ -68,26 +68,20 @@ public class ControllorePrenotazione {
         b.close();
 
         SerializzaOggetti sobj = new SerializzaOggetti();
-
         sobj.serializza(elencoDate, percorsoTemp);
 
         DeserializzaOggetti dobj = new DeserializzaOggetti();
-
 
         while(!dataInizio.equals(dataFine)){
 
             elencoDate = (ArrayList<GregorianCalendar>) dobj.deserializza(percorsoTemp);
             elencoDate.add(dataInizio);
             sobj.serializza(elencoDate, percorsoTemp);
-            dataInizio.add(dataInizio.DAY_OF_MONTH, 1);
+            dataInizio.add(Calendar.DAY_OF_MONTH, 1);
         }
-
         elencoDate = (ArrayList<GregorianCalendar>) dobj.deserializza(percorsoTemp);
         elencoDate.add(dataInizio);
         sobj.serializza(elencoDate, percorsoTemp);
-        for(GregorianCalendar elenco: elencoDate){
-            System.out.println("array date: " + elenco.get(Calendar.DATE)+" " + " "+elenco.get(Calendar.MONTH)+" "+ " "+elenco.get(Calendar.YEAR));
-        }
 
 		return elencoDate;
 	}

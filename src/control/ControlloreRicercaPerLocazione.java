@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by gabriele on 02/12/16.
  */
-public interface ControlloreRicerca {
+public interface ControlloreRicercaPerLocazione {
 
     Object ricerca(Locazione l, String provincia, String prezzo)throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException;

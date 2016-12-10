@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Locale;
+
 public class Utente implements java.io.Serializable {
 	// Variabili
 	private static final long serialVersionUID = 1L;
@@ -12,10 +14,12 @@ public class Utente implements java.io.Serializable {
 	private String immagine;
 	private String nascita;
 	private String sesso;
+	private Locale lingua;
 	
 	// Costruttore
 	public Utente(String username, String password, String nome,
-				  String cognome, String email, String immagine) {
+				  String cognome, String email,
+                  String immagine, Locale lingua) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
@@ -24,8 +28,9 @@ public class Utente implements java.io.Serializable {
 		this.immagine = immagine;
 		this.nascita = null;
 		this.sesso = null;
+		this.lingua = lingua != null ? lingua : Locale.getDefault();
 	}
-	
+
 	// Getters e Setters
 	public String getUsername() {
 		return username;
@@ -89,5 +94,13 @@ public class Utente implements java.io.Serializable {
 
     public void setNascita(String nascita) {
         this.nascita = nascita;
+    }
+
+    public Locale getLingua() {
+        return lingua;
+    }
+
+    public void setLingua(Locale lingua) {
+        this.lingua = lingua;
     }
 }

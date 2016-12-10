@@ -43,6 +43,10 @@
 	text-decoration: none;
 }
 
+.break {
+	height: 45px;
+}
+
 .btnBlue {
 	width: 100%;
 	background-color: #4b7091;

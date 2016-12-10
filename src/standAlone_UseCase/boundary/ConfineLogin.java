@@ -35,6 +35,7 @@ public class ConfineLogin extends JFrame
     public JTextField loginF = new JTextField();
     public JLabel     passwordLabel = new JLabel();
     public JPasswordField passwordF= new JPasswordField();
+    public JLabel     mostraErrori = new JLabel();
 
     // Ascoltatore di bottone e relativa azioni
     private LoginAA   ascoltatoreEtAzioneLogin;
@@ -89,9 +90,17 @@ public class ConfineLogin extends JFrame
         passwordF.setSize(panelTitolo.getWidth()/2, 30);
         passwordF.setFont(new Font("Verdana", 0, 15));
 
+        // Controllore Login
+        mostraErrori.setFont(new Font("Verdana", Font.BOLD, 15));
+        mostraErrori.setLocation(300, 30);
+        mostraErrori.setSize(panelTitolo.getWidth(), panelTitolo.getHeight());
+        mostraErrori.setText("Errore! Username o Passord errati");
+        mostraErrori.setForeground(Color.RED);
+        mostraErrori.setVisible(false);
+
         // Creazione bottone
         bLogin = new JButton("Login");
-        bLogin.setLocation(300,50);
+        bLogin.setLocation(300, 70);
         bLogin.setSize(panelTitolo.getWidth()/4, 50);
         bLogin.setFont(new Font("Arial", 0, 20));
 
@@ -112,12 +121,21 @@ public class ConfineLogin extends JFrame
         panelButtonLogin.setLayout(null);
         panelButtonLogin.setSize(ConfineAvvio.Confine.getWidth(), ConfineAvvio.Confine.getHeight()/5);
         panelButtonLogin.setLocation(5, 330);
+        panelButtonLogin.add(mostraErrori);
         panelButtonLogin.add(bLogin);
+
+        /*
+        panelMostraErrori.setLayout(null);
+        panelMostraErrori.setSize(panelTitolo.getWidth()/4, 50);
+        panelMostraErrori.setLocation(300, 30);
+        panelMostraErrori.add(mostraErrori);
+        */
 
 
         pannelloLogin.add(panelCredenzialiLogin);
         pannelloLogin.add(panelCredenzialiPsw);
         pannelloLogin.add(panelButtonLogin);
+        //pannelloLogin.add(panelMostraErrori);
 
 
 

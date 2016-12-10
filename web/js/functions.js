@@ -77,18 +77,26 @@ function nascondiBtnAvanzata(btn1,btn2,btn3,btn4){
  *  it -> IT, italiano
  *  en -> EN, english
  */
-function changeLang(box, us, psw) {
-    var URL = window.location.href;
-    var URLArray = URL.split("_");
-    var currentLang = String(document.documentElement.lang);
-    var lang = String(box[box.selectedIndex].id);
+function changeLang(box, us, psw, pref) {
+    var oldURL = window.location.href;
+    var lang = String(box[box.selectedIndex].value);
+    var paramsToSend = "";
+    var newURL = "";
 
-    if (currentLang == lang)
-        return;
+    if (arguments.length < 2) {
+        newURL = oldURL;
+        paramsToSend += "lang=" + lang;
+    } else {
+        paramsToSend += "lang=" + lang + "&";
+        var pos = oldURL.lastIndexOf("lang");
+        if (pos != -1)
+            newURL = oldURL.substring(0, pos - 1);
+        else
+            newURL = oldURL;
+    }
 
     // Per mantenere l'utente loggato durante il cambio di lingua
-    var params = ["username", "password"];
-    var paramsToSend = "";
+    var params = ["username", "password", "pref"];
     for (var i = 1; i < arguments.length; ++i) {
         if (arguments[i] != null) {
             paramsToSend += params[i - 1] + "=" + arguments[i];
@@ -97,9 +105,8 @@ function changeLang(box, us, psw) {
         }
     }
 
-    var finalURL = URLArray[0] + "_" + lang + "_" + URLArray[2];
     var http = new XMLHttpRequest();
-    http.open("POST", finalURL, true);
+    http.open("POST", newURL, true);
 
     // Invia informazioni di header con la richiesta
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -110,7 +117,7 @@ function changeLang(box, us, psw) {
             // Per sostituire URL
             document.open();
             document.write(http.responseText);
-            window.history.pushState({"html":http.html, "pageTitle":http.pageTitle}, "URL", finalURL);
+            window.history.pushState({"html":http.html, "pageTitle":http.pageTitle}, "URL", newURL);
             document.close();
         }
     };

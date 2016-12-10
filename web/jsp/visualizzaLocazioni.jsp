@@ -65,12 +65,12 @@ String descrizione;
 	<div id="page">
 		<div id="page-bgtop">
 			<ul class="topnav" id=myTopnav">
-				<li><a href="_it_utente.jsp">HOME</a></li>
+				<li><a href="utente.jsp">HOME</a></li>
 				<li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
 				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-				<li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
-				<li><a href="_it_posta.jsp">Posta</a></li>
-				<li><a href="_it_logout.jsp">Esci</a></li>
+				<li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
+				<li><a href="posta.jsp">Posta</a></li>
+				<li><a href="logout.jsp">Esci</a></li>
 			</ul>
             <div class="post">
                     <%

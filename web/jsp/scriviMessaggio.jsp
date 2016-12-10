@@ -1,5 +1,8 @@
 <%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="exception.SerializzazioneException" %><%--
+<%@ page import="exception.SerializzazioneException" %>
+<%@ page import="control.ControlloreLingua" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="java.util.Locale" %><%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -11,6 +14,16 @@
 <jsp:useBean id="p" scope="session" class="control.ControlloreGestionePosta"/>
 
 <%
+    Locale locale;
+    try {
+        locale = ControlloreLingua.getLang(c.getUser());
+    } catch (DeserializzazioneException e) {
+        locale = ControlloreLingua.getLang();
+        e.printStackTrace();
+    }
+    ResourceBundle bundle = ControlloreLingua
+            .getBundle(locale);
+
     String param = request.getParameter("Msg");
     String dest = request.getParameter("Dest");
     String mittente = c.getUser();
@@ -32,7 +45,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -49,8 +62,8 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1>Scrivi il tuo messaggio</h1>
-				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
+				<h1><%=bundle.getString("posta_scrivi")%></h1>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser() %> </h2>
 			</div>
 		</div>
 	</div>
@@ -60,12 +73,12 @@
 		<div id="page-bgtop">
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
-                <li><a href="_it_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="_it_posta.jsp">Posta</a></li>
-                <li><a href="_it_logout.jsp">Esci</a></li>
+                <li><a href="utente.jsp"><%=bundle.getString("utente_home")%></a></li>
+                <li><a href="areaViaggiatore.jsp"><%=bundle.getString("utente_areaViaggiatore")%></a></li>
+                <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
+                <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
+                <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
 			<div id="page-bgbtm">
@@ -73,14 +86,14 @@
 
 					<div class="post">
                         <h2>
-                            <strong> Messaggio: </strong>
+                            <strong> <%=bundle.getString("scriviMessaggio_msg")%> </strong>
 
                             <%
                                 switch (controllo) {
                                     case 0:
                             %>
 
-                                        <font color="green"> Messaggio inviato correttamente </font>
+                                        <font color="green"> <%=bundle.getString("scriviMessaggio_msgInviato")%> </font>
 
                             <%
                                         break;
@@ -88,7 +101,7 @@
                                     case 1:
                             %>
 
-                                        <font color="red"> Errore! Inserisci almeno un destinatario </font>
+                                        <font color="red"> <%=bundle.getString("scriviMessaggio_erroreDest")%> </font>
 
                             <%
                                         break;
@@ -96,7 +109,7 @@
                                     case 2:
                             %>
 
-                                        <font color="red"> Errore! Inserisci l'oggetto del messaggio </font>
+                                        <font color="red"> <%=bundle.getString("scriviMessaggio_erroreObj")%> </font>
 
                             <%
                                         break;
@@ -104,7 +117,7 @@
                                     case 3:
                             %>
 
-                                        <font color="red"> Errore! Inserisci il contenuto del messaggio </font>
+                                        <font color="red"> <%=bundle.getString("scriviMessaggio_erroreCont")%> </font>
 
                             <%
                                         break;
@@ -112,7 +125,7 @@
                                     case 4:
                             %>
 
-                                        <font color="red"> Errore! Hai inserito un destinatario inesistente </font>
+                                        <font color="red"> <%=bundle.getString("scriviMessaggio_erroreDestNonValido")%> </font>
 
                             <%
                                         break;
@@ -120,7 +133,7 @@
                                     case 5:
                             %>
 
-                                        <font color="red"> Sessione scaduta. Effettua di nuovo l'accesso. </font>
+                                        <font color="red"> <%=bundle.getString("modificaProfiloUtente_sessioneScaduta")%> </font>
 
                             <%
                                         break;
@@ -128,7 +141,7 @@
                                     case 6:
                             %>
 
-                                        <font color="red"> Attenzione! Mittente e destinatario coincidono! </font>
+                                        <font color="red"> <%=bundle.getString("scriviMessaggio_erroreMitDest")%> </font>
 
                             <%
                                         break;
@@ -139,19 +152,19 @@
                     </div>
 					
 					<div class="post">
-						<form action="_it_scriviMessaggio.jsp?Msg=1" enctype="application/x-www-form-urlencoded" method="post">
+						<form action="scriviMessaggio.jsp?Msg=1" enctype="application/x-www-form-urlencoded" method="post">
 							<table width="100%">
                                 <tr>
                                     <td>
                                         <label>
-                                            Mittente: <font color="#1268b3"> <% out.println(mittente); %> </font>
+                                            <%=bundle.getString("scriviMessaggio_mitt")%> <font color="#1268b3"> <%=mittente%> </font>
                                         </label>
                                     </td>
                                 </tr>
 
 								<tr>
                                     <td>
-                                        <label for="destinatario">Destinatario:</label>
+                                        <label for="destinatario"><%=bundle.getString("scriviMessaggio_dest")%></label>
                                     </td>
 								</tr>
 								<tr>
@@ -172,7 +185,7 @@
 
 								<tr>
 									<td>
-                                        <label for="oggetto">Oggetto:</label>
+                                        <label for="oggetto"><%=bundle.getString("scriviMessaggio_obj")%></label>
                                     </td>
 								</tr>
 								<tr>	
@@ -192,7 +205,7 @@
 
 								<tr>
 								    <td>
-                                        <label for="contenuto">Contenuto:</label>
+                                        <label for="contenuto"><%=bundle.getString("scriviMessaggio_cont")%></label>
                                     </td>
 								</tr>
 								<tr>

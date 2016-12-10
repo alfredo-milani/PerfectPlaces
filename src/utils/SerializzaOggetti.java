@@ -16,7 +16,7 @@ public class SerializzaOggetti {
 	
 	// Metodo che prende come input il percorso del file e un oggetto ed effettua la serializzazione.
 
-	public void serializza(Object obj, String percorso) throws SerializzazioneException {
+	public static void serializza(Object obj, String percorso) throws SerializzazioneException {
 		try{
 			FileOutputStream f = new FileOutputStream(percorso);
 			ObjectOutputStream s = new ObjectOutputStream(f);

@@ -8,11 +8,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
+<%@ page import="control.ControlloreLingua" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="constants.Constants" %>
 <jsp:useBean id="b" class="control.ControlloreRegistrazione" scope="session"/>
+
+<%
+    String lang = request.getParameter("lang");
+    lang = lang != null ? lang : Constants.LANG_DEFAULT;
+    Locale selectedLang;
+    if (lang != null)
+        selectedLang = ControlloreLingua.getLocale(lang);
+    else
+        selectedLang = ControlloreLingua.getLang();
+
+    ResourceBundle bundle = ControlloreLingua
+            .getBundle(selectedLang);
+%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -33,13 +51,45 @@
     <table>
         <tr>
             <td>
-                <label for="select"> Language: </label>
+                <strong>
+                    <label for="select"> <%=bundle.getString("index_lingua")%> </label>
+                </strong>
             </td>
             <td>
-                <select id="select" class="btn" onchange="changeLang(this)">
-                    <option id="en" value="english">English</option>
-                    <option id="it" value="italian">Italian</option>
-                </select>
+
+                <%
+                    if (lang != null) {
+                        if (lang.equals(Constants.EN)) {
+                %>
+
+                            <select id="select" class="btn" onchange="changeLang(this)">
+                                <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                            </select>
+
+                    <%
+                        } else if (lang.equals(Constants.IT)) {
+                    %>
+
+                            <select id="select" class="btn" onchange="changeLang(this)">
+                                <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                                <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                            </select>
+
+                <%
+                        }
+                    } else {
+                %>
+
+                        <select id="select" class="btn" onchange="changeLang(this)">
+                            <option value="<%=Constants.LANG_DEFAULT%>"><%=bundle.getString("index_italiano")%></option>
+                            <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                        </select>
+
+                <%
+                    }
+                %>
+
             </td>
         </tr>
     </table>
@@ -49,7 +99,7 @@
     <table id="table_main">
         <tr>
             <td>
-                <p id="p_1"> The easiest way to find your ideal accommodation </p>
+                <p id="p_1"> <%=bundle.getString("index_accoglienza")%> </p>
             </td>
         </tr>
     </table>
@@ -67,16 +117,16 @@
                             if (paramLog != null && paramLog.equals("1")) {
                         %>
 
-                        <h4 class="main"> <font color="red"> The user is not present in the system or the entered password is wrong! </font> </h4>
+                            <h4 class="main"> <font color="red"> <%=bundle.getString("index_erroreLogin")%> </font> </h4>
 
-                        <%  } %>
+                        <% } %>
 
-                        <h2 class="main"><strong>LOGIN</strong></h2>
-                        <form action="_en_utente.jsp" enctype="application/x-www-form-urlencoded" method="post">
+                        <h2 class="main"> <strong> <%=bundle.getString("index_accedi")%> </strong> </h2>
+                        <form action="utente.jsp?lang=<%=lang%>" enctype="application/x-www-form-urlencoded" method="post">
                             <table>
                                 <tr>
                                     <td>
-                                        <label for="username"> Username: </label>
+                                        <label for="username"> <%=bundle.getString("index_nomeUtente")%> </label>
                                     </td>
                                     <td>
                                         <input class="btn" type="text" name="username" id="username"/>
@@ -84,7 +134,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="password"> Password: </label>
+                                        <label for="password"> <%=bundle.getString("index_password")%> </label>
                                     </td>
                                     <td>
                                         <input class="btn" type="password" name="password" id="password"/>
@@ -92,7 +142,7 @@
                                 </tr>
                             </table>
                             <br />
-                            <input class="btn_2" type="submit" value="Login" /><br /><br />
+                            <input class="btn_2" type="submit" value="<%=bundle.getString("index_accedi")%>" /><br /><br />
                             <br />
                         </form>
                     </td>
@@ -111,7 +161,7 @@
 
                                 int caseReg = 0;
                                 try {
-                                    caseReg = b.registrazione(un, pw, pw2, nome, cognome, email);
+                                    caseReg = b.registrazione(un, pw, pw2, nome, cognome, email, selectedLang);
                                 } catch (DeserializzazioneException | SerializzazioneException e) {
                                     e.printStackTrace();
                                 }
@@ -119,31 +169,31 @@
                                     case 0:
                         %>
 
-                                        <h4 class="main"> <font color="green"> Registered successfully </font> </h4>
+                                        <h4 class="main"> <font color="green"> <%=bundle.getString("index_registrazioneEffettuata")%> </font> </h4>
 
                         <%
-                                break;
+                                        break;
 
-                            case 1:
+                                    case 1:
                         %>
 
-                                        <h4 class="main"> <font color="red"> You can not leave empty form fields! </font> </h4>
+                                        <h4 class="main"> <font color="red"> <%=bundle.getString("index_campiVuoti")%> </font> </h4>
 
                         <%
-                                break;
+                                        break;
 
-                            case 2:
+                                    case 2:
                         %>
 
-                                        <h4 class="main"> <font color="red"> The confirmation password must be the same as inserted! </font> </h4>
+                                        <h4 class="main"> <font color="red"> <%=bundle.getString("index_passwordDiverse")%> </font> </h4>
 
                         <%
-                                break;
+                                        break;
 
-                            case 3:
+                                    case 3:
                         %>
 
-                                        <h4 class="main"> <font color="red"> The username entered is already used! </font> </h4>
+                                        <h4 class="main"> <font color="red"> <%=bundle.getString("index_usernameUtilizzato")%> </font> </h4>
 
                         <%
                                         break;
@@ -151,12 +201,12 @@
                             }
                         %>
 
-                        <h2 class="main"><strong>SIGN UP</strong></h2>
-                        <form action="_en_index.jsp?Reg=1" enctype="application/x-www-form-urlencoded" method="post">
+                        <h2 class="main"><strong><%=bundle.getString("index_registrazione")%></strong></h2>
+                        <form action="index.jsp?Reg=1&lang=<%=lang%>" enctype="application/x-www-form-urlencoded" method="post">
                             <table>
                                 <tr>
                                     <td>
-                                        <label for="username_2"> Username: </label>
+                                        <label for="username_2"> <%=bundle.getString("index_nomeUtente")%> </label>
                                     </td>
                                     <td>
                                         <input class="btn" type="text" name="username_2" id="username_2" />
@@ -164,15 +214,13 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="password_2"> Password: </label>
+                                        <label for="password_2"> <%=bundle.getString("index_password")%> </label>
                                     </td>
-                                    <td>
-                                        <input class="btn" type="password" name="password" id="password_2"/>
-                                    </td>
+                                    <td><input class="btn" type="password" name="password" id="password_2"/></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="conf_psw"> Confirm Password: </label>
+                                        <label for="conf_psw"> <%=bundle.getString("index_confermaPsw")%> </label>
                                     </td>
                                     <td>
                                         <input class="btn" type="password" name="password2" id="conf_psw"/>
@@ -180,7 +228,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="nome"> First name: </label>
+                                        <label for="nome"> <%=bundle.getString("index_nome")%> </label>
                                     </td>
                                     <td>
                                         <input class="btn" type="text" name="nome" id="nome"/>
@@ -188,7 +236,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="cognome"> Last name: </label>
+                                        <label for="cognome"> <%=bundle.getString("index_cognome")%> </label>
                                     </td>
                                     <td>
                                         <input class="btn" type="text" name="cognome" id="cognome"/>
@@ -196,7 +244,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="email"> Email: </label>
+                                        <label for="email"> <%=bundle.getString("index_email")%> </label>
                                     </td>
                                     <td>
                                         <input class="btn" type="text" name="email" id="email"/>
@@ -204,7 +252,7 @@
                                 </tr>
                             </table>
                             <br />
-                            <input class="btn_2" type="submit" value="Sign Up" />
+                            <input class="btn_2" type="submit" value="<%=bundle.getString("index_registrati")%>" />
                             <br />
                         </form>
                     </td>
@@ -217,10 +265,10 @@
     </div>
 </div>
 <!-- end #page -->
-
-<!-- MJ: qui nel footer potresti mettere le FAQ e gli aiuti (NOTA: per gli aiuti ho me anche il bottone con
-    la scritta: "Vedi come..." -->
-<div id="footer"></div>
+<div id="footer">
+    <p><a href="faq.jsp"><%=bundle.getString("index_faq")%></a></p>
+    <p><a href="faq.jsp"> <%=bundle.getString("index_terminiUso")%></a></p>
+</div>
 <!-- end #footer -->
 </body>
 </html>

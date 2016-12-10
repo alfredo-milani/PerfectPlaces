@@ -2,7 +2,6 @@ package control;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import constants.Constants;
 import entity.Messaggio;
@@ -35,8 +34,7 @@ public class ControlloreGestionePosta {
 		if (file.length() == 0){
 			return elencoMessaggiUser;
 		} else {
-			DeserializzaOggetti dobj = new DeserializzaOggetti();
-			elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(percorsoMessaggi);
+			elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti.deserializza(percorsoMessaggi);
 
 			for (Messaggio anElencoMessaggi : elencoMessaggi)
 				if (anElencoMessaggi.getDestinatario().equals(username))
@@ -49,11 +47,8 @@ public class ControlloreGestionePosta {
 	// Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del file messaggi e, se lo trova, lo restituisce.
 	@SuppressWarnings("unchecked")
 	public synchronized Messaggio ricercaMessaggioPerCodice(int codice) throws DeserializzazioneException{
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		ArrayList<Messaggio> elencoMessaggi;
-		elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(percorsoMessaggi);
-
-		Messaggio messaggio;
+		elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti.deserializza(percorsoMessaggi);
 
         for (Messaggio anElencoMessaggi : elencoMessaggi)
             if (anElencoMessaggi.getCodice() == codice)
@@ -88,8 +83,7 @@ public class ControlloreGestionePosta {
             return 6;
 		
 		ArrayList<Utente> elencoUtenti;
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		elencoUtenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);	
+		elencoUtenti = (ArrayList<Utente>) DeserializzaOggetti.deserializza(percorsoUtenti);
 		boolean controllo = false;
         for (Utente anElencoUtenti : elencoUtenti)
             if (anElencoUtenti.getUsername().equals(destinatario))
@@ -98,15 +92,14 @@ public class ControlloreGestionePosta {
 		if(!controllo)
 			return 4;
 
-		ArrayList<Messaggio> elencoMessaggi = new ArrayList<Messaggio>();
+		ArrayList<Messaggio> elencoMessaggi = new ArrayList<>();
 		File file = new File(percorsoMessaggi);
 		if(file.length() != 0)
-			elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(percorsoMessaggi);
+			elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti.deserializza(percorsoMessaggi);
 
 		Messaggio messaggio = new Messaggio(oggetto, mittente, destinatario, contenuto);
 		elencoMessaggi.add(messaggio);
-		SerializzaOggetti sobj = new SerializzaOggetti();
-		sobj.serializza(elencoMessaggi, percorsoMessaggi);
+		SerializzaOggetti.serializza(elencoMessaggi, percorsoMessaggi);
 
 		return 0;
 	}
@@ -116,13 +109,11 @@ public class ControlloreGestionePosta {
     @SuppressWarnings("unchecked")
 	public synchronized String eliminaMessaggio(int oggetto)
             throws DeserializzazioneException, SerializzazioneException {
-        DeserializzaOggetti dobj = new DeserializzaOggetti();
-        SerializzaOggetti sobj = new SerializzaOggetti();
         ArrayList<Messaggio> elencoMessaggi;
-        elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(percorsoMessaggi);
+        elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti.deserializza(percorsoMessaggi);
 
         boolean esito = elencoMessaggi.removeIf(messaggio -> messaggio.getCodice() == oggetto);
-        sobj.serializza(elencoMessaggi, percorsoMessaggi);
+        SerializzaOggetti.serializza(elencoMessaggi, percorsoMessaggi);
 
         return esito ? "1" : "0";
 	}

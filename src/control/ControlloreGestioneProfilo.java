@@ -1,11 +1,5 @@
 package control;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,18 +19,19 @@ public class ControlloreGestioneProfilo {
 	private String percorsoUtenti = Constants.UTENTI_PATH;
 	
 	// Costruttore
-	public ControlloreGestioneProfilo(){
+	public ControlloreGestioneProfilo() {
 	}
 	
 	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
 	@SuppressWarnings("unchecked")
 	public synchronized Utente ottieniUtente(String username) throws DeserializzazioneException {
 		// Caso di default in cui non venga trovato l'utente nel file
-		Utente u = new Utente("errore", "errore", "errore", "errore", "errore", "errore");
+		Utente u = new Utente("errore", "errore",
+                "errore", "errore", "errore",
+                "errore", null);
 		
 		ArrayList<Utente> utenti;
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
+		utenti = (ArrayList<Utente>) DeserializzaOggetti.deserializza(percorsoUtenti);
 
 		for (Utente anUtenti : utenti)
 			if (anUtenti.getUsername().equals(username))
@@ -58,11 +53,12 @@ public class ControlloreGestioneProfilo {
 	//			0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
 	public synchronized int modificaProfilo(String username, String nome, String cognome,
-			String email, String sesso, String nascita, String vecchiaPassword, String nuovaPassword, String confermaNuovaPassword) throws DeserializzazioneException, SerializzazioneException{
+                                            String email, String sesso, String nascita,
+                                            String vecchiaPassword, String nuovaPassword,
+                                            String confermaNuovaPassword)
+            throws DeserializzazioneException, SerializzazioneException{
 		ArrayList<Utente> utenti;
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
-		SerializzaOggetti sobj = new SerializzaOggetti();
+		utenti = (ArrayList<Utente>) DeserializzaOggetti.deserializza(percorsoUtenti);
 
         if (username == null || nome == null ||
                 cognome == null || email == null ||
@@ -123,7 +119,7 @@ public class ControlloreGestioneProfilo {
             }
         }
 		
-		sobj.serializza(utenti, percorsoUtenti);
+		SerializzaOggetti.serializza(utenti, percorsoUtenti);
 		return 0;
 	}
 }

@@ -15,13 +15,13 @@
 <jsp:useBean id="b" class="control.ControlloreRegistrazione" scope="session"/>
 
 <%
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
     String lang = request.getParameter("lang");
-    lang = lang != null ? lang : Constants.LANG_DEFAULT;
     Locale selectedLang;
     if (lang != null)
-        selectedLang = ControlloreLingua.getLocale(lang);
+        selectedLang = controlloreLingua.getLocale(lang);
     else
-        selectedLang = ControlloreLingua.getLang();
+        selectedLang = controlloreLingua.getLang();
 
     ResourceBundle bundle = ControlloreLingua
             .getBundle(selectedLang);

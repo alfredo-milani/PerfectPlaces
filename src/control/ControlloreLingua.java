@@ -28,16 +28,16 @@ public class ControlloreLingua {
                     .getBundle(Constants.PACKAGE_LANGUAGE, Locale.getDefault());
     }
 
-    public static Locale getLocale(String lang) {
+    public Locale getLocale(String lang) {
         return new Locale(lang, "");
     }
 
-    public static Locale getLang() {
+    public Locale getLang() {
         return new Locale(Constants.LANG_DEFAULT, "");
     }
 
     @SuppressWarnings("unchecked")
-    public static Locale getLang(String loggedUser) throws DeserializzazioneException {
+    public Locale getLang(String loggedUser) throws DeserializzazioneException {
         ArrayList<Utente> utenti = (ArrayList<Utente>) DeserializzaOggetti
                     .deserializza(Constants.UTENTI_PATH);
 
@@ -49,7 +49,7 @@ public class ControlloreLingua {
     }
 
     @SuppressWarnings("unchecked")
-    public static void updatePref(String username,  Locale newLocale)
+    public void updatePref(String username,  Locale newLocale)
             throws DeserializzazioneException, SerializzazioneException {
         ArrayList<Utente> utenteArrayList = (ArrayList<Utente>) DeserializzaOggetti
                 .deserializza(Constants.UTENTI_PATH);

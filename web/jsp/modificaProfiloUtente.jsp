@@ -14,17 +14,43 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
+<%@ page import="constants.Constants" %>
 
 <%
-    Locale locale;
-    try {
-        locale = ControlloreLingua.getLang(c.getUser());
-    } catch (DeserializzazioneException e) {
-        locale = ControlloreLingua.getLang();
-        e.printStackTrace();
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
+    String lang = request.getParameter("lang");
+
+    Locale currentUserPref = controlloreLingua.getLang();
+    if (c.getLogged()) {
+        Locale currentLocale;
+        if (lang != null) {
+            currentLocale = controlloreLingua.getLocale(lang);
+        } else {
+            currentLocale = controlloreLingua.getLang();
+        }
+
+        try {
+            currentUserPref = controlloreLingua.getLang(c.getUser());
+        } catch (DeserializzazioneException e) {
+            currentUserPref = currentLocale;
+        }
+
+        String pref = request.getParameter("pref");
+
+        if (pref != null && Integer.parseInt(pref) == 1 &&
+                currentLocale != currentUserPref) {
+            try {
+                controlloreLingua.updatePref(c.getUser(), currentLocale);
+            } catch (DeserializzazioneException | SerializzazioneException e) {
+                e.printStackTrace();
+            }
+
+            currentUserPref = currentLocale;
+        }
     }
+
     ResourceBundle bundle = ControlloreLingua
-            .getBundle(locale);
+            .getBundle(currentUserPref);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -38,6 +64,7 @@
 	<title>Perfect Places</title>
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
 	<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>
@@ -265,8 +292,41 @@
                                 <tr class="break"><td colspan="2"></td></tr>
 
                                 <tr>
-                                    <td>
-                                        <label><%=bundle.getString("modificaProfiloUtente_linguaCorrente")%> <%=bundle.getString("language")%> </label>
+                                    <td align="center">
+                                        <label for="select"><%=bundle.getString("modificaProfiloUtente_linguaCorrente")%> </label>
+
+                                        <%
+                                            if (currentUserPref.getDisplayLanguage()
+                                                    .equals(Locale.ENGLISH.getDisplayLanguage())) {
+                                        %>
+
+                                                <select id="select" class="btn" onchange="changeLang(this, null, null, 1)">
+                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                                    <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                                                </select>
+
+                                        <%
+                                            } else if (currentUserPref.getDisplayLanguage()
+                                                    .equals(Locale.ITALIAN.getDisplayLanguage())) {
+                                        %>
+
+                                                <select id="select" class="btn" onchange="changeLang(this, null, null, 1)">
+                                                    <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                                </select>
+
+                                        <%
+                                            } else {
+                                        %>
+
+                                                <select id="select" class="btn" onchange="changeLang(this, null, null, 1)">
+                                                    <option value="<%=Constants.LANG_DEFAULT%>"><%=bundle.getString("index_italiano")%></option>
+                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                                </select>
+
+                                        <%
+                                            }
+                                        %>
                                     </td>
                                 </tr>
                                 <tr>

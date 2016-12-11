@@ -30,11 +30,12 @@
 </head>
 
 <%
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
     Locale locale;
     try {
-        locale = ControlloreLingua.getLang(c.getUser());
+        locale = controlloreLingua.getLang(c.getUser());
     } catch (DeserializzazioneException e) {
-        locale = ControlloreLingua.getLang();
+        locale = controlloreLingua.getLang();
         e.printStackTrace();
     }
     ResourceBundle bundle = ControlloreLingua

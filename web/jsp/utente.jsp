@@ -30,6 +30,7 @@
 
 <body>
 <%
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
     String un = request.getParameter("username");
     String pw = request.getParameter("password");
     String lang = request.getParameter("lang");
@@ -44,36 +45,31 @@
 
     Locale currentLocale;
     if (lang != null) {
-        currentLocale = ControlloreLingua.getLocale(lang);
+        currentLocale = controlloreLingua.getLocale(lang);
     } else {
-        currentLocale = ControlloreLingua.getLang();
-        lang = Constants.LANG_DEFAULT;
+        currentLocale = controlloreLingua.getLang();
     }
     Locale currentUserPref = currentLocale;
 
     if (c.getLogged()) {
         try {
-            currentUserPref = ControlloreLingua.getLang(c.getUser());
+            currentUserPref = controlloreLingua.getLang(c.getUser());
         } catch (DeserializzazioneException e) {
             e.printStackTrace();
         }
 
-        //lang = ControlloreLingua.fromLocaleToString(currentUserPref);
-
         String pref = request.getParameter("pref");
-        Locale newPref = ControlloreLingua.getLocale(lang);
 
-        //System.out.println("pref: " + pref + "\tnewPref: " + newPref);
-
-        if (pref != null && Integer.parseInt(pref) == 1 &&
-                newPref != currentUserPref) {
-            try {
-                ControlloreLingua.updatePref(c.getUser(), newPref);
-            } catch (DeserializzazioneException | SerializzazioneException e) {
-                e.printStackTrace();
+        if (pref != null && currentLocale != currentUserPref) {
+            if (Integer.parseInt(pref) == 1) {
+                try {
+                    controlloreLingua.updatePref(c.getUser(), currentLocale);
+                } catch (DeserializzazioneException | SerializzazioneException e) {
+                    e.printStackTrace();
+                }
             }
 
-            currentUserPref = newPref;
+            currentUserPref = currentLocale;
         }
     }
 
@@ -91,7 +87,7 @@
                 %>
 
 				    <h1> <%=bundle.getString("utente_benvenuto")%> </h1>
-                    <h2> <%=bundle.getString("utente_loggedAs")%> <% out.println(c.getUser()); %> </h2>
+                    <h2> <%=bundle.getString("utente_loggedAs")%> <%=c.getUser()%> </h2>
 
                 <%  } else {
                         lang = lang != null ? lang : Constants.LANG_DEFAULT;
@@ -131,28 +127,26 @@
                                 <td>
 
                                     <%
-                                        /*if (lang != null) {
-                                            if (lang.equals(Constants.EN)) {*/
-                                            if (currentUserPref == Locale.ENGLISH) {
+                                        if (currentUserPref.getDisplayLanguage()
+                                                .equals(Locale.ENGLISH.getDisplayLanguage())) {
                                     %>
 
-                                                <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>', 1)">
-                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
-                                                    <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
-                                                </select>
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>', 1)">
+                                                <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                                <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                                            </select>
 
                                     <%
-                                            //} else if (lang.equals(Constants.IT)) {
-                                            } else if (currentUserPref == Locale.ITALIAN) {
+                                        } else if (currentUserPref.getDisplayLanguage()
+                                                .equals(Locale.ITALIAN.getDisplayLanguage())) {
                                     %>
 
-                                                <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>', 1)">
-                                                    <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
-                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
-                                                </select>
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>', 1)">
+                                                <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                                                <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                            </select>
 
                                     <%
-                                            //}
                                         } else {
                                     %>
 

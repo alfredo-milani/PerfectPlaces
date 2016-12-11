@@ -36,7 +36,7 @@
     <driver id="sybase.ase" name="Sybase (Native)" dialect="Sybase">
       <option name="auto-sync" value="true" />
     </driver>
-    <driver id="postgresql" name="PostgreSQL" dialect="MySQL">
+    <driver id="postgresql" name="PostgreSQL" dialect="PostgreSQL">
       <artifact name="PostgreSQL" use="true" version="9.4-1201" />
       <option name="auto-sync" value="true" />
       <option name="auto-commit" value="true" />

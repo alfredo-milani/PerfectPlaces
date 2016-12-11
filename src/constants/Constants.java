@@ -28,6 +28,8 @@ public interface Constants {
     // Le stringhe che codificano la lingua devono corrispondere
     // a dei valori contenuti nel file Locale.java
     // (per la costruzione di new Locate)
+    // e.g. italiano --> it
+    //      inglese  --> en
     String LANG_DEFAULT = "it";
     String IT = "it";
     String EN = "en";

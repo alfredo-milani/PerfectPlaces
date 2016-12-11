@@ -93,10 +93,11 @@ public class ControlloreGestioneProfilo {
                 }
 
                 if (nascita != null) {
-                    String dateFormat = "dd/MM/yyyy";
-                    if (nascita.length() != dateFormat.length())
-                        return 6;
                     if (!nascita.equals("")) {
+                        String dateFormat = "dd/MM/yyyy";
+                        if (nascita.length() != dateFormat.length())
+                            return 6;
+
                         Date date = null;
                         try {
                             SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);

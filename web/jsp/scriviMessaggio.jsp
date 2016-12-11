@@ -222,7 +222,7 @@
 								<tr>
 									<center>
 									    <td style="text-align: center">
-									        <input class="btn_2" type="submit" value="Invia messaggio" />
+									        <input class="btn_2" type="submit" value="<%=bundle.getString("scriviMessaggio_invia")%>" />
 									    </td>
                                     </center>
 								</tr>

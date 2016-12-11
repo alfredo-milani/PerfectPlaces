@@ -63,4 +63,15 @@ public class ControlloreLingua {
 
         SerializzaOggetti.serializza(utenteArrayList, Constants.UTENTI_PATH);
     }
+
+    public static String fromLocaleToString(Locale locale) {
+        if (locale.getDisplayLanguage()
+                .equals(Locale.ENGLISH.getDisplayLanguage()))
+            return Constants.EN;
+        else if (locale.getDisplayLanguage()
+                .equals(Locale.ITALIAN.getDisplayLanguage()))
+            return Constants.IT;
+        else
+            return Constants.LANG_DEFAULT;
+    }
 }

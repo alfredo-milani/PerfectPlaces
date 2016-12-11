@@ -1,5 +1,6 @@
 <application>
   <component name="DatabaseSettings">
+    <option name="ddl-editor-confirm-loss" value="false" />
     <csv-formats>
       <csv-format name="Tab-separated (TSV)">
         <data>

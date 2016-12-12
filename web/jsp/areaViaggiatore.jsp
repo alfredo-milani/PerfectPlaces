@@ -67,8 +67,8 @@
                     <form method="get" action="ricercaLocazione.jsp" enctype="text/plain" id="locform" >
                         <div >
                             <input type="hidden" name="command" id="command_0" value="100"/>
-                            Prezzo:<input type="text" style="width:150px" name="prezzo" value="" />
-                            Provincia:<input type="text" style="width:180px" name="provincia" value="" />
+                            Prezzo:<input type="text" style="width:150px" placeholder="&euro;" name="prezzo" value="" />
+                            Provincia:<input type="text" placeholder="es. Roma" style="width:180px" name="provincia" value="" />
                             Data Inizio:<input type="date" style="width:180px" name="dataInizio" value="" />
                             Data Fine: <input type="date" style="width:180px" name="dataFine" value="" />
                             <input id =btnRicercaGlobale type="submit" class="btnBlue200" value="Ricerca" /><br />
@@ -89,8 +89,8 @@
         <div style="float: left; width: 200px">
             <br><br>
             <input type="hidden" name="command" id="command_1" value="0"/>
-            Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
-            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br />
+            Provincia:<br /><input type="text"placeholder="es. Roma" name="provincia" value="" /><br /><br />
             Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
             Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id =btnRicerca0 type="submit" class="btnBlue" value="Ricerca" /><br />
@@ -106,8 +106,8 @@
             <form method="get" action="ricercaLocazione.jsp" enctype="text/plain" id="albformAvanzata" style="display: none">
                 <div>
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_1" value="0"/>
-                    Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
-                    Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+                    Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br />
+                    Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
                     Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
                     Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
@@ -144,8 +144,8 @@
         <div style="float: left">
             <br><br>
             <input type="hidden" name="command" id="command_2" value="1"/>
-            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
-            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
             Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br />
             Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id="btnRicerca1" type="submit"class="btnBlue" value="Ricerca" /><br />
@@ -159,8 +159,8 @@
             <form method="get" action="ricercaLocazione.jsp" enctype="text/plain" id="aptformAvanzata" style="display: none">
                 <div>
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_2" value="1"/>
-                    Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
-                    Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+                    Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br />
+                    Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
                     Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
                     Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
@@ -175,12 +175,12 @@
                         No<input type="radio" name="pet" value="false" /><br /><br />
                         <p>Numero Stanze</p>
                         <select name="numeroStanze"  >
-                            <option value="1">una</option>
-                            <option value="2">due</option>
-                            <option value="3">tre</option>
-                            <option value="4">quattro</option>
-                            <option value="5">cinque</option>
-                            <option value="6">sei</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
                         </select>
                         <br/><br/>
                         <input type="submit"  class="btnBlue" value="Ricerca" /><br />
@@ -202,8 +202,8 @@
 		<div style="float: left">
             <br><br>
             <input type="hidden" name="command" id="command_3" value="2"/>
-            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
-            Provincia:<br /><input type="text" name="provincia" value ="" /><br /><br />
+            Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value ="" /><br /><br />
             Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br/>
             Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id = "btnRicerca2" type="submit" class="btnBlue" value="Ricerca" /><br />
@@ -217,8 +217,8 @@
             <form method="get" action="ricercaLocazione.jsp" enctype="text/plain" id="bebformAvanzata" style="display: none">
                 <div>
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_3" value="2"/>
-                    Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
-                    Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+                    Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br />
+                    Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
                     Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
                     Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
@@ -251,8 +251,8 @@
 	    <div style="float:left">
             <br><br>
             <input type="hidden" name="command" id="command_4" value="3"/>
-            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
-            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
             Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br/>
             Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id = "btnRicerca3" type="submit" class="btnBlue" value="Ricerca" /><br />
@@ -266,8 +266,8 @@
             <form method="get" action="ricercaLocazione.jsp" enctype="text/plain" id="cvzformAvanzata" style="display: none">
                 <div>
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_4" value="3"/>
-                    Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
-                    Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+                    Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br />
+                    Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
                     Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
                     Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>
@@ -282,12 +282,12 @@
                         No<input type="radio" name="pet" value="false" /><br /><br />
                         <p>Numero Camere</p>
                         <select name="numeroCamere"  >
-                            <option value="1">una</option>
-                            <option value="2">due</option>
-                            <option value="3">tre</option>
-                            <option value="4">quattro</option>
-                            <option value="5">cinque</option>
-                            <option value="6">sei</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
                         </select>
                         <br /><br />
                         <input type="submit"  class="btnBlue" value="Ricerca" /><br />
@@ -309,8 +309,8 @@
 	    <div style="float: left">
             <br><br>
             <input type="hidden" name="command" id="command" value="4"/>
-            Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
-            Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+            Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br /><br />
+            Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
             Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br/>
             Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
             <input id = "btnRicerca4" type="submit" class="btnBlue" value="Ricerca" /><br />
@@ -324,8 +324,8 @@
             <form method="get" action="ricercaLocazione.jsp" enctype="text/plain" id="ostformAvanzata" style="display: none">
                 <div>
                     <input type="hidden" name="commandAvanzata" id="commandAvanzata_5" value="4"/>
-                    Prezzo:<br /><input type="text" name="prezzo" value="" /><br />
-                    Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+                    Prezzo:<br /><input type="text" placeholder="&euro;" name="prezzo" value="" /><br />
+                    Provincia:<br /><input type="text" placeholder="es. Roma" name="provincia" value="" /><br /><br />
                     Data Inizio:<br /><input type="date" name="dataInizio" value="" /><br /><br />
                     Data Fine:<br /><input type="date" name="dataFine" value="" /><br /><br />
                     <div>

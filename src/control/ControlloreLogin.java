@@ -26,8 +26,8 @@ public class ControlloreLogin {
 	@SuppressWarnings("unchecked")
 	public synchronized void login(String username, String password) throws DeserializzazioneException{
         File file = new File(percorsoUtenti);
-        DeserializzaOggetti dobj = new DeserializzaOggetti();
-        ArrayList<Utente> utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);;
+        ArrayList<Utente> utenti = (ArrayList<Utente>) DeserializzaOggetti
+				.deserializza(percorsoUtenti);
 		
 		if(file.length() == 0)
 			return;

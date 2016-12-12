@@ -1,4 +1,7 @@
-<%--
+<%@ page import="control.ControlloreLingua" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="java.util.Locale" %><%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -8,9 +11,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 
+<%
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
+    Locale locale;
+    try {
+        locale = controlloreLingua.getLang(c.getUser());
+    } catch (DeserializzazioneException e) {
+        locale = controlloreLingua.getLang();
+        e.printStackTrace();
+    }
+    ResourceBundle bundle = ControlloreLingua
+            .getBundle(locale);
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -26,8 +42,8 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1> POSTA </h1>
-				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
+				<h1> <%=bundle.getString("posta_posta")%> </h1>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome") + c.getUser() %> </h2>
 			</div>
 		</div>
 	</div>
@@ -36,25 +52,25 @@
 		<div id="page-bgtop">
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
-                <li><a href="_it_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="_it_posta.jsp">Posta</a></li>
-                <li><a href="_it_logout.jsp">Esci</a></li>
+                <li><a href="utente.jsp"><%=bundle.getString("utente_home")%></a></li>
+                <li><a href="areaViaggiatore.jsp"><%=bundle.getString("utente_areaViaggiatore")%></a></li>
+                <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
+                <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
+                <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
 			<div id="page-bgbtm">
 				<div id="content">
 
 					<div class="post">
-							<h2><strong> Scegli cosa fare: </strong>
+							<h2><strong> <%=bundle.getString("posta_azioni")%> </strong>
 
                                 <%
                                     if (!c.getLogged()) {
                                 %>
 
-                                        <font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+                                        <font size="4px" color="red"> <%=bundle.getString("modificaProfiloUtente_sessioneScaduta")%> </font>
 
                                 <%
                                     }
@@ -67,9 +83,9 @@
 					<div class="post">
 					<table>
 						<tr>
-                            <td><h1><center>Usa client esterno</center></h1></td>
-							<td><h1><center>Scrivi Messaggio</center></h1></td>
-							<td><h1><center>Leggi la Posta</center></h1></td>
+                            <td><h1><center><%=bundle.getString("posta_clientEsterno")%></center></h1></td>
+							<td><h1><center><%=bundle.getString("posta_scrivi")%></center></h1></td>
+							<td><h1><center><%=bundle.getString("posta_leggi")%></center></h1></td>
 						</tr>
 
 						<tr>
@@ -90,7 +106,7 @@
 							<td>
                                 <h2 class="title">
                                     <center>
-                                        <a href="_it_scriviMessaggio.jsp">
+                                        <a href="scriviMessaggio.jsp">
                                             <img src="../css/images/write_email.png" width="250" height="250" alt="Img scrivi msg"/>
                                         </a>
                                     </center>
@@ -99,7 +115,7 @@
                             <td>
                                 <h2 class="title">
                                     <center>
-                                        <a href="_it_visualizzaPosta.jsp">
+                                        <a href="visualizzaPosta.jsp">
                                             <img src="../css/images/read_email.png" width="250" height="250" alt="Img leggi msg"/>
                                         </a>
                                     </center>

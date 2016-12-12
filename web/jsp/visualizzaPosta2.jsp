@@ -12,10 +12,26 @@
 <%@page import="entity.Messaggio" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="entity.Utente" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="control.ControlloreLingua" %>
+<%@ page import="java.util.ResourceBundle" %>
+
+<%
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
+    Locale locale;
+    try {
+        locale = controlloreLingua.getLang(c.getUser());
+    } catch (DeserializzazioneException e) {
+        locale = controlloreLingua.getLang();
+        e.printStackTrace();
+    }
+    ResourceBundle bundle = ControlloreLingua
+            .getBundle(locale);
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -31,8 +47,8 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1>Messaggi</h1>
-				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
+				<h1><%=bundle.getString("visualizzaPosta_msgs")%></h1>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser() %> </h2>
 			</div>
 		</div>
 	</div>
@@ -41,19 +57,19 @@
 		<div id="page-bgtop">
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
-                <li><a href="_it_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="_it_posta.jsp">Posta</a></li>
-                <li><a href="_it_logout.jsp">Esci</a></li>
+                <li><a href="utente.jsp"><%=bundle.getString("utente_home")%></a></li>
+                <li><a href="areaViaggiatore.jsp"><%=bundle.getString("utente_areaViaggiatore")%></a></li>
+                <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
+                <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
+                <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
 			<div id="page-bgbtm">
 				<div id="content">
 					
 					<div class="post">
-							<h2><strong>Messaggio selezionato:</strong>
+							<h2><strong><%=bundle.getString("visualizzaPosta_msgSelezionato")%></strong>
 
                                 <%
                                     String strCodice = request.getParameter("Cod");
@@ -73,7 +89,7 @@
                                 %>
 
                                             <h4>
-                                                <font color="red"> Il messaggio è stato eliminato </font>
+                                                <font color="red"> <%=bundle.getString("visualizzaPosta_erroreEliminato")%> </font>
                                             </h4>
 
                                 <%
@@ -81,7 +97,7 @@
                                     } else {
                                 %>
 
-                                        <font color="red"> Errore! Effettua di nuovo l'accesso per visualizzare i messaggi </font>
+                                        <font color="red"> <%=bundle.getString("visualizzaPosta_riaccediPerVisual")%> </font>
 
                                 <% } %>
 
@@ -97,7 +113,7 @@
                                     if (c.getLogged() && strCodice != null && messaggio != null) {
                                 %>
 
-								        <td><%out.println(messaggio.getMittente());%></td>
+								        <td><%=messaggio.getMittente()%></td>
 
                                 <% } %>
 
@@ -110,7 +126,7 @@
                                     if (c.getLogged() && strCodice != null && messaggio != null) {
                                 %>
 
-								        <td><%out.println(messaggio.getOggetto());%></td>
+								        <td><%=messaggio.getOggetto()%></td>
 
                                 <% } %>
 
@@ -125,7 +141,7 @@
                         %>
 
                                 <div class="break-word">
-                                    <%out.println(messaggio.getContenuto());%>
+                                    <%=messaggio.getContenuto()%>
                                 </div>
 
                         <% } %>
@@ -135,9 +151,9 @@
                         <table align="center">
                             <tr>
                                 <td>
-                                    <form action="_it_scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
+                                    <form action="scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
                                         <div>
-                                            <input class="btn_2" type="submit" value="Rispondi"/>
+                                            <input class="btn_2" type="submit" value="<%=bundle.getString("visualizzaPosta_rispondi")%>"/>
                                         </div>
                                     </form>
                                 </td>
@@ -154,7 +170,7 @@
                                     %>
                                     <form action="mailto:<%= des == null ? "" : des.getEmail() %>?subject=<%= messaggio == null ? "" : messaggio.getOggetto() %>" enctype="application/x-www-form-urlencoded" method="post">
                                         <div>
-                                            <input style="width: 300px" class="btn_2" type="submit" value="Rispondi con Client esterno" />
+                                            <input style="width: 300px" class="btn_2" type="submit" value="<%=bundle.getString("visualizzaPosta_rispondiClientExt")%>" />
                                         </div>
                                     </form>
                                 </td>

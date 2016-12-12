@@ -2,6 +2,7 @@ package control;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import constants.Constants;
 import entity.Utente;
@@ -25,8 +26,10 @@ public class ControlloreRegistrazione {
 	// 2 --> Le due password non sono uguali
 	// 3 --> Lo username inserito è già stato utilizzato
 	@SuppressWarnings("unchecked")
-	public synchronized int registrazione(String username, String password, String password2, String nome, String cognome,
-			String email) throws DeserializzazioneException, SerializzazioneException {
+	public synchronized int registrazione(String username, String password,
+										  String password2, String nome,
+                                          String cognome, String email, Locale lingua)
+            throws DeserializzazioneException, SerializzazioneException {
 		if(username == null ||
                 password == null ||
                 password2 == null ||
@@ -43,24 +46,24 @@ public class ControlloreRegistrazione {
 		if(!password.equals(password2)) return 2;
 
 		String immagine = "profiloDefault.png";
-		Utente ut = new Utente(username, password, nome, cognome, email, immagine);
+		Utente ut = new Utente(username, password, nome,
+                cognome, email, immagine, lingua);
+
 		File file = new File(percorsoUtenti);
-		SerializzaOggetti sobj = new SerializzaOggetti();
 		if(file.length() == 0){
 			utenti.add(ut);
-			sobj.serializza(utenti, percorsoUtenti);
+			SerializzaOggetti.serializza(utenti, percorsoUtenti);
 			return 0;
 		}
 
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
+		utenti = (ArrayList<Utente>) DeserializzaOggetti.deserializza(percorsoUtenti);
 
         for (Utente utente : utenti)
             if (utente.getUsername().equals(username))
                 return 3;
 
         utenti.add(ut);
-		sobj.serializza(utenti, percorsoUtenti);
+		SerializzaOggetti.serializza(utenti, percorsoUtenti);
 		
 		return 0;
 	}

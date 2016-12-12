@@ -11,10 +11,51 @@
 <%@page import="entity.*"%>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="control.ControlloreLingua" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="constants.Constants" %>
+
+<%
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
+    String lang = request.getParameter("lang");
+
+    Locale currentUserPref = controlloreLingua.getLang();
+    if (c.getLogged()) {
+        Locale currentLocale;
+        if (lang != null) {
+            currentLocale = controlloreLingua.getLocale(lang);
+        } else {
+            currentLocale = controlloreLingua.getLang();
+        }
+
+        try {
+            currentUserPref = controlloreLingua.getLang(c.getUser());
+        } catch (DeserializzazioneException e) {
+            currentUserPref = currentLocale;
+        }
+
+        String pref = request.getParameter("pref");
+
+        if (pref != null && Integer.parseInt(pref) == 1 &&
+                currentLocale != currentUserPref) {
+            try {
+                controlloreLingua.updatePref(c.getUser(), currentLocale);
+            } catch (DeserializzazioneException | SerializzazioneException e) {
+                e.printStackTrace();
+            }
+
+            currentUserPref = currentLocale;
+        }
+    }
+
+    ResourceBundle bundle = ControlloreLingua
+            .getBundle(currentUserPref);
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<meta name="keywords" content="" />
@@ -23,6 +64,7 @@
 	<title>Perfect Places</title>
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
 	<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../js/functions.js"></script>
 </head>
 
 <body>
@@ -30,8 +72,8 @@
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1>Modifica Profilo</h1>
-				<h2> Sei registrato come: <% out.println(c.getUser()); %> </h2>
+				<h1><%=bundle.getString("modificaProfiloUtente_modificaProfilo")%></h1>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser()%> </h2>
 			</div>
 		</div>
 	</div>
@@ -41,19 +83,19 @@
 		<div id="page-bgtop">
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
-                <li><a href="_it_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="_it_profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="_it_posta.jsp">Posta</a></li>
-                <li><a href="_it_logout.jsp">Esci</a></li>
+                <li><a href="utente.jsp"><%=bundle.getString("utente_home")%></a></li>
+                <li><a href="areaViaggiatore.jsp"><%=bundle.getString("utente_areaViaggiatore")%></a></li>
+                <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
+                <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
+                <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
 			<div id="page-bgbtm">
 				<div id="content">
 					<div class="post">
 						
-						<h2 class="title"> MODIFICA IL TUO PROFILO
+						<h2 class="title"> <%=bundle.getString("modificaProfiloUtente_modificaTuoProfilo")%>
 
                             <%
                                 String username = c.getUser();
@@ -63,7 +105,7 @@
                                 if (!c.getLogged()) {
                             %>
 
-                                    <font color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+                                    <font color="red"> <%=bundle.getString("modificaProfiloUtente_sessioneScaduta")%> </font>
 
                             <%
                                 } else {
@@ -99,7 +141,7 @@
                                             case 0:
                             %>
 
-                                                <font color="green"> Profilo modificato correttamente </font>
+                                                <font color="green"> <%=bundle.getString("modificaProfiloUtente_modificaCorretta")%> </font>
 
                             <%
                                                 break;
@@ -107,7 +149,7 @@
                                             case 1:
                             %>
 
-                                                <font color="red"> Vecchia password scorretta </font>
+                                                <font color="red"> <%=bundle.getString("modificaProfiloUtente_vecchiaPswErrore")%> </font>
 
                             <%
                                                 break;
@@ -115,7 +157,7 @@
                                             case 2:
                             %>
 
-                                                <font color="red"> La nuova password e la conferma della nuova password non sono uguali </font>
+                                                <font color="red"> <%=bundle.getString("modificaProfiloUtente_nuovaPswConferma")%> </font>
 
                             <%
                                                 break;
@@ -123,7 +165,7 @@
                                             case 3:
                             %>
 
-                                                <font color="red"> Il campo 'nuova password' risulta essere vuoto </font>
+                                                <font color="red"> <%=bundle.getString("modificaProfiloUtente_nuovaPswMancante")%> </font>
 
                             <%
                                                 break;
@@ -131,7 +173,7 @@
                                             case 4:
                             %>
 
-                                                <font color="red"> Sessione utente scaduta. Effettua di nuovo l'accesso per continuare </font>
+                                                <font color="red"> <%=bundle.getString("modificaProfiloUtente_sessioneScaduta")%> </font>
 
                             <%
                                                 break;
@@ -139,7 +181,7 @@
                                             case 5:
                             %>
 
-                                                <font color="red"> Il campo "Sesso" permette solo 'M' o 'F' </font>
+                                                <font color="red"> <%=bundle.getString("modificaProfiloUtente_sessoErrore")%> </font>
 
                             <%
                                                 break;
@@ -147,7 +189,7 @@
                                             case 6:
                             %>
 
-                                                <font color="red"> La data di nascita deve essere in formato: dd/mm/aaaa </font>
+                                                <font color="red"> <%=bundle.getString("modificaProfiloUtente_nascitaErrore")%> </font>
 
                             <%
                                                 break;
@@ -157,66 +199,66 @@
                             %>
 
                         </h2>
-                        <form action="_it_modificaProfiloUtente.jsp?Mpu=1" enctype="application/x-www-form-urlencoded" method="post">
+                        <form action="modificaProfiloUtente.jsp?Mpu=1" enctype="application/x-www-form-urlencoded" method="post">
                             <table>
                                 <tr>
                                     <td>
-                                        <label for="nome">Nome:</label>
+                                        <label for="nome"><%=bundle.getString("index_nome")%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="nome" type="text" name="nome" size="30" value="<%out.println(u == null ? "" : u.getNome());%>"/>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <label for="cognome">Cognome:</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input class="btn" id="cognome" type="text" name="cognome" size="30" value="<%out.println(u == null ? "" : u.getCognome());%>"/>
+                                        <input class="btn" id="nome" type="text" name="nome" size="30" value="<%=u == null ? "" : u.getNome()%>"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        <label for="email">Email:</label>
+                                        <label for="cognome"><%=bundle.getString("index_cognome")%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="email" type="text" name="email" size="30" value="<%out.println(u == null ? "" : u.getEmail());%>"/>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <label for="sesso">Sesso:</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input class="btn" id="sesso" type="text" name="sesso" size="30" value="<%out.println(u == null ? "" : (u.getSesso() == null ? "" : u.getSesso()) );%>"/>
+                                        <input class="btn" id="cognome" type="text" name="cognome" size="30" value="<%=u == null ? "" : u.getCognome()%>"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        <label for="nascita">Data di nascita:</label>
+                                        <label for="email"><%=bundle.getString("index_email")%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="nascita" type="text" name="nascita" size="30" value="<%out.println(u == null ? "" : (u.getNascita() == null ? "" : u.getNascita()) );%>"/>
+                                        <input class="btn" id="email" type="text" name="email" size="30" value="<%=u == null ? "" : u.getEmail()%>"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        <label for="vecchia_psw">Vecchia Password:</label>
+                                        <label for="sesso"><%=bundle.getString("profiloUtente_sesso")%></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="sesso" type="text" name="sesso" size="30" value="<%=u == null ? "" : (u.getSesso() == null ? "" : u.getSesso())%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="nascita"><%=bundle.getString("profiloUtente_nascita")%></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="btn" id="nascita" type="text" name="nascita" size="30" value="<%=u == null ? "" : (u.getNascita() == null ? "" : u.getNascita())%>"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="vecchia_psw"><%=bundle.getString("modificaProfiloUtente_vecchiaPsw")%></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -227,7 +269,7 @@
 
                                 <tr>
                                     <td>
-                                        <label for="nuova_psw">Nuova Password:</label>
+                                        <label for="nuova_psw"><%=bundle.getString("modificaProfiloUtente_nuovaPsw")%></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -238,7 +280,7 @@
 
                                 <tr>
                                     <td>
-                                        <label for="conferma_new_psw">Conferma Nuova Password:</label>
+                                        <label for="conferma_new_psw"><%=bundle.getString("modificaProfiloUtente_confermaNuovaPsw")%></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -247,10 +289,58 @@
                                     </td>
                                 </tr>
 
+                                <tr class="break"><td colspan="2"></td></tr>
+
+                                <tr>
+                                    <td align="center">
+                                        <label for="select"><%=bundle.getString("modificaProfiloUtente_linguaCorrente")%> </label>
+
+                                        <%
+                                            if (currentUserPref.getDisplayLanguage()
+                                                    .equals(Locale.ENGLISH.getDisplayLanguage())) {
+                                        %>
+
+                                                <select id="select" class="btn" onchange="changeLang(this, null, null, 1)">
+                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                                    <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                                                </select>
+
+                                        <%
+                                            } else if (currentUserPref.getDisplayLanguage()
+                                                    .equals(Locale.ITALIAN.getDisplayLanguage())) {
+                                        %>
+
+                                                <select id="select" class="btn" onchange="changeLang(this, null, null, 1)">
+                                                    <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
+                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                                </select>
+
+                                        <%
+                                            } else {
+                                        %>
+
+                                                <select id="select" class="btn" onchange="changeLang(this, null, null, 1)">
+                                                    <option value="<%=Constants.LANG_DEFAULT%>"><%=bundle.getString("index_italiano")%></option>
+                                                    <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
+                                                </select>
+
+                                        <%
+                                            }
+                                        %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>
+                                            <%=bundle.getString("modificaProfiloUtente_nota")%><u><a href="utente.jsp"> <%=bundle.getString("utente_home")%> </a></u>
+                                        </h4>
+                                    </td>
+                                </tr>
+
                             </table>
                             <center>
                                 <br/><br/><br/>
-                                <input class="btn_2" type="submit" value="Salva modifiche"/>
+                                <input class="btn_2" type="submit" value="<%=bundle.getString("modificaProfiloUtente_salva")%>"/>
                             </center>
                         </form>
 					</div>

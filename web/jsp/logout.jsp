@@ -1,4 +1,7 @@
-<%--
+<%@ page import="java.util.Locale" %>
+<%@ page import="control.ControlloreLingua" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="java.util.ResourceBundle" %><%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
@@ -10,7 +13,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -25,7 +28,19 @@
 <body>
 
 <%
-c.logout();
+    ControlloreLingua controlloreLingua = new ControlloreLingua();
+	String username = c.getUser();
+	Locale locale;
+    try {
+        locale = controlloreLingua.getLang(username);
+    } catch (DeserializzazioneException e) {
+        locale = controlloreLingua.getLang();
+        e.printStackTrace();
+    }
+    ResourceBundle bundle = ControlloreLingua
+            .getBundle(locale);
+
+    c.logout();
 %>
 
 <div id="wrapper">
@@ -42,11 +57,11 @@ c.logout();
 				<div id="content">
 
 					<div class="post">
-						<h2 class="title">LOGOUT EFFETTUATO CON SUCCESSO!</h2>
+						<h2 class="title"><%=bundle.getString("logout_effettuato")%></h2>
 						<br /><br /><br />
 						<h2 class="title">
-                            <a href="_it_index.jsp">
-                                <font color="#4b7091">TORNA ALLA HOME PAGE</font>
+                            <a href="index.jsp">
+                                <font color="#4b7091"><%=bundle.getString("logout_home")%></font>
                             </a>
                         </h2>
 				    </div>

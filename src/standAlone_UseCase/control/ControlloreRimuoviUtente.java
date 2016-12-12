@@ -28,7 +28,8 @@ public class ControlloreRimuoviUtente {
 	// Vengono utilizzati i thread per stampare a schermo l'array degli utenti prima e dopo la rimozione. 
 	
 	@SuppressWarnings("unchecked")
-	public void rimuovi(String username) throws DeserializzazioneException, SerializzazioneException, InterruptedException{
+	public void rimuovi(String username) throws DeserializzazioneException,
+			SerializzazioneException, InterruptedException{
 		ThreadRimozione tr = new ThreadRimozione();
 		Thread t1 = new Thread(tr);
 		Thread t2 = new Thread(tr);

@@ -1,12 +1,14 @@
 package standAlone_UseCase.control;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import constants.Constants;
 import standAlone_UseCase.boundary.ConfineAmministrazione;
-import standAlone_UseCase.boundary.ConfineLoginErrato;
 import entity.Utente;
 import exception.DeserializzazioneException;
+import standAlone_UseCase.boundary.ConfineLogin;
+import standAlone_UseCase.boundary.ConfineLoginErrato;
 import utils.DeserializzaOggetti;
 
 public class ControlloreLoginAmministratore {
@@ -26,22 +28,27 @@ public class ControlloreLoginAmministratore {
 	// di tutti gli elementi e viene verificata la corrispondenza di Username e Password inserite
 	
 	@SuppressWarnings("unchecked")
-	public void login(String username, char[] password) throws DeserializzazioneException{
+	public void login(String username, char[] password)
+			throws DeserializzazioneException{
 		
 		String pw = String.valueOf(password);
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoAmministratori);
-		
-		for(int i=0; i<utenti.size();i++){
-			if(utenti.get(i).getUsername().equals(username)){
-				if(utenti.get(i).getPassword().equals(pw)){
-					new ConfineAmministrazione();
-					return;
-				} else {
-					break;
-				}
+
+		for (Utente anUtenti : utenti) {
+			if (anUtenti.getUsername().equals(username)) {
+				if (anUtenti.getPassword().equals(pw)) {
+                    new ConfineAmministrazione();
+                    return;
+                }
+
+                break;
 			}
 		}
-		new ConfineLoginErrato();
+
+        ConfineLogin confineLogin = new ConfineLogin();
+		confineLogin.mostraErrori.setVisible(true);
+
+        // new ConfineLoginErrato();
 	}
 }

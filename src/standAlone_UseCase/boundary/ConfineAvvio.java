@@ -26,7 +26,6 @@ public class ConfineAvvio extends StackFrame
 
     //Label
     public JLabel titolo = new JLabel();
-    public JLabel titolo2 = new JLabel();
 
     //Bottoni
     public JButton bEntra = new JButton("ENTRA");

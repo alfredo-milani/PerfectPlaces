@@ -31,7 +31,9 @@ public class ControlloreNominaAmministratore {
 		ArrayList<Utente> utenti = new ArrayList<Utente>();
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
-		Utente u = new Utente("errore", "errore", "errore", "errore", "errore", "errore");
+		Utente u = new Utente("errore", "errore", "errore",
+				"errore", "errore",
+                "errore", null);
 		boolean controllo = false;
 		
 		for(int i = 0;i<utenti.size();i++){

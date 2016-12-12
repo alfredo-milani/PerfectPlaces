@@ -4,6 +4,7 @@
 	border:2px solid #ccc;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+    text-align: center;
 }
 
 .btnDel {
@@ -12,6 +13,7 @@
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
     color: red;
+    text-align: center;
 }
 
 .btn_2 {
@@ -31,6 +33,7 @@
 	padding: 10px 20px 10px 20px;
 	text-decoration: none;
 	outline: 0px;
+    text-align: center;
 }
 
 .btn_2:hover {
@@ -41,6 +44,11 @@
 	background-image: -o-linear-gradient(top, #e0e0e0, #999b9c);
 	background-image: linear-gradient(to bottom, #e0e0e0, #999b9c);
 	text-decoration: none;
+    text-align: center;
+}
+
+.break {
+	height: 45px;
 }
 
 .btnBlue {

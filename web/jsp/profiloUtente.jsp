@@ -9,7 +9,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="keywords" content="" />
@@ -29,6 +29,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="constants.Constants" %>
 <%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="control.ControlloreLingua" %>
 <%
     String username = c.getUser();
     Utente u = null;
@@ -37,7 +39,21 @@
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
+
+    ResourceBundle bundle = ControlloreLingua
+            .getBundle(u.getLingua());
+
     String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();
+    if (u.getSesso() != null) {
+        String format = ".png";
+        indirizzoImmagine = indirizzoImmagine.substring(0, indirizzoImmagine.length() - format.length());
+        if (u.getSesso().equals("M"))
+            indirizzoImmagine = indirizzoImmagine.concat("_M" + format);
+        else if (u.getSesso().equals("F"))
+            indirizzoImmagine = indirizzoImmagine.concat("_F" + format);
+    }
+
+
     ArrayList<Locazione> locazioni = null;
     try {
         locazioni = crl.visualizzaLocazioni(username);
@@ -47,37 +63,37 @@
 %>
 
 <div id="wrapper">
-    <div id="header-wrapper">
-        <div id="header">
-            <div id="logo">
-                <h1>Personal Profile</h1>
-                <h2> You are logged in as: <% out.println(c.getUser()); %> </h2>
-            </div>
-        </div>
-    </div>
-    <!-- end #header -->
-    <div id="page">
-        <div id="page-bgtop">
+	<div id="header-wrapper">
+		<div id="header">
+			<div id="logo">
+				<h1><%=bundle.getString("profiloUtente_personale")%></h1>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser() %> </h2>
+			</div>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="page">
+		<div id="page-bgtop">
             <!-- Menu -->
             <ul class="topnav" id=myTopnav">
-                <li><a href="_en_utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Traveller Area</a></li>
-                <li><a href="areaProprietario.jsp">Owner Area</a></li>
-                <li><a href="_en_profiloUtente.jsp">View Profile</a></li>
-                <li><a href="_en_posta.jsp">Mail</a></li>
-                <li><a href="_en_logout.jsp">Logout</a></li>
+                <li><a href="utente.jsp"><%=bundle.getString("utente_home")%></a></li>
+                <li><a href="areaViaggiatore.jsp"><%=bundle.getString("utente_areaViaggiatore")%></a></li>
+                <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
+                <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
+                <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
-            <div id="page-bgbtm">
-                <div id="content">
-
-                    <div class="post">
-                        <h2 class="title">YOUR PROFILE</h2>
+			<div id="page-bgbtm">
+				<div id="content">
+				
+					<div class="post">
+						<h2 class="title"><%=bundle.getString("profiloUtente_tuoProfilo")%></h2>
 
                         <table width="100%">
                             <tr>
                                 <td>
-                                    <h2 class="title"><strong>Your data</strong></h2>
+                                    <h2 class="title"><strong><%=bundle.getString("profiloUtente_dati")%></strong></h2>
                                 </td>
                                 <td>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -90,21 +106,21 @@
                                 </td>
                                 <td>
                                     <h3 class="blackclass">
-                                        <strong>Username:</strong><%out.println(" " + u.getUsername());%> <br/>
-                                        <strong>First Name:</strong><%out.println(" " + u.getNome());%> <br/>
-                                        <strong>Last Name:</strong><%out.println(" " + u.getCognome());%> <br/>
-                                        <strong>E-Mail:</strong><%out.println(" " + u.getEmail());%> <br/>
+                                        <strong><%=bundle.getString("index_nomeUtente")%></strong><%=" " + u.getUsername()%> <br/>
+                                        <strong><%=bundle.getString("index_nome")%></strong><%=" " + u.getNome()%> <br/>
+                                        <strong><%=bundle.getString("index_cognome")%></strong><%=" " + u.getCognome()%> <br/>
+                                        <strong><%=bundle.getString("index_email")%></strong><%=" " + u.getEmail()%> <br/>
 
                                         <% if (u.getSesso() == null) { %>
-                                        <strong>Sex:</strong><%out.println(" Not updated"); %> <br/>
+                                            <strong><%=bundle.getString("profiloUtente_sesso")%></strong><%=" " + bundle.getString("profiloUtente_nonPervenuto")%> <br/>
                                         <% } else { %>
-                                        <strong>Sex:</strong><%out.println(" " + u.getSesso()); %> <br/>
+                                            <strong><%=bundle.getString("profiloUtente_sesso")%></strong><%=" " + u.getSesso() %> <br/>
                                         <% } %>
 
                                         <% if (u.getNascita() == null) { %>
-                                        <strong>Birth date:</strong><%out.println(" Not updated"); %> <br/>
+                                            <strong><%=bundle.getString("profiloUtente_nascita")%></strong><%=" " + bundle.getString("profiloUtente_nonPervenuto")%> <br/>
                                         <% } else { %>
-                                        <strong>Birth date</strong><%out.println(" " + u.getNascita()); %> <br/>
+                                            <strong><%=bundle.getString("profiloUtente_nascita")%></strong><%=" " + u.getNascita() %> <br/>
                                         <% } %>
                                     </h3>
                                 </td>
@@ -114,13 +130,12 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h1 class="title"><strong>Location:</strong></h1>
+                                    <h1 class="title"><strong><%=bundle.getString("profiloUtente_locazioni")%></strong></h1>
                                     <h3 class="blackclass">
 
                                         <%
                                             if (locazioni.size() == 0) {
-                                                out.println("\n" +
-                                                        "For now you have no location.");
+                                                out.println(bundle.getString("profiloUtente_nessunaLocazione"));
                                             } else {
                                                 int i;
                                                 for (i = 0; i < locazioni.size() - 1; ++i) {
@@ -135,24 +150,24 @@
                                     <br/>
                                     <br/>
                                     <h2>
-                                        <strong><a href="_en_modificaProfiloUtente.jsp">Edit Profile</a></strong>
+                                        <strong><a href="modificaProfiloUtente.jsp"><%=bundle.getString("profiloUtente_modificaProfilo")%></a></strong>
                                     </h2>
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                    <div style="clear: both;">&nbsp;</div>
-                </div>
-                <!-- end #content -->
+					</div>
+					<div style="clear: both;">&nbsp;</div>
+				</div>
+				<!-- end #content -->
 
-                <div style="clear: both;">&nbsp;</div>
-            </div>
-        </div>
-    </div>
-    <!-- end #page -->
+				<div style="clear: both;">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+	<!-- end #page -->
 </div>
 <div id="footer">
-
+	
 </div>
 <!-- end #footer -->
 </body>

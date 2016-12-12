@@ -27,7 +27,7 @@
 <body class="bf" >
 <div class="faq" id="header" >
     <h1>FAQ</h1>
-    <p><a href="_it_index.jsp">Torna alla home</a></p>
+    <p><a href="index.jsp">Torna alla home</a></p>
 
 </div>
 

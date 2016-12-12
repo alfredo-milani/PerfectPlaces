@@ -4,7 +4,7 @@ package constants;
  * Created by alfredo on 17/09/16.
  */
 public interface Constants {
-    String ABS_PATH = "C:\\Users\\Alfredo Milani\\IdeaProjects\\PerfectPlaces\\"; /* NON MODIFICARE */
+    String ABS_PATH = "\\home\\gabriele\\IdeaProjects\\PerfectPlaces\\"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data\\location\\alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data\\amministratori");
     String APPART_PATH =      ABS_PATH.concat("data\\location\\appartamenti");
@@ -21,7 +21,7 @@ public interface Constants {
     String PRENOTAZIONE_OSTELLO_PATH = ABS_PATH.concat("data\\prenotazioni\\prenotazioniOstelli");
     String PRENOTAZIONE_APPARTAMENTO_PATH = ABS_PATH.concat("data\\prenotazioni\\prenotazioniAppartamenti");
     String PRENOTAZIONE_CASAVACANZA_PATH = ABS_PATH.concat("data\\prenotazioni\\prenotazioniCaseVacanza");
-    String PROVINCE_PATH = ABS_PATH.concat("data\\fileProvinceinASCII");
+    String PROVINCE_PATH = ABS_PATH.concat("data\\location\\fileProvince");
     String PACKAGE_LANGUAGE = "language.Lang";
 
     // Lingue

@@ -31,122 +31,35 @@ public class ControlloreRimuoviLocazione {
 	// dei rispettivi file e viene eliminato. 
 	
 	@SuppressWarnings("unchecked")
-	public void rimuoviLocazione(Locazione elemento) throws DeserializzazioneException, SerializzazioneException{
-		String tipo = elemento.getTipo();
-		String nomeLocazione = elemento.getNomeLocazione();
-		String provincia =elemento.getProvincia();
-		String indirizzo = elemento.getIndirizzo();
-		String userLocatore = elemento.getUserLocatore();
-		String prezzo = elemento.getPrezzo();
-		String descrizione = elemento.getDescrizione();
-		boolean parcheggio = elemento.isParcheggio();
-		boolean wifi = elemento.isWifi();
-		boolean pet = elemento.isPet();
-		ArrayList<Albergo> albergoList = new ArrayList<Albergo>();
-		ArrayList<Appartamento> appartamentoList = new ArrayList<Appartamento>();
-		ArrayList<Beb> bebList = new ArrayList<Beb>();
-		ArrayList<CasaVacanza> casavacanzeList = new ArrayList<CasaVacanza>();
-		ArrayList<Ostello> ostelloList = new ArrayList<Ostello>();
-		
-	
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		SerializzaOggetti sobj = new SerializzaOggetti();
-		
-		if(tipo.equals("albergo")){
-			albergoList = (ArrayList<Albergo>) dobj.deserializza(percorsoAlbergo);
-			for(int i=0;i<albergoList.size();i++){
-				if(albergoList.get(i).getNomeLocazione().equals(nomeLocazione)&&
-						albergoList.get(i).getProvincia().equals(provincia)&&
-						albergoList.get(i).getIndirizzo().equals(indirizzo)&&
-						albergoList.get(i).getUserLocatore().equals(userLocatore)&&
-						albergoList.get(i).getPrezzo().equals(prezzo)&&
-						albergoList.get(i).getDescrizione().equals(descrizione)&&
-						albergoList.get(i).isParcheggio()==parcheggio&&
-						albergoList.get(i).isWifi()==wifi&&
-						albergoList.get(i).isPet()==pet){
-							
-							albergoList.remove(i);
-							sobj.serializza(albergoList, percorsoAlbergo);
-							return ;
-						}
+	public void rimuoviLocazione(Locazione locazione) throws DeserializzazioneException, SerializzazioneException{
+		String percorso;
+
+		if(locazione.getClass()==Albergo.class){
+			rimuovi(locazione,percorsoAlbergo);
+
+		}
+		if(locazione.getClass()==Albergo.class){
+			percorso=percorsoAlbergo;
+		}
+
+
+	}
+	@SuppressWarnings("unchecked")
+	public void rimuovi(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
+		String nomeLocazione = locazione.getNomeLocazione();
+		String provincia =locazione.getProvincia();
+		String indirizzo = locazione.getIndirizzo();
+		ArrayList<Locazione> locazioni;
+		locazioni=(ArrayList<Locazione>) DeserializzaOggetti.deserializza(percorso);
+
+		for(Locazione loc: locazioni){
+			if(loc.getNomeLocazione().equals(nomeLocazione)&&
+					loc.getProvincia().equals(provincia)&&
+					loc.getIndirizzo().equals(indirizzo)){
+						locazioni.remove(loc);
+
 			}
 		}
-		
-		if(tipo.equals("appartamento")){
-			appartamentoList = (ArrayList<Appartamento>) dobj.deserializza(percorsoAppartamento);
-			for(int i=0;i<appartamentoList.size();i++){
-				if(albergoList.get(i).getNomeLocazione().equals(nomeLocazione)&&
-						appartamentoList.get(i).getProvincia().equals(provincia)&&
-						appartamentoList.get(i).getIndirizzo().equals(indirizzo)&&
-						appartamentoList.get(i).getUserLocatore().equals(userLocatore)&&
-						appartamentoList.get(i).getPrezzo().equals(prezzo)&&
-						appartamentoList.get(i).getDescrizione().equals(descrizione)&&
-						appartamentoList.get(i).isParcheggio()==parcheggio&&
-						appartamentoList.get(i).isWifi()==wifi&&
-						appartamentoList.get(i).isPet()==pet){
-							
-						appartamentoList.remove(i);
-							sobj.serializza(appartamentoList, percorsoAppartamento);
-							return ;
-						}
-			}
-		}
-		if(tipo.equals("beb")){
-			bebList = (ArrayList<Beb>) dobj.deserializza(percorsoBeb);
-			for(int i=0;i<bebList.size();i++){
-				if(bebList.get(i).getNomeLocazione().equals(nomeLocazione)&&
-						bebList.get(i).getProvincia().equals(provincia)&&
-						bebList.get(i).getIndirizzo().equals(indirizzo)&&
-						bebList.get(i).getUserLocatore().equals(userLocatore)&&
-						bebList.get(i).getPrezzo().equals(prezzo)&&
-						bebList.get(i).getDescrizione().equals(descrizione)&&
-						bebList.get(i).isParcheggio()==parcheggio&&
-						bebList.get(i).isWifi()==wifi&&
-						bebList.get(i).isPet()==pet){
-							
-						bebList.remove(i);
-							sobj.serializza(bebList, percorsoBeb);
-							return ;
-						}
-			}
-		}
-		if(tipo.equals("casavacanza")){
-			casavacanzeList = (ArrayList<CasaVacanza>) dobj.deserializza(percorsoCasaVacanza);
-			for(int i=0;i<casavacanzeList.size();i++){
-				if(casavacanzeList.get(i).getNomeLocazione().equals(nomeLocazione)&&
-						casavacanzeList.get(i).getProvincia().equals(provincia)&&
-						casavacanzeList.get(i).getIndirizzo().equals(indirizzo)&&
-						casavacanzeList.get(i).getUserLocatore().equals(userLocatore)&&
-						casavacanzeList.get(i).getPrezzo().equals(prezzo)&&
-						casavacanzeList.get(i).getDescrizione().equals(descrizione)&&
-						casavacanzeList.get(i).isParcheggio()==parcheggio&&
-						casavacanzeList.get(i).isWifi()==wifi&&
-						casavacanzeList.get(i).isPet()==pet){
-							
-						casavacanzeList.remove(i);
-							sobj.serializza(casavacanzeList, percorsoCasaVacanza);
-							return ;
-						}
-			}
-		}
-		if(tipo.equals("ostello")){
-			ostelloList = (ArrayList<Ostello>) dobj.deserializza(percorsoOstello);
-			for(int i=0;i<ostelloList.size();i++){
-				if(ostelloList.get(i).getNomeLocazione().equals(nomeLocazione)&&
-						ostelloList.get(i).getProvincia().equals(provincia)&&
-						ostelloList.get(i).getIndirizzo().equals(indirizzo)&&
-						ostelloList.get(i).getUserLocatore().equals(userLocatore)&&
-						ostelloList.get(i).getPrezzo().equals(prezzo)&&
-						ostelloList.get(i).getDescrizione().equals(descrizione)&&
-						ostelloList.get(i).isParcheggio()==parcheggio&&
-						ostelloList.get(i).isWifi()==wifi&&
-						ostelloList.get(i).isPet()==pet){
-							
-						ostelloList.remove(i);
-							sobj.serializza(ostelloList, percorsoOstello);
-							return ;
-						}
-			}
-		}
+		SerializzaOggetti.serializza(locazioni,percorso);
 	}
 }

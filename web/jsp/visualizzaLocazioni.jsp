@@ -18,22 +18,13 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreVisualizzaLocazioni" %>
-<%@page import="java.util.ArrayList" %>
 <%@page import="entity.Locazione" %>
-<%@ page import="control.ControlloreVisualizzaLocazioni" %>
-<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="boundary.BoundaryGestioneLocazioni" %>
+<%@ page import="java.util.ArrayList" %>
 <%
 
-ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
-
-String username = c.getUser();
-ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-	try {
-		locazioni = crl.visualizzaLocazioni(username);
-	} catch (DeserializzazioneException e) {
-		e.printStackTrace();
-	}
+	BoundaryGestioneLocazioni bvl = new BoundaryGestioneLocazioni();
+	ArrayList<Locazione> locazioni = bvl.ritonaLocazioni(c.getUser());
 
 	String nomeLocazione;
 String provincia;

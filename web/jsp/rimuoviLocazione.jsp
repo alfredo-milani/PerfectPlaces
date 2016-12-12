@@ -102,7 +102,7 @@ String idNumber;
 						 
 					
 					%>
-					
+
 					<div class="post">
 					
 					<table style="width:100%">
@@ -113,12 +113,17 @@ String idNumber;
 								<h1>Indirizzo: <%out.println(indirizzo); %></h1>
 								<h1>Prezzo: <%out.println(prezzo); %></h1>
 								<h1>Descrizione: <%out.println(descrizione); %></h1>
+
 							</td>
 							<td>
 								<center>
-								<a href="rimuoviLocazione2.jsp?id=<% out.println(idNumber); %>">
+									<form method="get" action="rimuoviLocazione2.jsp" enctype="text/plain">
+										<input type="hidden" name="id" value="<%out.println(idNumber);%>">
+										<input type="submit" value="rimuovi">
+									</form>
+								<!--<a href="rimuoviLocazione2.jsp ?id=<% //out.println(idNumber); %>">
 								<img src="../css/images/delete.jpg" width="150" height="100" alt="Press image to remove">
-								</a>
+								</a>  -->
 								</center>
 							
 							</td>
@@ -126,9 +131,12 @@ String idNumber;
 					</table>
 					</div>
 					
-					<% } %>
-					
-					
+					<% }
+						request.getSession().setAttribute("loc", locazioni);
+					%>
+
+
+
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->

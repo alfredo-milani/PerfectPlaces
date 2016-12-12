@@ -18,41 +18,27 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.*" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Locazione" %>
-<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="boundary.BoundaryGestioneLocazioni" %>
 <%@ page import="exception.SerializzazioneException" %>
+<%@ page import="exception.DeserializzazioneException" %>
 <%
+    BoundaryGestioneLocazioni bgl = new BoundaryGestioneLocazioni();
 
-ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
+    String id = request.getParameter("id");
+    id = id.substring(0,1);
 
-String username = c.getUser();
-ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-	try {
-		locazioni = crl.visualizzaLocazioni(username);
-	} catch (DeserializzazioneException e) {
-		e.printStackTrace();
-	}
 
-	String nomeLocazione;
-String provincia;
-String indirizzo;
-String prezzo; 
-String descrizione;
+    int idInt = Integer.parseInt(id);
 
-String idNumber = request.getParameter("id");
-int idNumberInt = Integer.parseInt(idNumber);
-
-Locazione elemento = locazioni.get(idNumberInt);
-
-ControlloreRimuoviLocazione crl2 = new ControlloreRimuoviLocazione();
-
-	try {
-		crl2.rimuoviLocazione(elemento);
-	} catch (DeserializzazioneException | SerializzazioneException e) {
-		e.printStackTrace();
-	}
+    ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
+    try {
+        bgl.avvioRimozione(elencoLocazioni.get(idInt));
+    } catch (SerializzazioneException | DeserializzazioneException e) {
+        e.printStackTrace();
+    }
+    request.getSession().removeAttribute("loc");
 
 
 %>

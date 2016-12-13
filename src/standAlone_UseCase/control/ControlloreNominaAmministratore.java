@@ -23,7 +23,7 @@ public class ControlloreNominaAmministratore {
 		
 	}
 	
-	//Metodo che verifica la presenza di un utente registrato con l'username indicato come input. Se la presenza � conferma
+	//Metodo che verifica la presenza di un getUtente registrato con l'username indicato come input. Se la presenza � conferma
 	//viene inserito nell'arraylist del file degli amministratori.
 	
 	@SuppressWarnings("unchecked")
@@ -33,7 +33,8 @@ public class ControlloreNominaAmministratore {
 		utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
 		Utente u = new Utente("errore", "errore", "errore",
 				"errore", "errore",
-                "errore", null);
+                "errore", null,
+				null, null);
 		boolean controllo = false;
 		
 		for(int i = 0;i<utenti.size();i++){

@@ -12,7 +12,7 @@
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="exception.SerializzazioneException" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" class="control.ControlloreLogin" scope="session"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -45,8 +45,9 @@
 
     Locale currentLocale;
     if (lang != null) {
-        currentLocale = controlloreLingua.getLocale(lang);
+        currentLocale = controlloreLingua.getLocaleFromString(lang);
     } else {
+        lang = Constants.LANG_DEFAULT;
         currentLocale = controlloreLingua.getLang();
     }
     Locale currentUserPref = currentLocale;
@@ -90,7 +91,6 @@
                     <h2> <%=bundle.getString("utente_loggedAs")%> <%=c.getUser()%> </h2>
 
                 <%  } else {
-                        lang = lang != null ? lang : Constants.LANG_DEFAULT;
                         String redirectURL = "http://" + Constants.HOST_PORT +
                                 "jsp/index.jsp?errLog=1&lang=" + lang;
                         response.sendRedirect(redirectURL);
@@ -117,7 +117,7 @@
 			<div id="page-bgbtm">
 				<div id="content">
 
-				<!--  Parte utente loggato -->
+				<!--  Parte getUtente loggato -->
 					<div class="language">
 						<table>
 							<tr>

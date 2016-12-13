@@ -24,7 +24,7 @@ public class ControlloreRimuoviUtente {
 		
 	}
 	
-	// Viene verificata la presenza dell'utente nel sistema, una volta accertata viene rimosso dall'arraylist, che viene riserializzato.
+	// Viene verificata la presenza dell'getUtente nel sistema, una volta accertata viene rimosso dall'arraylist, che viene riserializzato.
 	// Vengono utilizzati i thread per stampare a schermo l'array degli utenti prima e dopo la rimozione. 
 	
 	@SuppressWarnings("unchecked")
@@ -44,7 +44,7 @@ public class ControlloreRimuoviUtente {
 		for(int i = 0; i<utenti.size();i++){
 			if(utenti.get(i).getUsername().equals(username)){
 				t1.join();
-				System.out.println("L'utente rimosso e':"+utenti.get(i).getUsername());
+				System.out.println("L'getUtente rimosso e':"+utenti.get(i).getUsername());
 				utenti.remove(i);
 				SerializzaOggetti sobj = new SerializzaOggetti();
 				sobj.serializza(utenti, percorsoUtenti);

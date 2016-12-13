@@ -54,7 +54,7 @@ public class ConfineNominaAmministratore {
 		titolo.setSize(panelTitolo.getWidth(), 35);
 		titolo.setHorizontalAlignment(JLabel.CENTER);
 		titolo.setVerticalAlignment(JLabel.CENTER);
-		titolo.setText("Indica l'username dell'utente da nominare come Amministratore!");
+		titolo.setText("Indica l'username dell'getUtente da nominare come Amministratore!");
 
 		pannelloNomina.add(panelTitolo);
 

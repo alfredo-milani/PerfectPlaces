@@ -41,7 +41,7 @@ public class VerificaInput {
 		return true;
 	}
 
-//metodo che controlla se l'utente ha inserito una provincia esistente e nel formato voluto
+//metodo che controlla se l'getUtente ha inserito una provincia esistente e nel formato voluto
 	public boolean verificaProvincia(String provincia) throws IOException {
 		String pr = provincia.trim();
         if(provincia.equals(""))

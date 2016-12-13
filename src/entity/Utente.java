@@ -3,9 +3,7 @@ package entity;
 import java.util.Locale;
 
 public class Utente implements java.io.Serializable {
-	// Variabili
-	private static final long serialVersionUID = 1L;
-	
+
 	private String username;
 	private String password;
 	private String nome;
@@ -19,21 +17,22 @@ public class Utente implements java.io.Serializable {
 	// Costruttore
 	public Utente(String username, String password, String nome,
 				  String cognome, String email,
-                  String immagine, Locale lingua) {
+                  String immagine, Locale lingua,
+                  String nascita, String sesso) {
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
 		this.immagine = immagine;
-		this.nascita = null;
-		this.sesso = null;
+		this.nascita = nascita;
+		this.sesso = sesso;
 		this.lingua = lingua != null ? lingua : Locale.getDefault();
 	}
 
 	// Getters e Setters
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
@@ -41,7 +40,7 @@ public class Utente implements java.io.Serializable {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -49,7 +48,7 @@ public class Utente implements java.io.Serializable {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
@@ -57,7 +56,7 @@ public class Utente implements java.io.Serializable {
 	}
 
 	public String getCognome() {
-		return cognome;
+		return this.cognome;
 	}
 
 	public void setCognome(String cognome) {
@@ -65,7 +64,7 @@ public class Utente implements java.io.Serializable {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -73,7 +72,7 @@ public class Utente implements java.io.Serializable {
 	}
 
 	public String getImmagine() {
-		return immagine;
+		return this.immagine;
 	}
 
 	public void setImmagine(String immagine) {
@@ -81,7 +80,7 @@ public class Utente implements java.io.Serializable {
 	}
 
     public String getSesso() {
-        return sesso;
+        return this.sesso;
     }
 
     public void setSesso(String sesso) {
@@ -89,7 +88,7 @@ public class Utente implements java.io.Serializable {
     }
 
     public String getNascita() {
-        return nascita;
+        return this.nascita;
     }
 
     public void setNascita(String nascita) {
@@ -97,7 +96,7 @@ public class Utente implements java.io.Serializable {
     }
 
     public Locale getLingua() {
-        return lingua;
+        return this.lingua;
     }
 
     public void setLingua(Locale lingua) {

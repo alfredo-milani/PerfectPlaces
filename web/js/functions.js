@@ -83,16 +83,13 @@ function changeLang(box, us, psw, pref) {
     var paramsToSend = "";
     var newURL = "";
 
+    var pos = oldURL.lastIndexOf("lang");
+    if (pos != -1)
+        newURL = oldURL.substring(0, pos - 1);
     if (arguments.length < 2) {
-        newURL = oldURL;
         paramsToSend += "lang=" + lang;
     } else {
         paramsToSend += "lang=" + lang + "&";
-        var pos = oldURL.lastIndexOf("lang");
-        if (pos != -1)
-            newURL = oldURL.substring(0, pos - 1);
-        else
-            newURL = oldURL;
     }
 
     // Per mantenere l'utente loggato durante il cambio di lingua

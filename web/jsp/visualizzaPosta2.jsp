@@ -164,6 +164,8 @@
                                             try {
                                                 des = cgp.ottieniUtente(messaggio.getMittente());
                                             } catch (DeserializzazioneException e) {
+                                                des = new Utente("errore", "errore", "errore",
+                                                        "errore", "errore", "errore", controlloreLingua.getLang());
                                                 e.printStackTrace();
                                             }
                                         }

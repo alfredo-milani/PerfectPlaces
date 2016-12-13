@@ -28,7 +28,7 @@ public class AvvioProgramma {
 			ArrayList<Utente> amministratori = new ArrayList<Utente>();
 			Utente u = new Utente("root","root","root",
 					"root","root",
-                    "root", null);
+                    "root", null, null, null);
 			amministratori.add(u);
 			SerializzaOggetti.serializza(amministratori, percorsoAmministratori);
 		}
@@ -36,17 +36,15 @@ public class AvvioProgramma {
 	
 	public static void main(String[] args) throws SerializzazioneException {
 	    // questo sara il file dove sara salvata la stringa che
-        // indichera la preferenza relativa alla lingua dell utente
+        // indichera la preferenza relativa alla lingua dell getUtente
 
-        // NOTA: ogni utente avra la sua preferenza di lingua quindi bisogna
-        // modifica leggermente il pack entity utente
+        // NOTA: ogni getUtente avra la sua preferenza di lingua quindi bisogna
+        // modifica leggermente il pack entity getUtente
 
 	    // File file = new File();
         Locale defaultLocale = Locale.getDefault();
         Locale locale = new Locale("en", "US");
         ResourceBundle bundle2 = ResourceBundle.getBundle("language.Lang", locale);
-        System.out.println(bundle2.getString("dio") + " " + bundle2.getString("cane"));
-
         /*
         Locale swedishLocale = new Locale("sv", "SE");
         ResourceBundle bundle3 = ResourceBundle.getBundle("TestBundle", swedishLocale);

@@ -31,7 +31,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         elencoLocazioni =  crg.ricercaGlobale(provincia,prezzo);
 
         if (locazione.getClass()==Albergo.class) {
-            ArrayList<Albergo> alberghiDisponibili = new ArrayList<Albergo>(); //Qui verranno inseriti gli alberghi da restituire all'utente
+            ArrayList<Albergo> alberghiDisponibili = new ArrayList<Albergo>(); //Qui verranno inseriti gli alberghi da restituire all'getUtente
 
             System.err.println("numero alberghi: " + elencoLocazioni.size());
 
@@ -44,7 +44,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             return alberghiDisponibili;
         }
         else if(locazione.getClass()== Appartamento.class){
-            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<Appartamento>(); //Qui verranno inseriti gli appartamenti da restituire all'utente
+            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<Appartamento>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==Appartamento.class) {
                     Appartamento appartamento = (Appartamento) loc;
@@ -54,7 +54,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             return appartamentiDisponibili;
 
         }else if(locazione.getClass()==Beb.class){
-            ArrayList<Beb> bebDisponibili = new ArrayList<Beb>(); //Qui verranno inseriti i beb da restituire all'utente
+            ArrayList<Beb> bebDisponibili = new ArrayList<Beb>(); //Qui verranno inseriti i beb da restituire all'getUtente
 
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==Beb.class) {
@@ -65,7 +65,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             System.err.println("numero beb: " + bebDisponibili.size());
             return bebDisponibili;
         }else if(locazione.getClass()== CasaVacanza.class){
-            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<CasaVacanza>(); //Qui verranno inseriti gli appartamenti da restituire all'utente
+            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<CasaVacanza>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
 
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==CasaVacanza.class) {
@@ -75,7 +75,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             }
             return casaVacanzeDisponibili;
         }else{
-            ArrayList<Ostello> ostelliDisponibili = new ArrayList<Ostello>(); //Qui verranno inseriti gli ostelli da restituire all'utente
+            ArrayList<Ostello> ostelliDisponibili = new ArrayList<Ostello>(); //Qui verranno inseriti gli ostelli da restituire all'getUtente
 
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==Ostello.class) {
@@ -105,7 +105,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         if (locazione.getClass()==Albergo.class) {
             Albergo alb = (Albergo) locazione;
             ArrayList<Albergo> elencoAlberghi = (ArrayList<Albergo>) ricerca(alb,provincia,prezzo);
-            ArrayList<Albergo> alberghiDisponibili = new ArrayList<Albergo>(); //Qui verranno inseriti gli alberghi da restituire all'utente
+            ArrayList<Albergo> alberghiDisponibili = new ArrayList<Albergo>(); //Qui verranno inseriti gli alberghi da restituire all'getUtente
 
             System.err.println("numero alberghi: " + elencoAlberghi.size());
 
@@ -122,7 +122,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         else if(locazione.getClass()== Appartamento.class){
             Appartamento app = (Appartamento) locazione;
             ArrayList<Appartamento> elencoAppartamenti=(ArrayList<Appartamento>) ricerca(app,provincia,prezzo);
-            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<Appartamento>(); //Qui verranno inseriti gli appartamenti da restituire all'utente
+            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<Appartamento>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
             System.err.println("numero appartamenti: " + elencoAppartamenti.size());
             for (Appartamento appartamento: elencoAppartamenti) {
                 if ((appartamento.isParcheggio()==parcheggio)&&
@@ -137,7 +137,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         }else if(locazione.getClass()==Beb.class){
             Beb bb = (Beb) locazione;
             ArrayList<Beb> elencoBeb = (ArrayList<Beb>) ricerca(bb, provincia,prezzo);
-            ArrayList<Beb> bebDisponibili = new ArrayList<Beb>(); //Qui verranno inseriti i beb da restituire all'utente
+            ArrayList<Beb> bebDisponibili = new ArrayList<Beb>(); //Qui verranno inseriti i beb da restituire all'getUtente
             System.err.println("numero beb: " + elencoBeb.size());
 
             for (Beb beb : elencoBeb) {
@@ -152,7 +152,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         }else if(locazione.getClass()== CasaVacanza.class){
             CasaVacanza cv = (CasaVacanza) locazione;
             ArrayList<CasaVacanza> elencoCasaVacanze=(ArrayList<CasaVacanza>) ricerca(cv,provincia,prezzo);
-            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<CasaVacanza>(); //Qui verranno inseriti gli appartamenti da restituire all'utente
+            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<CasaVacanza>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
 
             System.err.println("numero CasaVacanza: " + elencoCasaVacanze.size());
 
@@ -169,7 +169,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         }else{
             Ostello ost = (Ostello) locazione;
             ArrayList<Ostello> elencoOstelli=(ArrayList<Ostello>)ricerca( ost, provincia,prezzo);
-            ArrayList<Ostello> ostelliDisponibili = new ArrayList<Ostello>(); //Qui verranno inseriti gli ostelli da restituire all'utente
+            ArrayList<Ostello> ostelliDisponibili = new ArrayList<Ostello>(); //Qui verranno inseriti gli ostelli da restituire all'getUtente
             System.err.println("numero Ostelli: " + elencoOstelli.size());
 
             for (Ostello ostello:elencoOstelli) {

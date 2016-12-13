@@ -53,7 +53,7 @@ public class ConfineRimuoviUtente {
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("Indica l'username dell'utente da rimuovere!");
+        titolo.setText("Indica l'username dell'getUtente da rimuovere!");
         
         pannelloRimuovi.add(panelTitolo);
         

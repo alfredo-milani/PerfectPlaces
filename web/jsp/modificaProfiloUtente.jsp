@@ -24,7 +24,7 @@
     if (c.getLogged()) {
         Locale currentLocale;
         if (lang != null) {
-            currentLocale = controlloreLingua.getLocale(lang);
+            currentLocale = controlloreLingua.getLocaleFromString(lang);
         } else {
             currentLocale = controlloreLingua.getLang();
         }
@@ -112,8 +112,12 @@
                                     try {
                                         u = cgp.ottieniUtente(username);
                                     } catch (DeserializzazioneException e) {
+                                        u = new Utente("errore", "errore", "errore",
+                                                "errore", "errore", "errore", controlloreLingua.getLang(),
+                                        "errore", "errore");
                                         e.printStackTrace();
                                     }
+
                                     if (param != null) {
                                         String nome = request.getParameter("nome");
                                         String cognome = request.getParameter("cognome");
@@ -127,13 +131,18 @@
                                         int controllo = 0;
 
                                         try {
-                                            controllo = cgp.modificaProfilo(username, nome, cognome, email, sesso, nascita, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
+                                            controllo = cgp.modificaProfilo(username, nome, cognome,
+                                                    email, sesso, nascita, vecchiaPassword,
+                                                    nuovaPassword, confermaNuovaPassword);
                                         } catch (DeserializzazioneException | SerializzazioneException e) {
                                             e.printStackTrace();
                                         }
                                         try {
                                             u = cgp.ottieniUtente(username);
                                         } catch (DeserializzazioneException e) {
+                                            u = new Utente("errore", "errore", "errore",
+                                                    "errore", "errore", "errore", controlloreLingua.getLang(),
+                                                    "errore", "errore");
                                             e.printStackTrace();
                                         }
 

@@ -12,16 +12,19 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="constants.Constants" %>
-<jsp:useBean id="b" class="control.ControlloreRegistrazione" scope="session"/>
+<%@ page import="control.ControlloreRegistrazione" %>
+<jsp:useBean id="b" scope="session" class="control.ControlloreRegistrazione"/>
 
 <%
     ControlloreLingua controlloreLingua = new ControlloreLingua();
     String lang = request.getParameter("lang");
     Locale selectedLang;
-    if (lang != null)
-        selectedLang = controlloreLingua.getLocale(lang);
-    else
+    if (lang != null) {
+        selectedLang = controlloreLingua.getLocaleFromString(lang);
+    } else {
         selectedLang = controlloreLingua.getLang();
+        lang = controlloreLingua.getStringFromLocale(selectedLang);
+    }
 
     ResourceBundle bundle = ControlloreLingua
             .getBundle(selectedLang);
@@ -161,7 +164,8 @@
 
                                 int caseReg = 0;
                                 try {
-                                    caseReg = b.registrazione(un, pw, pw2, nome, cognome, email, selectedLang);
+                                    caseReg = b.registrazione(un, pw, pw2, nome,
+                                            cognome, email, selectedLang, null, null);
                                 } catch (DeserializzazioneException | SerializzazioneException e) {
                                     e.printStackTrace();
                                 }

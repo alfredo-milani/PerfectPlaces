@@ -10,12 +10,15 @@ import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
+import utils.dbManager.GestionePostaDBManager;
 
 // Classe che si occupa della gestione della posta, sia dell'invio dei messaggi che della ricerca.
 public class ControlloreGestionePosta {
 	// Percorsi dei file
 	private String percorsoMessaggi = Constants.MSG_PATH;
 	private String percorsoUtenti = Constants.UTENTI_PATH;
+	private GestionePostaDBManager gPDBM =
+            new GestionePostaDBManager();
 
 	// Costruttore
 	public ControlloreGestionePosta() {
@@ -64,7 +67,7 @@ public class ControlloreGestionePosta {
 	// 		  2 --> Se l'oggetto è vuoto
 	//        3 --> Se il contenuto è vuoto
 	//        4 --> Se il destinatario non esiste
-    //        5 --> Se la sessione dell'utente è scaduta
+    //        5 --> Se la sessione dell'getUtente è scaduta
 	//        6 --> Se il mittente e il destinatario coincidono
 	//        0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")
@@ -95,9 +98,11 @@ public class ControlloreGestionePosta {
 		ArrayList<Messaggio> elencoMessaggi = new ArrayList<>();
 		File file = new File(percorsoMessaggi);
 		if(file.length() != 0)
-			elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti.deserializza(percorsoMessaggi);
+			elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti
+                    .deserializza(percorsoMessaggi);
 
-		Messaggio messaggio = new Messaggio(oggetto, mittente, destinatario, contenuto);
+		Messaggio messaggio = new Messaggio(oggetto, mittente,
+                destinatario, contenuto);
 		elencoMessaggi.add(messaggio);
 		SerializzaOggetti.serializza(elencoMessaggi, percorsoMessaggi);
 

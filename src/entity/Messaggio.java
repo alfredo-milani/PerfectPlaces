@@ -5,15 +5,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.StringJoiner;
 
 import constants.Constants;
 import exception.DeserializzazioneException;
 import utils.DeserializzaOggetti;
 
 public class Messaggio implements java.io.Serializable {
-	// Variabili
-	private static final long serialVersionUID = 1L;
+
 	private String oggetto;
 	private String mittente;
 	private String destinatario;
@@ -100,9 +98,11 @@ public class Messaggio implements java.io.Serializable {
 		// Se il file non è vuoto calcola il primo codice disponibile
 		ArrayList<Messaggio> elencoMessaggi;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		elencoMessaggi = (ArrayList<Messaggio>) dobj.deserializza(Constants.MSG_PATH);
+		elencoMessaggi = (ArrayList<Messaggio>) dobj
+                .deserializza(Constants.MSG_PATH);
 		
-		int codice = elencoMessaggi.get(elencoMessaggi.size() - 1).getCodice();
+		int codice = elencoMessaggi.get(elencoMessaggi.size() - 1)
+                .getCodice();
 		
 		return ++codice;
 	}

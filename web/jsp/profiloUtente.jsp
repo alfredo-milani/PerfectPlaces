@@ -22,9 +22,9 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin" />
-<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo" />
 <jsp:useBean id="crl" scope="session" class="control.ControlloreVisualizzaLocazioni" />
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <%@page import="entity.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="constants.Constants" %>
@@ -33,12 +33,7 @@
 <%@ page import="control.ControlloreLingua" %>
 <%
     String username = c.getUser();
-    Utente u = null;
-    try {
-        u = cgp.ottieniUtente(username);
-    } catch (DeserializzazioneException e) {
-        e.printStackTrace();
-    }
+    Utente u = cgp.ottieniUtente(username);
 
     ResourceBundle bundle = ControlloreLingua
             .getBundle(u.getLingua());

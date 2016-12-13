@@ -62,6 +62,7 @@ public class RegistrazioneDBManager {
         try {
             PreparedStatement statement = connection
                     .prepareStatement(query);
+
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
             if (result.next())

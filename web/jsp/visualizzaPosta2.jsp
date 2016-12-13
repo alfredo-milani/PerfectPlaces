@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
-<%@page import="control.ControlloreGestionePosta" %>
+<jsp:useBean id="cgposta" scope="session" class="control.ControlloreGestionePosta"/>
 <%@page import="entity.Messaggio" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="entity.Utente" %>
@@ -77,7 +77,6 @@
                                     if (c.getLogged()) {
                                         if (strCodice != null) {
                                             int codice = Integer.parseInt(strCodice);
-                                            ControlloreGestionePosta cgposta = new ControlloreGestionePosta();
                                             try {
                                                 messaggio = cgposta.ricercaMessaggioPerCodice(codice);
                                             } catch (DeserializzazioneException e) {
@@ -165,7 +164,8 @@
                                                 des = cgp.ottieniUtente(messaggio.getMittente());
                                             } catch (DeserializzazioneException e) {
                                                 des = new Utente("errore", "errore", "errore",
-                                                        "errore", "errore", "errore", controlloreLingua.getLang());
+                                                        "errore", "errore", "errore",
+                                                        controlloreLingua.getLang(), "errore", "errore");
                                                 e.printStackTrace();
                                             }
                                         }

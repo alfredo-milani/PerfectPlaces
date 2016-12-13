@@ -43,12 +43,9 @@
 
     String username = c.getUser();
     boolean loggedin = c.getLogged();
-    String oggetto;
-    String mittente;
-    String data;
-    String eliminazione = null;
+    int eliminazione = -1;
     ControlloreGestionePosta cgp = new ControlloreGestionePosta();
-    ArrayList<Messaggio> elencoMessaggiUser = null;
+    ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<>();
 
     String codeMsg = request.getParameter("Cod");
     // Per maggiore robustezza
@@ -101,14 +98,14 @@
                     <div class="post">
                         <h2><strong> <%=bundle.getString("visualizzaPosta_postaEntrata")%> </strong></h2>
 
-                        <%  if (eliminazione != null) {
-                                if (Integer.parseInt(eliminazione) == 0) { %>
+                        <%  if (eliminazione != -1) {
+                                if (eliminazione == 0) { %>
 
                                 <h5>
                                     <font color="red"> <%=bundle.getString("visualizzaPosta_erroreEliminazione")%> </font>
                                 </h5>
 
-                            <% } else if (Integer.parseInt(eliminazione) == 1){ %>
+                            <% } else if (eliminazione == 1){ %>
 
                                 <h4>
                                     <font color="green"> <%=bundle.getString("visualizzaPosta_eliminazioneSuccesso")%> </font>
@@ -124,29 +121,28 @@
                         <table width="100%">
                             <tr>
                                 <td><label><%=bundle.getString("scriviMessaggio_mitt")%></label></td>
-                                <td><label><%=bundle.getString("scriviMessaggio_dest")%></label></td>
+                                <td><label><%=bundle.getString("scriviMessaggio_obj")%></label></td>
                                 <td><label><%=bundle.getString("visualizzaPosta_data")%></label></td>
                                 <td><label><%=bundle.getString("scriviMessaggio_cont")%></label></td>
                             </tr>
 
                             <%
+
                                 if (loggedin) {
                                     if (elencoMessaggiUser != null && elencoMessaggiUser.size() != 0) {
                                         for (Messaggio anElencoMessaggiUser : elencoMessaggiUser) {
-                                            oggetto = anElencoMessaggiUser.getOggetto();
-                                            mittente = anElencoMessaggiUser.getMittente();
-                                            data = anElencoMessaggiUser.getData();
+
                             %>
 
                                             <tr>
                                                 <td>
-                                                    <%=mittente %>
+                                                    <%=anElencoMessaggiUser.getMittente()%>
                                                 </td>
                                                 <td>
-                                                    <%=oggetto%>
+                                                    <%=anElencoMessaggiUser.getOggetto()%>
                                                 </td>
                                                 <td>
-                                                    <%=data%>
+                                                    <%=anElencoMessaggiUser.getData()%>
                                                 </td>
                                                 <td>
                                                     <form action="visualizzaPosta2.jsp?Cod=<%= String.valueOf(anElencoMessaggiUser.getCodice()) %>" enctype="application/x-www-form-urlencoded" method="post">

@@ -4,7 +4,8 @@ package constants;
  * Created by alfredo on 17/09/16.
  */
 public interface Constants {
-    String ABS_PATH = "\\home\\gabriele\\IdeaProjects\\PerfectPlaces\\"; /* NON MODIFICARE */
+    //***** Percorsi utili *****//
+    String ABS_PATH = "C:\\Users\\Alfredo Milani\\IdeaProjects\\PerfectPlaces\\"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data\\location\\alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data\\amministratori");
     String APPART_PATH =      ABS_PATH.concat("data\\location\\appartamenti");
@@ -24,13 +25,70 @@ public interface Constants {
     String PROVINCE_PATH = ABS_PATH.concat("data\\location\\fileProvince");
     String PACKAGE_LANGUAGE = "language.Lang";
 
-    // Lingue
+
+    //***** Gestione DataBase *****//
+    // Informazioni necessarie per il DataBase
+    String DB_DRIVER = "org.postgresql.Driver";
+    String DB_URL = "jdbc:postgresql://localhost:5432/PerfectPlacesDB";
+    String DB_USER = "postgres";
+    String DB_PASSWORD = "3268alfred";
+
+    // Table "utenti" - Entità UTENTE
+    String DB_TABLE_UTENTI = "utenti";
+    String DB_UTENTI_US = "username";
+    String DB_UTENTI_PSW = "password";
+    String DB_UTENTI_NOME = "nome";
+    String DB_UTENTI_COGNOME = "cognome";
+    String DB_UTENTI_EMAIL = "email";
+    String DB_UTENTI_IMM = "immagine";
+    String DB_UTENTI_LINGUA = "lingua";
+    String DB_UTENTI_NASCITA = "nascita";
+    String DB_UTENTI_SESSO = "sesso";
+
+    // Table "messaggi - Entità MESSAGGIO
+    String DB_TABLE_MESSAGGI = "messaggi";
+    String DB_MESSAGGI_COD = "codice";
+    String DB_MESSAGGI_OBJ = "oggetto";
+    String DB_MESSAGGI_MIT = "mittente";
+    String DB_MESSAGGI_DEST = "destinatario";
+    String DB_MESSAGGI_CONT = "contenuto";
+    String DB_MESSAGGI_DATA = "data";
+
+    // Query generiche
+    String DB_QUERY_SELECT = "SELECT %s FROM %s WHERE %s";
+    String DB_QUERY_INSERT = "INSERT INTO %s VALUES %s";
+    String DB_QUERY_UPDATE = "UPDATE %s SET %s WHERE %s";
+    String DB_QUERY_DELETE = "DELETE FROM %s WHERE %s";
+
+
+
+    //***** Lingue *****//
     // Le stringhe che codificano la lingua devono corrispondere
     // a dei valori contenuti nel file Locale.java
     // (per la costruzione di new Locate)
     // e.g. italiano --> it
     //      inglese  --> en
-    String LANG_DEFAULT = "it";
     String IT = "it";
     String EN = "en";
+
+    String LANG_DEFAULT = IT;
+
+
+
+
+
+
+    // Una volta inserito il DB in modo completo ricorda di
+    // toglie try/catch nei jsp, i throws
+    // nelle segnature e gli implements Serializable.
+    // Elimina anche variabili locali di appoggio nelle classi java per
+    // riferirsi alle costanti contenute in questa pagina.
+    // (la sezione posta funziona male se DB = 0)
+
+    //***** Vedi se elimina, le classi Utente e Messaggio perchè gestite dal DB  *****//
+
+    /////////************************************************************////////
+    //////******     PER NON USARE IL DATABASE METTI IL VALORE A 0    *****//////
+    /////////************************************************************////////
+    int DB = 1;
 }

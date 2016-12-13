@@ -21,14 +21,14 @@ public class Messaggio implements java.io.Serializable {
 
 	// Costruttore
 	public Messaggio(String oggetto, String mittente,
-					 String destinatario, String contenuto)
-			throws DeserializzazioneException {
+					 String destinatario, String contenuto,
+                     String data, int codice) {
 		this.oggetto = oggetto;
 		this.mittente = mittente;
 		this.destinatario = destinatario;
 		this.contenuto = contenuto;
-		this.codice = assegnaCodice();
-        this.data = calcolaData();
+		this.codice = codice;
+        this.data = data;
 	}
 	
 	// Getters e Setters
@@ -72,13 +72,6 @@ public class Messaggio implements java.io.Serializable {
         this.data = data;
     }
 
-    private String calcolaData() {
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-        Date date = new Date();
-
-        return dateFormat.format(date);
-    }
-
 	public int getCodice() {
 		return codice;
 	}
@@ -89,7 +82,8 @@ public class Messaggio implements java.io.Serializable {
 	
 	// Metodo per assegnare un codice univoco ad un messaggio.
 	@SuppressWarnings("unchecked")
-	private int assegnaCodice() throws DeserializzazioneException{
+	public static int assegnaCodice()
+            throws DeserializzazioneException{
 		//Se non c'è nessun messaggio ritorna il codice 0
 		File file = new File(Constants.MSG_PATH);
 		if(file.length() == 0)
@@ -97,8 +91,7 @@ public class Messaggio implements java.io.Serializable {
 		
 		// Se il file non è vuoto calcola il primo codice disponibile
 		ArrayList<Messaggio> elencoMessaggi;
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		elencoMessaggi = (ArrayList<Messaggio>) dobj
+		elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti
                 .deserializza(Constants.MSG_PATH);
 		
 		int codice = elencoMessaggi.get(elencoMessaggi.size() - 1)

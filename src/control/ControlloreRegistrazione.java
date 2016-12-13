@@ -15,7 +15,7 @@ import utils.dbManager.RegistrazioneDBManager;
 
 public class ControlloreRegistrazione {
 	private String percorsoUtenti = Constants.UTENTI_PATH;
-	private ArrayList<Utente> utenti = new ArrayList<Utente>();
+	private ArrayList<Utente> utenti = new ArrayList<>();
 	private RegistrazioneDBManager rDBM;
 	
 	// Costruttore

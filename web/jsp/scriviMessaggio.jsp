@@ -165,12 +165,12 @@
 
 								<tr>
                                     <td>
-                                        <label for="destinatario"><%=bundle.getString("scriviMessaggio_dest")%></label>
+                                        <label for="destinatario"><%=bundle.getString("scriviMessaggio_dest")%>:</label>
                                     </td>
 								</tr>
 								<tr>
 									<td>
-                                        <input id="destinatario" type="text" name="destinatario" class="btn"
+                                        <input id="destinatario" type="text" placeholder="<%=bundle.getString("scriviMessaggio_dest")%>" name="destinatario" class="btn"
 
                                                <%
                                                    if (destinatario != null) {
@@ -186,12 +186,12 @@
 
 								<tr>
 									<td>
-                                        <label for="oggetto"><%=bundle.getString("scriviMessaggio_obj")%></label>
+                                        <label for="oggetto"><%=bundle.getString("scriviMessaggio_obj")%>:</label>
                                     </td>
 								</tr>
 								<tr>	
 									<td>
-                                        <input id="oggetto" type="text" name="oggetto" class="btn"
+                                        <input id="oggetto" type="text" placeholder="<%=bundle.getString("scriviMessaggio_obj")%>" name="oggetto" class="btn"
 
                                         <%
                                             if (param != null && oggetto != null) {
@@ -206,12 +206,12 @@
 
 								<tr>
 								    <td>
-                                        <label for="contenuto"><%=bundle.getString("scriviMessaggio_cont")%></label>
+                                        <label for="contenuto"><%=bundle.getString("scriviMessaggio_cont")%>:</label>
                                     </td>
 								</tr>
 								<tr>
 									<td>
-                                        <textarea id="contenuto" name="contenuto" class="btn" rows="10" cols="100%"><%
+                                        <textarea id="contenuto" name="contenuto" placeholder="<%=bundle.getString("scriviMessaggio_cont")%>" class="btn" rows="10" cols="100%"><%
                                                 if (param != null && contenuto != null) {
                                                     out.println(contenuto);
                                                 }

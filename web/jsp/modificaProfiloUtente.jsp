@@ -250,7 +250,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="sesso" type="text" name="sesso" size="30" value="<%=u == null ? "" : (u.getSesso() == null ? "" : u.getSesso())%>"/>
+                                        <input class="btn" id="sesso" type="text" placeholder="M  /  F" name="sesso" size="30" value="<%=u == null ? "" : (u.getSesso() == null ? "" : u.getSesso())%>"/>
                                     </td>
                                 </tr>
 
@@ -261,7 +261,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="btn" id="nascita" type="text" name="nascita" size="30" value="<%=u == null ? "" : (u.getNascita() == null ? "" : u.getNascita())%>"/>
+                                        <input class="btn" id="nascita" type="text" placeholder="<%=bundle.getString("modificaProfiloUtente_data")%>" name="nascita" size="30" value="<%=u == null ? "" : (u.getNascita() == null ? "" : u.getNascita())%>"/>
                                     </td>
                                 </tr>
 

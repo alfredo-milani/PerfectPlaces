@@ -13,7 +13,8 @@ import java.util.ArrayList;
  */
 public class BoundaryGestioneLocazioni {
 
-    public ArrayList<Locazione> ritonaLocazioni (String username) throws DeserializzazioneException {
+    public ArrayList<Locazione> ritonaLocazioni (String username)
+            throws DeserializzazioneException {
         ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
         ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
@@ -23,7 +24,8 @@ public class BoundaryGestioneLocazioni {
 
     }
 
-    public void  avvioRimozione(Locazione locazione) throws SerializzazioneException, DeserializzazioneException {
+    public void  avvioRimozione(Locazione locazione)
+            throws SerializzazioneException, DeserializzazioneException {
         ControlloreRimuoviLocazione cr =  new ControlloreRimuoviLocazione();
         cr.rimuoviLocazione(locazione);
     }

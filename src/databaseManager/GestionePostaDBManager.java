@@ -1,4 +1,4 @@
-package utils.dbManager;
+package databaseManager;
 
 import constants.Constants;
 import entity.Messaggio;
@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Alfredo Milani on 13/12/2016.

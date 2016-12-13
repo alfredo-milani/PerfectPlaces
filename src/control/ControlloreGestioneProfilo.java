@@ -11,7 +11,7 @@ import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.*;
-import utils.dbManager.GestioneProfiloDBManager;
+import databaseManager.GestioneProfiloDBManager;
 
 // Classe che consente la gestione del profilo personale, in particolare la restituzione dei valori
 // associati ad un particolare getUtente, modificarli, e modificare l'immagine.

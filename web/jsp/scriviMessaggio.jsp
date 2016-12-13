@@ -15,13 +15,8 @@
 
 <%
     ControlloreLingua controlloreLingua = new ControlloreLingua();
-    Locale locale;
-    try {
-        locale = controlloreLingua.getLang(c.getUser());
-    } catch (DeserializzazioneException e) {
-        locale = controlloreLingua.getLang();
-        e.printStackTrace();
-    }
+    Locale locale = controlloreLingua
+            .getLang(c.getUser());
     ResourceBundle bundle = ControlloreLingua
             .getBundle(locale);
 

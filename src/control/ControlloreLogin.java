@@ -7,7 +7,7 @@ import constants.Constants;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import utils.DeserializzaOggetti;
-import utils.dbManager.LoginDBManager;
+import databaseManager.LoginDBManager;
 
 // Classe che gestisce il login al sistema.
 public class ControlloreLogin {

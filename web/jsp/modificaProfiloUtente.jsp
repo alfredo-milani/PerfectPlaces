@@ -20,37 +20,27 @@
     ControlloreLingua controlloreLingua = new ControlloreLingua();
     String lang = request.getParameter("lang");
 
-    Locale currentUserPref = controlloreLingua.getLang();
+    Locale currentLocale;
+    if (lang != null) {
+        currentLocale = controlloreLingua.getLocaleFromString(lang);
+    } else {
+        lang = Constants.LANG_DEFAULT;
+        currentLocale = controlloreLingua.getLang();
+    }
+
     if (c.getLogged()) {
-        Locale currentLocale;
-        if (lang != null) {
-            currentLocale = controlloreLingua.getLocaleFromString(lang);
-        } else {
-            currentLocale = controlloreLingua.getLang();
-        }
-
-        try {
-            currentUserPref = controlloreLingua.getLang(c.getUser());
-        } catch (DeserializzazioneException e) {
-            currentUserPref = currentLocale;
-        }
-
         String pref = request.getParameter("pref");
-
-        if (pref != null && Integer.parseInt(pref) == 1 &&
-                currentLocale != currentUserPref) {
-            try {
-                controlloreLingua.updatePref(c.getUser(), currentLocale);
-            } catch (DeserializzazioneException | SerializzazioneException e) {
-                e.printStackTrace();
-            }
-
-            currentUserPref = currentLocale;
+        if (pref != null && Integer.parseInt(pref) == 1) {
+            currentLocale = controlloreLingua
+                    .checkUpdatePref(c.getUser(), lang);
+        } else {
+            currentLocale = controlloreLingua
+                    .getLang(c.getUser());
         }
     }
 
     ResourceBundle bundle = ControlloreLingua
-            .getBundle(currentUserPref);
+            .getBundle(currentLocale);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -305,7 +295,7 @@
                                         <label for="select"><%=bundle.getString("modificaProfiloUtente_linguaCorrente")%> </label>
 
                                         <%
-                                            if (currentUserPref.getDisplayLanguage()
+                                            if (currentLocale.getDisplayLanguage()
                                                     .equals(Locale.ENGLISH.getDisplayLanguage())) {
                                         %>
 
@@ -315,7 +305,7 @@
                                                 </select>
 
                                         <%
-                                            } else if (currentUserPref.getDisplayLanguage()
+                                            } else if (currentLocale.getDisplayLanguage()
                                                     .equals(Locale.ITALIAN.getDisplayLanguage())) {
                                         %>
 

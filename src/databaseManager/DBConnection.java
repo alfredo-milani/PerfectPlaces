@@ -1,4 +1,4 @@
-package utils.dbManager;
+package databaseManager;
 
 import constants.Constants;
 

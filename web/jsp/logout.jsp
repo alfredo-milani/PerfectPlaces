@@ -30,13 +30,8 @@
 <%
     ControlloreLingua controlloreLingua = new ControlloreLingua();
 	String username = c.getUser();
-	Locale locale;
-    try {
-        locale = controlloreLingua.getLang(username);
-    } catch (DeserializzazioneException e) {
-        locale = controlloreLingua.getLang();
-        e.printStackTrace();
-    }
+	Locale locale = controlloreLingua
+            .getLang(username);
     ResourceBundle bundle = ControlloreLingua
             .getBundle(locale);
 

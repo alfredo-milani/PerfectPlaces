@@ -13,8 +13,8 @@ import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
-import utils.dbManager.GestionePostaDBManager;
-import utils.dbManager.RegistrazioneDBManager;
+import databaseManager.GestionePostaDBManager;
+import databaseManager.RegistrazioneDBManager;
 
 // Classe che si occupa della gestione della posta, sia dell'invio dei messaggi che della ricerca.
 public class ControlloreGestionePosta {

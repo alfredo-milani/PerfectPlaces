@@ -83,7 +83,7 @@ public interface Constants {
     // nelle segnature e gli implements Serializable.
     // Elimina anche variabili locali di appoggio nelle classi java per
     // riferirsi alle costanti contenute in questa pagina.
-    // (la sezione posta funziona male se DB = 0)
+    // (NOTA::: UC lingua -> tolta retrocompatibilita con Serializzazione/Deserializzazione su file)
 
     //***** Vedi se elimina, le classi Utente e Messaggio perchè gestite dal DB  *****//
 

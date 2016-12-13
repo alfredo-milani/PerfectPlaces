@@ -9,7 +9,7 @@ import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.*;
-import utils.dbManager.RegistrazioneDBManager;
+import databaseManager.RegistrazioneDBManager;
 
 // Questa classe si occupa della registrazione degli utenti.
 

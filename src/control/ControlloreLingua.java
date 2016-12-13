@@ -1,14 +1,8 @@
 package control;
 
 import constants.Constants;
-import entity.Utente;
-import exception.DeserializzazioneException;
-import exception.SerializzazioneException;
-import utils.DeserializzaOggetti;
-import utils.SerializzaOggetti;
-import utils.dbManager.LinguaDBManager;
+import databaseManager.LinguaDBManager;
 
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -40,52 +34,27 @@ public class ControlloreLingua {
     }
 
     @SuppressWarnings("unchecked")
-    public Locale getLang(String loggedUser)
-            throws DeserializzazioneException {
+    public Locale getLang(String loggedUser) {
 
-        if (Constants.DB == 1) {
-
-            String lang;
-            lang = lDBM.getLingua(loggedUser);
-            return lang != null ?
-                    getLocaleFromString(lang) : Locale.getDefault();
-
-        } else {
-            ArrayList<Utente> utenti = (ArrayList<Utente>) DeserializzaOggetti
-                    .deserializza(Constants.UTENTI_PATH);
-
-            for (Utente utente : utenti)
-                if (utente.getUsername().equals(loggedUser))
-                    return utente.getLingua();
-
-            return Locale.getDefault();
-        }
+        String lang;
+        lang = lDBM.getLingua(loggedUser);
+        return lang != null ?
+                getLocaleFromString(lang) : Locale.getDefault();
     }
 
-    @SuppressWarnings("unchecked")
-    public synchronized void updatePref(String username,  Locale newLocale)
-            throws DeserializzazioneException, SerializzazioneException {
+    // si assume che l'utente 'username' sia loggato
+    public synchronized Locale checkUpdatePref(String username,
+                                               String lang) {
+        Locale userPref = getLang(username);
+        if (lang != null) {
+            Locale locale = getLocaleFromString(lang);
+            if (locale != userPref)
+                lDBM.aggiornaPref(username, lang);
 
-        if (Constants.DB == 1) {
-
-            String lang = getStringFromLocale(newLocale);
-            lDBM.aggiornaPref(username, lang);
-
-        } else {
-
-            ArrayList<Utente> utenteArrayList = (ArrayList<Utente>) DeserializzaOggetti
-                    .deserializza(Constants.UTENTI_PATH);
-
-            for (Utente utente : utenteArrayList)
-                if (utente.getUsername().equals(username)) {
-                    utente.setLingua(newLocale);
-                    break;
-                }
-
-            SerializzaOggetti.serializza(utenteArrayList, Constants.UTENTI_PATH);
-
+            return locale;
         }
 
+        return userPref;
     }
 
     public String getStringFromLocale(Locale locale) {

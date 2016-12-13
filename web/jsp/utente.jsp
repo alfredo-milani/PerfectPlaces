@@ -11,7 +11,6 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
-<%@ page import="exception.SerializzazioneException" %>
 <jsp:useBean id="c" class="control.ControlloreLogin" scope="session"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -50,32 +49,20 @@
         lang = Constants.LANG_DEFAULT;
         currentLocale = controlloreLingua.getLang();
     }
-    Locale currentUserPref = currentLocale;
 
     if (c.getLogged()) {
-        try {
-            currentUserPref = controlloreLingua.getLang(c.getUser());
-        } catch (DeserializzazioneException e) {
-            e.printStackTrace();
-        }
-
         String pref = request.getParameter("pref");
-
-        if (pref != null && currentLocale != currentUserPref) {
-            if (Integer.parseInt(pref) == 1) {
-                try {
-                    controlloreLingua.updatePref(c.getUser(), currentLocale);
-                } catch (DeserializzazioneException | SerializzazioneException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            currentUserPref = currentLocale;
+        if (pref != null && Integer.parseInt(pref) == 1) {
+            currentLocale = controlloreLingua
+                    .checkUpdatePref(c.getUser(), lang);
+        } else {
+            currentLocale = controlloreLingua
+                    .getLang(c.getUser());
         }
     }
 
     ResourceBundle bundle = ControlloreLingua
-			.getBundle(currentUserPref);
+			.getBundle(currentLocale);
 %>
 
 <div id="wrapper">
@@ -127,7 +114,7 @@
                                 <td>
 
                                     <%
-                                        if (currentUserPref.getDisplayLanguage()
+                                        if (currentLocale.getDisplayLanguage()
                                                 .equals(Locale.ENGLISH.getDisplayLanguage())) {
                                     %>
 
@@ -137,7 +124,7 @@
                                             </select>
 
                                     <%
-                                        } else if (currentUserPref.getDisplayLanguage()
+                                        } else if (currentLocale.getDisplayLanguage()
                                                 .equals(Locale.ITALIAN.getDisplayLanguage())) {
                                     %>
 

@@ -1,4 +1,4 @@
-package utils.dbManager;
+package databaseManager;
 
 import constants.Constants;
 
@@ -10,48 +10,38 @@ import java.sql.SQLException;
 /**
  * Created by Alfredo Milani on 12/12/2016.
  */
-public class RegistrazioneDBManager {
+public class LinguaDBManager {
 
     private Connection connection;
 
-    public RegistrazioneDBManager() {
+    public LinguaDBManager() {
         this.connection = DBConnection.getSingleConn();
     }
 
-    public void inserisciUtente (String un, String psw,
-                                String nome, String cognome,
-                                String email, String lingua,
-                                 String immagine, String nascita,
-                                 String sesso) {
+    public void aggiornaPref(String username, String lang) {
         String query = String.format(
-                Constants.DB_QUERY_INSERT,
+                Constants.DB_QUERY_UPDATE,
                 Constants.DB_TABLE_UTENTI,
-                "(?,?,?,?,?,?,?,?,?)"
+                Constants.DB_UTENTI_LINGUA + "=?",
+                Constants.DB_UTENTI_US + "=?"
         );
 
         try {
             PreparedStatement statement = connection
                     .prepareStatement(query);
 
-            statement.setString(1, un);
-            statement.setString(2, psw);
-            statement.setString(3, cognome);
-            statement.setString(4, email);
-            statement.setString(5, lingua);
-            statement.setString(6, nome);
-            statement.setString(7, immagine);
-            statement.setString(8, nascita);
-            statement.setString(9, sesso);
-
+            statement.setString(1, lang);
+            statement.setString(2, username);
             statement.executeUpdate();
+
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Boolean usernameEsistente (String username) {
-        boolean esiste = false;
+    public String getLingua(String username) {
+        String lang = null;
         String query = String.format(
                 Constants.DB_QUERY_SELECT,
                 "*",
@@ -65,14 +55,16 @@ public class RegistrazioneDBManager {
 
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
-            if (result.next())
-                esiste = true;
+            if (result.next()) {
+                lang = result
+                        .getString(Constants.DB_UTENTI_LINGUA);
+            }
 
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return esiste;
+        return lang;
     }
 }

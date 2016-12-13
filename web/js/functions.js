@@ -106,7 +106,8 @@ function changeLang(box, us, psw, pref) {
     http.open("POST", newURL, true);
 
     // Invia informazioni di header con la richiesta
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.setRequestHeader("Content-type",
+        "application/x-www-form-urlencoded");
 
     // Per sapere quando c'è un cambiamento di stato
     http.onreadystatechange = function() {

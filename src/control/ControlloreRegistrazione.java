@@ -60,6 +60,7 @@ public class ControlloreRegistrazione {
             ControlloreLingua controlloreLingua = new ControlloreLingua();
             String lang = controlloreLingua.getStringFromLocale(lingua);
             String immagine = "profiloDefault.png";
+            System.out.print("lang: " + lang);
             rDBM.inserisciUtente(username, password, nome,
                     cognome, email, lang,
                     immagine, nascita, sesso);

@@ -24,7 +24,7 @@ public class ControlloreVisualizzaLocazioni {
     }
 
     // Metodo permette ad un proprietario di visualizzare le proprie locazioni la ricerca avviene in base allo Username.
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     public ArrayList<Locazione> visualizzaLocazioni(String username) throws DeserializzazioneException {
 
         ArrayList<Locazione> locazioni = new ArrayList<Locazione>();

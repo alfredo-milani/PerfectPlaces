@@ -30,10 +30,9 @@ public class ControlloreLogin {
 
 	    if (Constants.DB == 1) {
 
-            this.logged_in = this.lDBM.accesso(username, password);
-            if (logged_in) {
-                this.username = username;
-                this.password = password;
+	        int result = this.lDBM.accesso(username, password);
+	    	if (result != -1) {
+	    	    this.logged_in = result == 1;
             }
 
         } else {

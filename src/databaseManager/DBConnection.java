@@ -25,7 +25,7 @@ class DBConnection {
 
             this.connection = DriverManager.getConnection(
                     Constants.DB_URL, Constants.DB_USER,Constants.DB_PASSWORD);
-            if (connection != null) {
+            if (this.connection != null) {
                 System.out.println("Connected to " + Constants.DB_URL);
             } else {
                 System.out.println("Connection failed to " + Constants.DB_URL);

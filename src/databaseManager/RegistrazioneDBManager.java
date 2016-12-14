@@ -35,11 +35,11 @@ public class RegistrazioneDBManager {
 
             statement.setString(1, un);
             statement.setString(2, psw);
-            statement.setString(3, cognome);
-            statement.setString(4, email);
-            statement.setString(5, lingua);
-            statement.setString(6, nome);
-            statement.setString(7, immagine);
+            statement.setString(3, nome);
+            statement.setString(4, cognome);
+            statement.setString(5, email);
+            statement.setString(6, immagine);
+            statement.setString(7, lingua);
             statement.setString(8, nascita);
             statement.setString(9, sesso);
 

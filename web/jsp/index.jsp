@@ -12,7 +12,6 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="constants.Constants" %>
-<%@ page import="control.ControlloreRegistrazione" %>
 <jsp:useBean id="b" scope="session" class="control.ControlloreRegistrazione"/>
 
 <%

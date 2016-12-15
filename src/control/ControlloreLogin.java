@@ -33,6 +33,8 @@ public class ControlloreLogin {
 	        int result = this.lDBM.accesso(username, password);
 	    	if (result != -1) {
 	    	    this.logged_in = result == 1;
+	    	    this.username = username;
+                this.password = password;
             }
 
         } else {

@@ -35,15 +35,15 @@ public class RegistrazioneDBManager {
                 PreparedStatement statement = connection
                         .prepareStatement(query);
 
-                statement.setString(1, un);
-                statement.setString(2, psw);
-                statement.setString(3, nome);
-                statement.setString(4, cognome);
-                statement.setString(5, email);
-                statement.setString(6, immagine);
-                statement.setString(7, lingua);
-                statement.setString(8, nascita);
-                statement.setString(9, sesso);
+                statement.setString(1, psw);
+                statement.setString(2, nome);
+                statement.setString(3, cognome);
+                statement.setString(4, email);
+                statement.setString(5, immagine);
+                statement.setString(6, lingua);
+                statement.setString(7, nascita);
+                statement.setString(8, sesso);
+                statement.setString(9, un);
 
                 statement.executeUpdate();
                 statement.close();

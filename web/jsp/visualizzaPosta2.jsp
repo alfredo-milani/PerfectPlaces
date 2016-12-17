@@ -10,7 +10,6 @@
 <jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <jsp:useBean id="cgposta" scope="session" class="control.ControlloreGestionePosta"/>
 <%@page import="entity.Messaggio" %>
-<%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="entity.Utente" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="control.ControlloreLingua" %>
@@ -72,11 +71,7 @@
                                     if (c.getLogged()) {
                                         if (strCodice != null) {
                                             int codice = Integer.parseInt(strCodice);
-                                            try {
-                                                messaggio = cgposta.ricercaMessaggioPerCodice(codice);
-                                            } catch (DeserializzazioneException e) {
-                                                e.printStackTrace();
-                                            }
+                                            messaggio = cgposta.ricercaMessaggioPerCodice(codice);
                                         }
 
                                         if (messaggio == null) {
@@ -155,14 +150,7 @@
                                     <%
                                         Utente des = null;
                                         if (messaggio != null) {
-                                            try {
-                                                des = cgp.ottieniUtente(messaggio.getMittente());
-                                            } catch (DeserializzazioneException e) {
-                                                des = new Utente("errore", "errore", "errore",
-                                                        "errore", "errore", "errore",
-                                                        controlloreLingua.getLang(), "errore", "errore");
-                                                e.printStackTrace();
-                                            }
+                                            des = cgp.ottieniUtente(messaggio.getMittente());
                                         }
                                     %>
                                     <form action="mailto:<%= des == null ? "" : des.getEmail() %>?subject=<%= messaggio == null ? "" : messaggio.getOggetto() %>" enctype="application/x-www-form-urlencoded" method="post">

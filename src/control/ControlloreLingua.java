@@ -11,9 +11,10 @@ import java.util.ResourceBundle;
  */
 public class ControlloreLingua {
 
-    private LinguaDBManager lDBM = new LinguaDBManager();
+    private LinguaDBManager lDBM;
 
     public ControlloreLingua() {
+        this.lDBM = new LinguaDBManager();
     }
 
     public static ResourceBundle getBundle(Locale locale) {

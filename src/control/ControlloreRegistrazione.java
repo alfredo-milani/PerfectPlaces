@@ -14,12 +14,12 @@ import databaseManager.RegistrazioneDBManager;
 // Questa classe si occupa della registrazione degli utenti.
 
 public class ControlloreRegistrazione {
-	private String percorsoUtenti = Constants.UTENTI_PATH;
-	private ArrayList<Utente> utenti = new ArrayList<>();
+	private ArrayList<Utente> utenti;
 	private RegistrazioneDBManager rDBM;
 	
 	// Costruttore
 	public ControlloreRegistrazione() {
+	    this.utenti = new ArrayList<>();
 	    this.rDBM = new RegistrazioneDBManager();
 	}
 	
@@ -91,21 +91,21 @@ public class ControlloreRegistrazione {
             Utente ut = new Utente(username, password, nome,
                     cognome, email, immagine, lingua, nascita, sesso);
 
-            File file = new File(percorsoUtenti);
+            File file = new File(Constants.UTENTI_PATH);
             if (file.length() == 0) {
                 utenti.add(ut);
-                SerializzaOggetti.serializza(utenti, percorsoUtenti);
+                SerializzaOggetti.serializza(utenti, Constants.UTENTI_PATH);
                 return 0;
             }
 
-            utenti = (ArrayList<Utente>) DeserializzaOggetti.deserializza(percorsoUtenti);
+            utenti = (ArrayList<Utente>) DeserializzaOggetti.deserializza(Constants.UTENTI_PATH);
 
             for (Utente utente : utenti)
                 if (utente.getUsername().equals(username))
                     return 3;
 
             utenti.add(ut);
-            SerializzaOggetti.serializza(utenti, percorsoUtenti);
+            SerializzaOggetti.serializza(utenti, Constants.UTENTI_PATH);
 
             return 0;
 

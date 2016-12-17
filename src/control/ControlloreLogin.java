@@ -11,15 +11,20 @@ import databaseManager.LoginDBManager;
 
 // Classe che gestisce il login al sistema.
 public class ControlloreLogin {
+
 	// Variabili
-    private LoginDBManager lDBM = new LoginDBManager();
-	private String username = "";
-	private String password = "";
-	private boolean logged_in = false;
+	private String username;
+	private String password;
+	private boolean logged_in;
+    private LoginDBManager lDBM;
 
 
 	// Costruttore
-	public ControlloreLogin(){
+	public ControlloreLogin() {
+		this.lDBM = new LoginDBManager();
+		this.username = "";
+		this.password = "";
+		this.logged_in = false;
 	}
 
 	// Deserializza gli Utenti del file utenti e li posiziona in un ArrayList. Viene fatta una scansione
@@ -53,9 +58,8 @@ public class ControlloreLogin {
                         logged_in = true;
                         this.username = username;
                         this.password = password;
-                        break;
                     }
-                    logged_in = false;
+
                     break;
                 }
             }

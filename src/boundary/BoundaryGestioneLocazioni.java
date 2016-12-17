@@ -17,11 +17,7 @@ public class BoundaryGestioneLocazioni {
             throws DeserializzazioneException {
         ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
-        ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
-        locazioni = crl.visualizzaLocazioni(username);
-
-        return locazioni;
-
+        return crl.visualizzaLocazioni(username);
     }
 
     public void  avvioRimozione(Locazione locazione)

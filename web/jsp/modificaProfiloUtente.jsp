@@ -9,8 +9,6 @@
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
 <%@page import="entity.*"%>
-<%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="exception.SerializzazioneException" %>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
@@ -99,14 +97,8 @@
 
                             <%
                                 } else {
-                                    try {
-                                        u = cgp.ottieniUtente(username);
-                                    } catch (DeserializzazioneException e) {
-                                        u = new Utente("errore", "errore", "errore",
-                                                "errore", "errore", "errore", controlloreLingua.getLang(),
-                                        "errore", "errore");
-                                        e.printStackTrace();
-                                    }
+
+                                    u = cgp.ottieniUtente(username);
 
                                     if (param != null) {
                                         String nome = request.getParameter("nome");
@@ -118,23 +110,11 @@
                                         String nuovaPassword = request.getParameter("nuovaPassword");
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
 
-                                        int controllo = 0;
-
-                                        try {
-                                            controllo = cgp.modificaProfilo(username, nome, cognome,
+                                        int controllo = cgp.modificaProfilo(username, nome, cognome,
                                                     email, sesso, nascita, vecchiaPassword,
                                                     nuovaPassword, confermaNuovaPassword);
-                                        } catch (DeserializzazioneException | SerializzazioneException e) {
-                                            e.printStackTrace();
-                                        }
-                                        try {
-                                            u = cgp.ottieniUtente(username);
-                                        } catch (DeserializzazioneException e) {
-                                            u = new Utente("errore", "errore", "errore",
-                                                    "errore", "errore", "errore", controlloreLingua.getLang(),
-                                                    "errore", "errore");
-                                            e.printStackTrace();
-                                        }
+
+                                        u = cgp.ottieniUtente(username);
 
                                         switch (controllo) {
                                             case 0:

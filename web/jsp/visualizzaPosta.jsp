@@ -10,8 +10,6 @@
 <%@page import="control.ControlloreGestionePosta" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Messaggio" %>
-<%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="exception.SerializzazioneException" %>
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
@@ -40,7 +38,7 @@
     boolean loggedin = c.getLogged();
     int eliminazione = -1;
     ControlloreGestionePosta cgp = new ControlloreGestionePosta();
-    ArrayList<Messaggio> elencoMessaggiUser = new ArrayList<>();
+    ArrayList<Messaggio> elencoMessaggiUser;
 
     String codeMsg = request.getParameter("Cod");
     // Per maggiore robustezza
@@ -48,19 +46,12 @@
     if (codeMsg != null && codeDel != null) {
         if (c.getLogged() && Integer.parseInt(codeDel) == 1) {
             int intMsg = Integer.parseInt(codeMsg);
-            try {
-                eliminazione = cgp.eliminaMessaggio(intMsg);
-            } catch (SerializzazioneException | DeserializzazioneException e) {
-                e.printStackTrace();
-            }
+
+            eliminazione = cgp.eliminaMessaggio(intMsg);
         }
     }
 
-    try {
-        elencoMessaggiUser = cgp.ricercaMessaggi(username);
-    } catch (DeserializzazioneException e) {
-        e.printStackTrace();
-    }
+    elencoMessaggiUser = cgp.ricercaMessaggi(username);
 
 %>
 

@@ -1,6 +1,5 @@
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.ResourceBundle" %>
-<%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="java.util.Locale" %><%--
   Created by IntelliJ IDEA.
   User: alfredo

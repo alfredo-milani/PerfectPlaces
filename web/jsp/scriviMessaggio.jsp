@@ -1,5 +1,3 @@
-<%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="exception.SerializzazioneException" %>
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="java.util.Locale" %><%--
@@ -31,11 +29,12 @@
         oggetto = request.getParameter("oggetto");
         destinatario = request.getParameter("destinatario");
         contenuto = request.getParameter("contenuto");
-        try {
-            controllo = p.scriviMessaggio(oggetto, mittente, destinatario, contenuto);
-        } catch (DeserializzazioneException | SerializzazioneException e) {
-            e.printStackTrace();
-        }
+
+        controllo = p.scriviMessaggio(oggetto,
+                mittente,
+                destinatario,
+                contenuto
+        );
     }
 %>
 

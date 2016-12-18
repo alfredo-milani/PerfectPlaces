@@ -5,7 +5,16 @@
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="crl" scope="session" class="boundary.BoundaryGestioneLocazioni" />
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="cgp" scope="session" class="boundary.BoundaryProfilo"/>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="entity.*"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="constants.Constants" %>
+<%@page import="exception.DeserializzazioneException" %>
+<%@page import="java.util.ResourceBundle" %>
+<%@ page import="boundary.BoundaryLingua" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -22,21 +31,14 @@
 </head>
 
 <body>
-<jsp:useBean id="crl" scope="session" class="control.ControlloreVisualizzaLocazioni" />
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
-<%@page import="entity.*"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="constants.Constants" %>
-<%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="control.ControlloreLingua" %>
-<%
-    String username = c.getUser();
-    Utente u = cgp.ottieniUtente(username);
 
-    ResourceBundle bundle = ControlloreLingua
-            .getBundle(u.getLingua());
+<%
+    String username = c.ritornaUsername();
+    Utente u = cgp.ritornaUtente(username);
+
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
+    ResourceBundle bundle = boundaryLingua
+            .riceviBundle(u.getLingua());
 
     String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();
     if (u.getSesso() != null) {
@@ -51,7 +53,7 @@
 
     ArrayList<Locazione> locazioni = null;
     try {
-        locazioni = crl.visualizzaLocazioni(username);
+        locazioni = crl.ritonaLocazioni(username);
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
@@ -62,7 +64,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1><%=bundle.getString("profiloUtente_personale")%></h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser() %> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername() %> </h2>
 			</div>
 		</div>
 	</div>

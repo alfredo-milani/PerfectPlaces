@@ -1,21 +1,22 @@
-<%@ page import="control.ControlloreLingua" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="boundary.BoundaryLingua" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
 
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
-    Locale locale = controlloreLingua
-            .getLang(c.getUser());
-    ResourceBundle bundle = ControlloreLingua
-            .getBundle(locale);
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
+    Locale locale = boundaryLingua
+            .riceviLingua(c.ritornaUsername());
+    ResourceBundle bundle = boundaryLingua
+            .riceviBundle(locale);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -37,7 +38,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1> <%=bundle.getString("posta_posta")%> </h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome") + c.getUser() %> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome") + c.ritornaUsername() %> </h2>
 			</div>
 		</div>
 	</div>
@@ -61,7 +62,7 @@
 							<h2><strong> <%=bundle.getString("posta_azioni")%> </strong>
 
                                 <%
-                                    if (!c.getLogged()) {
+                                    if (!c.controlloAccesso()) {
                                 %>
 
                                         <font size="4px" color="red"> <%=bundle.getString("modificaProfiloUtente_sessioneScaduta")%> </font>

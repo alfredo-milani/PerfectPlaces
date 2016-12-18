@@ -1,14 +1,16 @@
-<%@ page import="java.util.Locale" %>
-<%@ page import="control.ControlloreLingua" %>
-<%@ page import="java.util.ResourceBundle" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.Locale" %>
+<%@ page import="control.ControlloreLingua" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="boundary.BoundaryLingua" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -27,10 +29,10 @@
 <body>
 
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
-	String username = c.getUser();
-	Locale locale = controlloreLingua
-            .getLang(username);
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
+	String username = c.ritornaUsername();
+	Locale locale = boundaryLingua
+            .riceviLingua(username);
     ResourceBundle bundle = ControlloreLingua
             .getBundle(locale);
 

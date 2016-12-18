@@ -1,26 +1,27 @@
-<%@ page import="control.ControlloreLingua" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: alfredo
   Date: 20/10/16
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="boundary.BoundaryLingua" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<jsp:useBean id="p" scope="session" class="control.ControlloreGestionePosta"/>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="p" scope="session" class="boundary.BoundaryPosta"/>
 
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
-    Locale locale = controlloreLingua
-            .getLang(c.getUser());
-    ResourceBundle bundle = ControlloreLingua
-            .getBundle(locale);
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
+    Locale locale = boundaryLingua
+            .riceviLingua(c.ritornaUsername());
+    ResourceBundle bundle = boundaryLingua
+            .riceviBundle(locale);
 
     String param = request.getParameter("Msg");
     String dest = request.getParameter("Dest");
-    String mittente = c.getUser();
+    String mittente = c.ritornaUsername();
     String destinatario = dest == null ? "" : dest;
     String oggetto = "";
     String contenuto = "";
@@ -30,7 +31,7 @@
         destinatario = request.getParameter("destinatario");
         contenuto = request.getParameter("contenuto");
 
-        controllo = p.scriviMessaggio(oggetto,
+        controllo = p.inviaMessaggio(oggetto,
                 mittente,
                 destinatario,
                 contenuto
@@ -58,7 +59,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1><%=bundle.getString("posta_scrivi")%></h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser() %> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername() %> </h2>
 			</div>
 		</div>
 	</div>

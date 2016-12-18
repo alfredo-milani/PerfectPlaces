@@ -9,9 +9,9 @@
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="constants.Constants" %>
 <%@ page import="java.util.ResourceBundle" %>
-<%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
-<jsp:useBean id="c" class="control.ControlloreLogin" scope="session"/>
+<%@ page import="boundary.BoundaryLingua" %>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -28,8 +28,9 @@
 </head>
 
 <body>
+
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
     String un = request.getParameter("username");
     String pw = request.getParameter("password");
     String lang = request.getParameter("lang");
@@ -44,25 +45,25 @@
 
     Locale currentLocale;
     if (lang != null) {
-        currentLocale = controlloreLingua.getLocaleFromString(lang);
+        currentLocale = boundaryLingua.riceviLocaleDaString(lang);
     } else {
         lang = Constants.LANG_DEFAULT;
-        currentLocale = controlloreLingua.getLang();
+        currentLocale = boundaryLingua.riceviLinguaDefault();
     }
 
-    if (c.getLogged()) {
+    if (c.controlloAccesso()) {
         String pref = request.getParameter("pref");
         if (pref != null && Integer.parseInt(pref) == 1) {
-            currentLocale = controlloreLingua
-                    .checkUpdatePref(c.getUser(), lang);
+            currentLocale = boundaryLingua
+                    .aggiornaPreferenze(c.ritornaUsername(), lang);
         } else {
-            currentLocale = controlloreLingua
-                    .getLang(c.getUser());
+            currentLocale = boundaryLingua
+                    .riceviLingua(c.ritornaUsername());
         }
     }
 
-    ResourceBundle bundle = ControlloreLingua
-			.getBundle(currentLocale);
+    ResourceBundle bundle = boundaryLingua
+			.riceviBundle(currentLocale);
 %>
 
 <div id="wrapper">
@@ -71,11 +72,11 @@
 			<div id="logo">
 
                 <%
-                    if (c.getLogged()) {
+                    if (c.controlloAccesso()) {
                 %>
 
 				    <h1> <%=bundle.getString("utente_benvenuto")%> </h1>
-                    <h2> <%=bundle.getString("utente_loggedAs")%> <%=c.getUser()%> </h2>
+                    <h2> <%=bundle.getString("utente_loggedAs")%> <%=c.ritornaUsername()%> </h2>
 
                 <%  } else {
                         String redirectURL = "http://" + Constants.HOST_PORT +
@@ -118,7 +119,7 @@
                                                 .equals(Locale.ENGLISH.getDisplayLanguage())) {
                                     %>
 
-                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>', 1)">
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.ritornaUsername()%>', '<%= c.ritornaPassword() %>', 1)">
                                                 <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
                                                 <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
                                             </select>
@@ -128,7 +129,7 @@
                                                 .equals(Locale.ITALIAN.getDisplayLanguage())) {
                                     %>
 
-                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>', 1)">
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.ritornaUsername()%>', '<%= c.ritornaPassword() %>', 1)">
                                                 <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
                                                 <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
                                             </select>
@@ -137,7 +138,7 @@
                                         } else {
                                     %>
 
-                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.getUser()%>', '<%= c.getPsw() %>', 1)">
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.ritornaUsername()%>', '<%= c.ritornaPassword() %>', 1)">
                                                 <option value="<%=Constants.LANG_DEFAULT%>"><%=bundle.getString("index_italiano")%></option>
                                                 <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
                                             </select>

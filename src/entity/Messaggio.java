@@ -1,16 +1,6 @@
 package entity;
 
-import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import constants.Constants;
-import exception.DeserializzazioneException;
-import utils.DeserializzaOggetti;
-
-public class Messaggio implements java.io.Serializable {
+public class Messaggio {
 
 	private String oggetto;
 	private String mittente;
@@ -78,25 +68,5 @@ public class Messaggio implements java.io.Serializable {
 
 	public void setCodice(int codice) {
 		this.codice = codice;
-	}
-	
-	// Metodo per assegnare un codice univoco ad un messaggio.
-	@SuppressWarnings("unchecked")
-	public static int assegnaCodice()
-            throws DeserializzazioneException{
-		//Se non c'è nessun messaggio ritorna il codice 0
-		File file = new File(Constants.MSG_PATH);
-		if(file.length() == 0)
-			return 0;
-		
-		// Se il file non è vuoto calcola il primo codice disponibile
-		ArrayList<Messaggio> elencoMessaggi;
-		elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti
-                .deserializza(Constants.MSG_PATH);
-		
-		int codice = elencoMessaggi.get(elencoMessaggi.size() - 1)
-                .getCodice();
-		
-		return ++codice;
 	}
 }

@@ -5,24 +5,24 @@ package constants;
  */
 public interface Constants {
     //***** Percorsi utili *****//
-    String ABS_PATH = "C:\\Users\\Alfredo Milani\\IdeaProjects\\PerfectPlaces\\"; /* NON MODIFICARE */
-    String ALBERGHI_PATH =    ABS_PATH.concat("data\\location\\alberghi");
-    String ADMIN_PATH =       ABS_PATH.concat("data\\amministratori");
-    String APPART_PATH =      ABS_PATH.concat("data\\location\\appartamenti");
-    String BEB =              ABS_PATH.concat("data\\location\\beb");
-    String CASEVACANZA_PATH = ABS_PATH.concat("data\\location\\casevacanza");
-    String MSG_PATH =         ABS_PATH.concat("data\\messaggi");
-    String OSTELLI_PATH =     ABS_PATH.concat("data\\location\\ostelli");
-    String TMPDATE_PATH =     ABS_PATH.concat("data\\tempdate");
-    String UTENTI_PATH =      ABS_PATH.concat("data\\utenti");
+    String ABS_PATH = "/home/alfredo/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
+    String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
+    String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
+    String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");
+    String BEB =              ABS_PATH.concat("data/location/beb");
+    String CASEVACANZA_PATH = ABS_PATH.concat("data/location/casevacanza");
+    String MSG_PATH =         ABS_PATH.concat("data/messaggi");
+    String OSTELLI_PATH =     ABS_PATH.concat("data/location/ostelli");
+    String TMPDATE_PATH =     ABS_PATH.concat("data/tempdate");
+    String UTENTI_PATH =      ABS_PATH.concat("data/utenti");
     String HOST_PORT =        "localhost:1122/";
-    String IMGS_PATH_REL_S =  "..\\css\\images\\";
-    String PRENOTAZIONE_ALBERGO_PATH =  ABS_PATH.concat("data\\prenotazioni\\prenotazioniAlberghi");
-    String PRENOTAZIONE_BEB_PATH = ABS_PATH.concat("data\\prenotazioni\\prenotazioniBeb");
-    String PRENOTAZIONE_OSTELLO_PATH = ABS_PATH.concat("data\\prenotazioni\\prenotazioniOstelli");
-    String PRENOTAZIONE_APPARTAMENTO_PATH = ABS_PATH.concat("data\\prenotazioni\\prenotazioniAppartamenti");
-    String PRENOTAZIONE_CASAVACANZA_PATH = ABS_PATH.concat("data\\prenotazioni\\prenotazioniCaseVacanza");
-    String PROVINCE_PATH = ABS_PATH.concat("data\\location\\fileProvince");
+    String IMGS_PATH_REL_S =  "../css/images/";
+    String PRENOTAZIONE_ALBERGO_PATH =  ABS_PATH.concat("data/prenotazioni/prenotazioniAlberghi");
+    String PRENOTAZIONE_BEB_PATH = ABS_PATH.concat("data/prenotazioni/prenotazioniBeb");
+    String PRENOTAZIONE_OSTELLO_PATH = ABS_PATH.concat("data/prenotazioni/prenotazioniOstelli");
+    String PRENOTAZIONE_APPARTAMENTO_PATH = ABS_PATH.concat("data/prenotazioni/prenotazioniAppartamenti");
+    String PRENOTAZIONE_CASAVACANZA_PATH = ABS_PATH.concat("data/prenotazioni/prenotazioniCaseVacanza");
+    String PROVINCE_PATH = ABS_PATH.concat("data/location/fileProvince");
     String PACKAGE_LANGUAGE = "language.Lang";
 
 
@@ -45,7 +45,7 @@ public interface Constants {
     String DB_UTENTI_NASCITA = "nascita";
     String DB_UTENTI_SESSO = "sesso";
 
-    // Table "messaggi - Entità MESSAGGIO
+    // Table "messaggi" - Entità MESSAGGIO
     String DB_TABLE_MESSAGGI = "messaggi";
     String DB_MESSAGGI_COD = "codice";
     String DB_MESSAGGI_OBJ = "oggetto";
@@ -83,7 +83,8 @@ public interface Constants {
     // nelle segnature e gli implements Serializable.
     // Elimina anche variabili locali di appoggio nelle classi java per
     // riferirsi alle costanti contenute in questa pagina.
-    // (NOTA::: UC lingua -> tolta retrocompatibilita con Serializzazione/Deserializzazione su file)
+    // (NOTA::: UC lingua, posta, profilo -> tolta retrocompatibilita
+    // con Serializzazione/Deserializzazione su file)
 
     //***** Vedi se elimina, le classi Utente e Messaggio perchè gestite dal DB  *****//
 

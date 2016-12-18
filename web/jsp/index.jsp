@@ -8,25 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
-<%@ page import="control.ControlloreLingua" %>
+<%@ page import="boundary.BoundaryLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="constants.Constants" %>
-<jsp:useBean id="b" scope="session" class="control.ControlloreRegistrazione"/>
+<jsp:useBean id="b" scope="session" class="boundary.BoundaryRegistrazione"/>
 
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
     String lang = request.getParameter("lang");
     Locale selectedLang;
     if (lang != null) {
-        selectedLang = controlloreLingua.getLocaleFromString(lang);
+        selectedLang = boundaryLingua.riceviLocaleDaString(lang);
     } else {
-        selectedLang = controlloreLingua.getLang();
-        lang = controlloreLingua.getStringFromLocale(selectedLang);
+        selectedLang = boundaryLingua.riceviLinguaDefault();
+        lang = boundaryLingua.riceviStringDaLocale(selectedLang);
     }
 
-    ResourceBundle bundle = ControlloreLingua
-            .getBundle(selectedLang);
+    ResourceBundle bundle = boundaryLingua
+            .riceviBundle(selectedLang);
 %>
 
 

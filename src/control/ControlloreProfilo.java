@@ -8,19 +8,17 @@ import java.util.Locale;
 import entity.Utente;
 import databaseManager.GestioneProfiloDBManager;
 
-// Classe che consente la gestione del profilo personale, in particolare la restituzione dei valori
-// associati ad un particolare getUtente, modificarli, e modificare l'immagine.
-public class ControlloreGestioneProfilo {
+// Classe che consente la gestione del profilo personale.
+public class ControlloreProfilo {
 	
-	// Percorso
 	private GestioneProfiloDBManager gPDBM;
 	
-	// Costruttore
-	public ControlloreGestioneProfilo() {
+	public ControlloreProfilo() {
 	    this.gPDBM = new GestioneProfiloDBManager();
 	}
 	
 	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
+    // Se l'oggetto non viene trovato viene restituito l'oggetto utente fittizio "errore".
 	@SuppressWarnings("unchecked")
 	public synchronized Utente ottieniUtente(String username) {
 

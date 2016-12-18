@@ -6,39 +6,39 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="cgp" scope="session" class="boundary.BoundaryProfilo"/>
 <%@page import="entity.*"%>
 <%@ page import="java.util.ResourceBundle" %>
-<%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="constants.Constants" %>
+<%@ page import="boundary.BoundaryLingua" %>
 
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
     String lang = request.getParameter("lang");
 
     Locale currentLocale;
     if (lang != null) {
-        currentLocale = controlloreLingua.getLocaleFromString(lang);
+        currentLocale = boundaryLingua.riceviLocaleDaString(lang);
     } else {
         lang = Constants.LANG_DEFAULT;
-        currentLocale = controlloreLingua.getLang();
+        currentLocale = boundaryLingua.riceviLinguaDefault();
     }
 
-    if (c.getLogged()) {
+    if (c.controlloAccesso()) {
         String pref = request.getParameter("pref");
         if (pref != null && Integer.parseInt(pref) == 1) {
-            currentLocale = controlloreLingua
-                    .checkUpdatePref(c.getUser(), lang);
+            currentLocale = boundaryLingua
+                    .aggiornaPreferenze(c.ritornaUsername(), lang);
         } else {
-            currentLocale = controlloreLingua
-                    .getLang(c.getUser());
+            currentLocale = boundaryLingua
+                    .riceviLingua(c.ritornaUsername());
         }
     }
 
-    ResourceBundle bundle = ControlloreLingua
-            .getBundle(currentLocale);
+    ResourceBundle bundle = boundaryLingua
+            .riceviBundle(currentLocale);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -61,7 +61,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1><%=bundle.getString("modificaProfiloUtente_modificaProfilo")%></h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser()%> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername()%> </h2>
 			</div>
 		</div>
 	</div>
@@ -86,11 +86,11 @@
 						<h2 class="title"> <%=bundle.getString("modificaProfiloUtente_modificaTuoProfilo")%>
 
                             <%
-                                String username = c.getUser();
+                                String username = c.ritornaUsername();
                                 Utente u = null;
 
                                 String param = request.getParameter("Mpu");
-                                if (!c.getLogged()) {
+                                if (!c.controlloAccesso()) {
                             %>
 
                                     <font color="red"> <%=bundle.getString("modificaProfiloUtente_sessioneScaduta")%> </font>
@@ -98,7 +98,7 @@
                             <%
                                 } else {
 
-                                    u = cgp.ottieniUtente(username);
+                                    u = cgp.ritornaUtente(username);
 
                                     if (param != null) {
                                         String nome = request.getParameter("nome");
@@ -110,11 +110,11 @@
                                         String nuovaPassword = request.getParameter("nuovaPassword");
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
 
-                                        int controllo = cgp.modificaProfilo(username, nome, cognome,
+                                        int controllo = cgp.modificaUtente(username, nome, cognome,
                                                     email, sesso, nascita, vecchiaPassword,
                                                     nuovaPassword, confermaNuovaPassword);
 
-                                        u = cgp.ottieniUtente(username);
+                                        u = cgp.ritornaUtente(username);
 
                                         switch (controllo) {
                                             case 0:

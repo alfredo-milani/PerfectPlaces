@@ -10,12 +10,11 @@ import databaseManager.GestionePostaDBManager;
 import databaseManager.RegistrazioneDBManager;
 
 // Classe che si occupa della gestione della posta, sia dell'invio dei messaggi che della ricerca.
-public class ControlloreGestionePosta {
+public class ControllorePosta {
 
 	private GestionePostaDBManager gPDBM;
 
-	// Costruttore
-	public ControlloreGestionePosta() {
+	public ControllorePosta() {
 	    this.gPDBM = new GestionePostaDBManager();
 	}
 

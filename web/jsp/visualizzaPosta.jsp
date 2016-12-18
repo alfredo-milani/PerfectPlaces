@@ -6,13 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="control.ControlloreGestionePosta" %>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.Messaggio" %>
-<%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
+<%@ page import="boundary.BoundaryLingua" %>
+<%@ page import="boundary.BoundaryPosta" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -28,30 +28,30 @@
 </head>
 
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
-    Locale locale = controlloreLingua
-            .getLang(c.getUser());
-    ResourceBundle bundle = ControlloreLingua
-            .getBundle(locale);
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
+    Locale locale = boundaryLingua
+            .riceviLingua(c.ritornaUsername());
+    ResourceBundle bundle = boundaryLingua
+            .riceviBundle(locale);
 
-    String username = c.getUser();
-    boolean loggedin = c.getLogged();
+    String username = c.ritornaUsername();
+    boolean loggedin = c.controlloAccesso();
     int eliminazione = -1;
-    ControlloreGestionePosta cgp = new ControlloreGestionePosta();
+    BoundaryPosta boundaryPosta = new BoundaryPosta();
     ArrayList<Messaggio> elencoMessaggiUser;
 
     String codeMsg = request.getParameter("Cod");
     // Per maggiore robustezza
     String codeDel = request.getParameter("Del");
     if (codeMsg != null && codeDel != null) {
-        if (c.getLogged() && Integer.parseInt(codeDel) == 1) {
+        if (c.controlloAccesso() && Integer.parseInt(codeDel) == 1) {
             int intMsg = Integer.parseInt(codeMsg);
 
-            eliminazione = cgp.eliminaMessaggio(intMsg);
+            eliminazione = boundaryPosta.cancellaMessaggio(intMsg);
         }
     }
 
-    elencoMessaggiUser = cgp.ricercaMessaggi(username);
+    elencoMessaggiUser = boundaryPosta.ritornaMessaggi(username);
 
 %>
 
@@ -61,7 +61,7 @@
         <div id="header">
             <div id="logo">
                 <h1><%=bundle.getString("visualizzaPosta_visualizzaMsg")%></h1>
-                <h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser()%> </h2>
+                <h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername()%> </h2>
             </div>
         </div>
     </div>

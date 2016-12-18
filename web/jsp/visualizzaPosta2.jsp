@@ -6,21 +6,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<jsp:useBean id="cgp" scope="session" class="control.ControlloreGestioneProfilo"/>
-<jsp:useBean id="cgposta" scope="session" class="control.ControlloreGestionePosta"/>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="cgp" scope="session" class="boundary.BoundaryProfilo"/>
+<jsp:useBean id="cgposta" scope="session" class="boundary.BoundaryPosta"/>
 <%@page import="entity.Messaggio" %>
 <%@ page import="entity.Utente" %>
 <%@ page import="java.util.Locale" %>
-<%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.ResourceBundle" %>
+<%@ page import="boundary.BoundaryLingua" %>
 
 <%
-    ControlloreLingua controlloreLingua = new ControlloreLingua();
-    Locale locale = controlloreLingua
-            .getLang(c.getUser());
-    ResourceBundle bundle = ControlloreLingua
-            .getBundle(locale);
+    BoundaryLingua boundaryLingua = new BoundaryLingua();
+    Locale locale = boundaryLingua
+            .riceviLingua(c.ritornaUsername());
+    ResourceBundle bundle = boundaryLingua
+            .riceviBundle(locale);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -42,7 +42,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1><%=bundle.getString("visualizzaPosta_msgs")%></h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.getUser() %> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername() %> </h2>
 			</div>
 		</div>
 	</div>
@@ -68,10 +68,10 @@
                                 <%
                                     String strCodice = request.getParameter("Cod");
                                     Messaggio messaggio = null;
-                                    if (c.getLogged()) {
+                                    if (c.controlloAccesso()) {
                                         if (strCodice != null) {
                                             int codice = Integer.parseInt(strCodice);
-                                            messaggio = cgposta.ricercaMessaggioPerCodice(codice);
+                                            messaggio = cgposta.ritornaMessaggioCod(codice);
                                         }
 
                                         if (messaggio == null) {
@@ -99,7 +99,7 @@
 								<td><label>Mittente:</label></td>
 
                                 <%
-                                    if (c.getLogged() && strCodice != null && messaggio != null) {
+                                    if (c.controlloAccesso() && strCodice != null && messaggio != null) {
                                 %>
 
 								        <td><%=messaggio.getMittente()%></td>
@@ -112,7 +112,7 @@
 								<td><label>Oggetto:</label></td>
 
                                 <%
-                                    if (c.getLogged() && strCodice != null && messaggio != null) {
+                                    if (c.controlloAccesso() && strCodice != null && messaggio != null) {
                                 %>
 
 								        <td><%=messaggio.getOggetto()%></td>
@@ -126,7 +126,7 @@
 						<label>Contenuto:</label><br /><br />
 
                         <%
-                            if (c.getLogged() && strCodice != null && messaggio != null) {
+                            if (c.controlloAccesso() && strCodice != null && messaggio != null) {
                         %>
 
                                 <div class="break-word">
@@ -150,7 +150,7 @@
                                     <%
                                         Utente des = null;
                                         if (messaggio != null) {
-                                            des = cgp.ottieniUtente(messaggio.getMittente());
+                                            des = cgp.ritornaUtente(messaggio.getMittente());
                                         }
                                     %>
                                     <form action="mailto:<%= des == null ? "" : des.getEmail() %>?subject=<%= messaggio == null ? "" : messaggio.getOggetto() %>" enctype="application/x-www-form-urlencoded" method="post">

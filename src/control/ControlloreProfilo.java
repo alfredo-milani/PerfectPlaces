@@ -46,7 +46,7 @@ public class ControlloreProfilo {
 	// Ritorna: 1 --> Password vecchia non corretta
 	// 		    2 --> La nuova password e la conferma della nuova password non sono uguali
 	//			3 --> La nuova password è vuota
-	//			4 --> Sessione getUtente scaduta
+	//			4 --> Sessione utente scaduta
     //          5 --> Informazini campo "Sesso" errate
     //          6 --> Formato data errato
 	//			0 --> Se tutto va bene

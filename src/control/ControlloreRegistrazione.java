@@ -51,11 +51,11 @@ public class ControlloreRegistrazione {
                     email.equals(""))
                 return 1;
 
-            if (!password.equals(password2))
-                return 2;
-
             if (rDBM.usernameEsistente(username))
                 return 3;
+
+            if (!password.equals(password2))
+                return 2;
 
             ControlloreLingua controlloreLingua = new ControlloreLingua();
             String lang = controlloreLingua.getStringFromLocale(lingua);

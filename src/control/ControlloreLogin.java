@@ -12,14 +12,12 @@ import databaseManager.LoginDBManager;
 // Classe che gestisce il login al sistema.
 public class ControlloreLogin {
 
-	// Variabili
 	private String username;
 	private String password;
 	private boolean logged_in;
     private LoginDBManager lDBM;
 
 
-	// Costruttore
 	public ControlloreLogin() {
 		this.lDBM = new LoginDBManager();
 		this.username = "";
@@ -35,11 +33,13 @@ public class ControlloreLogin {
 
 	    if (Constants.DB == 1) {
 
-	        int result = this.lDBM.accesso(username, password);
-	    	if (result != -1) {
-	    	    this.logged_in = result == 1;
-	    	    this.username = username;
-                this.password = password;
+	    	if (username != null && password != null) {
+                int result = this.lDBM.accesso(username, password);
+                if (result != -1) {
+                    this.logged_in = result == 1;
+                    this.username = username;
+                    this.password = password;
+                }
             }
 
         } else {

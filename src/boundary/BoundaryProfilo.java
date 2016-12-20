@@ -18,7 +18,10 @@ public class BoundaryProfilo {
         return cP.ottieniUtente(username);
     }
 
-    public int modificaUtente(String username, String nome, String cognome, String email, String sesso, String nascita, String vecchiaPassword, String nuovaPassword, String confermaNuovaPassword) {
+    public int modificaUtente(String username, String nome, String cognome,
+                              String email, String sesso, String nascita,
+                              String vecchiaPassword, String nuovaPassword,
+                              String confermaNuovaPassword) {
         return cP.modificaProfilo(username, nome, cognome, email, sesso,
                 nascita, vecchiaPassword, nuovaPassword, confermaNuovaPassword);
     }

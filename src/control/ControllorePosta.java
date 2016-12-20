@@ -18,13 +18,13 @@ public class ControllorePosta {
 	    this.gPDBM = new GestionePostaDBManager();
 	}
 
-    // Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del file messaggi e, se lo trova, lo restituisce.
+    // Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del DB e, se lo trova, lo restituisce.
     @SuppressWarnings("unchecked")
     public synchronized Messaggio ricercaMessaggioPerCodice(int codice) {
         return gPDBM.getMessaggioCod(codice);
     }
 	
-	// Metodo che riceve in input uno username, ricerca nel file messaggi tutti i messaggi che hanno quello username come
+	// Metodo che riceve in input uno username, ricerca nel DB tutti i messaggi che hanno quello username come
 	// destinatario e li restituisce in un Array List.
     @SuppressWarnings("unchecked")
 	public synchronized ArrayList<Messaggio> ricercaMessaggi(String username) {
@@ -33,13 +33,12 @@ public class ControllorePosta {
 	}
 	
 	// Metodo che permette di inviare un messaggio. Effettua un controllo sull'input ritornando un codice specifico se
-	// viene riscontrato qualche errore. Se non c'è nessun errore apre il file messaggi, aggiunge all'array il messaggio
-	// che si vuole inviare e riserializza l'oggetto nel file.
-	// Torna: 1 --> Se il destinatario è vuoto
+	// viene riscontrato qualche errore. Se non c'è nessun errore, aggiunge al DB il messaggio
+	// Restituisce: 1 --> Se il destinatario è vuoto
 	// 		  2 --> Se l'oggetto è vuoto
 	//        3 --> Se il contenuto è vuoto
 	//        4 --> Se il destinatario non esiste
-    //        5 --> Se la sessione dell'getUtente è scaduta
+    //        5 --> Se la sessione dell'utente è scaduta
 	//        6 --> Se il mittente e il destinatario coincidono
 	//        0 --> Se tutto va bene
 	@SuppressWarnings("unchecked")

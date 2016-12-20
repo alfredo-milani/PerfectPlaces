@@ -1,22 +1,19 @@
-package standAlone_UseCase.Avvio;
+package standAlone_UC.Avvio;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
-
-import standAlone_UseCase.boundary.ConfineAvvio;
 import constants.Constants;
 import entity.Utente;
 import exception.SerializzazioneException;
+import standAlone_UC.boundary.ConfineAvvio;
 import utils.SerializzaOggetti;
 
 public class AvvioProgramma {
 	
 	private String percorsoAmministratori = Constants.ADMIN_PATH;
 	
-	// Costruttore
 	private AvvioProgramma(){
 		
 	}
@@ -34,21 +31,12 @@ public class AvvioProgramma {
 		}
 	}
 	
-	public static void main(String[] args) throws SerializzazioneException {
-	    // questo sara il file dove sara salvata la stringa che
-        // indichera la preferenza relativa alla lingua dell getUtente
+	public static void main(String[] args)
+			throws SerializzazioneException {
 
-        // NOTA: ogni getUtente avra la sua preferenza di lingua quindi bisogna
-        // modifica leggermente il pack entity getUtente
-
-	    // File file = new File();
         Locale defaultLocale = Locale.getDefault();
         Locale locale = new Locale("en", "US");
         ResourceBundle bundle2 = ResourceBundle.getBundle("language.Lang", locale);
-        /*
-        Locale swedishLocale = new Locale("sv", "SE");
-        ResourceBundle bundle3 = ResourceBundle.getBundle("TestBundle", swedishLocale);
-        */
 
 		AvvioProgramma ap = new AvvioProgramma();
 		ap.checkRoot();		

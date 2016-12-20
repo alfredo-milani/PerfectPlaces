@@ -1,4 +1,4 @@
-package standAlone_UseCase.boundary;
+package standAlone_UC.boundary;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,14 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class ConfineInsuccesso {
+public class ConfineSuccesso {
 	
-
-
+	
 	//Pannelli
-	
-	
-	public JPanel pannelloInsuccesso;
+	public JPanel pannelloSuccesso;
 	public JPanel panelTitolo = new JPanel();
 	public JPanel panelButtonHome = new JPanel();
 	
@@ -31,15 +28,15 @@ public class ConfineInsuccesso {
 	
 
 	
-	public ConfineInsuccesso() 
+	public ConfineSuccesso()  
 	{
 		int border = 5;
 		
-		pannelloInsuccesso = new JPanel();
+		pannelloSuccesso = new JPanel();
 		
-		pannelloInsuccesso.setSize(ConfineAvvio.Confine.getWidth(), ConfineAvvio.Confine.getHeight());	
-		ConfineAvvio.Confine.add(pannelloInsuccesso);
-		pannelloInsuccesso.setLayout(null);
+		pannelloSuccesso.setSize(ConfineAvvio.Confine.getWidth(), ConfineAvvio.Confine.getHeight());	
+		ConfineAvvio.Confine.add(pannelloSuccesso);
+		pannelloSuccesso.setLayout(null);
 		
         panelTitolo.setLayout(null);
         panelTitolo.setSize(ConfineAvvio.Confine.getWidth(), 45);
@@ -51,9 +48,9 @@ public class ConfineInsuccesso {
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("L'username non e' presente nel sistema!");
+        titolo.setText("Operazione eseguita con successo!");
         
-        pannelloInsuccesso.add(panelTitolo);	
+        pannelloSuccesso.add(panelTitolo);	
         
 		panelButtonHome.setLayout(null);
 		panelButtonHome.setSize(ConfineAvvio.Confine.getWidth(), 150);
@@ -69,7 +66,7 @@ public class ConfineInsuccesso {
 		
 		panelButtonHome.add(bHome);
         	
-		pannelloInsuccesso.add(panelButtonHome);
+		pannelloSuccesso.add(panelButtonHome);
 		
 	  	
 					
@@ -83,15 +80,15 @@ public class ConfineInsuccesso {
 	}
 	// Fine costruttore
 	
-	//Ascoltatore
 	
+	//Ascoltatore
 	private class HomeAA implements ActionListener
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{				
 			try 
 			{
-				pannelloInsuccesso.setVisible(false);
+				pannelloSuccesso.setVisible(false);
 				new ConfineAmministrazione();
 				
 			} 
@@ -101,5 +98,4 @@ public class ConfineInsuccesso {
 			}
 		}
 	}		
-
 }

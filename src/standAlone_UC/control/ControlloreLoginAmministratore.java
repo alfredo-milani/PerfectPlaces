@@ -1,14 +1,12 @@
-package standAlone_UseCase.control;
+package standAlone_UC.control;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 import constants.Constants;
-import standAlone_UseCase.boundary.ConfineAmministrazione;
 import entity.Utente;
 import exception.DeserializzazioneException;
-import standAlone_UseCase.boundary.ConfineLogin;
-import standAlone_UseCase.boundary.ConfineLoginErrato;
+import standAlone_UC.boundary.ConfineAmministrazione;
+import standAlone_UC.boundary.ConfineLogin;
 import utils.DeserializzaOggetti;
 
 public class ControlloreLoginAmministratore {

@@ -1,4 +1,4 @@
-package standAlone_UseCase.boundary;
+package standAlone_UC.boundary;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

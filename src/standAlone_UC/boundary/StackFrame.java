@@ -1,4 +1,4 @@
-package standAlone_UseCase.boundary;
+package standAlone_UC.boundary;
 
 import java.io.Serializable;
 import java.util.Stack;

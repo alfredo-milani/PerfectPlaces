@@ -1,4 +1,4 @@
-package standAlone_UseCase.thread;
+package standAlone_UC.thread;
 
 import java.util.ArrayList;
 
@@ -8,10 +8,8 @@ import exception.DeserializzazioneException;
 import utils.DeserializzaOggetti;
 
 public class ThreadRimozione implements Runnable {
-	
-	//Percorso
-	
-	public String percorsoUtenti = Constants.UTENTI_PATH;
+
+	private String percorsoUtenti = Constants.UTENTI_PATH;
 	
 	//Viene stampato l'array degli utenti a schermo.
 	
@@ -19,10 +17,10 @@ public class ThreadRimozione implements Runnable {
 	public void run(){
 		
 		ArrayList<Utente> utenti;
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		String elenco = "Utenti: [";
 		try {
-			utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
+			utenti = (ArrayList<Utente>)DeserializzaOggetti
+					.deserializza(percorsoUtenti);
 			
 			if(utenti.size()==0){
 				elenco = elenco + " ]";

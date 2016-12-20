@@ -1,4 +1,4 @@
-package standAlone_UseCase.boundary;
+package standAlone_UC.boundary;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import standAlone_UseCase.control.ControlloreRimuoviUtente;
+import standAlone_UC.control.ControlloreRimuoviUtente;
 
 public class ConfineRimuoviUtente {
 	

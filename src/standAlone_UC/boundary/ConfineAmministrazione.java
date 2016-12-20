@@ -1,6 +1,6 @@
-package standAlone_UseCase.boundary;
+package standAlone_UC.boundary;
 
-import standAlone_UseCase.control.ControlloreLoginAmministratore;
+import standAlone_UC.control.ControlloreLoginAmministratore;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

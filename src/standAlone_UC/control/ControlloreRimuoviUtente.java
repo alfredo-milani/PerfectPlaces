@@ -1,24 +1,20 @@
-package standAlone_UseCase.control;
+package standAlone_UC.control;
 
 import java.util.ArrayList;
 
 import constants.Constants;
-import standAlone_UseCase.boundary.ConfineInsuccesso;
-import standAlone_UseCase.boundary.ConfineSuccesso;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import standAlone_UseCase.thread.ThreadRimozione;
+import standAlone_UC.boundary.ConfineInsuccesso;
+import standAlone_UC.boundary.ConfineSuccesso;
+import standAlone_UC.thread.ThreadRimozione;
 import utils.*;
 
 public class ControlloreRimuoviUtente {
-	
-	//Percorso
-	
-	public String percorsoUtenti = Constants.UTENTI_PATH;
-	
-	//Costruttore
-	
+
+	private String percorsoUtenti = Constants.UTENTI_PATH;
+
 	public ControlloreRimuoviUtente(){
 		
 		
@@ -37,17 +33,17 @@ public class ControlloreRimuoviUtente {
 		t1.start();
 		
 		ArrayList<Utente> utenti;
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
+		utenti = (ArrayList<Utente>)DeserializzaOggetti
+				.deserializza(percorsoUtenti);
 		
 		
 		for(int i = 0; i<utenti.size();i++){
 			if(utenti.get(i).getUsername().equals(username)){
 				t1.join();
-				System.out.println("L'getUtente rimosso e':"+utenti.get(i).getUsername());
+				System.out.println("L'utente rimosso e': " + utenti.get(i).getUsername());
 				utenti.remove(i);
-				SerializzaOggetti sobj = new SerializzaOggetti();
-				sobj.serializza(utenti, percorsoUtenti);
+				SerializzaOggetti
+						.serializza(utenti, percorsoUtenti);
 				new ConfineSuccesso();
 				t2.start();
 				return;

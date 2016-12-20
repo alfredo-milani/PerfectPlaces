@@ -32,8 +32,8 @@ public class ControlloreLoginAmministratore {
 			throws DeserializzazioneException{
 		
 		String pw = String.valueOf(password);
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoAmministratori);
+		utenti = (ArrayList<Utente>) DeserializzaOggetti
+				.deserializza(percorsoAmministratori);
 
 		for (Utente anUtenti : utenti) {
 			if (anUtenti.getUsername().equals(username)) {

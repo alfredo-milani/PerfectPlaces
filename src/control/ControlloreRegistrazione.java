@@ -98,7 +98,8 @@ public class ControlloreRegistrazione {
                 return 0;
             }
 
-            utenti = (ArrayList<Utente>) DeserializzaOggetti.deserializza(Constants.UTENTI_PATH);
+            utenti = (ArrayList<Utente>) DeserializzaOggetti
+                    .deserializza(Constants.UTENTI_PATH);
 
             for (Utente utente : utenti)
                 if (utente.getUsername().equals(username))

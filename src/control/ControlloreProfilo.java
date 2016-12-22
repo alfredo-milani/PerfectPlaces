@@ -19,7 +19,6 @@ public class ControlloreProfilo {
 	
 	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
     // Se l'oggetto non viene trovato viene restituito l'oggetto utente fittizio "errore".
-	@SuppressWarnings("unchecked")
 	public synchronized Utente ottieniUtente(String username) {
 
         ControlloreLingua controlloreLingua = new ControlloreLingua();
@@ -50,7 +49,6 @@ public class ControlloreProfilo {
     //          5 --> Informazini campo "Sesso" errate
     //          6 --> Formato data errato
 	//			0 --> Se tutto va bene
-	@SuppressWarnings("unchecked")
 	public synchronized int modificaProfilo(String username, String nome, String cognome,
                                             String email, String sesso, String nascita,
                                             String vecchiaPassword, String nuovaPassword,

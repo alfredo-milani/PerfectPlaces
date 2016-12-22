@@ -19,14 +19,12 @@ public class ControllorePosta {
 	}
 
     // Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del DB e, se lo trova, lo restituisce.
-    @SuppressWarnings("unchecked")
     public synchronized Messaggio ricercaMessaggioPerCodice(int codice) {
         return gPDBM.getMessaggioCod(codice);
     }
 	
 	// Metodo che riceve in input uno username, ricerca nel DB tutti i messaggi che hanno quello username come
 	// destinatario e li restituisce in un Array List.
-    @SuppressWarnings("unchecked")
 	public synchronized ArrayList<Messaggio> ricercaMessaggi(String username) {
 
         return gPDBM.getMessaggi(username);
@@ -41,7 +39,6 @@ public class ControllorePosta {
     //        5 --> Se la sessione dell'utente è scaduta
 	//        6 --> Se il mittente e il destinatario coincidono
 	//        0 --> Se tutto va bene
-	@SuppressWarnings("unchecked")
 	public synchronized int scriviMessaggio(String oggetto, String mittente,
 											String destinatario, String contenuto) {
 
@@ -68,7 +65,6 @@ public class ControllorePosta {
 
 	// Metodo che riceve in input il codice di un messaggio e si occupa della sua eliminazione
     // Ritorna il vaolre 0 se il messaggio non è stato rimosso correttamente altrimenti ritorna il valore 1
-    @SuppressWarnings("unchecked")
 	public synchronized int eliminaMessaggio(int oggetto) {
 	    return gPDBM.rimuoviMessaggio(oggetto) ? 1 : 0;
 	}

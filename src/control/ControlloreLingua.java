@@ -34,7 +34,6 @@ public class ControlloreLingua {
         return new Locale(Constants.LANG_DEFAULT, "");
     }
 
-    @SuppressWarnings("unchecked")
     public Locale getLang(String loggedUser) {
 
         String lang;

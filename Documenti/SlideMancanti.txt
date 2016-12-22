@@ -1,0 +1,20 @@
+Mancanti:
+
+De Angelis:
+
+Sequence Diagrams
+State Machine
+VSoftware (Lezione 50)
+Tecniche di V&V
+JUnit
+Reflection
+
+Cantone:
+
+Intro WaterfallSwProcessModel
+Ancora su Ereditarietà
+ArchitecturalDesignFile RDBMS JDBC
+Java File Mechanism Serializzazione e Deserializzazione
+StandAlone vs WebApplication Structuring Concepts
+Thread e Monitors
+

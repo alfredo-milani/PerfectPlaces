@@ -1,0 +1,53 @@
+Elenco dei possibili REQUISITI del sistema:
+
+RQ1. Il sistema deve permettere la registrazione di un utente.
+
+RQ2. Il sistema deve permettere ad un utente di autenticarsi nel sistema.
+
+Una volta autenticato, un utente può comportarsi come un proprietario e quindi:
+
+RQ3. Un utente può gestire una sua locazione, cioè poter inserire una locazione da         affittare, oppure rimuoverla, oppure visualizzare le sue locazioni inserite.
+
+Può anche comportarsi come un viaggiatore e quindi:
+
+RQ4. Un utente può effettuare una ricerca di locazioni disponibili, secondo alcuni         parametri.
+
+RQ5. Un utente può effettuare una prenotazione della locazione scelta.
+
+RQ6. Un utente può anche usare il servizio interno di posta, scambiano messaggi con    altri utenti.
+
+RQ7. Un utente può scegliere di visualizzare il suo profilo personale, con i suoi dati.
+   la sua immagine e le sue locazioni disponibili; può anche modificare queste    informazioni.
+
+RQ8. Il sistema deve permettere di poter scegliere la lingua.
+
+RQ9. Il sistema deve poter prevedere anche una ricerca avanzata delle locazioni    disponibili.
+
+RQ10. Il sistema deve prevedere la visualizzazione dei termini d'uso & FAQ.
+
+RQ11. A prenotazione scelta bisogna scegliere le modalità di pagamento.
+
+RQ12. Il viaggiatore deve avere la possibilità di stampare le ricevute, dopo un     pagamento.
+
+RQ13. Deve essere previsto un prezzo e una conseguente gestione dello stesso.
+
+RQ14. Ci deve essere un amministratore che moderi l'interazione degli utenti con il     sistema.
+
+
+-------------------------------------------------------------------------------------
+
+Questi sono i CASI D'USO sviluppati per il sistema:
+
+UC0: Login/Logout
+
+UC1: Registrazione
+
+UC2: Gestione Locazione
+
+UC3: Ricerca Locazione
+
+UC4: Prenotazione
+
+UC5: Gestione Profilo
+
+UC6: Gestione Posta

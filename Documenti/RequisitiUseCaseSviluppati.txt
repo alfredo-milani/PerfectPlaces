@@ -51,3 +51,5 @@ UC4: Prenotazione
 UC5: Gestione Profilo
 
 UC6: Gestione Posta
+
+UC7: Gestione Preferenze/Lingua

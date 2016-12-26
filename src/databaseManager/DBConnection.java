@@ -11,14 +11,11 @@ import java.sql.SQLException;
  */
 class DBConnection {
 
-    // SINGLETON PATTERN per tentare una sola connessiona al DB
+    // Creato all'atto di caricamento in memoria della classe, thread-safe
+    private final static DBConnection CONNECTION = new DBConnection();
     private Connection connection;
 
-    private static class LazyConn {
-        private final static DBConnection CONNECTION =
-                new DBConnection();
-    }
-
+    // Costruttore privato, in quanto la creazione dell'istanza deve essere controllata.
     private DBConnection() {
         try {
             Class.forName(Constants.DB_DRIVER);
@@ -35,8 +32,12 @@ class DBConnection {
         }
     }
 
+    /**
+     * Punto di accesso a DBConnection.
+     * @return il Singleton corrispondente
+     */
     static Connection getSingleConn() {
-        return LazyConn.CONNECTION.connection;
+        return CONNECTION.connection;
     }
 
 }

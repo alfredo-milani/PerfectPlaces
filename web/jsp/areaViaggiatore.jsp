@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
 	<div id="menu-wrapper">
 		<div id="menu">
 		</div>
@@ -51,7 +51,7 @@
 			</ul>
 			<div class="post">
 				<%
-					if (!c.getLogged()) {
+					if (!c.controlloAccesso()) {
 				%>
 
 				<p style="size: 40px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>

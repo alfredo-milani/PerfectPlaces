@@ -317,6 +317,7 @@
                                 </tr>
 
                             </table>
+
                             <center>
                                 <br/><br/><br/>
                                 <input class="btn_2" type="submit" value="<%=bundle.getString("modificaProfiloUtente_salva")%>"/>

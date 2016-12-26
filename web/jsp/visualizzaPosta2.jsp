@@ -140,6 +140,13 @@
                         <table align="center">
                             <tr>
                                 <td>
+                                    <form action="visualizzaPosta.jsp" method="post">
+                                        <div>
+                                            <input class="btn_2" type="submit" value="<%=bundle.getString("visualizzaPosta_indietro")%>" />
+                                        </div>
+                                    </form>
+                                </td>
+                                <td>
                                     <form action="scriviMessaggio.jsp?Dest=<%= messaggio == null ? "" : messaggio.getMittente() %>" enctype="application/x-www-form-urlencoded" method="post">
                                         <div>
                                             <input class="btn_2" type="submit" value="<%=bundle.getString("visualizzaPosta_rispondi")%>"/>

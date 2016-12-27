@@ -6,7 +6,6 @@ import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;
-import utils.GestioneDB;
 import utils.SerializzaOggetti;
 
 import java.io.File;
@@ -16,15 +15,14 @@ import java.util.Locale;
 // Questa classe si occupa della registrazione degli utenti.
 
 public class ControlloreRegistrazione {
+
 	private ArrayList<Utente> utenti;
 	private RegistrazioneDBManager rDBM;
-	private GestioneDB gDB;
-	
+
 	// Costruttore
 	public ControlloreRegistrazione() {
 	    this.utenti = new ArrayList<>();
 	    this.rDBM = new RegistrazioneDBManager();
-	    this.gDB = new GestioneDB();
 	}
 	
 	//Inserimento nuovo getUtente nel file utenti. Viene restituito un intero che indica il tipo di errore.
@@ -55,7 +53,7 @@ public class ControlloreRegistrazione {
                     email.equals(""))
                 return 1;
 
-            if (gDB.usernameEsistente(username))
+            if (rDBM.controlloUsername(username))
                 return 3;
 
             if (!password.equals(password2))

@@ -3,7 +3,6 @@ package databaseManager;
 import constants.Constants;
 import control.ControlloreLingua;
 import entity.Utente;
-import utils.GestioneDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,12 +13,12 @@ import java.util.Locale;
 /**
  * Created by Alfredo Milani on 12/12/2016.
  */
-public class GestioneProfiloDBManager {
+public class ProfiloDBManager {
 
     private Connection connection;
     private GestioneDB gDB;
 
-    public GestioneProfiloDBManager() {
+    public ProfiloDBManager() {
         this.connection = DBConnection.getSingleConn();
         this.gDB = new GestioneDB();
     }

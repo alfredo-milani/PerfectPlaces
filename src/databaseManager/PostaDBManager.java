@@ -2,7 +2,6 @@ package databaseManager;
 
 import constants.Constants;
 import entity.Messaggio;
-import utils.GestioneDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,12 +12,12 @@ import java.util.ArrayList;
 /**
  * Created by Alfredo Milani on 13/12/2016.
  */
-public class GestionePostaDBManager {
+public class PostaDBManager {
 
     private Connection connection;
     private GestioneDB gDB;
 
-    public GestionePostaDBManager() {
+    public PostaDBManager() {
         this.connection = DBConnection.getSingleConn();
         this.gDB = new GestioneDB();
     }

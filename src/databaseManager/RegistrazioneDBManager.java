@@ -12,9 +12,11 @@ import java.sql.SQLException;
 public class RegistrazioneDBManager {
 
     private Connection connection;
+    private GestioneDB gDB;
 
     public RegistrazioneDBManager() {
         this.connection = DBConnection.getSingleConn();
+        this.gDB = new GestioneDB();
     }
 
     public int inserisciUtente (String un, String psw,
@@ -54,5 +56,10 @@ public class RegistrazioneDBManager {
 
         return result;
     }
+
+    public boolean controlloUsername(String username) {
+        return gDB.usernameEsistente(username);
+    }
+
 
 }

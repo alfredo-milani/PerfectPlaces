@@ -1,6 +1,5 @@
 package databaseManager;
 
-import com.sun.istack.internal.NotNull;
 import constants.Constants;
 
 import java.sql.Connection;

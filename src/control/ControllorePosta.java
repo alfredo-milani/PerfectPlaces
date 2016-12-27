@@ -1,6 +1,6 @@
 package control;
 
-import databaseManager.GestionePostaDBManager;
+import databaseManager.PostaDBManager;
 import entity.Messaggio;
 
 import java.text.DateFormat;
@@ -11,10 +11,10 @@ import java.util.Date;
 // Classe che si occupa della gestione della posta, sia dell'invio dei messaggi che della ricerca.
 public class ControllorePosta {
 
-	private GestionePostaDBManager gPDBM;
+	private PostaDBManager gPDBM;
 
 	public ControllorePosta() {
-	    this.gPDBM = new GestionePostaDBManager();
+	    this.gPDBM = new PostaDBManager();
 	}
 
     // Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del DB e, se lo trova, lo restituisce.

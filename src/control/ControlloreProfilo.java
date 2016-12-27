@@ -1,6 +1,6 @@
 package control;
 
-import databaseManager.GestioneProfiloDBManager;
+import databaseManager.ProfiloDBManager;
 import entity.Utente;
 
 import java.text.ParseException;
@@ -10,10 +10,10 @@ import java.util.Date;
 // Classe che consente la gestione del profilo personale.
 public class ControlloreProfilo {
 	
-	private GestioneProfiloDBManager gPDBM;
+	private ProfiloDBManager gPDBM;
 	
 	public ControlloreProfilo() {
-	    this.gPDBM = new GestioneProfiloDBManager();
+	    this.gPDBM = new ProfiloDBManager();
 	}
 	
 	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.

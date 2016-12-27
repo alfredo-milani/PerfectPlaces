@@ -12,7 +12,7 @@ Reflection
 Cantone:
 
 Intro WaterfallSwProcessModel
-Ancora su Ereditariet‡
+Ancora su Ereditariet√†
 ArchitecturalDesignFile RDBMS JDBC
 Java File Mechanism Serializzazione e Deserializzazione
 StandAlone vs WebApplication Structuring Concepts

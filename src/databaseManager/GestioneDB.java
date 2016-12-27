@@ -1,7 +1,6 @@
-package utils;
+package databaseManager;
 
 import constants.Constants;
-import databaseManager.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

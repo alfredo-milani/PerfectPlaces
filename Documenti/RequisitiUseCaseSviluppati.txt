@@ -4,20 +4,20 @@ RQ1. Il sistema deve permettere la registrazione di un utente.
 
 RQ2. Il sistema deve permettere ad un utente di autenticarsi nel sistema.
 
-Una volta autenticato, un utente puÚ comportarsi come un proprietario e quindi:
+Una volta autenticato, un utente pu√≤ comportarsi come un proprietario e quindi:
 
-RQ3. Un utente puÚ gestire una sua locazione, cioË poter inserire una locazione da         affittare, oppure rimuoverla, oppure visualizzare le sue locazioni inserite.
+RQ3. Un utente pu√≤ gestire una sua locazione, cio√® poter inserire una locazione da         affittare, oppure rimuoverla, oppure visualizzare le sue locazioni inserite.
 
-PuÚ anche comportarsi come un viaggiatore e quindi:
+Pu√≤ anche comportarsi come un viaggiatore e quindi:
 
-RQ4. Un utente puÚ effettuare una ricerca di locazioni disponibili, secondo alcuni         parametri.
+RQ4. Un utente pu√≤ effettuare una ricerca di locazioni disponibili, secondo alcuni         parametri.
 
-RQ5. Un utente puÚ effettuare una prenotazione della locazione scelta.
+RQ5. Un utente pu√≤ effettuare una prenotazione della locazione scelta.
 
-RQ6. Un utente puÚ anche usare il servizio interno di posta, scambiano messaggi con    altri utenti.
+RQ6. Un utente pu√≤ anche usare il servizio interno di posta, scambiano messaggi con    altri utenti.
 
-RQ7. Un utente puÚ scegliere di visualizzare il suo profilo personale, con i suoi dati.
-   la sua immagine e le sue locazioni disponibili; puÚ anche modificare queste    informazioni.
+RQ7. Un utente pu√≤ scegliere di visualizzare il suo profilo personale, con i suoi dati.
+   la sua immagine e le sue locazioni disponibili; pu√≤ anche modificare queste    informazioni.
 
 RQ8. Il sistema deve permettere di poter scegliere la lingua.
 
@@ -25,9 +25,9 @@ RQ9. Il sistema deve poter prevedere anche una ricerca avanzata delle locazioni 
 
 RQ10. Il sistema deve prevedere la visualizzazione dei termini d'uso & FAQ.
 
-RQ11. A prenotazione scelta bisogna scegliere le modalit‡ di pagamento.
+RQ11. A prenotazione scelta bisogna scegliere le modalit√† di pagamento.
 
-RQ12. Il viaggiatore deve avere la possibilit‡ di stampare le ricevute, dopo un     pagamento.
+RQ12. Il viaggiatore deve avere la possibilit√† di stampare le ricevute, dopo un     pagamento.
 
 RQ13. Deve essere previsto un prezzo e una conseguente gestione dello stesso.
 

@@ -5,7 +5,6 @@ import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by gabriele on 02/12/16.

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Alfredo Milani on 12/12/2016.
  */
-class DBConnection {
+public class DBConnection {
 
     // Creato all'atto di caricamento in memoria della classe, thread-safe
     private final static DBConnection CONNECTION = new DBConnection();
@@ -36,7 +36,7 @@ class DBConnection {
      * Punto di accesso a DBConnection.
      * @return il Singleton corrispondente
      */
-    static Connection getSingleConn() {
+    public static Connection getSingleConn() {
         return CONNECTION.connection;
     }
 

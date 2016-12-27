@@ -1,13 +1,12 @@
 package control;
 
+import databaseManager.GestionePostaDBManager;
+import entity.Messaggio;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import entity.Messaggio;
-import databaseManager.GestionePostaDBManager;
-import databaseManager.RegistrazioneDBManager;
 
 // Classe che si occupa della gestione della posta, sia dell'invio dei messaggi che della ricerca.
 public class ControllorePosta {
@@ -53,8 +52,7 @@ public class ControllorePosta {
         else if (mittente.equals(destinatario))
             return 6;
 
-        RegistrazioneDBManager rDBM = new RegistrazioneDBManager();
-        if (!rDBM.usernameEsistente(destinatario))
+        if (!gPDBM.controlloUsername(destinatario))
             return 4;
 
         gPDBM.setMessaggio(oggetto, mittente, destinatario,

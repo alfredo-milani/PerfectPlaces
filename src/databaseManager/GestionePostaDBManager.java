@@ -2,6 +2,7 @@ package databaseManager;
 
 import constants.Constants;
 import entity.Messaggio;
+import utils.GestioneDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,9 +16,11 @@ import java.util.ArrayList;
 public class GestionePostaDBManager {
 
     private Connection connection;
+    private GestioneDB gDB;
 
     public GestionePostaDBManager() {
         this.connection = DBConnection.getSingleConn();
+        this.gDB = new GestioneDB();
     }
 
     public Messaggio getMessaggioCod(int codice) {
@@ -152,4 +155,9 @@ public class GestionePostaDBManager {
 
         return esito;
     }
+
+    public boolean controlloUsername(String username) {
+        return gDB.usernameEsistente(username);
+    }
+
 }

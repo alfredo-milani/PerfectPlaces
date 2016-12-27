@@ -1,12 +1,11 @@
 package control;
 
+import databaseManager.GestioneProfiloDBManager;
+import entity.Utente;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-
-import entity.Utente;
-import databaseManager.GestioneProfiloDBManager;
 
 // Classe che consente la gestione del profilo personale.
 public class ControlloreProfilo {
@@ -20,22 +19,7 @@ public class ControlloreProfilo {
 	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
     // Se l'oggetto non viene trovato viene restituito l'oggetto utente fittizio "errore".
 	public synchronized Utente ottieniUtente(String username) {
-
-        ControlloreLingua controlloreLingua = new ControlloreLingua();
-        String[] info = gPDBM.getUtente(username);
-        Locale lang;
-
-        if (info[0] != null) {
-            lang = controlloreLingua.getLocaleFromString(info[6]);
-            return new Utente(info[0], info[1], info[2],
-                    info[3], info[4], info[5], lang,
-                    info[7], info[8]);
-        } else {
-            lang = controlloreLingua.getLang();
-            return new Utente("errore", "errore", "errore",
-                    "errore", "errore", "errore", lang,
-                    "errore", "errore");
-        }
+        return gPDBM.getUtente(username);
 	}
 	
 	// Metodo che consente la modifca del profilo, viene effettuato un controllo sull'input per verificare che tutti i parametri
@@ -60,10 +44,10 @@ public class ControlloreProfilo {
                 confermaNuovaPassword == null)
             return 4;
 
-        String info[] = gPDBM.getUtente(username);
+        Utente utente = gPDBM.getUtente(username);
 
         if (!vecchiaPassword.equals("")) {
-            if (!vecchiaPassword.equals(info[1]))
+            if (!vecchiaPassword.equals(utente.getPassword()))
                 return 1;
             else if (!nuovaPassword
                     .equals(confermaNuovaPassword))
@@ -71,7 +55,7 @@ public class ControlloreProfilo {
             else if (nuovaPassword.equals(""))
                 return 3;
             else
-                info[1] = nuovaPassword;
+                utente.setPassword(nuovaPassword);
         } else {
             if (!nuovaPassword.equals("") ||
                     !confermaNuovaPassword.equals(""))
@@ -86,7 +70,7 @@ public class ControlloreProfilo {
                 sesso = null;
             }
 
-            info[8] = sesso;
+            utente.setSesso(sesso);
         }
 
         if (nascita != null) {
@@ -111,14 +95,14 @@ public class ControlloreProfilo {
                 nascita = null;
             }
 
-            info[7] = nascita;
+            utente.setNascita(nascita);
         }
 
-        info[2] = nome;
-        info[3] = cognome;
-        info[4] = email;
+        utente.setNome(nome);
+        utente.setCognome(cognome);
+        utente.setEmail(email);
 
-        gPDBM.aggiornaStato(info);
+        gPDBM.aggiornaStato(utente);
 
         return 0;
 	}

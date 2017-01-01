@@ -9,12 +9,13 @@
 <jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
 <jsp:useBean id="cgp" scope="session" class="boundary.BoundaryProfilo"/>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="entity.*"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="constants.Constants" %>
+<%@page import="boundary.BoundaryLingua"%>
+<%@page import="constants.Constants"%>
+<%@page import="entity.Locazione" %>
+<%@page import="entity.Utente" %>
 <%@page import="exception.DeserializzazioneException" %>
-<%@page import="java.util.ResourceBundle" %>
-<%@ page import="boundary.BoundaryLingua" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.ResourceBundle" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -51,7 +52,7 @@
     }
 
 
-    ArrayList<Locazione> locazioni = null;
+    ArrayList<Locazione> locazioni = new ArrayList<>();
     try {
         locazioni = crl.ritonaLocazioni(username);
     } catch (DeserializzazioneException e) {

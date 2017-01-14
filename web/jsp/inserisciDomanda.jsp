@@ -18,10 +18,10 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<%@ page import="boundary.BoundaryFaq" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
-<%@ page import="boundary.BoundaryFaq" %>
 
 <%
 
@@ -57,7 +57,7 @@
         <div id="page-bgtop">
             <ul class="topnav" id=myTopnav">
                 <li><a href="utente.jsp">HOME</a></li>
-                <% if (c.getLogged()){ %>
+                <% if (bl.controlloAccesso()){ %>
                 <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
                 <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
                 <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>

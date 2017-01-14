@@ -1,7 +1,7 @@
 <%@ page import="boundary.BoundaryFaq" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="exception.DeserializzazioneException" %>
 
-<%@ page import="exception.DeserializzazioneException" %><%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: maria
   Date: 13/11/16
@@ -9,7 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <html>
 <head>
     <title>Frequently asked questions</title>
@@ -88,7 +88,7 @@
 
     <% } %>
 
-    <% if (c.getLogged()) { %>
+    <% if (bl.controlloAccesso()) { %>
     <form action="inserisciDomanda.jsp" method="get" >
         <input name="nuovaDomanda" type="text" placeholder="Scrivi qui la tua domanda" value=""  size="60" maxlength="200" />
         <input type="hidden" name="tipo" value="<%out.print(type);%>">

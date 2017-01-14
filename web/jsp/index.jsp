@@ -6,13 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="boundary.BoundaryLingua" %>
+<%@ page import="constants.Constants" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
-<%@ page import="boundary.BoundaryLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
-<%@ page import="constants.Constants" %>
-<jsp:useBean id="b" scope="session" class="boundary.BoundaryRegistrazione"/>
+<jsp:useBean id="br" scope="session" class="boundary.BoundaryRegistrazione"/>
 
 <%
     BoundaryLingua boundaryLingua = new BoundaryLingua();
@@ -163,7 +163,7 @@
 
                                 int caseReg = 0;
                                 try {
-                                    caseReg = b.registrazione(un, pw, pw2, nome,
+                                    caseReg = br.registrazione(un, pw, pw2, nome,
                                             cognome, email, selectedLang, null, null);
                                 } catch (DeserializzazioneException | SerializzazioneException e) {
                                     e.printStackTrace();

@@ -1,14 +1,16 @@
 package standAlone.control;
 
-import java.util.ArrayList;
-
 import constants.Constants;
-import standAlone.boundary.BoundaryFallimento;
-import standAlone.boundary.BoundarySuccesso;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.*;
+import standAlone.boundary.BoundaryFallimento;
+import standAlone.boundary.BoundarySuccesso;
+import utils.DeserializzaOggetti;
+import utils.SerializzaOggetti;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class ControlloreCreaAmministratore {
 	
@@ -51,7 +53,8 @@ public class ControlloreCreaAmministratore {
 			new BoundaryFallimento("Username non disponibile");
 			return ;
 		}
-		Utente u = new Utente(username, pw, " ", " ", "", " ");
+		Utente u = new Utente(username, pw, " ", " ", "", " ",
+				Locale.getDefault(), "", "");
 		amministratori = (ArrayList<Utente>)dobj.deserializza(percorsoAmministratori);
 		amministratori.add(u);
 		

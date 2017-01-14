@@ -11,12 +11,12 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="java.util.ArrayList" %>
-<%@page import="entity.*" %>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<%@page import="boundary.BoundaryPrenotaLocazioni" %>
+<%@page import="entity.Locazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
-<%@ page import="boundary.BoundaryPrenotaLocazioni" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%
 
@@ -31,7 +31,7 @@ boolean controllo = false;
 
 	ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
 	try {
-		controllo=bpl.prenotaLocazione(elencoLocazioni.get(Integer.parseInt(id)),c.getUser(),dataInizio,dataFine,numeroPersone);
+		controllo=bpl.prenotaLocazione(elencoLocazioni.get(Integer.parseInt(id)), bl.ritornaUsername(),dataInizio,dataFine,numeroPersone);
 	} catch (DeserializzazioneException | SerializzazioneException e) {
 		e.printStackTrace();
 	}
@@ -68,7 +68,7 @@ boolean controllo = false;
 			</ul>
 			<div >
 				<%
-					if (!c.getLogged()) {
+					if (!bl.controlloAccesso()) {
 				%>
 
 				<p style="font-size: 30px; color: red" > Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>

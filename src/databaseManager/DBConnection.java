@@ -21,7 +21,11 @@ public class DBConnection {
             Class.forName(Constants.DB_DRIVER);
 
             this.connection = DriverManager.getConnection(
-                    Constants.DB_URL, Constants.DB_USER,Constants.DB_PASSWORD);
+                    Constants.DB_URL,
+                    Constants.DB_USER,
+                    Constants.DB_PASSWORD
+            );
+
             if (this.connection != null) {
                 System.out.println("Connected to " + Constants.DB_URL);
             } else {

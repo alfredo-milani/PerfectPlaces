@@ -1,9 +1,9 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="entity.Prenotazione" %>
 <%@ page import="boundary.BoundaryGestionePrenotazioni" %>
+<%@ page import="entity.Prenotazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="java.util.GregorianCalendar" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.GregorianCalendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -18,13 +18,13 @@
     <script type="text/javascript" src="../js/functions.js" ></script>
 </head>
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 
 <%
     BoundaryGestionePrenotazioni bvp = new BoundaryGestionePrenotazioni();
     ArrayList<Prenotazione> elencoPrenotazione =new ArrayList<>();
     try {
-        elencoPrenotazione = bvp.visualizzaPerViaggiatore(c.getUser());
+        elencoPrenotazione = bvp.visualizzaPerViaggiatore(bl.ritornaUsername());
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
@@ -68,7 +68,7 @@
             </ul>
             <div>
                 <%
-                    if (!c.getLogged()) {
+                    if (!bl.controlloAccesso()) {
                 %>
 
                 <p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>

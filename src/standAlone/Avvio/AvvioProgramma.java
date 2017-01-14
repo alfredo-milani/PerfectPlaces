@@ -1,13 +1,14 @@
 package standAlone.Avvio;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import standAlone.boundary.BoundaryAvvio;
 import constants.Constants;
 import entity.Utente;
 import exception.SerializzazioneException;
+import standAlone.boundary.BoundaryAvvio;
 import utils.SerializzaOggetti;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class AvvioProgramma {
 	
@@ -23,7 +24,8 @@ public class AvvioProgramma {
 		File file = new File(percorsoAmministratori);
 		if(file.length() == 0){
 			ArrayList<Utente> amministratori = new ArrayList<Utente>();
-			Utente u = new Utente("root","root","root","root","root","root");
+			Utente u = new Utente("root","root","root","root","root","root",
+					Locale.getDefault(), "", "");
 			amministratori.add(u);
 			SerializzaOggetti sobj = new SerializzaOggetti();
 			sobj.serializza(amministratori, percorsoAmministratori);

@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../js/functions.js" ></script>
 </head>
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <div id="menu-wrapper">
     <div id="menu">
     </div>
@@ -42,7 +42,7 @@
             </ul>
             <div>
                 <%
-                    if (!c.getLogged()) {
+                    if (!bl.controlloAccesso()) {
                 %>
 
                 <p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>

@@ -5,23 +5,23 @@
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %>
 <%@ page import="boundary.BoundaryLingua" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
-<jsp:useBean id="p" scope="session" class="boundary.BoundaryPosta"/>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="bposta" scope="session" class="boundary.BoundaryPosta"/>
 
 <%
     BoundaryLingua boundaryLingua = new BoundaryLingua();
     Locale locale = boundaryLingua
-            .riceviLingua(c.ritornaUsername());
+            .riceviLingua(bl.ritornaUsername());
     ResourceBundle bundle = boundaryLingua
             .riceviBundle(locale);
 
     String param = request.getParameter("Msg");
     String dest = request.getParameter("Dest");
-    String mittente = c.ritornaUsername();
+    String mittente = bl.ritornaUsername();
     String destinatario = dest == null ? "" : dest;
     String oggetto = "";
     String contenuto = "";
@@ -31,7 +31,7 @@
         destinatario = request.getParameter("destinatario");
         contenuto = request.getParameter("contenuto");
 
-        controllo = p.inviaMessaggio(oggetto,
+        controllo = bposta.inviaMessaggio(oggetto,
                 mittente,
                 destinatario,
                 contenuto
@@ -59,7 +59,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1><%=bundle.getString("posta_scrivi")%></h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername() %> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=bl.ritornaUsername() %> </h2>
 			</div>
 		</div>
 	</div>
@@ -74,6 +74,7 @@
                 <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
                 <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
                 <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="areaFaq.jsp"><%=bundle.getString("index_faq")%></a></li>
                 <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 

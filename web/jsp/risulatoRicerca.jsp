@@ -12,12 +12,12 @@
 	<script type="text/javascript" src="../js/functions.js" ></script>
 </head>
 <body>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="entity.*" %>
-<%@ page import="boundary.BoundaryRicercaLocazione" %>
-<%@ page import="java.util.ArrayList" %>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<%@page import="boundary.BoundaryRicercaLocazione" %>
+<%@ page import="entity.*" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%
 
@@ -123,7 +123,7 @@ Object elencoLocazioni = new Object();
 			</ul>
 			<div>
 				<%
-					if (!c.getLogged()) {
+					if (!bl.controlloAccesso()) {
 				%>
 
 				<p style="font-size: 30px; color: red;"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>

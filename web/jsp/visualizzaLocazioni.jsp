@@ -17,17 +17,16 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <%@page import="control.ControlloreVisualizzaLocazioni" %>
-<%@page import="java.util.ArrayList" %>
-<%@ page import="control.ControlloreVisualizzaLocazioni" %>
+<%@page import="entity.*" %>
 <%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="entity.*" %>
+<%@ page import="java.util.ArrayList" %>
 <%
 
 ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
-String username = c.getUser();
+String username = bl.ritornaUsername();
 ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
 	try {
 		locazioni = crl.visualizzaLocazioni(username);
@@ -75,7 +74,7 @@ String descrizione;
 			</ul>
             <div>
                     <%
-                        if (!c.getLogged()) {
+                        if (!bl.controlloAccesso()) {
                     %>
 
                     <font style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>

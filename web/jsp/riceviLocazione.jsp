@@ -18,11 +18,10 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<%@page import="java.lang.String" %>
-<%@page import="exception.SerializzazioneException" %>
+<%@page import="entity.*" %>
 <%@page import="exception.DeserializzazioneException" %>
-<%@ page import="entity.*" %>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<%@page import="exception.SerializzazioneException" %>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <jsp:useBean id="b" scope="request" class="boundary.BoundaryInserimentoLocazione"/>
 <jsp:setProperty name="b" property="nomeLocazione"/>
 <jsp:setProperty name="b" property="command"/>
@@ -37,7 +36,7 @@
 <jsp:setProperty name="b" property="pet"/>
 <%
 
-	String username = c.getUser();
+	String username = bl.ritornaUsername();
 
     System.out.println(b.getCommand());
     System.out.println(b.getNomeLocazione());
@@ -164,7 +163,7 @@
             </ul>
             <div >
                 <%
-                    if (!c.getLogged()) {
+                    if (!bl.controlloAccesso()) {
                 %>
 
                 <p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>

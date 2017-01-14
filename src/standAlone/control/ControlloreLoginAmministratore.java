@@ -1,21 +1,19 @@
 package standAlone.control;
 
-import java.util.ArrayList;
-
 import constants.Constants;
-import standAlone.boundary.BoundaryAmministrazione;
-import standAlone.boundary.BoundaryLoginErrato;
 import entity.Utente;
 import exception.DeserializzazioneException;
+import standAlone.boundary.BoundaryAmministrazione;
+import standAlone.boundary.BoundaryLoginErrato;
 import utils.DeserializzaOggetti;
+
+import java.util.ArrayList;
 
 public class ControlloreLoginAmministratore {
 	
 	//Variabili e percorso
 	
-	public static ArrayList<Utente> utenti = new ArrayList<Utente>();
-	public String percorsoAmministratori = Constants.ADMIN_PATH;
-	
+	public static ArrayList<Utente> utenti = new ArrayList<>();
 	
 	//Costruttore
 	public ControlloreLoginAmministratore(){
@@ -29,20 +27,20 @@ public class ControlloreLoginAmministratore {
 	public void login(String username, char[] password) throws DeserializzazioneException{
 
 		String pw = String.valueOf(password);
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>) dobj.deserializza(percorsoAmministratori);
+		utenti = (ArrayList<Utente>) DeserializzaOggetti
+				.deserializza(Constants.ADMIN_PATH);
 
-		
-		for(int i=0; i<utenti.size();i++){
-			if(utenti.get(i).getUsername().equals(username)){
-				if(utenti.get(i).getPassword().equals(pw)){
-					new BoundaryAmministrazione();
-					return;
-				} else {
-					break;
-				}
-			}
-		}
+
+        for (Utente anUtenti : utenti) {
+            if (anUtenti.getUsername().equals(username)) {
+                if (anUtenti.getPassword().equals(pw)) {
+                    new BoundaryAmministrazione();
+                    return;
+                } else {
+                    break;
+                }
+            }
+        }
 		new BoundaryLoginErrato();
 	}
 }

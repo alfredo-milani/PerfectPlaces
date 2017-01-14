@@ -6,19 +6,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
-<jsp:useBean id="cgp" scope="session" class="boundary.BoundaryProfilo"/>
-<jsp:useBean id="cgposta" scope="session" class="boundary.BoundaryPosta"/>
-<%@page import="entity.Messaggio" %>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="bprofilo" scope="session" class="boundary.BoundaryProfilo"/>
+<jsp:useBean id="bposta" scope="session" class="boundary.BoundaryPosta"/>
+<%@page import="boundary.BoundaryLingua" %>
+<%@ page import="entity.Messaggio" %>
 <%@ page import="entity.Utente" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
-<%@ page import="boundary.BoundaryLingua" %>
 
 <%
     BoundaryLingua boundaryLingua = new BoundaryLingua();
     Locale locale = boundaryLingua
-            .riceviLingua(c.ritornaUsername());
+            .riceviLingua(bl.ritornaUsername());
     ResourceBundle bundle = boundaryLingua
             .riceviBundle(locale);
 %>
@@ -42,7 +42,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1><%=bundle.getString("visualizzaPosta_msgs")%></h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername() %> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=bl.ritornaUsername() %> </h2>
 			</div>
 		</div>
 	</div>
@@ -56,6 +56,7 @@
                 <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
                 <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
                 <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="areaFaq.jsp"><%=bundle.getString("index_faq")%></a></li>
                 <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
@@ -68,10 +69,10 @@
                                 <%
                                     String strCodice = request.getParameter("Cod");
                                     Messaggio messaggio = null;
-                                    if (c.controlloAccesso()) {
+                                    if (bl.controlloAccesso()) {
                                         if (strCodice != null) {
                                             int codice = Integer.parseInt(strCodice);
-                                            messaggio = cgposta.ritornaMessaggioCod(codice);
+                                            messaggio = bposta.ritornaMessaggioCod(codice);
                                         }
 
                                         if (messaggio == null) {
@@ -99,7 +100,7 @@
 								<td><label>Mittente:</label></td>
 
                                 <%
-                                    if (c.controlloAccesso() && strCodice != null && messaggio != null) {
+                                    if (bl.controlloAccesso() && strCodice != null && messaggio != null) {
                                 %>
 
 								        <td><%=messaggio.getMittente()%></td>
@@ -112,7 +113,7 @@
 								<td><label>Oggetto:</label></td>
 
                                 <%
-                                    if (c.controlloAccesso() && strCodice != null && messaggio != null) {
+                                    if (bl.controlloAccesso() && strCodice != null && messaggio != null) {
                                 %>
 
 								        <td><%=messaggio.getOggetto()%></td>
@@ -126,7 +127,7 @@
 						<label>Contenuto:</label><br /><br />
 
                         <%
-                            if (c.controlloAccesso() && strCodice != null && messaggio != null) {
+                            if (bl.controlloAccesso() && strCodice != null && messaggio != null) {
                         %>
 
                                 <div class="break-word">
@@ -157,7 +158,7 @@
                                     <%
                                         Utente des = null;
                                         if (messaggio != null) {
-                                            des = cgp.ritornaUtente(messaggio.getMittente());
+                                            des = bprofilo.ritornaUtente(messaggio.getMittente());
                                         }
                                     %>
                                     <form action="mailto:<%= des == null ? "" : des.getEmail() %>?subject=<%= messaggio == null ? "" : messaggio.getOggetto() %>" enctype="application/x-www-form-urlencoded" method="post">

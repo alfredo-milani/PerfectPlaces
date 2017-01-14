@@ -10,12 +10,12 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="java.util.ArrayList" %>
-<%@ page import="exception.SerializzazioneException" %>
-<%@ page import="exception.DeserializzazioneException" %>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<%@page import="boundary.BoundaryGestionePrenotazioni" %>
 <%@ page import="entity.Prenotazione" %>
-<%@ page import="boundary.BoundaryGestionePrenotazioni" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %>
+<%@ page import="java.util.ArrayList" %>
 <%
 
     BoundaryGestionePrenotazioni bp = new BoundaryGestionePrenotazioni();
@@ -70,7 +70,7 @@
             </ul>
             <div>
                 <%
-                    if (!c.getLogged()) {
+                    if (!bl.controlloAccesso()) {
                 %>
 
                 <p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>

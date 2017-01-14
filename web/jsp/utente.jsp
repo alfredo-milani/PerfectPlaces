@@ -6,12 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="exception.DeserializzazioneException" %>
-<%@ page import="constants.Constants" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %>
 <%@ page import="boundary.BoundaryLingua" %>
-<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
+<%@ page import="constants.Constants" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.ResourceBundle" %>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -37,7 +37,7 @@
 
     if (un != null && pw != null) {
         try {
-            c.login(un, pw);
+            bl.login(un, pw);
         } catch (DeserializzazioneException e) {
             e.printStackTrace();
         }
@@ -51,14 +51,14 @@
         currentLocale = boundaryLingua.riceviLinguaDefault();
     }
 
-    if (c.controlloAccesso()) {
+    if (bl.controlloAccesso()) {
         String pref = request.getParameter("pref");
         if (pref != null && Integer.parseInt(pref) == 1) {
             currentLocale = boundaryLingua
-                    .aggiornaPreferenze(c.ritornaUsername(), lang);
+                    .aggiornaPreferenze(bl.ritornaUsername(), lang);
         } else {
             currentLocale = boundaryLingua
-                    .riceviLingua(c.ritornaUsername());
+                    .riceviLingua(bl.ritornaUsername());
         }
     }
 
@@ -72,11 +72,11 @@
 			<div id="logo">
 
                 <%
-                    if (c.controlloAccesso()) {
+                    if (bl.controlloAccesso()) {
                 %>
 
 				    <h1> <%=bundle.getString("utente_benvenuto")%> </h1>
-                    <h2> <%=bundle.getString("utente_loggedAs")%> <%=c.ritornaUsername()%> </h2>
+                    <h2> <%=bundle.getString("utente_loggedAs")%> <%=bl.ritornaUsername()%> </h2>
 
                 <%  } else {
                         String redirectURL = "http://" + Constants.HOST_PORT +
@@ -99,6 +99,7 @@
                 <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
                 <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
                 <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="areaFaq.jsp"><%=bundle.getString("index_faq")%></a></li>
                 <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
@@ -119,7 +120,7 @@
                                                 .equals(Locale.ENGLISH.getDisplayLanguage())) {
                                     %>
 
-                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.ritornaUsername()%>', '<%= c.ritornaPassword() %>', 1)">
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= bl.ritornaUsername()%>', '<%= bl.ritornaPassword() %>', 1)">
                                                 <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
                                                 <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
                                             </select>
@@ -129,7 +130,7 @@
                                                 .equals(Locale.ITALIAN.getDisplayLanguage())) {
                                     %>
 
-                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.ritornaUsername()%>', '<%= c.ritornaPassword() %>', 1)">
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= bl.ritornaUsername()%>', '<%= bl.ritornaPassword() %>', 1)">
                                                 <option value="<%=Constants.IT%>"><%=bundle.getString("index_italiano")%></option>
                                                 <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
                                             </select>
@@ -138,7 +139,7 @@
                                         } else {
                                     %>
 
-                                            <select id="select" class="btn" onchange="changeLang(this, '<%= c.ritornaUsername()%>', '<%= c.ritornaPassword() %>', 1)">
+                                            <select id="select" class="btn" onchange="changeLang(this, '<%= bl.ritornaUsername()%>', '<%= bl.ritornaPassword() %>', 1)">
                                                 <option value="<%=Constants.LANG_DEFAULT%>"><%=bundle.getString("index_italiano")%></option>
                                                 <option value="<%=Constants.EN%>"><%=bundle.getString("index_inglese")%></option>
                                             </select>

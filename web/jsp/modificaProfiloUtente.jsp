@@ -6,13 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
-<jsp:useBean id="cgp" scope="session" class="boundary.BoundaryProfilo"/>
-<%@page import="entity.*"%>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %>
+<jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="bp" scope="session" class="boundary.BoundaryProfilo"/>
+<%@page import="boundary.BoundaryLingua"%>
 <%@ page import="constants.Constants" %>
-<%@ page import="boundary.BoundaryLingua" %>
+<%@ page import="entity.Utente" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.ResourceBundle" %>
 
 <%
     BoundaryLingua boundaryLingua = new BoundaryLingua();
@@ -26,14 +26,14 @@
         currentLocale = boundaryLingua.riceviLinguaDefault();
     }
 
-    if (c.controlloAccesso()) {
+    if (bl.controlloAccesso()) {
         String pref = request.getParameter("pref");
         if (pref != null && Integer.parseInt(pref) == 1) {
             currentLocale = boundaryLingua
-                    .aggiornaPreferenze(c.ritornaUsername(), lang);
+                    .aggiornaPreferenze(bl.ritornaUsername(), lang);
         } else {
             currentLocale = boundaryLingua
-                    .riceviLingua(c.ritornaUsername());
+                    .riceviLingua(bl.ritornaUsername());
         }
     }
 
@@ -61,7 +61,7 @@
 		<div id="header">
 			<div id="logo">
 				<h1><%=bundle.getString("modificaProfiloUtente_modificaProfilo")%></h1>
-				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=c.ritornaUsername()%> </h2>
+				<h2> <%=bundle.getString("profiloUtente_registratoCome")%> <%=bl.ritornaUsername()%> </h2>
 			</div>
 		</div>
 	</div>
@@ -76,6 +76,7 @@
                 <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
                 <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
                 <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
+                <li><a href="areaFaq.jsp"><%=bundle.getString("index_faq")%></a></li>
                 <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 
@@ -86,11 +87,11 @@
 						<h2 class="title"> <%=bundle.getString("modificaProfiloUtente_modificaTuoProfilo")%>
 
                             <%
-                                String username = c.ritornaUsername();
+                                String username = bl.ritornaUsername();
                                 Utente u = null;
 
                                 String param = request.getParameter("Mpu");
-                                if (!c.controlloAccesso()) {
+                                if (!bl.controlloAccesso()) {
                             %>
 
                                     <font color="red"> <%=bundle.getString("modificaProfiloUtente_sessioneScaduta")%> </font>
@@ -98,7 +99,7 @@
                             <%
                                 } else {
 
-                                    u = cgp.ritornaUtente(username);
+                                    u = bp.ritornaUtente(username);
 
                                     if (param != null) {
                                         String nome = request.getParameter("nome");
@@ -110,11 +111,11 @@
                                         String nuovaPassword = request.getParameter("nuovaPassword");
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
 
-                                        int controllo = cgp.modificaUtente(username, nome, cognome,
+                                        int controllo = bp.modificaUtente(username, nome, cognome,
                                                     email, sesso, nascita, vecchiaPassword,
                                                     nuovaPassword, confermaNuovaPassword);
 
-                                        u = cgp.ritornaUtente(username);
+                                        u = bp.ritornaUtente(username);
 
                                         switch (controllo) {
                                             case 0:

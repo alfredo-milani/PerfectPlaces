@@ -35,10 +35,10 @@
 
 
     id = id.substring(0,1);
-    System.out.println("id  " + id);
+    /*System.out.println("id  " + id);
     System.out.println("servizio parcheggio "+SerParcheggio);
     System.out.println("servizio wifi "+SerWifi);
-    System.out.println("servizio pet "+SerPet);
+    System.out.println("servizio pet "+SerPet);*/
 
 
 

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alfredo
-  Date: 20/10/16
-  Time: 15.41
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -49,14 +42,15 @@
                 <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
                 <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
                 <li><a href="posta.jsp">Posta</a></li>
-                <li><a href="logout.jsp">Esci</a></li>
+				<li><a href="areaFaq.jsp">FAQ</a></li>
+				<li><a href="logout.jsp">Esci</a></li>
             </ul>
-            <div class="post">
+            <div>
                 <%
                     if (!c.getLogged()) {
                 %>
 
-                <font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+                <p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>
 
                 <%
                     }
@@ -69,7 +63,7 @@
 				
 					
 					<div class="post">
-							<h2><strong>Compila il seguente modulo</strong></h2>
+							<h2><strong>Clicca sull'immagine e compila il relativo modulo</strong></h2>
 							
 	<div>
 		<div style="float: left; width: 400px" >
@@ -100,7 +94,7 @@
 			Orario Pranzo:<br /><input type="text" name="orarioPranzo" value="" /><br /><br />
 			Orario Cena:<br /><input type="text" name="orarioCena" value="" /><br /><br />
 
-			<input type="submit" value="Inserisci" /><br />
+			<input class="btnBlue" type="submit" value="Inserisci" /><br />
 		</div>
 		</form>
 	</div>
@@ -109,7 +103,7 @@
 	<div>
 		<div style="float: left; width: 400px">
 			<h3>Appartamento</h3>
-			<input id="appartamento" type="radio"style="display: none" name="command" value="1" onclick="visualizza('aptform','albform','bebform','cvzform','ostform')"/>
+			<input id="appartamento" type="radio" style="display: none" name="command" value="1" onclick="visualizza('aptform','albform','bebform','cvzform','ostform')"/>
 			<label class="drinkcard-cc appartamento" for="appartamento"></label>
 		</div>
 		<form method="get" action="riceviLocazione.jsp" enctype="text/plain" id="aptform" style="display:none">
@@ -137,109 +131,130 @@
 			No<input type="radio" name="giardino" value="false" /><br /><br />
 			Numero Letti:<br /><input type="text" name="numeroLetti" value="" /><br /><br />
 
-		<input type="submit" VALUE="Inserisci" /><br />
+		<input class="btnBlue" type="submit" VALUE="Inserisci" /><br />
 		</div>
 		</form>
 	</div>
 	<div style="clear: both"></div>
 	
-	
-	<input type="radio" name="command" value="2" onclick="visualizza('bebform','aptform','albform','cvzform','ostform')"/>Bed&amp;Breakfast<br />
-
-	<form method="get" action="riceviLocazione.jsp" enctype="text/plain" id="bebform" style="display:none">
-	
 	<div>
+		<div style="float: left; width: 400px">
+			<h3>B&B</h3>
+			<input id="beb" type="radio" style="display: none" name="command" value="2" onclick="visualizza('bebform','aptform','albform','cvzform','ostform')"/>
+			<label class="drinkcard-cc beb" for="beb"></label>
+		</div>
+			<form method="get" action="riceviLocazione.jsp" enctype="text/plain" id="bebform" style="display:none">
 
-		<input type="hidden" name="command" id="command_3" value="2"/>
-		Nome B&amp;B:<br /><input type="text" name="nomeLocazione" value="" /><br /><br />
-		Posti Totali:<br /><input type="text" name="postiTotali" value="" /><br /><br />
-        Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-		Indirizzo:<br /><input type="text" name="indirizzo" value="" /><br /><br />
-		Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
-		Descrizione:<br /><input type="text" name="descrizione" value="" /><br /><br />
-		Parcheggio:<br />
-		S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
-		No<input type="radio" name="parcheggio" value="false" /><br /><br />
-		Wifi:<br />
-		S&igrave;<input type="radio" name="wifi" value="true" checked="checked" />
-		No<input type="radio" name="wifi" value="false" /><br /><br />
-		Animali ammessi:<br />
-		S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
-		No<input type="radio" name="pet" value="false" /><br /><br />
-		Orario Colazione:<br /><input type="text" name="orarioColazione" value="" /><br /><br />
-		
-		
+		<div style="float: left">
 
-	<input type="submit" value="Inserisci" /><br />
-	
+			<input type="hidden" name="command" id="command_3" value="2"/>
+			Nome B&amp;B:<br /><input type="text" name="nomeLocazione" value="" /><br /><br />
+			Posti Totali:<br /><input type="text" name="postiTotali" value="" /><br /><br />
+			Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+			Indirizzo:<br /><input type="text" name="indirizzo" value="" /><br /><br />
+			Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
+			Descrizione:<br /><input type="text" name="descrizione" value="" /><br /><br />
+			Parcheggio:<br />
+			S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
+			No<input type="radio" name="parcheggio" value="false" /><br /><br />
+			Wifi:<br />
+			S&igrave;<input type="radio" name="wifi" value="true" checked="checked" />
+			No<input type="radio" name="wifi" value="false" /><br /><br />
+			Animali ammessi:<br />
+			S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
+			No<input type="radio" name="pet" value="false" /><br /><br />
+			Orario Colazione:<br /><input type="text" name="orarioColazione" value="" /><br /><br />
+
+
+
+		<input class="btnBlue" type="submit" value="Inserisci" /><br />
+
+		</div>
+
+		</form>
 	</div>
-
-	</form>			
-	
-	<input type="radio" name="command" value="3" onclick="visualizza('cvzform','aptform','bebform','albform','ostform')"/>Casa Vacanza<br />
-
-	<form method="get" action="riceviLocazione.jsp" enctype="text/plain" id="cvzform" style="display:none">
-	
+	<div style="clear: both"></div>
 	<div>
+		<div style="float: left; width: 400px">
+			<h3>Casa vacanza</h3>
+			<input id="casaVacanza" style="display: none" type="radio" name="command" value="3" onclick="visualizza('cvzform','aptform','bebform','albform','ostform')"/>
+			<label class="drinkcard-cc casaVacanza" for="casaVacanza"></label>
+		</div>
+		<form method="get" action="riceviLocazione.jsp" enctype="text/plain" id="cvzform" style="display:none">
 
-		<input type="hidden" name="command" id="command_4" value="3"/>
-		Nome Casa Vacanza:<br /><input type="text" name="nomeLocazione" value="" /><br /><br />
-        Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-		Indirizzo:<br /><input type="text" name="indirizzo" value="" /><br /><br />
-		Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
-		Descrizione:<br /><input type="text" name="descrizione" value="" /><br /><br />
-		Parcheggio:<br />
-		S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
-		No<input type="radio" name="parcheggio" value="false" /><br /><br />
-		Wifi:<br />
-		S&igrave;<input type="radio" name="wifi" value="true" checked="checked" />
-		No<input type="radio" name="wifi" value="false" /><br /><br />
-		Animali ammessi:<br />
-		S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
-		No<input type="radio" name="pet" value="false" /><br /><br />
-		Numero Camere:<br /><input type="text" name="numeroCamere" value="" /><br /><br />
-		Numero Bagni:<br /><input type="text" name="numeroBagni" value="" /><br /><br />
-		Giardino:<br />
-		S&igrave;<input type="radio" name="giardino" value="true" checked="checked" />
-		No<input type="radio" name="giardino" value="false" /><br /><br />
-		Numero Letti:<br /><input type="text" name="numeroLetti" value="" /><br /><br />
+		<div style="float: left">
 
-	<input type="submit" value="Inserisci" /><br />
-	
+			<input type="hidden" name="command" id="command_4" value="3"/>
+			Nome Casa Vacanza:<br /><input type="text" name="nomeLocazione" value="" /><br /><br />
+			Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+			Indirizzo:<br /><input type="text" name="indirizzo" value="" /><br /><br />
+			Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
+			Descrizione:<br /><input type="text" name="descrizione" value="" /><br /><br />
+			Parcheggio:<br />
+			S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
+			No<input type="radio" name="parcheggio" value="false" /><br /><br />
+			Wifi:<br />
+			S&igrave;<input type="radio" name="wifi" value="true" checked="checked" />
+			No<input type="radio" name="wifi" value="false" /><br /><br />
+			Animali ammessi:<br />
+			S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
+			No<input type="radio" name="pet" value="false" /><br /><br />
+			Numero Camere:<br /><input type="text" name="numeroCamere" value="" /><br /><br />
+			Numero Bagni:<br /><input type="text" name="numeroBagni" value="" /><br /><br />
+			Giardino:<br />
+			S&igrave;<input type="radio" name="giardino" value="true" checked="checked" />
+			No<input type="radio" name="giardino" value="false" /><br /><br />
+			Numero Letti:<br /><input type="text" name="numeroLetti" value="" /><br /><br />
+
+		<input class="btnBlue" type="submit" value="Inserisci" /><br />
+
+		</div>
+
+		</form>
 	</div>
-
-
-	</form>			
-	
-	<input type="radio" name="command" value="4" onclick="visualizza('ostform','aptform','bebform','cvzform','albform')"/>Ostello<br />
-
-	<form method="get" action="riceviLocazione.jsp" enctype="text/plain" id="ostform" style="display:none">
-
+	<div style="clear:both;"></div>
 	<div>
-	
-		<input type="hidden" name="command" id="command" value="4"/>
-		Nome Ostello:<br /><input type="text" name="nomeLocazione" value="" /><br /><br />
-		Posti Totali:<br /><input type="text" name="postiTotali" value="" /><br /><br />
-        Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
-		Indirizzo:<br /><input type="text" name="indirizzo" value="" /><br /><br />
-		Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
-		Descrizione:<br /><input type="text" name="descrizione" value="" /><br /><br />
-		Parcheggio:<br />
-		S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
-		No<input type="radio" name="parcheggio" value="false" /><br /><br />
-		Wifi:<br />
-		S&igrave;<input type="radio" name="wifi" value="true" checked="checked" />
-		No<input type="radio" name="wifi" value="false" /><br /><br />
-		Animali ammessi:<br />
-		S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
-		No<input type="radio" name="pet" value="false" /><br /><br />
-		Tipo Pensione:<br /><input type="text" name="tipoPensione" value="" /><br /><br />
-		<input type="submit" value="Inserisci" /><br />
+		<div style="float: left; width: 400px">
+			<h3>Ostello</h3>
+			<input id = "ostello"style="display: none" type="radio" name="command" value="4" onclick="visualizza('ostform','aptform','bebform','cvzform','albform')"/>
+			<label class="drinkcard-cc ostello" for="ostello"></label>
 
+		</div>
+		<form method="get" action="riceviLocazione.jsp" enctype="text/plain" id="ostform" style="display:none">
+
+		<div style="float:left;">
+
+			<input type="hidden" name="command" id="command" value="4"/>
+			Nome Ostello:<br /><input type="text" name="nomeLocazione" value="" /><br /><br />
+			Posti Totali:<br /><input type="text" name="postiTotali" value="" /><br /><br />
+			Provincia:<br /><input type="text" name="provincia" value="" /><br /><br />
+			Indirizzo:<br /><input type="text" name="indirizzo" value="" /><br /><br />
+			Prezzo:<br /><input type="text" name="prezzo" value="" /><br /><br />
+			Descrizione:<br /><input type="text" name="descrizione" value="" /><br /><br />
+			Parcheggio:<br />
+			S&igrave;<input type="radio" name="parcheggio" value="true" checked="checked" />
+			No<input type="radio" name="parcheggio" value="false" /><br /><br />
+			Wifi:<br />
+			S&igrave;<input type="radio" name="wifi" value="true" checked="checked" />
+			No<input type="radio" name="wifi" value="false" /><br /><br />
+			Animali ammessi:<br />
+			S&igrave;<input type="radio" name="pet" value="true" checked="checked" />
+			No<input type="radio" name="pet" value="false" /><br /><br />
+			<p>Tipo Pensione</p>
+			<select name="tipoPensione"  >
+				<option value="completa">completa</option>
+				<option value="mezza pensione">mezza pensione</option>
+			</select>
+
+		<input class="btnBlue" type="submit" value="Inserisci" /><br />
+
+		</div>
+		<div style="clear: both"></div>
+
+		</form>
 	</div>
-
-	</form>
-                    </div>
+	<div style="clear: both"></div>
+					</div>
 
                     <div style="clear: both;">&nbsp;</div>
                 </div>

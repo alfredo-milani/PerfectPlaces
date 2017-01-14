@@ -19,53 +19,51 @@
 </head>
 <body>
 <%@page import="java.lang.String" %>
-<%@page import="control.ControlloreInserimentoLocazione"  %>
 <%@page import="exception.SerializzazioneException" %>
 <%@page import="exception.DeserializzazioneException" %>
-<%@ page import="entity.Locazione" %>
+<%@ page import="entity.*" %>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
+<jsp:useBean id="b" scope="request" class="boundary.BoundaryInserimentoLocazione"/>
+<jsp:setProperty name="b" property="nomeLocazione"/>
+<jsp:setProperty name="b" property="command"/>
+<jsp:setProperty name="b" property="postiTotali"/>
+<jsp:setProperty name="b" property="provincia"/>
+<jsp:setProperty name="b" property="indirizzo"/>
+<jsp:setProperty name="b" property="userLocatore"/>
+<jsp:setProperty name="b" property="prezzo"/>
+<jsp:setProperty name="b" property="descrizione"/>
+<jsp:setProperty name="b" property="wifi"/>
+<jsp:setProperty name="b" property="parcheggio"/>
+<jsp:setProperty name="b" property="pet"/>
 <%
-	String command = request.getParameter("command");
+
 	String username = c.getUser();
+
+    System.out.println(b.getCommand());
+    System.out.println(b.getNomeLocazione());
 	
 	boolean control=false;
-	ControlloreInserimentoLocazione cil = new ControlloreInserimentoLocazione();
 
-    String nomeLocazione = request.getParameter("nomeLocazione");
-    String provincia = request.getParameter("provincia");
-    String indirizzo = request.getParameter("indirizzo");
-    String prezzo = request.getParameter("prezzo");
-    String descrizione = request.getParameter("descrizione");
-    String parcheggio = request.getParameter("parcheggio");
-    String wifi = request.getParameter("wifi");
-    String pet = request.getParameter("pet");
-	boolean bpark = false;
-    boolean bwifi = false;
-    boolean bpet = false;
+    Locazione locazione= null;
+    try {
+        locazione = b.chiamaControlloreInserimento();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    locazione.setUserLocatore(username);
 
-    out.println("command" + command);
-    switch (command) {
+    out.println("command" + b.getCommand());
+    switch (b.getCommand()) {
         case "0": {
             // Caso Albergo
-            if (parcheggio.equals("true")) {
-                bpark = true;
-            }
-            if (wifi.equals("true")) {
-                bwifi = true;
-            }
-            if (pet.equals("true")) {
-                bpet = true;
-            }
-            String postiTotali = request.getParameter("postiTotali");
-            String tipoPensione = request.getParameter("tipoPensione");
-            String orarioColazione = request.getParameter("orarioColazione");
-            String orarioPranzo = request.getParameter("orarioPranzo");
-            String orarioCena = request.getParameter("orarioCena");
+
+            ((Albergo)locazione).setTipoPensione(request.getParameter("tipoPensione"));
+            ((Albergo)locazione).setOrarioColazione(request.getParameter("orarioColazione"));
+            ((Albergo)locazione).setOrarioPranzo(request.getParameter("orarioPranzo"));
+            ((Albergo)locazione).setOrarioCena(request.getParameter("orarioCena"));
 
             try {
-                control = cil.inserisciAlbergo(nomeLocazione,postiTotali,provincia, indirizzo, username, prezzo,
-                        descrizione, bpark, bwifi, bpet,
-                        tipoPensione, orarioColazione, orarioPranzo, orarioCena);
+                control = b.verificaInserimento(locazione);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -73,29 +71,18 @@
         }
         case "1": {
             //Caso Appartamento
-            if (parcheggio.equals("true")) {
-                bpark = true;
-            }
-            if (wifi.equals("true")) {
-                bwifi = true;
-            }
-            if (pet.equals("true")) {
-                bpet = true;
-            }
-            String numeroLetti = request.getParameter("numeroLetti");
-            String numeroStanze = request.getParameter("numeroStanze");
-            String numeroBagni = request.getParameter("numeroBagni");
+
+            ((Appartamento)locazione).setNumeroLetti(request.getParameter("numeroLetti"));
+            ((Appartamento)locazione).setNumeroStanze(request.getParameter("numeroStanze"));
+            ((Appartamento)locazione).setNumeroBagni(request.getParameter("numeroBagni"));
             String giardino = request.getParameter("giardino");
-            boolean bgiardino = false;
             if (giardino.equals("true")) {
-                bgiardino = true;
+                ((Appartamento)locazione).setGiardino(true);
             }
-            Integer i = 1;
-            String s = Integer.toString(i);
-            out.println(s);
+
+            locazione.setPostiTotali("1");
             try {
-                control = cil.inserisciAppartamento(nomeLocazione,s, provincia, indirizzo, username, prezzo, descrizione,
-                        bpark, bwifi, bpet, numeroStanze, numeroBagni, bgiardino, numeroLetti);
+                control = b.verificaInserimento(locazione);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -103,21 +90,11 @@
         }
         case "2": {
             // Caso Beb
-            if (parcheggio.equals("true")) {
-                bpark = true;
-            }
-            if (wifi.equals("true")) {
-                bwifi = true;
-            }
-            if (pet.equals("true")) {
-                bpet = true;
-            }
-            String postiTotali = request.getParameter("postiTotali");
-            String orarioColazione = request.getParameter("orarioColazione");
+
+            ((Beb)locazione).setOrarioColazione(request.getParameter("orarioColazione"));
 
             try {
-                control = cil.inserisciBeb(nomeLocazione,postiTotali,provincia, indirizzo, username, prezzo, descrizione,
-                        bpark, bwifi, bpet, orarioColazione);
+                control = b.verificaInserimento(locazione);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -125,30 +102,18 @@
         }
         case "3": {
             // Caso Casa Vacanze
-            if (parcheggio.equals("true")) {
-                bpark = true;
-            }
-            if (wifi.equals("true")) {
-                bwifi = true;
-            }
-            if (pet.equals("true")) {
-                bpet = true;
-            }
 
-            String numeroLetti = request.getParameter("numeroLetti");
-            String numeroCamere = request.getParameter("numeroCamere");
-            String numeroBagni = request.getParameter("numeroBagni");
+            ((CasaVacanza)locazione).setNumeroLetti(request.getParameter("numeroLetti"));
+            ((CasaVacanza)locazione).setNumeroCamere(request.getParameter("numeroCamere"));
+            ((CasaVacanza)locazione).setNumeroBagni(request.getParameter("numeroBagni"));
             String giardino = request.getParameter("giardino");
-            boolean bgiardino = false;
 
             if (giardino.equals("true")) {
-                bgiardino = true;
+                ((CasaVacanza)locazione).setGiardino(true);
             }
-            Integer i = 1;
-            String s = Integer.toString(i);
+            locazione.setPostiTotali("1");
             try {
-                control = cil.inserisciCasaVacanza(nomeLocazione, s, provincia, indirizzo, username, prezzo, descrizione,
-                        bpark, bwifi, bpet, numeroCamere, numeroBagni, bgiardino, numeroLetti);
+                control = b.verificaInserimento(locazione);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -156,21 +121,10 @@
         }
         case "4": {
             // Caso Ostello
-            if (parcheggio.equals("true")) {
-                bpark = true;
-            }
-            if (wifi.equals("true")) {
-                bwifi = true;
-            }
-            if (pet.equals("true")) {
-                bpet = true;
-            }
-            String postiTotali = request.getParameter("postiTotali");
-            String tipoPensione = request.getParameter("tipoPensione");
+            ((Ostello)locazione).setTipoPensione(request.getParameter("tipoPensione"));
 
             try {
-                control = cil.inserisciOstello(nomeLocazione,postiTotali,provincia, indirizzo, username, prezzo, descrizione,
-                        bpark, bwifi, bpet, tipoPensione);
+                control = b.verificaInserimento(locazione);
             } catch (SerializzazioneException | DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -205,25 +159,27 @@
                 <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
                 <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
                 <li><a href="posta.jsp">Posta</a></li>
+                <li><a href="areaFaq.jsp">FAQ</a></li>
                 <li><a href="logout.jsp">Esci</a></li>
             </ul>
-            <div class="post">
+            <div >
                 <%
                     if (!c.getLogged()) {
                 %>
 
-                <font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+                <p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>
 
                 <%
                     }
                 %>
 
-                </h2>
             </div>
 			<div id="page-bgbtm">
 				<div id="content">
 				
-					<% if(control){%>
+					<% if(control){
+                            b.memorizzaLocazione(locazione);
+                    %>
 
 					<div class="post">
 							<h2><strong>Inserimento completato</strong></h2>

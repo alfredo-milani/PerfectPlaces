@@ -114,4 +114,8 @@ public class Locazione implements Serializable {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public void setPostiTotali(String postiTotali) {
+		this.postiTotali = postiTotali;
+	}
 }

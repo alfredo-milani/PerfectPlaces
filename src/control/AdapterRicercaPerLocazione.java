@@ -7,33 +7,28 @@ import exception.SerializzazioneException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by gabriele on 02/12/16.
- */
+
 public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazione {
 
 
     //aggregazione
-    ControlloreRicercaGlobale crg;
-
+    private ControlloreRicercaGlobale crg;
 
     public AdapterRicercaPerLocazione(ControlloreRicercaGlobale c){
         this.crg = c;
     }
 
 
-
     @Override@SuppressWarnings("unchecked")
-    public Object ricerca(Locazione locazione, String provincia, String prezzo)throws ClassNotFoundException,
+    public Object ricerca(Locazione locazione, String provincia, String prezzo,int numeroGiorni)throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException {
 
         ArrayList<Locazione> elencoLocazioni;
-        elencoLocazioni =  crg.ricercaGlobale(provincia,prezzo);
+        elencoLocazioni =  crg.ricercaGlobale(provincia,prezzo,numeroGiorni);
 
         if (locazione.getClass()==Albergo.class) {
-            ArrayList<Albergo> alberghiDisponibili = new ArrayList<Albergo>(); //Qui verranno inseriti gli alberghi da restituire all'getUtente
+            ArrayList<Albergo> alberghiDisponibili = new ArrayList<>(); //Qui verranno inseriti gli alberghi da restituire all'getUtente
 
-            System.err.println("numero alberghi: " + elencoLocazioni.size());
 
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==Albergo.class) {
@@ -44,7 +39,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             return alberghiDisponibili;
         }
         else if(locazione.getClass()== Appartamento.class){
-            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<Appartamento>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
+            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==Appartamento.class) {
                     Appartamento appartamento = (Appartamento) loc;
@@ -54,7 +49,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             return appartamentiDisponibili;
 
         }else if(locazione.getClass()==Beb.class){
-            ArrayList<Beb> bebDisponibili = new ArrayList<Beb>(); //Qui verranno inseriti i beb da restituire all'getUtente
+            ArrayList<Beb> bebDisponibili = new ArrayList<>(); //Qui verranno inseriti i beb da restituire all'getUtente
 
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==Beb.class) {
@@ -62,10 +57,9 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
                     bebDisponibili.add(beb);
                 }
             }
-            System.err.println("numero beb: " + bebDisponibili.size());
             return bebDisponibili;
         }else if(locazione.getClass()== CasaVacanza.class){
-            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<CasaVacanza>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
+            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
 
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==CasaVacanza.class) {
@@ -75,7 +69,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             }
             return casaVacanzeDisponibili;
         }else{
-            ArrayList<Ostello> ostelliDisponibili = new ArrayList<Ostello>(); //Qui verranno inseriti gli ostelli da restituire all'getUtente
+            ArrayList<Ostello> ostelliDisponibili = new ArrayList<>(); //Qui verranno inseriti gli ostelli da restituire all'getUtente
 
             for (Locazione loc : elencoLocazioni) {
                 if (loc.getClass()==Ostello.class) {
@@ -87,7 +81,7 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         }
     }
     @Override@SuppressWarnings("unchecked")
-    public Object ricercaAvanzata(Locazione locazione,String provincia, String prezzo, String sParchegio, String sWifi, String sPet ,String caratteristica)throws ClassNotFoundException,
+    public Object ricercaAvanzata(Locazione locazione,String provincia, String prezzo,int numeroGiorni, String sParchegio, String sWifi, String sPet ,String caratteristica)throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException {
 
         Boolean parcheggio=false, wifi =false, pet=false;
@@ -104,10 +98,8 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
 
         if (locazione.getClass()==Albergo.class) {
             Albergo alb = (Albergo) locazione;
-            ArrayList<Albergo> elencoAlberghi = (ArrayList<Albergo>) ricerca(alb,provincia,prezzo);
-            ArrayList<Albergo> alberghiDisponibili = new ArrayList<Albergo>(); //Qui verranno inseriti gli alberghi da restituire all'getUtente
-
-            System.err.println("numero alberghi: " + elencoAlberghi.size());
+            ArrayList<Albergo> elencoAlberghi = (ArrayList<Albergo>) ricerca(alb,provincia,prezzo,numeroGiorni);
+            ArrayList<Albergo> alberghiDisponibili = new ArrayList<>(); //Qui verranno inseriti gli alberghi da restituire all'getUtente
 
             for (Albergo albergo : elencoAlberghi) {
                 if ((albergo.isParcheggio()==parcheggio)&&
@@ -121,9 +113,8 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         }
         else if(locazione.getClass()== Appartamento.class){
             Appartamento app = (Appartamento) locazione;
-            ArrayList<Appartamento> elencoAppartamenti=(ArrayList<Appartamento>) ricerca(app,provincia,prezzo);
-            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<Appartamento>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
-            System.err.println("numero appartamenti: " + elencoAppartamenti.size());
+            ArrayList<Appartamento> elencoAppartamenti=(ArrayList<Appartamento>) ricerca(app,provincia,prezzo,numeroGiorni);
+            ArrayList<Appartamento> appartamentiDisponibili = new ArrayList<>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
             for (Appartamento appartamento: elencoAppartamenti) {
                 if ((appartamento.isParcheggio()==parcheggio)&&
                         (appartamento.isWifi()==wifi)&&
@@ -136,9 +127,8 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
 
         }else if(locazione.getClass()==Beb.class){
             Beb bb = (Beb) locazione;
-            ArrayList<Beb> elencoBeb = (ArrayList<Beb>) ricerca(bb, provincia,prezzo);
-            ArrayList<Beb> bebDisponibili = new ArrayList<Beb>(); //Qui verranno inseriti i beb da restituire all'getUtente
-            System.err.println("numero beb: " + elencoBeb.size());
+            ArrayList<Beb> elencoBeb = (ArrayList<Beb>) ricerca(bb, provincia,prezzo,numeroGiorni);
+            ArrayList<Beb> bebDisponibili = new ArrayList<>(); //Qui verranno inseriti i beb da restituire all'getUtente
 
             for (Beb beb : elencoBeb) {
                 if ((beb.isParcheggio()==parcheggio)&&
@@ -151,10 +141,9 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             return bebDisponibili;
         }else if(locazione.getClass()== CasaVacanza.class){
             CasaVacanza cv = (CasaVacanza) locazione;
-            ArrayList<CasaVacanza> elencoCasaVacanze=(ArrayList<CasaVacanza>) ricerca(cv,provincia,prezzo);
-            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<CasaVacanza>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
+            ArrayList<CasaVacanza> elencoCasaVacanze=(ArrayList<CasaVacanza>) ricerca(cv,provincia,prezzo,numeroGiorni);
+            ArrayList<CasaVacanza> casaVacanzeDisponibili = new ArrayList<>(); //Qui verranno inseriti gli appartamenti da restituire all'getUtente
 
-            System.err.println("numero CasaVacanza: " + elencoCasaVacanze.size());
 
             for (CasaVacanza casa: elencoCasaVacanze) {
                 if ((casa.isParcheggio()==parcheggio)&&
@@ -168,9 +157,8 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
             return casaVacanzeDisponibili;
         }else{
             Ostello ost = (Ostello) locazione;
-            ArrayList<Ostello> elencoOstelli=(ArrayList<Ostello>)ricerca( ost, provincia,prezzo);
-            ArrayList<Ostello> ostelliDisponibili = new ArrayList<Ostello>(); //Qui verranno inseriti gli ostelli da restituire all'getUtente
-            System.err.println("numero Ostelli: " + elencoOstelli.size());
+            ArrayList<Ostello> elencoOstelli=(ArrayList<Ostello>)ricerca( ost, provincia,prezzo,numeroGiorni);
+            ArrayList<Ostello> ostelliDisponibili = new ArrayList<>(); //Qui verranno inseriti gli ostelli da restituire all'Utente
 
             for (Ostello ostello:elencoOstelli) {
                 if ((ostello.isParcheggio()==parcheggio)&&
@@ -185,23 +173,5 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         }
     }
 
-    public static void main(String[]  argc) throws DeserializzazioneException, ClassNotFoundException, IOException, InstantiationException, SerializzazioneException, IllegalAccessException {
-        ControlloreRicercaGlobale g = new ControlloreRicercaGlobale();
-        ControlloreRicercaPerLocazione c = new AdapterRicercaPerLocazione(g) ;
-        ArrayList<Locazione> l = new ArrayList<Locazione>();
-        Appartamento a = new Appartamento();
-        /*l = (ArrayList<Locazione>) c.ricerca(a,"Roma","800");
-        for(Locazione loc: l){
-            a = (Appartamento) loc;
-            System.out.println(loc.getNomeLocazione());
-            System.out.println(a.getNumeroBagni());
-        }*/
-        l = (ArrayList<Locazione>) c.ricercaAvanzata(a,"Firenze","800", "false","false","true","qwwe");
-        for(Locazione loc: l){
-            a = (Appartamento) loc;
-            System.out.println(loc.getNomeLocazione());
-            System.out.println(a.getNumeroBagni());
-        }
-    }
 
 }

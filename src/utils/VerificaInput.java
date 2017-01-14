@@ -1,11 +1,9 @@
 package utils;
 import constants.Constants;
-import exception.DeserializzazioneException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -14,7 +12,7 @@ import java.util.GregorianCalendar;
 public class VerificaInput {
 
 	private static  String percorsoProvince = Constants.PROVINCE_PATH;
-	
+
 	// Costruttore
 
 	public VerificaInput(){
@@ -68,15 +66,24 @@ public class VerificaInput {
         if(dataInizio.trim().equals("")||dataInizio.equals(""))
             return false;
 
-        TrasformaDate td = new TrasformaDate();
 
-        GregorianCalendar gcInizio = td.trasformaInGregorianCalendar(dataInizio);
-        GregorianCalendar gcFine = td.trasformaInGregorianCalendar(dataFine);
-        if(gcInizio.get(Calendar.YEAR)<2017|| gcFine.get(Calendar.YEAR)<2017){  //controlla che le date non siano di anni passati
+        GregorianCalendar gcInizio = TrasformaDate.trasformaInGregorianCalendar(dataInizio);
+        GregorianCalendar gcFine = TrasformaDate.trasformaInGregorianCalendar(dataFine);
+
+        //controlla che le data non siano di anni passati
+        if(gcInizio.get(Calendar.YEAR)<2017|| gcFine.get(Calendar.YEAR)<2017){
             return false;
         }
-        if(gcInizio.get(Calendar.DAY_OF_YEAR)>gcFine.get(Calendar.DAY_OF_YEAR))//controlla che effettivamente la data inizo sia precedente a data fine
+        //controlla che la dataFine non sia precedente alla dataInizio
+        if(gcFine.get(Calendar.YEAR)>gcInizio.get(Calendar.YEAR))
+            return true;
+        if(gcFine.get(Calendar.YEAR)<gcInizio.get(Calendar.YEAR))
             return false;
+        if(gcFine.get(Calendar.YEAR)==gcInizio.get(Calendar.YEAR)) {
+            //Calendar.DAY_OF_YEAR restituisce il numero di giorni dall'inizio dell'anno
+            if (gcInizio.get(Calendar.DAY_OF_YEAR) > gcFine.get(Calendar.DAY_OF_YEAR))
+                return false;
+        }
         return true;
     }
 

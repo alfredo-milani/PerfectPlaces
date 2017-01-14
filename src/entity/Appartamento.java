@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.*;
 
 public class Appartamento extends Locazione {
 	
@@ -12,7 +10,7 @@ public class Appartamento extends Locazione {
 	private String numeroBagni;
 	private boolean giardino;
 	private String numeroLetti;
-	private ArrayList<GregorianCalendar> date = new ArrayList<GregorianCalendar>();
+
 	
 	// Costruttori
 	public Appartamento(){
@@ -63,14 +61,6 @@ public class Appartamento extends Locazione {
 		this.numeroLetti = numeroLetti;
 	}
 
-	public ArrayList<GregorianCalendar> getDate() {
-		return date;
-	}
-
-
-	public void setDate(ArrayList<GregorianCalendar> date) {
-		this.date = date;
-	}
 	
 	
 }

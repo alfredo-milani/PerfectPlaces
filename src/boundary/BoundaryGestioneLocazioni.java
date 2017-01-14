@@ -8,21 +8,21 @@ import exception.SerializzazioneException;
 
 import java.util.ArrayList;
 
-/**
- * Created by gabriele on 12/12/16.
- */
 public class BoundaryGestioneLocazioni {
 
-    public ArrayList<Locazione> ritonaLocazioni (String username)
-            throws DeserializzazioneException {
+    public ArrayList<Locazione> ritonaLocazioni (String username) throws DeserializzazioneException {
         ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
-        return crl.visualizzaLocazioni(username);
+        ArrayList<Locazione> locazioni;
+        locazioni = crl.visualizzaLocazioni(username);
+
+        return locazioni;
+
     }
 
-    public void  avvioRimozione(Locazione locazione)
-            throws SerializzazioneException, DeserializzazioneException {
+    public String  avvioRimozione(Locazione locazione) throws SerializzazioneException, DeserializzazioneException {
         ControlloreRimuoviLocazione cr =  new ControlloreRimuoviLocazione();
-        cr.rimuoviLocazione(locazione);
+
+        return cr.rimuoviLocazione(locazione);
     }
 }

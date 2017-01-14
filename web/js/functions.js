@@ -122,3 +122,16 @@ function changeLang(box, us, psw, pref) {
 
     http.send(paramsToSend);
 }
+
+function visualizzaRimozione(num) {
+
+    var x = document.getElementsByClassName("btnRimozione");
+    if(document.getElementById) {
+        for(var i = 0; i<num; ++i) {
+            x[i].style.display = 'block';
+        }
+
+    }
+
+
+}

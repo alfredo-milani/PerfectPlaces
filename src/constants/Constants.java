@@ -5,7 +5,7 @@ package constants;
  */
 public interface Constants {
     //***** Percorsi utili *****//
-    String ABS_PATH = "/home/alfredo/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
+    String ABS_PATH = "/home/maria/Scrivania/Workspace/PerfectPlaces-new/"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
     String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");
@@ -22,7 +22,13 @@ public interface Constants {
     String PRENOTAZIONE_OSTELLO_PATH = ABS_PATH.concat("data/prenotazioni/prenotazioniOstelli");
     String PRENOTAZIONE_APPARTAMENTO_PATH = ABS_PATH.concat("data/prenotazioni/prenotazioniAppartamenti");
     String PRENOTAZIONE_CASAVACANZA_PATH = ABS_PATH.concat("data/prenotazioni/prenotazioniCaseVacanza");
+    String PRENOTATI_ALBERGO_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiAlbergo");
+    String PRENOTATI_APPARTAMENTO_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiAppartamento");
+    String PRENOTATI_BEB_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiBeb");
+    String PRENOTATI_CASEVACANZA_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiCaseVacanza");
+    String PRENOTATI_OSTELLO_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiOstello");
     String PROVINCE_PATH = ABS_PATH.concat("data/location/fileProvince");
+    String FAQ_PATH = ABS_PATH.concat("data/fileFaq");
     String PACKAGE_LANGUAGE = "language.Lang";
 
 

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alfredo
-  Date: 20/10/16
-  Time: 15.41
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -29,16 +22,18 @@
     String id = request.getParameter("id");
     id = id.substring(0,1);
 
+	ArrayList<String> locRimosse = new ArrayList<>();
+	String nomeLocazioneRimossa="";
 
-    int idInt = Integer.parseInt(id);
-
-    ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
+    ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("locDaRimuovere");
     try {
-        bgl.avvioRimozione(elencoLocazioni.get(idInt));
+        nomeLocazioneRimossa=bgl.avvioRimozione(elencoLocazioni.get(Integer.parseInt(id)));
     } catch (SerializzazioneException | DeserializzazioneException e) {
         e.printStackTrace();
     }
-    request.getSession().removeAttribute("loc");
+    request.getSession().removeAttribute("locDaRimuovere");
+	locRimosse.add(nomeLocazioneRimossa);
+	request.getSession().setAttribute("nomiLocRimosse", locRimosse);
 
 
 %>
@@ -69,14 +64,15 @@
 				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
 				<li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
 				<li><a href="posta.jsp">Posta</a></li>
+				<li><a href="areaFaq.jsp">FAQ</a></li>
 				<li><a href="logout.jsp">Esci</a></li>
 			</ul>
-			<div class="post">
+			<div>
 				<%
 					if (!c.getLogged()) {
 				%>
 
-				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+				<font style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
 
 				<%
 					}

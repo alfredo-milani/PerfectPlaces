@@ -18,13 +18,22 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
-<%@page import="entity.Locazione" %>
-<%@ page import="boundary.BoundaryGestioneLocazioni" %>
-<%@ page import="java.util.ArrayList" %>
+<%@page import="control.ControlloreVisualizzaLocazioni" %>
+<%@page import="java.util.ArrayList" %>
+<%@ page import="control.ControlloreVisualizzaLocazioni" %>
+<%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="entity.*" %>
 <%
 
-	BoundaryGestioneLocazioni bvl = new BoundaryGestioneLocazioni();
-	ArrayList<Locazione> locazioni = bvl.ritonaLocazioni(c.getUser());
+ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
+
+String username = c.getUser();
+ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
+	try {
+		locazioni = crl.visualizzaLocazioni(username);
+	} catch (DeserializzazioneException e) {
+		e.printStackTrace();
+	}
 
 	String nomeLocazione;
 String provincia;
@@ -61,14 +70,15 @@ String descrizione;
 				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
 				<li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
 				<li><a href="posta.jsp">Posta</a></li>
+				<li><a href="areaFaq.jsp">FAQ</a></li>
 				<li><a href="logout.jsp">Esci</a></li>
 			</ul>
-            <div class="post">
+            <div>
                     <%
                         if (!c.getLogged()) {
                     %>
 
-                    <font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+                    <font style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
 
                     <%
                         }
@@ -82,7 +92,7 @@ String descrizione;
 							
 					</div>
 					
-					
+
 					<% for(Locazione locazione:locazioni){
 						 nomeLocazione = locazione.getNomeLocazione();
 						 provincia = locazione.getProvincia();
@@ -92,9 +102,41 @@ String descrizione;
 						 
 					
 					%>
-					
+
+						<%
+							if(locazione.getClass()== Albergo.class){
+						%>
+						<img src="../css/images/albergo.png"  style="width:50px;height:50px; float: left">
+						<span class="span">Nome albergo: <%out.println(nomeLocazione);%></span>
+						<%}%>
+						<%
+							if(locazione.getClass()== Appartamento.class){
+						%>
+						<img src="../css/images/appartamento.png"  style="width:50px;height:50px;float: left">
+						<span class="span">Nome appartamento: <%out.println(nomeLocazione);%></span>
+						<%}%>
+						<%
+							if(locazione.getClass()== Beb.class){
+						%>
+						<img src="../css/images/beb.jpeg"  style="width:50px;height:50px;float: left;">
+						<span class="span">Nome b&b: <%out.println(nomeLocazione);%></span>
+
+						<%}%>
+						<%
+							if(locazione.getClass()== CasaVacanza.class){
+						%>
+						<img src="../css/images/casaVacanza.png"  style="width:50px;height:50px;float: left">
+						<span class="span">Nome casa vacanza: <%out.println(nomeLocazione);%></span>
+
+						<%}%>
+						<%
+							if(locazione.getClass()==Ostello.class){
+						%>
+						<img src="../css/images/ostello.jpeg"  style="width:50px;height:50px;float: left">
+						<span class="span">Nome ostello: <%out.println(nomeLocazione);%></span>
+						<%}%>
+
 					<div class="post">
-						<h2>Nome Locazione:<%out.println(nomeLocazione);%></h2>
                         <h1>Provincia: <%out.println(provincia); %></h1>
 						<h1>Indirizzo: <%out.println(indirizzo); %></h1>
 						<h1>Prezzo: <%out.println(prezzo); %></h1>
@@ -102,7 +144,6 @@ String descrizione;
 					</div>
 					
 					<% } %>
-					
 					
 					<div style="clear: both;">&nbsp;</div>
 				</div>

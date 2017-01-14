@@ -1,204 +1,162 @@
 package control;
 
-import java.io.File;
-import java.util.ArrayList;
 import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
-import utils.VerificaInput;
 
-// Classe che gestisce l'inserimento di nuove locazioni all'interno del sistema.
+import java.io.File;
+import java.util.ArrayList;
 
+
+/**
+ * Created by maria on 16/12/16.
+ */
 public class ControlloreInserimentoLocazione {
-	
-	// Variabili e percorsi
-	
-	private ArrayList<Appartamento> appartamentoList = new ArrayList<Appartamento>();
-	private ArrayList<Beb> bebList = new ArrayList<Beb>();
-	private ArrayList<Albergo> albergoList = new ArrayList<Albergo>();
-	private ArrayList<CasaVacanza> vacanzaList = new ArrayList<CasaVacanza>();
-	private ArrayList<Ostello> ostelloList = new ArrayList<Ostello>();
-	private String percorsoAlbergo = Constants.ALBERGHI_PATH;
-	private String percorsoAppartamento = Constants.APPART_PATH;
-	private String percorsoBeb = Constants.BEB;
-	private String percorsoCasaVacanza = Constants.CASEVACANZA_PATH;
-	private String percorsoOstello = Constants.OSTELLI_PATH;
-	
-	// Costruttore 
-	
-	public ControlloreInserimentoLocazione(){
-		
-	}
-	
-	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo Albergo nel file alberghi.
-	
-	@SuppressWarnings("unchecked")
-	public boolean inserisciAlbergo(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet,
-			String tipoPensione, String orarioColazione, String orarioPranzo, String orarioCena)throws SerializzazioneException, DeserializzazioneException{
-		
-		if(nomeLocazione.equals("")||postiTotali.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
-				descrizione.equals("")||tipoPensione.equals("")||orarioColazione.equals("")||
-				orarioPranzo.equals("")||orarioCena.equals("")){
-			return false;
-		}
+
+    private ArrayList<Appartamento> appartamentoList = new ArrayList<Appartamento>();
+    private ArrayList<Beb> bebList = new ArrayList<Beb>();
+    private ArrayList<Albergo> albergoList = new ArrayList<Albergo>();
+    private ArrayList<CasaVacanza> vacanzaList = new ArrayList<CasaVacanza>();
+    private ArrayList<Ostello> ostelloList = new ArrayList<Ostello>();
+    private String percorsoAlbergo = Constants.ALBERGHI_PATH;
+    private String percorsoAppartamento = Constants.APPART_PATH;
+    private String percorsoBeb = Constants.BEB;
+    private String percorsoCasaVacanza = Constants.CASEVACANZA_PATH;
+    private String percorsoOstello = Constants.OSTELLI_PATH;
+
+    private String command;
+    private String path;
 
 
-		Albergo albergo = new Albergo(nomeLocazione,postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet, tipoPensione, orarioColazione, orarioPranzo, orarioCena);
+    public ControlloreInserimentoLocazione(String command) {
+        this.command = command;
+    }
 
-		File file = new File(percorsoAlbergo);
-		
-		SerializzaOggetti sobj = new SerializzaOggetti();		
-		
-		if(file.length()==0){
-			albergoList.clear();
-			albergoList.add(albergo);
-			sobj.serializza(albergoList, percorsoAlbergo);
-			return true;
-		}
-		
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		albergoList = (ArrayList<Albergo>) dobj.deserializza(percorsoAlbergo);
-		albergoList.add(albergo);
-		sobj.serializza(albergoList, percorsoAlbergo);
-		return true;
-			
-	}
-	
-	
-	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo appartamento nel file appartamenti.
-	
-	@SuppressWarnings("unchecked")
-	public boolean inserisciAppartamento(String nomeLocazione, String postiTotali, String provincia, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroStanze, 
-			String numeroBagni, boolean giardino, String numeroLetti)throws SerializzazioneException, DeserializzazioneException{
-		
-		if(nomeLocazione.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
-				descrizione.equals("")||numeroStanze.equals("")||numeroBagni.equals("")||numeroLetti.equals("")){
-			return false;
-		}
-		
-		Appartamento appartamento = new Appartamento(nomeLocazione, postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio,
-				wifi, pet, numeroStanze, numeroBagni, giardino, numeroLetti);
+    public Locazione inserisciLocazione(String nomeLocazione, String postiTotali, String provincia, String indirizzo, String userLocatore, String prezzo,
+                                        String descrizione, boolean parcheggio, boolean wifi, boolean pet) throws Exception {
 
-		File file = new File(percorsoAppartamento);
-		
-		SerializzaOggetti sobj = new SerializzaOggetti();		
-		
-		if(file.length()==0){
-			appartamentoList.add(appartamento);
-			sobj.serializza(appartamentoList, percorsoAppartamento);
-			return true;
-		}
-		
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		appartamentoList = (ArrayList<Appartamento>) dobj.deserializza(percorsoAppartamento);
-		appartamentoList.add(appartamento);
-		sobj.serializza(appartamentoList, percorsoAppartamento);
-		return true;
-			
-	}
-	
-	
-	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo B&B nel file beb.
-	
-	@SuppressWarnings("unchecked")
-	public boolean inserisciBeb(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String orarioColazione) throws SerializzazioneException, DeserializzazioneException{
-		if(nomeLocazione.equals("")||postiTotali.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
-				descrizione.equals("")||orarioColazione.equals("")){
-			return false;
-		}
-		
-		Beb beb = new Beb(nomeLocazione,postiTotali,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet, orarioColazione);
 
-		File file = new File(percorsoBeb);
-		
-		SerializzaOggetti sobj = new SerializzaOggetti();		
-		
-		if(file.length()==0){
-			bebList.add(beb);
-			sobj.serializza(bebList, percorsoBeb);
-			return true;
-		}
-		
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		bebList = (ArrayList<Beb>) dobj.deserializza(percorsoBeb);
-		bebList.add(beb);
-		sobj.serializza(bebList, percorsoBeb);
-		return true;
-			
-	}
-	
-	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce una nuova Casa Vacanze nel file casevacanza.
-	
-	@SuppressWarnings("unchecked")
-	public boolean inserisciCasaVacanza(String nomeLocazione, String postiTotali, String provincia, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String numeroCamere, String numeroBagni, 
-			boolean giardino, String numeroLetti )throws SerializzazioneException, DeserializzazioneException{
-		
-		if(nomeLocazione.equals("")||provincia.equals("")||indirizzo.equals("")||userLocatore.equals("")||prezzo.equals("")||
-				descrizione.equals("")||numeroCamere.equals("")||numeroBagni.equals("")||numeroLetti.equals("")){
-			return false;
-		}
-		
-		CasaVacanza casavacanza = new CasaVacanza(nomeLocazione, postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio,
-				wifi, pet, numeroCamere, numeroBagni, giardino, numeroLetti);
 
-		File file = new File(percorsoCasaVacanza);
-		
-		SerializzaOggetti sobj = new SerializzaOggetti();		
-		
-		if(file.length()==0){
-			vacanzaList.add(casavacanza);
-			sobj.serializza(vacanzaList, percorsoCasaVacanza);
-			return true;
-		}
-		
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		vacanzaList = (ArrayList<CasaVacanza>) dobj.deserializza(percorsoCasaVacanza);
-		vacanzaList.add(casavacanza);
-		sobj.serializza(vacanzaList, percorsoCasaVacanza);
-		return true;
-			
-	}
-	
-	// Metodo che effettua tutte le verifiche sugli input e se tutto va bene inserisce un nuovo Ostello nel file ostelli.
-	
-	@SuppressWarnings("unchecked")
-	public boolean inserisciOstello(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
-			String descrizione, boolean parcheggio, boolean wifi, boolean pet,String tipoPensione) throws SerializzazioneException, DeserializzazioneException{
-		
-		if (nomeLocazione == null || nomeLocazione.equals("") ||
-				postiTotali==null|| postiTotali.equals("")||
-				provincia ==null ||provincia.equals("") ||
-				indirizzo == null || indirizzo.equals("") ||
-				userLocatore == null || userLocatore.equals("") ||
-				prezzo == null ||prezzo.equals("") ||
-				descrizione == null || descrizione.equals("") ) {
-			return false;
-		}
-		
-		Ostello ostello = new Ostello(nomeLocazione,postiTotali,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio,
-				wifi, pet, tipoPensione);
+        FactoryInserimentoLocazione factory = FactoryInserimentoLocazione.getFactoryInstance();
+        factory.changeSettings(nomeLocazione, postiTotali, provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
+        return factory.createGenericLocation(command);
 
-		File file = new File(percorsoOstello);
-		
-		SerializzaOggetti sobj = new SerializzaOggetti();		
-		
-		if(file.length()==0){
-			ostelloList.add(ostello);
-			sobj.serializza(ostelloList, percorsoOstello);
-			return true;
-		}
-		
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		ostelloList = (ArrayList<Ostello>) dobj.deserializza(percorsoOstello);
-		ostelloList.add(ostello);
-		sobj.serializza(ostelloList, percorsoOstello);
-		return true;
-	}
+
+    }
+
+    public void selezionaPercorso(){
+        switch (command){
+            case "0": {
+                path = percorsoAlbergo;
+                break;
+            }
+            case "1": {
+                path = percorsoAppartamento;
+                break;
+            }
+            case "2": {
+                path = percorsoBeb;
+                break;
+            }
+            case "3": {
+                path = percorsoCasaVacanza;
+                break;
+            }
+            case "4": {
+                path=percorsoOstello;
+                break;
+            }
+        }
+    }
+
+    public void serializzaLocazione(Locazione locazione) throws SerializzazioneException, DeserializzazioneException {
+
+        File file = new File(path);
+        SerializzaOggetti sobj = new SerializzaOggetti();
+        DeserializzaOggetti dobj = new DeserializzaOggetti();
+
+
+        switch (command) {
+            case "0": {
+
+                Albergo albergo=(Albergo)locazione;
+                if (file.length() == 0) {
+                    albergoList.clear();
+                    albergoList.add(albergo);
+                    sobj.serializza(albergoList, path);
+                    break;
+                }
+
+                albergoList = (ArrayList<Albergo>) dobj.deserializza(path);
+                albergoList.add(albergo);
+                sobj.serializza(albergoList, percorsoAlbergo);
+                break;
+            }
+            case "1": {
+
+                Appartamento appartamento=(Appartamento) locazione;
+                if (file.length() == 0) {
+                    appartamentoList.clear();
+                    appartamentoList.add(appartamento);
+                    sobj.serializza(appartamentoList, path);
+                    break;
+                }
+
+                appartamentoList = (ArrayList<Appartamento>) dobj.deserializza(path);
+                appartamentoList.add(appartamento);
+                sobj.serializza(appartamentoList, path);
+                break;
+            }
+            case "2": {
+
+                Beb beb=(Beb) locazione;
+                if (file.length() == 0) {
+                    bebList.clear();
+                    bebList.add(beb);
+                    sobj.serializza(bebList, path);
+                    break;
+                }
+
+                bebList = (ArrayList<Beb>) dobj.deserializza(path);
+                bebList.add(beb);
+                sobj.serializza(bebList, path);
+                break;
+            }
+            case "3": {
+
+                CasaVacanza casaVacanza=(CasaVacanza) locazione;
+                if (file.length() == 0) {
+                    vacanzaList.clear();
+                    vacanzaList.add(casaVacanza);
+                    sobj.serializza(vacanzaList, path);
+                    break;
+                }
+
+                vacanzaList = (ArrayList<CasaVacanza>) dobj.deserializza(path);
+                vacanzaList.add(casaVacanza);
+                sobj.serializza(vacanzaList, path);
+                break;
+            }
+            case "4": {
+
+                Ostello ostello=(Ostello) locazione;
+                if (file.length() == 0) {
+                    ostelloList.clear();
+                    ostelloList.add(ostello);
+                    sobj.serializza(ostelloList, path);
+                    break;
+                }
+
+                ostelloList = (ArrayList<Ostello>) dobj.deserializza(path);
+                ostelloList.add(ostello);
+                sobj.serializza(ostelloList, path);
+                break;
+            }
+
+        }
+
+    }
 }

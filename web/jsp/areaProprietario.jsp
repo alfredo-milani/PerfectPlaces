@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="keywords" content="" />
@@ -18,7 +18,7 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-<jsp:useBean id="c" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 	<div id="menu-wrapper">
 		<div id="menu">
 			
@@ -44,45 +44,46 @@
 				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
 				<li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
 				<li><a href="posta.jsp">Posta</a></li>
+				<li><a href="areaFaq.jsp">FAQ</a></li>
 				<li><a href="logout.jsp">Esci</a></li>
 			</ul>
-			<div class="post">
+			<div >
 				<%
-					if (!c.controlloAccesso()) {
+					if (!c.getLogged()) {
 				%>
 
-				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+				<p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>
 
 				<%
 					}
 				%>
 
-				</h2>
 			</div>
 			<div id="page-bgbtm">
 				<div id="content">
 				
 					
 					<div class="post">
-							<h2><strong>Scegli cosa fare con le tue locazioni!</strong></h2>
+							<h2><strong>Scegli cosa fare con le tue locazioni</strong></h2>
 							
 					</div>
-					<center>
 					<div class="post">
 					<table>
 						<tr>
-							<td><h1><center>Visualizza</center></h1></td>
-							<td><h1><center>Inserisci</center></h1></td>
-							<td><h1><center>Rimuovi</center></h1></td>
+							<td><h1>Visualizza</h1></td>
+							<td><h1>Inserisci</h1></td>
+							<td><h1>Rimuovi</h1></td>
+							<td><h1>Prenotazioni</h1></td>
+
 						</tr>
 						<tr>
-							<td><h2 class="title"><center><a href="visualizzaLocazioni.jsp"><img src="../css/images/iconaLente.png" width="250" height="250" alt="vis locazione"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="inserisciLocazione.jsp"><img src="../css/images/iconaInserimento.png" width="250" height="250" alt="ins locazione"/></a></center></h2></td>
-							<td><h2 class="title"><center><a href="rimuoviLocazione.jsp"><img src="../css/images/iconaRimozione.png" width="250" height="250" alt="rem locazione"/></a></center></h2></td>
+							<td><h2 class="title"><a href="visualizzaLocazioni.jsp"><img src="../css/images/iconaLente.png" width="250" height="250" alt="vis locazione"/></a></h2></td>
+							<td><h2 class="title"><a href="inserisciLocazione.jsp"><img src="../css/images/iconaInserimento.png" width="250" height="250" alt="ins locazione"/></a></h2></td>
+							<td><h2 class="title"><a href="rimuoviLocazione.jsp"><img src="../css/images/iconaRimozione.png" width="250" height="250" alt="rem locazione"/></a></h2></td>
+							<td><h2 class="title"><a href="visualizzaPrenotazioniPerProprietario.jsp"><img src="../css/images/visualizzaPrenotazioni.jpg" width="250" height="250" alt="visualizza prenotazioni"/></a></h2> </td>
 						</tr>
 						
-						
-						
+
 						</table>
 					</div>
 					</center>

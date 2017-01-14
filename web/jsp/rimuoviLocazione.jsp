@@ -1,14 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alfredo
-  Date: 20/10/16
-  Time: 15.41
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
@@ -20,8 +12,8 @@
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="control.ControlloreVisualizzaLocazioni" %>
 <%@page import="java.util.ArrayList" %>
-<%@page import="entity.Locazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="entity.*" %>
 <%
 
 ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
@@ -34,13 +26,13 @@ ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
 		e.printStackTrace();
 	}
 
+	request.getSession().setAttribute("locDaRimuovere", locazioni);
+
 	String nomeLocazione;
 String provincia;
 String indirizzo;
 String prezzo; 
 String descrizione;
-
-String idNumber;
 
 
 %>
@@ -70,14 +62,15 @@ String idNumber;
 				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
 				<li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
 				<li><a href="posta.jsp">Posta</a></li>
+				<li><a href="areaFaq.jsp">FAQ</a></li>
 				<li><a href="logout.jsp">Esci</a></li>
 			</ul>
-			<div class="post">
+			<div >
 				<%
 					if (!c.getLogged()) {
 				%>
 
-				<font size="4px" color="red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </font>
+				<p style="font-size: 30px; color: red"> Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>
 
 				<%
 					}
@@ -91,48 +84,77 @@ String idNumber;
 							<h2><strong>Queste sono le tue locazioni</strong></h2>
 							
 					</div>
-					
+
 					<% for(int i=0;i<locazioni.size();i++){
 						 nomeLocazione = locazioni.get(i).getNomeLocazione();
 						 provincia = locazioni.get(i).getProvincia();
 						 indirizzo = locazioni.get(i).getIndirizzo();
 						 prezzo = locazioni.get(i).getPrezzo();
 						 descrizione = locazioni.get(i).getDescrizione();
-						 idNumber = ""+i;
-						 
-					
 					%>
-
 					<div class="post">
-					
-					<table style="width:100%">
-						<tr>
-							<td>
-								<h2>Nome Locazione: <%out.println(nomeLocazione);%></h2>
-								<h1>Provincia: <%out.println(provincia); %></h1>
-								<h1>Indirizzo: <%out.println(indirizzo); %></h1>
-								<h1>Prezzo: <%out.println(prezzo); %></h1>
-								<h1>Descrizione: <%out.println(descrizione); %></h1>
+						<%
 
-							</td>
-							<td>
-								<center>
-									<form method="get" action="rimuoviLocazione2.jsp" enctype="text/plain">
-										<input type="hidden" name="id" value="<%out.println(idNumber);%>">
-										<input type="submit" value="rimuovi">
-									</form>
-								<!--<a href="rimuoviLocazione2.jsp ?id=<% //out.println(idNumber); %>">
-								<img src="../css/images/delete.jpg" width="150" height="100" alt="Press image to remove">
-								</a>  -->
-								</center>
-							
-							</td>
-						</tr>
-					</table>
+							if(locazioni.get(i).getClass()== Albergo.class){
+						%>
+						<img src="../css/images/albergo.png"  style="width:50px;height:50px; float: left">
+						<span class="span">Nome albergo: <%out.println(nomeLocazione);%></span>
+						<%}%>
+						<%
+							if(locazioni.get(i).getClass()== Appartamento.class){
+						%>
+						<img src="../css/images/appartamento.png"  style="width:50px;height:50px;float: left">
+						<span class="span">Nome appartamento: <%out.println(nomeLocazione);%></span>
+						<%}%>
+						<%
+							if(locazioni.get(i).getClass()== Beb.class){
+						%>
+						<img src="../css/images/beb.jpeg"  style="width:50px;height:50px;float: left;">
+						<span class="span">Nome b&b: <%out.println(nomeLocazione);%></span>
+
+						<%}%>
+						<%
+							if(locazioni.get(i).getClass()== CasaVacanza.class){
+						%>
+						<img src="../css/images/casaVacanza.png"  style="width:50px;height:50px;float: left">
+						<span class="span">Nome casa vacanza: <%out.println(nomeLocazione);%></span>
+
+						<%}%>
+						<%
+							if(locazioni.get(i).getClass()== Ostello.class){
+						%>
+						<img src="../css/images/ostello.jpeg"  style="width:50px;height:50px;float: left">
+						<span class="span">Nome ostello: <%out.println(nomeLocazione);%></span>
+						<%}%>
+
+
+
+
+						<table style="width:100%">
+							<tr>
+								<td>
+									<h1>Provincia: <%out.println(provincia); %></h1>
+									<h1>Indirizzo: <%out.println(indirizzo); %></h1>
+									<h1>Prezzo: <%out.println(prezzo); %></h1>
+									<h1>Descrizione: <%out.println(descrizione); %></h1>
+
+								</td>
+								<td align="right">
+
+										<form method="get" action="rimuoviLocazione2.jsp" enctype="text/plain">
+											<input type="hidden" name="id" value="<%out.println(i);%>">
+											<input type="image" src="../css/images/delete.jpg" style="width: 80px; height: 50px" value="rimuovi">
+										</form>
+									<!--<a href="rimuoviLocazione2.jsp ?id=<% //out.println(idNumber); %>">
+									<img src="../css/images/delete.jpg" width="150" height="100" alt="Press image to remove">
+									</a>  -->
+
+								</td>
+							</tr>
+						</table>
 					</div>
 					
 					<% }
-						request.getSession().setAttribute("loc", locazioni);
 					%>
 
 

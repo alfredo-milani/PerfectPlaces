@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alfredo
-  Date: 20/10/16
-  Time: 15.41
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html >
@@ -21,29 +14,28 @@
 <jsp:useBean id="c" scope="session" class="control.ControlloreLogin"/>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entity.*" %>
-<%@page import="control.*" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
+<%@ page import="boundary.BoundaryPrenotaLocazioni" %>
 
 <%
 
-ControllorePrenotazione cp = new ControllorePrenotazione();
+	BoundaryPrenotaLocazioni bpl =  new BoundaryPrenotaLocazioni();
 
 String dataInizio = request.getParameter("dataInizio");
 String dataFine = request.getParameter("dataFine");
 String id = request.getParameter("id");
+String numeroPersone = request.getParameter("prenota per");
 id = id.substring(0,1);
 boolean controllo = false;
 
 	ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
 	try {
-		controllo=cp.prenotazione(elencoLocazioni.get(Integer.parseInt(id)),dataInizio,dataFine);
+		controllo=bpl.prenotaLocazione(elencoLocazioni.get(Integer.parseInt(id)),c.getUser(),dataInizio,dataFine,numeroPersone);
 	} catch (DeserializzazioneException | SerializzazioneException e) {
 		e.printStackTrace();
 	}
 	request.getSession().removeAttribute("loc");
-
-
 
 %>
 	<div id="menu-wrapper">
@@ -71,14 +63,15 @@ boolean controllo = false;
 				<li><a href="areaProprietario.jsp">Area Proprietario</a></li>
 				<li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
 				<li><a href="posta.jsp">Posta</a></li>
+				<li><a href="areaFaq.jsp">FAQ</a></li>
 				<li><a href="logout.jsp">Esci</a></li>
 			</ul>
-			<div class="post">
+			<div >
 				<%
 					if (!c.getLogged()) {
 				%>
 
-				<p style="size: 40px; color: red" > Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>
+				<p style="font-size: 30px; color: red" > Errore! Sessione scaduta. Accedi di nuovo per continuare. </p>
 
 				<%
 					}
@@ -93,16 +86,19 @@ boolean controllo = false;
 					<div class="post">
 						
 						<h1>Prenotazione effettuata con successo</h1>
+						<br><br><br>
+						<h3><a style="color: #4b7091" href="visualizzaPrenotazioniPerViaggiatore.jsp">Visualizza le tue prenotazioni </a> oppure <a style="color: #4b7091" href="_it_utente.jsp">torna alla home</a></h3>
+
 						
 					</div>
 
 					<%} else { %>
 						
 						<div class="post">
-						<h1>Prenotazione fallita: Non &egrave; pi&ugrave; possibile prenotare nella data selezionata</h1>
-						<a href="areaViaggiatore.jsp">Torna alla pagina di ricerca</a>
-						
-					</div>
+						<h1><b style="color: darkred;">Prenotazione fallita:</b>Non &egrave; pi&ugrave; possibile prenotare nella data selezionata</h1>
+							<br><br><br>
+						<h3><a style="color: #4b7091" href="ricercaLocazione.jsp">Torna alla pagina di ricerca</a></h3>
+						</div>
 					
 					<% } %>
 						

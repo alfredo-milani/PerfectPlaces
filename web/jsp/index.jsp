@@ -269,8 +269,7 @@
 </div>
 <!-- end #page -->
 <div id="footer">
-    <p><a href="faq.jsp"><%=bundle.getString("index_faq")%></a></p>
-    <p><a href="faq.jsp"> <%=bundle.getString("index_terminiUso")%></a></p>
+    <p><a href="areaFaq.jsp"><%=bundle.getString("index_faq")%></a></p>
 </div>
 <!-- end #footer -->
 </body>

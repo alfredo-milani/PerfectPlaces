@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 public class Beb extends Locazione {
 	
@@ -9,8 +7,7 @@ public class Beb extends Locazione {
 
 	private static final long serialVersionUID = 1L;
 	private String orarioColazione;
-	private ArrayList<GregorianCalendar> date = new ArrayList<GregorianCalendar>();
-	
+
 	// Costruttori
 	public Beb(){
 
@@ -31,12 +28,6 @@ public class Beb extends Locazione {
 		this.orarioColazione = orarioColazione;
 	}
 
-	public ArrayList<GregorianCalendar> getDate() {
-		return date;
-	}
 
-	public void setDate(ArrayList<GregorianCalendar> date) {
-		this.date = date;
-	}
 	
 }

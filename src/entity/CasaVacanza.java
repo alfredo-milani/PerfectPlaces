@@ -1,8 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-
 public class CasaVacanza extends Locazione {
 	
 	// Variabili
@@ -12,7 +9,6 @@ public class CasaVacanza extends Locazione {
 	private String numeroBagni;
 	private boolean giardino;
 	private String numeroLetti;
-	private ArrayList<GregorianCalendar> date = new ArrayList<GregorianCalendar>();
 	
 	// Costruttori
 	public CasaVacanza(){
@@ -56,14 +52,5 @@ public class CasaVacanza extends Locazione {
 	public void setNumeroLetti(String numeroLetti) {
 		this.numeroLetti = numeroLetti;
 	}
-
-	public ArrayList<GregorianCalendar> getDate() {
-		return date;
-	}
-
-	public void setDate(ArrayList<GregorianCalendar> date) {
-		this.date = date;
-	}
-	
 	
 }

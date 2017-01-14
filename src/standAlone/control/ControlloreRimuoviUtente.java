@@ -1,20 +1,17 @@
 package standAlone.control;
 
-import java.util.ArrayList;
-
 import constants.Constants;
-import standAlone.boundary.BoundaryFallimento;
-import standAlone.boundary.BoundarySuccesso;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.*;
+import standAlone.boundary.BoundaryFallimento;
+import standAlone.boundary.BoundarySuccesso;
+import utils.DeserializzaOggetti;
+import utils.SerializzaOggetti;
+
+import java.util.ArrayList;
 
 public class ControlloreRimuoviUtente {
-	
-	//Percorso
-	
-	public String percorsoUtenti = Constants.UTENTI_PATH;
 	
 	//Costruttore
 	
@@ -30,16 +27,14 @@ public class ControlloreRimuoviUtente {
 	public void rimuovi(String username) throws DeserializzazioneException, SerializzazioneException, InterruptedException{
 		
 		ArrayList<Utente> utenti;
-		DeserializzaOggetti dobj = new DeserializzaOggetti();
-		utenti = (ArrayList<Utente>)dobj.deserializza(percorsoUtenti);
+		utenti = (ArrayList<Utente>)DeserializzaOggetti.deserializza(Constants.UTENTI_PATH);
 		
 		
 		for(int i = 0; i<utenti.size();i++){
 			if(utenti.get(i).getUsername().equals(username)){
 				System.out.println("L'utente rimosso e':"+utenti.get(i).getUsername());
 				utenti.remove(i);
-				SerializzaOggetti sobj = new SerializzaOggetti();
-				sobj.serializza(utenti, percorsoUtenti);
+				SerializzaOggetti.serializza(utenti, Constants.UTENTI_PATH);
 				new BoundarySuccesso();
 				return;
 			}

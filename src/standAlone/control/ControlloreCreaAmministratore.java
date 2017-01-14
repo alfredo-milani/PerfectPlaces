@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class ControlloreCreaAmministratore {
-	
-	//Percorsi
-
-	private String percorsoAmministratori = Constants.ADMIN_PATH;
 
 	//Costruttore
 	
@@ -38,13 +34,13 @@ public class ControlloreCreaAmministratore {
             return ;
         }
 
-        DeserializzaOggetti dobj = new DeserializzaOggetti();
-		amministratori = (ArrayList<Utente>)dobj.deserializza(percorsoAmministratori);
+		amministratori = (ArrayList<Utente>) DeserializzaOggetti
+				.deserializza(Constants.ADMIN_PATH);
 		boolean controllo = true;
 
-        for(int i = 0;i<amministratori.size();i++){
-			if(amministratori.get(i).getUsername().equals(username)){
-				controllo=false;
+		for (Utente anAmministratori : amministratori) {
+			if (anAmministratori.getUsername().equals(username)) {
+				controllo = false;
 				break;
 			}
 		}
@@ -55,11 +51,12 @@ public class ControlloreCreaAmministratore {
 		}
 		Utente u = new Utente(username, pw, " ", " ", "", " ",
 				Locale.getDefault(), "", "");
-		amministratori = (ArrayList<Utente>)dobj.deserializza(percorsoAmministratori);
+
+		// rimuove l'utente root
+		amministratori.remove(0);
 		amministratori.add(u);
 		
-		SerializzaOggetti sobj = new SerializzaOggetti();
-		sobj.serializza(amministratori, percorsoAmministratori);
+		SerializzaOggetti.serializza(amministratori, Constants.ADMIN_PATH);
 		new BoundarySuccesso();
 		
 		

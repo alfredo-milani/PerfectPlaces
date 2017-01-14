@@ -1,16 +1,9 @@
 package standAlone.boundary;
 
-import java.awt.Dimension;
-import java.awt.Font;
-
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
 
 
@@ -26,7 +19,6 @@ public class BoundaryAvvio extends StackFrame
 
     //Label
     public JLabel titolo = new JLabel();
-    public JLabel titolo2 = new JLabel();
 
     //Bottoni
     public JButton bEntra = new JButton("ENTRA");
@@ -115,9 +107,5 @@ public class BoundaryAvvio extends StackFrame
                 e.printStackTrace();
             }
         }
-    }
-
-    public static void main(String[] args){
-        new BoundaryAmministrazione();
     }
 }

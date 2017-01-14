@@ -32,6 +32,7 @@ public class ControlloreLoginAmministratore {
 
 
         for (Utente anUtenti : utenti) {
+            System.out.println("utente: " + anUtenti.getUsername());
             if (anUtenti.getUsername().equals(username)) {
                 if (anUtenti.getPassword().equals(pw)) {
                     new BoundaryAmministrazione();

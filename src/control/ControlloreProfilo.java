@@ -46,21 +46,10 @@ public class ControlloreProfilo {
 
         Utente utente = gPDBM.getUtente(username);
 
-        if (!vecchiaPassword.equals("")) {
-            if (!vecchiaPassword.equals(utente.getPassword()))
-                return 1;
-            else if (!nuovaPassword
-                    .equals(confermaNuovaPassword))
-                return 2;
-            else if (nuovaPassword.equals(""))
-                return 3;
-            else
-                utente.setPassword(nuovaPassword);
-        } else {
-            if (!nuovaPassword.equals("") ||
-                    !confermaNuovaPassword.equals(""))
-                return 1;
-        }
+        int result = this.checkPsw(utente, vecchiaPassword,
+                nuovaPassword, confermaNuovaPassword);
+        if (result != 0)
+            return result;
 
         if (sesso != null) {
             if (!sesso.equals("")) {
@@ -106,4 +95,26 @@ public class ControlloreProfilo {
 
         return 0;
 	}
+
+	protected int checkPsw(Utente user, String oldPsw,
+                         String newPsw, String cNewPsw) {
+        if (!oldPsw.equals("")) {
+            if (!oldPsw.equals(user.getPassword()))
+                return 1;
+            else if (!newPsw
+                    .equals(cNewPsw))
+                return 2;
+            else if (newPsw.equals(""))
+                return 3;
+            else
+                user.setPassword(newPsw);
+        } else {
+            if (!newPsw.equals("") ||
+                    !cNewPsw.equals(""))
+                return 1;
+        }
+
+        return 0;
+    }
+
 }

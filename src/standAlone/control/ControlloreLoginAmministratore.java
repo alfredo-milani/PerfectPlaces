@@ -14,7 +14,7 @@ public class ControlloreLoginAmministratore {
 	//Variabili e percorso
 	
 	public static ArrayList<Utente> utenti = new ArrayList<>();
-	
+
 	//Costruttore
 	public ControlloreLoginAmministratore(){
 	
@@ -32,9 +32,10 @@ public class ControlloreLoginAmministratore {
 
 
         for (Utente anUtenti : utenti) {
-            System.out.println("utente: " + anUtenti.getUsername());
             if (anUtenti.getUsername().equals(username)) {
                 if (anUtenti.getPassword().equals(pw)) {
+                    System.setProperty(Constants.USER_KEY, username);
+
                     new BoundaryAmministrazione();
                     return;
                 } else {

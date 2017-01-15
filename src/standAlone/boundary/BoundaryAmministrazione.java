@@ -1,12 +1,15 @@
 package standAlone.boundary;
 
-import java.awt.Font;
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreProfiloAmministratore;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class BoundaryAmministrazione {
@@ -24,16 +27,34 @@ public class BoundaryAmministrazione {
 	public JButton bNomina;
 	public JButton bIndietro;
 	public JButton bRisposta;
+	public JButton bProfilo;
 	
 	// Ascoltatore di bottone e relativa azioni
 	private RimuoviAA ascoltatoreEtAzioneRimuovi;
 	private NominaAA ascoltatoreEtAzioneNomina;
     private TornaIndietro ascoltatoreTornaIndietro;
 	private RispondiFaqAA ascoltatoreRispostaFaq;
+	private Profilo ascoltatoreProfilo;
 
 	
 	public BoundaryAmministrazione()
 	{
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        //System.out.println("DIO: " + utente.getLingua().getDisplayLanguage());
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
 		int border = 5;
 		
 		pannelloAmministrazione = new JPanel();
@@ -52,7 +73,7 @@ public class BoundaryAmministrazione {
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("Benvenuto, scegli cosa fare");
+        titolo.setText(bundle.getString("boundaryAmministrazione_benvenuto"));
         
         pannelloAmministrazione.add(panelTitolo);	
         
@@ -60,34 +81,44 @@ public class BoundaryAmministrazione {
 		panelButton.setSize(BoundaryAvvio.Confine.getWidth(),500);
 		panelButton.setLocation(5, 30); 
 		
-		bRimuovi = new JButton("Rimuovi Utente");
+		bRimuovi = new JButton(bundle.getString("boundaryAmministrazione_rimuovi"));
 		bRimuovi.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,80);
 		bRimuovi.setSize(panelButton.getWidth()/3,50);
 		bRimuovi.setFont(new Font("Arial", 0, 20));
-		bRimuovi.setToolTipText("Rimuovi Utente"); 
+		bRimuovi.setToolTipText(bundle.getString("boundaryAmministrazione_rimuovi"));
 		
-		bNomina = new JButton("Crea Amministratore");
+		bNomina = new JButton(bundle.getString("boundaryAmministrazione_crea"));
 		bNomina.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,160);
 		bNomina.setSize(panelButton.getWidth()/3,50);
 		bNomina.setFont(new Font("Arial", 0, 20));
-		bNomina.setToolTipText("Nomina un nuovo amministratore");
+		bNomina.setToolTipText(bundle.getString("boundaryAmministrazione_nomina"));
 
-        bIndietro = new JButton("Indietro");
-        bIndietro.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,380);
+		bProfilo = new JButton(bundle.getString("boundaryAmministrazione_gestione_profilo"));
+		bProfilo.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6, 320);
+        bProfilo.setSize(panelButton.getWidth()/3, 50);
+        bProfilo.setFont(new Font("Arial", 0, 20));
+        bProfilo.setToolTipText(bundle.getString("boundaryAmministrazione_gestione_profilo"));
+        if (System.getProperty(Constants.USER_KEY)
+                .equals("root"))
+            bProfilo.setEnabled(false);
+
+        bIndietro = new JButton(bundle.getString("boundaryAmministrazione_indietro"));
+        bIndietro.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,450);
 		bIndietro.setSize(panelButton.getWidth()/3, 50);
         bIndietro.setFont(new Font("Arial", 0, 20));
-        bIndietro.setToolTipText("Torna alla schermata precedente");
+        bIndietro.setToolTipText(bundle.getString("boundaryAmministrazione_schermata_prec"));
 
-		bRisposta = new JButton("Rispondi FAQ");
+		bRisposta = new JButton(bundle.getString("boundaryAmministrazione_faq"));
 		bRisposta.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,240);
 		bRisposta.setSize(panelButton.getWidth()/3, 50);
 		bRisposta.setFont(new Font("Arial", 0, 20));
-		bRisposta.setToolTipText("Rispondi FAQ");
+		bRisposta.setToolTipText(bundle.getString("boundaryAmministrazione_faq"));
 
 		panelButton.add(bRimuovi);
 		panelButton.add(bNomina);
         panelButton.add(bIndietro);
 		panelButton.add(bRisposta);
+		panelButton.add(bProfilo);
         	
 		pannelloAmministrazione.add(panelButton);
 		
@@ -98,6 +129,7 @@ public class BoundaryAmministrazione {
 		ascoltatoreEtAzioneNomina = new NominaAA();
         ascoltatoreTornaIndietro = new TornaIndietro();
 		ascoltatoreRispostaFaq = new RispondiFaqAA();
+		ascoltatoreProfilo = new Profilo();
 
 
 		// Associazione di bottone a relativo ascoltatore
@@ -105,12 +137,11 @@ public class BoundaryAmministrazione {
 		bNomina.addActionListener(ascoltatoreEtAzioneNomina);
         bIndietro.addActionListener(ascoltatoreTornaIndietro);
 		bRisposta.addActionListener(ascoltatoreRispostaFaq);
+		bProfilo.addActionListener(ascoltatoreProfilo);
 
 	}
-	// Fine costruttore
-	
+
 	// Ascoltatori
-	
 	private class RimuoviAA implements ActionListener
 	{
 		public void actionPerformed(ActionEvent arg0)
@@ -127,7 +158,6 @@ public class BoundaryAmministrazione {
 			}
 		}
 	}
-
 	
 	private class NominaAA implements ActionListener
 	{
@@ -145,6 +175,18 @@ public class BoundaryAmministrazione {
 			}
 		}
 	}
+
+	private class Profilo implements ActionListener
+    {
+        public void actionPerformed(ActionEvent arg0) {
+        	try {
+                pannelloAmministrazione.setVisible(false);
+                new BoundaryProfilo();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 	private class TornaIndietro implements ActionListener
     {

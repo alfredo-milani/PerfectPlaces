@@ -5,13 +5,12 @@ package constants;
  */
 public interface Constants {
     //***** Percorsi utili *****//
-    String ABS_PATH = "/home/maria/Scrivania/Workspace/PerfectPlaces-new/"; /* NON MODIFICARE */
+    String ABS_PATH = "/media/Data/Projects_JetBrains/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
     String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");
     String BEB =              ABS_PATH.concat("data/location/beb");
     String CASEVACANZA_PATH = ABS_PATH.concat("data/location/casevacanza");
-    String MSG_PATH =         ABS_PATH.concat("data/messaggi");
     String OSTELLI_PATH =     ABS_PATH.concat("data/location/ostelli");
     String TMPDATE_PATH =     ABS_PATH.concat("data/tempdate");
     String UTENTI_PATH =      ABS_PATH.concat("data/utenti");
@@ -76,12 +75,15 @@ public interface Constants {
     //      inglese  --> en
     String IT = "it";
     String EN = "en";
+    // Array contenente tutte le lingue disponibili del sistema
+    String LANGS[] = {IT, EN};
 
     String LANG_DEFAULT = IT;
 
 
 
-
+    //***** Stand alone *****//
+    String USER_KEY = "usernameAdmin";
 
 
     // Una volta inserito il DB in modo completo ricorda di

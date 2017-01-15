@@ -2,11 +2,10 @@ package standAlone.boundary;
 
 import standAlone.control.ControlloreCreaAmministratore;
 
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
 public class BoundaryCreaAmministratore {
 
@@ -148,9 +147,14 @@ public class BoundaryCreaAmministratore {
 			try
 			{
 				pannelloCreazione.setVisible(false);
-				ControlloreCreaAmministratore cna = new ControlloreCreaAmministratore();
-				cna.creaAmministratore(usernameF.getText(), passwordF.getPassword());
+				if (!usernameF.getText()
+                        .equals("root")) {
+                    ControlloreCreaAmministratore cna = new ControlloreCreaAmministratore();
+                    cna.creaAmministratore(usernameF.getText(), passwordF.getPassword());
+                    return;
+                }
 
+                new BoundaryFallimento("Username non valido");
 			}
 			catch (Exception e)
 			{

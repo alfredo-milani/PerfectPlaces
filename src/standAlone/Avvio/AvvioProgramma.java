@@ -24,11 +24,15 @@ public class AvvioProgramma {
 		File file = new File(percorsoAmministratori);
 		if(file.length() == 0){
 			ArrayList<Utente> amministratori = new ArrayList<Utente>();
-			Utente u = new Utente("root","root","root","root","root","root",
-					Locale.getDefault(), "", "");
+			Utente u = new Utente("root","root",
+                    "root","root","root",
+                    "", Locale.getDefault(),
+                    "", ""
+            );
 			amministratori.add(u);
-			SerializzaOggetti sobj = new SerializzaOggetti();
-			sobj.serializza(amministratori, percorsoAmministratori);
+			SerializzaOggetti
+					.serializza(amministratori,
+                            percorsoAmministratori);
 		}
 	}
 	

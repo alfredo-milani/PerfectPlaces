@@ -53,7 +53,12 @@ public class ControlloreCreaAmministratore {
 				Locale.getDefault(), "", "");
 
 		// rimuove l'utente root
-		amministratori.remove(0);
+		boolean root = amministratori
+                    .get(0).getUsername().equals("root") &&
+                amministratori.get(0).getPassword().equals("root");
+        if (root)
+            amministratori.remove(0);
+
 		amministratori.add(u);
 		
 		SerializzaOggetti.serializza(amministratori, Constants.ADMIN_PATH);

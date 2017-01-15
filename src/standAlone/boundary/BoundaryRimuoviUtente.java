@@ -1,12 +1,12 @@
 package standAlone.boundary;
 
+import standAlone.control.ControlloreRimuoviUtente;
+import standAlone.utils.StampaStringhe;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-
-import standAlone.control.ControlloreRimuoviUtente;
-import standAlone.utils.StampaStringhe;
 
 public class BoundaryRimuoviUtente {
 	
@@ -159,7 +159,7 @@ public class BoundaryRimuoviUtente {
 			{
 				pannelloRimuovi.setVisible(false);
 				ControlloreRimuoviUtente cru = new ControlloreRimuoviUtente();
-				cru.rimuovi(rimuoviF.getText());	
+				cru.rimuovi(rimuoviF.getText());
 				
 			} 
 			catch (Exception e) 

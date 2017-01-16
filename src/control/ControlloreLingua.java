@@ -20,7 +20,8 @@ public class ControlloreLingua {
     private LinguaDBManager lDBM;
 
     public ControlloreLingua() {
-        this.lDBM = new LinguaDBManager();
+        if (Constants.DB == 1)
+            this.lDBM = new LinguaDBManager();
     }
 
     public static ResourceBundle getBundle(Locale locale) {
@@ -40,9 +41,7 @@ public class ControlloreLingua {
         return new Locale(Constants.LANG_DEFAULT, "");
     }
 
-    @SuppressWarnings("unchecked")
-    public Locale getLang(String loggedUser)
-            throws DeserializzazioneException {
+    public Locale getLang(String loggedUser) {
 
         if (Constants.DB == 1) {
 
@@ -52,30 +51,31 @@ public class ControlloreLingua {
                     getLocaleFromString(lang) : Locale.getDefault();
 
         } else {
-            ArrayList<Utente> utenti = (ArrayList<Utente>) DeserializzaOggetti
-                    .deserializza(Constants.UTENTI_PATH);
+
+            ArrayList<Utente> utenti = new ArrayList<>();
+            try {
+                utenti = (ArrayList<Utente>) DeserializzaOggetti
+                        .deserializza(Constants.UTENTI_PATH);
+            } catch (DeserializzazioneException e) {
+                e.printStackTrace();
+            }
 
             for (Utente utente : utenti)
                 if (utente.getUsername().equals(loggedUser))
                     return utente.getLingua();
 
             return Locale.getDefault();
+
         }
     }
 
     // si assume che l'utente 'username' sia loggato
-    @SuppressWarnings("unchecked")
     public synchronized Locale checkUpdatePref(String username,
                                                String newLocale) {
-        Locale userPref = null;
 
         if (Constants.DB == 1) {
 
-            try {
-                userPref = getLang(username);
-            } catch (DeserializzazioneException e) {
-                e.printStackTrace();
-            }
+            Locale userPref = getLang(username);
             if (newLocale != null) {
                 Locale locale = getLocaleFromString(newLocale);
                 if (locale != userPref)
@@ -84,41 +84,38 @@ public class ControlloreLingua {
                 return locale;
             }
 
+            return userPref;
+
         } else {
 
-            ArrayList<Utente> utenteArrayList = null;
+            ArrayList<Utente> utenteArrayList = new ArrayList<>();
             try {
-                utenteArrayList = (ArrayList<Utente>) DeserializzaOggetti
-                        .deserializza(Constants.UTENTI_PATH);
+                utenteArrayList = (ArrayList<Utente>)
+                        DeserializzaOggetti
+                                .deserializza(Constants.UTENTI_PATH);
             } catch (DeserializzazioneException e) {
                 e.printStackTrace();
             }
 
+            ControlloreLingua cl = new ControlloreLingua();
+            Locale userPref = cl.getLocaleFromString(newLocale);
             for (Utente utente : utenteArrayList)
                 if (utente.getUsername().equals(username)) {
-                    Locale userPrefS = utente.getLingua();
-                    if (userPrefS != null && newLocale != null) {
-                        Locale locale = getLocaleFromString(newLocale);
-                        if (locale != userPrefS)
-                            utente.setLingua(locale);
-                    }
 
+                    utente.setLingua(userPref);
                     break;
                 }
 
             try {
-                SerializzaOggetti.serializza(utenteArrayList,
-                        Constants.UTENTI_PATH);
+                SerializzaOggetti.serializza(utenteArrayList, Constants.UTENTI_PATH);
             } catch (SerializzazioneException e) {
                 e.printStackTrace();
             }
 
+            return userPref;
+
         }
 
-
-
-
-        return userPref;
     }
 
     public String getStringFromLocale(Locale locale) {

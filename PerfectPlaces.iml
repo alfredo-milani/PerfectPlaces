@@ -20,7 +20,6 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.51" level="application_server_libraries" />
-    <orderEntry type="library" name="postgresql-9.4-1201.jdbc4" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -42,5 +41,14 @@
     </orderEntry>
     <orderEntry type="library" name="junit" level="project" />
     <orderEntry type="library" name="junit-4.12" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/PostgreSQL/9.4-1201/postgresql-9.4-1201.jdbc4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

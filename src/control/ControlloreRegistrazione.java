@@ -21,8 +21,11 @@ public class ControlloreRegistrazione {
 
 	// Costruttore
 	public ControlloreRegistrazione() {
-	    this.utenti = new ArrayList<>();
-	    this.rDBM = new RegistrazioneDBManager();
+	    if (Constants.DB == 1) {
+            this.rDBM = new RegistrazioneDBManager();
+        } else {
+            this.utenti = new ArrayList<>();
+        }
 	}
 	
 	//Inserimento nuovo getUtente nel file utenti. Viene restituito un intero che indica il tipo di errore.
@@ -30,7 +33,6 @@ public class ControlloreRegistrazione {
 	// 1 --> C'è qualche campo del form vuoto
 	// 2 --> Le due password non sono uguali
 	// 3 --> Lo username inserito è già stato utilizzato
-	@SuppressWarnings("unchecked")
 	public synchronized int registrazione(String username, String password,
 										  String password2, String nome,
                                           String cognome, String email, Locale lingua,

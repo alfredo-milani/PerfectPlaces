@@ -1,13 +1,13 @@
 package control;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import constants.Constants;
+import databaseManager.LoginDBManager;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import utils.DeserializzaOggetti;
-import databaseManager.LoginDBManager;
+
+import java.io.File;
+import java.util.ArrayList;
 
 // Classe che gestisce il login al sistema.
 public class ControlloreLogin {
@@ -19,7 +19,9 @@ public class ControlloreLogin {
 
 
 	public ControlloreLogin() {
-		this.lDBM = new LoginDBManager();
+		if (Constants.DB == 1)
+		    this.lDBM = new LoginDBManager();
+
 		this.username = "";
 		this.password = "";
 		this.logged_in = false;
@@ -27,7 +29,6 @@ public class ControlloreLogin {
 
 	// Deserializza gli Utenti del file utenti e li posiziona in un ArrayList. Viene fatta una scansione
 	// di tutti gli elementi e viene verificata la corrispondenza di Username e Password inserite
-	@SuppressWarnings("unchecked")
 	public synchronized void login(String username, String password)
 			throws DeserializzazioneException {
 

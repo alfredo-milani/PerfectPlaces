@@ -25,9 +25,9 @@ public class ProfiloDBManager {
 
     public Utente getUtente(String username) {
         ControlloreLingua controlloreLingua = new ControlloreLingua();
-        Locale lang;
 
         if (gDB.usernameEsistente(username)) {
+            Locale lang;
             String[] utenteInfo = {null, null, null,
                     null, null, null, null, null, null};
 
@@ -75,10 +75,9 @@ public class ProfiloDBManager {
                     utenteInfo[3], utenteInfo[4], utenteInfo[5], lang,
                     utenteInfo[7], utenteInfo[8]);
         } else {
-            lang = controlloreLingua.getLang();
-            return new Utente("errore", "errore", "errore",
-                    "errore", "errore", "errore", lang,
-                    "errore", "errore");
+
+            return null;
+
         }
     }
 

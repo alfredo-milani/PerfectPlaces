@@ -5,10 +5,11 @@ package constants;
  */
 public interface Constants {
     //***** Percorsi utili *****//
-    String ABS_PATH = "//home/gabriele/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
+    String ABS_PATH = "/media/Data/Projects_JetBrains/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
     String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");
+    String MSG_PATH =         ABS_PATH.concat("data/messaggi");
     String BEB =              ABS_PATH.concat("data/location/beb");
     String CASEVACANZA_PATH = ABS_PATH.concat("data/location/casevacanza");
     String OSTELLI_PATH =     ABS_PATH.concat("data/location/ostelli");
@@ -87,18 +88,9 @@ public interface Constants {
     String USER_KEY = "usernameAdmin";
 
 
-    // Una volta inserito il DB in modo completo ricorda di
-    // toglie try/catch nei jsp, i throws
-    // nelle segnature e gli implements Serializable.
-    // Elimina anche variabili locali di appoggio nelle classi java per
-    // riferirsi alle costanti contenute in questa pagina.
-    // (NOTA::: UC lingua, posta, profilo -> tolta retrocompatibilita
-    // con Serializzazione/Deserializzazione su file)
-
-    //***** Vedi se elimina, le classi Utente e Messaggio perchè gestite dal DB  *****//
 
     /////////************************************************************////////
-    //////******     PER NON USARE IL DATABASE METTI IL VALORE A 0    *****//////
+    //////******     PER NON USARE IL DATABASE SETTARE IL VALORE A 0    *****//////
     /////////************************************************************////////
     int DB = 0;
 }

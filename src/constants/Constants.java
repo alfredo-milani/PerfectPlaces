@@ -5,7 +5,7 @@ package constants;
  */
 public interface Constants {
     //***** Percorsi utili *****//
-    String ABS_PATH = "/media/Data/Projects_JetBrains/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
+    String ABS_PATH = "//home/gabriele/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
     String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");
@@ -14,6 +14,7 @@ public interface Constants {
     String OSTELLI_PATH =     ABS_PATH.concat("data/location/ostelli");
     String TMPDATE_PATH =     ABS_PATH.concat("data/tempdate");
     String UTENTI_PATH =      ABS_PATH.concat("data/utenti");
+    String RIMOSSE_PATH =     ABS_PATH.concat("data/locazioniUtentiRimossi");
     String HOST_PORT =        "localhost:1122/";
     String IMGS_PATH_REL_S =  "../css/images/";
     String PRENOTAZIONE_ALBERGO_PATH =  ABS_PATH.concat("data/prenotazioni/prenotazioniAlberghi");
@@ -99,5 +100,5 @@ public interface Constants {
     /////////************************************************************////////
     //////******     PER NON USARE IL DATABASE METTI IL VALORE A 0    *****//////
     /////////************************************************************////////
-    int DB = 1;
+    int DB = 0;
 }

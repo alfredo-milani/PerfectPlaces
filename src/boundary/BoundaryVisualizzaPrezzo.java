@@ -1,12 +1,10 @@
 package boundary;
 
 import control.ControlloreVisualizzaPrezzo;
-import entity.Albergo;
-import entity.Beb;
 import entity.Locazione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.ContaGiorni;
+import utils.CreaArrayDate;
 import utils.TrasformaDate;
 
 import java.io.IOException;
@@ -37,7 +35,7 @@ public class BoundaryVisualizzaPrezzo {
 
         GregorianCalendar gcInizio = TrasformaDate.trasformaInGregorianCalendar(dataInizio);
         GregorianCalendar gcFine = TrasformaDate.trasformaInGregorianCalendar(dataFine);
-        ArrayList<GregorianCalendar> date = ContaGiorni.restituisciArrayDate(gcInizio,gcFine);
+        ArrayList<GregorianCalendar> date = CreaArrayDate.restituisciArrayDate(gcInizio,gcFine);
         return date.size();
 
     }

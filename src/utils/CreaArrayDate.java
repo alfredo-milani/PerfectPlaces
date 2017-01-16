@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class ContaGiorni {
+public class CreaArrayDate {
 
 
     @SuppressWarnings("unchecked")
@@ -29,21 +29,19 @@ public class ContaGiorni {
             b.flush();
             b.close();
 
-            SerializzaOggetti sobj = new SerializzaOggetti();
-            sobj.serializza(elencoDate, percorsoTemp);
+            SerializzaOggetti.serializza(elencoDate, percorsoTemp);
 
-            DeserializzaOggetti dobj = new DeserializzaOggetti();
 
             while (!dataInizio.equals(dataFine)) {
 
-                elencoDate = (ArrayList<GregorianCalendar>) dobj.deserializza(percorsoTemp);
+                elencoDate = (ArrayList<GregorianCalendar>) DeserializzaOggetti.deserializza(percorsoTemp);
                 elencoDate.add(dataInizio);
-                sobj.serializza(elencoDate, percorsoTemp);
+                SerializzaOggetti.serializza(elencoDate, percorsoTemp);
                 dataInizio.add(Calendar.DAY_OF_MONTH, 1);
             }
-            elencoDate = (ArrayList<GregorianCalendar>) dobj.deserializza(percorsoTemp);
+            elencoDate = (ArrayList<GregorianCalendar>) DeserializzaOggetti.deserializza(percorsoTemp);
             elencoDate.add(dataInizio);
-            sobj.serializza(elencoDate, percorsoTemp);
+            SerializzaOggetti.serializza(elencoDate, percorsoTemp);
         }
         return elencoDate;
     }

@@ -149,8 +149,7 @@ public class BoundaryAmministrazione {
 			try 
 			{
 				pannelloAmministrazione.setVisible(false);
-				new BoundaryRimuoviUtente();
-				
+				new BoundaryGestioneUtenti();
 			} 
 			catch (Exception e) 
 			{				
@@ -208,7 +207,7 @@ public class BoundaryAmministrazione {
 			try
 			{
 				pannelloAmministrazione.setVisible(false);
-				new BoundaryRispostaFaq();
+				new BoundaryGestioneFaq();
 
 			}
 			catch (Exception e)

@@ -27,45 +27,46 @@ questo metodo a seconda del tipo di locazione istanzia una factory che si occupe
         GregorianCalendar gcInizio2 = TrasformaDate.trasformaInGregorianCalendar(dataInizio);
         GregorianCalendar gcFine = TrasformaDate.trasformaInGregorianCalendar(dataFine);
 
-        if(locazione.getClass()== Albergo.class){
-             fp = FactoryPrenotazioneAlbergo.getFactoryPrenotazioneAlbergo();
+        if(locazione.getClass()== Albergo.class) {
+             fp = FactoryPrenotazionePiùPosti.getFactoryPrenotazionePiùPosti();
             if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)) {
                 fp.creaControlloreRegistraPrenotati().registra(nomeLocazione, proprietario, cliente, gcInizio2, gcFine, "Albergo",prezzo,numeroPersone);
                 return true;
             }
         }
 
-        if(locazione.getClass()==Appartamento.class){
-            fp = FactoryPrenotazioneAppartamento.getFactoryPrenotazioneAppatamento();
+        if(locazione.getClass()==Beb.class){
+            fp = FactoryPrenotazionePiùPosti.getFactoryPrenotazionePiùPosti();
+            if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)) {
+                fp.creaControlloreRegistraPrenotati().registra(nomeLocazione, proprietario, cliente, gcInizio2, gcFine, "Beb",prezzo,numeroPersone);
+                return true;
+            }
+        }
+
+        if(locazione.getClass()==Ostello.class){
+            fp = FactoryPrenotazionePiùPosti.getFactoryPrenotazionePiùPosti();
+            if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)) {
+                fp.creaControlloreRegistraPrenotati().registra(nomeLocazione, proprietario, cliente, gcInizio2, gcFine, "Ostello",prezzo,numeroPersone);
+                return true;
+            }
+        }
+
+        if(locazione.getClass()==Appartamento.class  ){
+            fp = FactoryPrenotazioneSingoloPosto.getFactoryPrenotazioneSingoloPosto();
             if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)) {
                 fp.creaControlloreRegistraPrenotati().registra(nomeLocazione, proprietario, cliente, gcInizio2, gcFine, "Appartamento",prezzo,numeroPersone);
                 return true;
             }
         }
 
-        if(locazione.getClass()==Beb.class){
-            fp = FactoryPrenotazioneBeb.getFactoryPrenotazioneBeb();
-            if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)){
-                fp.creaControlloreRegistraPrenotati().registra(nomeLocazione,proprietario,cliente,gcInizio2,gcFine,"Beb",prezzo,numeroPersone);
-                return true;
-            }
-        }
-
         if(locazione.getClass()==CasaVacanza.class){
-             fp = FactoryPrenotazioneCasaVacanza.getFactoryPrenotazioneCasaVacanza();
-            if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)){
-                fp.creaControlloreRegistraPrenotati().registra(nomeLocazione,proprietario,cliente,gcInizio2,gcFine,"CasaVacanza",prezzo,numeroPersone);
+            fp = FactoryPrenotazioneSingoloPosto.getFactoryPrenotazioneSingoloPosto();
+            if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)) {
+                fp.creaControlloreRegistraPrenotati().registra(nomeLocazione, proprietario, cliente, gcInizio2, gcFine, "CasaVacanza",prezzo,numeroPersone);
                 return true;
             }
         }
 
-        if(locazione.getClass()==Ostello.class){
-             fp = FactoryPrenotazioneOstello.getFactoryPrenotazioneOstello();
-            if(fp.creaControlloreDisponibilità().controllo(locazione,gcInizio,gcFine,numeroPersone)){
-                fp.creaControlloreRegistraPrenotati().registra(nomeLocazione,proprietario,cliente,gcInizio2,gcFine,"Ostello",prezzo,numeroPersone);
-                return true;
-            }
-        }
 
         return false;
     }

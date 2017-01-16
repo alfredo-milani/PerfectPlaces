@@ -1,6 +1,5 @@
 package control.prenotazione;
 
-
 import constants.Constants;
 import entity.Prenotazione;
 import exception.DeserializzazioneException;
@@ -12,26 +11,35 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class ControlloreRegistraPrenotatiAppartamento extends ControlloreRegistraPrenotati {
+
+public class ControlloreRegistraPrenotazioniSingoloPosto extends ControlloreRegistraPrenotati{
 
     private static String percorsoPrenotatiAppartamento = Constants.PRENOTATI_APPARTAMENTO_PATH;
-
+    private static String percorsoPrenotatiCasaVacanza = Constants.PRENOTATI_CASEVACANZA_PATH;
 
     @Override@SuppressWarnings("unchecked")
-    public void registra(String nomeLocazione, String proprietario, String cliente, GregorianCalendar dataInizio, GregorianCalendar dataFine, String tipo,String prezzo,String numeroPersone) throws SerializzazioneException, DeserializzazioneException {
+    public void registra(String nomeLocazione, String proprietario, String cliente, GregorianCalendar dataInizio, GregorianCalendar dataFine, String tipo, String prezzo, String numeroPersone) throws SerializzazioneException, DeserializzazioneException {
         ArrayList<Prenotazione> listaPrenotazione =  new ArrayList<>();
         SerializzaOggetti sobj  = new SerializzaOggetti();
 
-        File file =  new File(percorsoPrenotatiAppartamento);
+        numeroPersone="1";
+
+        String percorso="";
+        if(tipo.equals("Appartamento"))
+            percorso=percorsoPrenotatiAppartamento;
+        if(tipo.equals("CasaVacanza"))
+            percorso=percorsoPrenotatiCasaVacanza;
+
+        File file =  new File(percorso);
         if(file.length()==0){
             Prenotazione clientePrenotazione = new Prenotazione(nomeLocazione,proprietario,cliente,dataInizio,dataFine,tipo, prezzo,numeroPersone);
             listaPrenotazione.add(clientePrenotazione);
-            sobj.serializza(listaPrenotazione,percorsoPrenotatiAppartamento);
+            sobj.serializza(listaPrenotazione,percorso);
 
         }else{
 
             DeserializzaOggetti dobj = new DeserializzaOggetti();
-            listaPrenotazione = (ArrayList<Prenotazione>) dobj.deserializza(percorsoPrenotatiAppartamento);
+            listaPrenotazione = (ArrayList<Prenotazione>) dobj.deserializza(percorso);
             int precedenteRegistrazione=0;
 
             for(Prenotazione prenotazione : listaPrenotazione){
@@ -44,8 +52,10 @@ public class ControlloreRegistraPrenotatiAppartamento extends ControlloreRegistr
                 Prenotazione clientePrenotazione = new Prenotazione(nomeLocazione, proprietario, cliente, dataInizio, dataFine,tipo, prezzo,numeroPersone);
                 clientePrenotazione.setTipo(tipo);
                 listaPrenotazione.add(clientePrenotazione);
-                sobj.serializza(listaPrenotazione, percorsoPrenotatiAppartamento);
+                sobj.serializza(listaPrenotazione, percorso);
             }
         }
     }
+
+
 }

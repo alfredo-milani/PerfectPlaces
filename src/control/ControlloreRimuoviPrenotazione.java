@@ -4,7 +4,7 @@ import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.ContaGiorni;
+import utils.CreaArrayDate;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
 
@@ -97,7 +97,7 @@ public class ControlloreRimuoviPrenotazione {
         Integer postiOccupati = Integer.parseInt(prenotazione.getNumeroPersone().trim());
 
         ArrayList<GregorianCalendar> datePrenotazione;
-        datePrenotazione = ContaGiorni.restituisciArrayDate(dataInizio, dataFine);
+        datePrenotazione = CreaArrayDate.restituisciArrayDate(dataInizio, dataFine);
 
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();
@@ -135,7 +135,7 @@ public class ControlloreRimuoviPrenotazione {
 
         ArrayList<GregorianCalendar> datePrenotazione;
 
-        datePrenotazione = ContaGiorni.restituisciArrayDate(dataInizio, dataFine);
+        datePrenotazione = CreaArrayDate.restituisciArrayDate(dataInizio, dataFine);
 
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();

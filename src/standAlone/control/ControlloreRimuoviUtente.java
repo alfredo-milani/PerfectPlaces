@@ -1,17 +1,25 @@
 package standAlone.control;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import constants.Constants;
+import control.ControlloreVisualizzaLocazioni;
+import entity.Locazione;
+import standAlone.boundary.BoundaryFallimento;
+import standAlone.boundary.BoundarySuccesso;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import standAlone.boundary.BoundaryFallimento;
-import standAlone.boundary.BoundarySuccesso;
-import utils.DeserializzaOggetti;
-import utils.SerializzaOggetti;
-
-import java.util.ArrayList;
+import utils.*;
 
 public class ControlloreRimuoviUtente {
+	
+	//Percorso
+	
+	public String percorsoUtenti = Constants.UTENTI_PATH;
+	public String percorsoLocazioniRimosse = Constants.RIMOSSE_PATH;
 	
 	//Costruttore
 	
@@ -22,24 +30,48 @@ public class ControlloreRimuoviUtente {
 	
 	// Viene verificata la presenza dell'utente nel sistema, una volta accertata viene rimosso dall'arraylist, che viene riserializzato.
 	// Vengono utilizzati i utils per stampare a schermo l'array degli utenti prima e dopo la rimozione.
+	// inoltre vengono aggiunte le locazione dell'utente rimosso al file "locazioniRimosse" in modo che possano essere rimosse se
+	// l'utente lo desidera con il ControlloreRimuoviDatiUtente
 	
 	@SuppressWarnings("unchecked")
-	public void rimuovi(String username) throws DeserializzazioneException, SerializzazioneException, InterruptedException{
-		
-		ArrayList<Utente> utenti;
-		utenti = (ArrayList<Utente>)DeserializzaOggetti.deserializza(Constants.UTENTI_PATH);
-		
-		
-		for(int i = 0; i<utenti.size();i++){
-			if(utenti.get(i).getUsername().equals(username)){
-				System.out.println("L'utente rimosso e':"+utenti.get(i).getUsername());
-				utenti.remove(i);
-				SerializzaOggetti.serializza(utenti, Constants.UTENTI_PATH);
-				new BoundarySuccesso();
-				return;
+	public void rimuovi(String username) throws DeserializzazioneException, SerializzazioneException, InterruptedException, IOException {
+
+		File file = new File(percorsoUtenti);
+		if(file.length()!=0) {
+			ArrayList<Utente> utenti;
+			DeserializzaOggetti dobj = new DeserializzaOggetti();
+			utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
+
+
+			for (int i = 0; i < utenti.size(); i++) {
+				if (utenti.get(i).getUsername().equals(username)) {
+
+					ControlloreVisualizzaLocazioni cvl = new ControlloreVisualizzaLocazioni();
+					ArrayList<Locazione> locazioni = cvl.visualizzaLocazioni(username);
+
+					File fileLoc = new File(percorsoLocazioniRimosse);
+					if (fileLoc.length() != 0) {
+						DeserializzaOggetti dl = new DeserializzaOggetti();
+						ArrayList<Locazione> locazioniPrecedenti = (ArrayList<Locazione>) dl.deserializza(percorsoLocazioniRimosse);
+						locazioniPrecedenti.addAll(locazioni);
+						SerializzaOggetti s = new SerializzaOggetti();
+						s.serializza(locazioniPrecedenti, percorsoLocazioniRimosse);
+					} else {
+						SerializzaOggetti s = new SerializzaOggetti();
+						s.serializza(locazioni, percorsoLocazioniRimosse);
+					}
+
+					System.out.println("L'utente rimosso e':" + utenti.get(i).getUsername());
+					utenti.remove(i);
+					SerializzaOggetti sobj = new SerializzaOggetti();
+					sobj.serializza(utenti, percorsoUtenti);
+					new BoundarySuccesso();
+					return;
+				}
 			}
+			new BoundaryFallimento("L'utente non è tra quelli presenti nel sistema");
 		}
-		new BoundaryFallimento("L'utente non è tra quelli presenti nel sistema");
+		new BoundaryFallimento("Non sono ancora presenti utenti nel sistema");
 
 	}
 }

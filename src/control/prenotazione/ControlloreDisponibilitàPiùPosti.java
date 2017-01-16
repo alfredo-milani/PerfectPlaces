@@ -1,11 +1,10 @@
 package control.prenotazione;
 
 import constants.Constants;
-import entity.PostiDisponibili;
-import entity.Locazione;
+import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.ContaGiorni;
+import utils.CreaArrayDate;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
 
@@ -15,28 +14,39 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 
-public class ControlloreDisponibilitàBeb extends ControlloreDisponibilità{
+public class ControlloreDisponibilitàPiùPosti extends ControlloreDisponibilità {
 
+    private static String percorsoPrenotazioniAlberghi = Constants.PRENOTAZIONE_ALBERGO_PATH;
     private static String percorsoPrenotazioniBeb = Constants.PRENOTAZIONE_BEB_PATH;
+    private static String percorsoPrenotazioniOstelli = Constants.PRENOTAZIONE_OSTELLO_PATH;
 
 
-    @Override@SuppressWarnings("unchecked")
-    public boolean controllo(Locazione loc, GregorianCalendar gcInizio, GregorianCalendar gcFine,String numeroPersone) throws DeserializzazioneException, SerializzazioneException, IOException {
+    @Override
+    public boolean controllo(Locazione loc, GregorianCalendar gcInizio, GregorianCalendar gcFine, String numeroPersone) throws DeserializzazioneException, SerializzazioneException, IOException {
+
+        String percorso="";
+        if(loc.getClass()== Albergo.class)
+            percorso=percorsoPrenotazioniAlberghi;
+        if(loc.getClass()== Beb.class)
+            percorso=percorsoPrenotazioniBeb;
+        if(loc.getClass()== Ostello.class)
+            percorso=percorsoPrenotazioniOstelli;
+
         Integer totali = Integer.parseInt(loc.getPostiTotali().trim());
         Integer postiRichiesti = Integer.parseInt(numeroPersone.trim());
-        ArrayList<GregorianCalendar> datePrenotazione= ContaGiorni.restituisciArrayDate(gcInizio, gcFine);
+        ArrayList<GregorianCalendar> datePrenotazione= CreaArrayDate.restituisciArrayDate(gcInizio, gcFine);
 
         ArrayList<PostiDisponibili> prenotateList = new ArrayList<>();
 
-        ArrayList<PostiDisponibili> temp = new ArrayList<>();
+        ArrayList<PostiDisponibili> temp = new ArrayList<PostiDisponibili>();
 
-        File file = new File(percorsoPrenotazioniBeb);
+        File file = new File(percorso);
 
         SerializzaOggetti sobj = new SerializzaOggetti();
         if (file.length() == 0) {
             for (GregorianCalendar data_prenotazione : datePrenotazione) {
                 PostiDisponibili cp = new PostiDisponibili(loc.getNomeLocazione(), data_prenotazione);
-                int contatore_aggiornato = cp.getContatore() + postiRichiesti;
+                int contatore_aggiornato = cp.getContatore() + postiRichiesti ;
                 cp.setContatore(contatore_aggiornato);
                 if(totali<cp.getContatore())
                     return false;
@@ -45,12 +55,12 @@ public class ControlloreDisponibilitàBeb extends ControlloreDisponibilità{
                 }
 
             }
-            sobj.serializza(prenotateList, percorsoPrenotazioniBeb);
+            sobj.serializza(prenotateList, percorso);
             return true;
         } else {
 
             DeserializzaOggetti dobj = new DeserializzaOggetti();
-            prenotateList = (ArrayList<PostiDisponibili>) dobj.deserializza(percorsoPrenotazioniBeb);
+            prenotateList = (ArrayList<PostiDisponibili>) dobj.deserializza(percorso);
             for (GregorianCalendar data_prenotazione : datePrenotazione) {
 
                 boolean condizione = false;
@@ -78,7 +88,7 @@ public class ControlloreDisponibilitàBeb extends ControlloreDisponibilità{
                 }
             }
             prenotateList.addAll(temp);
-            sobj.serializza(prenotateList, percorsoPrenotazioniBeb);
+            sobj.serializza(prenotateList, percorso);
             return true;
 
         }

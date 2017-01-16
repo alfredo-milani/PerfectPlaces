@@ -6,7 +6,7 @@ import control.ControlloreRicercaPerLocazione;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.ContaGiorni;
+import utils.CreaArrayDate;
 import utils.TrasformaDate;
 import utils.VerificaInput;
 
@@ -33,7 +33,7 @@ public class BoundaryRicercaLocazione {
 
         GregorianCalendar gcInizio = TrasformaDate.trasformaInGregorianCalendar(dataInizio);
         GregorianCalendar gcFine = TrasformaDate.trasformaInGregorianCalendar(dataFine);
-        ArrayList<GregorianCalendar> date = ContaGiorni.restituisciArrayDate(gcInizio,gcFine);
+        ArrayList<GregorianCalendar> date = CreaArrayDate.restituisciArrayDate(gcInizio,gcFine);
         int numeroGiorni = date.size();
 
         ArrayList<Locazione> elencoLocazioni = new ArrayList<>();

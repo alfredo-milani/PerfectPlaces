@@ -1,6 +1,7 @@
 package boundary;
 
 import control.ControlloreLingua;
+import exception.DeserializzazioneException;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -33,7 +34,14 @@ public class BoundaryLingua {
     }
 
     public  Locale riceviLingua(String user) {
-        return cL.getLang(user);
+        Locale locale = Locale.getDefault();
+        try {
+            return cL.getLang(user);
+        } catch (DeserializzazioneException e) {
+            e.printStackTrace();
+        }
+
+        return locale;
     }
 
     public Locale aggiornaPreferenze(String username, String lang) {

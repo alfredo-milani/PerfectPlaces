@@ -2,7 +2,13 @@ package control;
 
 import constants.Constants;
 import databaseManager.LinguaDBManager;
+import entity.Utente;
+import exception.DeserializzazioneException;
+import exception.SerializzazioneException;
+import utils.DeserializzaOggetti;
+import utils.SerializzaOggetti;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -34,25 +40,83 @@ public class ControlloreLingua {
         return new Locale(Constants.LANG_DEFAULT, "");
     }
 
-    public Locale getLang(String loggedUser) {
+    @SuppressWarnings("unchecked")
+    public Locale getLang(String loggedUser)
+            throws DeserializzazioneException {
 
-        String lang;
-        lang = lDBM.getLingua(loggedUser);
-        return lang != null ?
-                getLocaleFromString(lang) : Locale.getDefault();
+        if (Constants.DB == 1) {
+
+            String lang;
+            lang = lDBM.getLingua(loggedUser);
+            return lang != null ?
+                    getLocaleFromString(lang) : Locale.getDefault();
+
+        } else {
+            ArrayList<Utente> utenti = (ArrayList<Utente>) DeserializzaOggetti
+                    .deserializza(Constants.UTENTI_PATH);
+
+            for (Utente utente : utenti)
+                if (utente.getUsername().equals(loggedUser))
+                    return utente.getLingua();
+
+            return Locale.getDefault();
+        }
     }
 
     // si assume che l'utente 'username' sia loggato
+    @SuppressWarnings("unchecked")
     public synchronized Locale checkUpdatePref(String username,
-                                               String lang) {
-        Locale userPref = getLang(username);
-        if (lang != null) {
-            Locale locale = getLocaleFromString(lang);
-            if (locale != userPref)
-                lDBM.aggiornaPref(username, lang);
+                                               String newLocale) {
+        Locale userPref = null;
 
-            return locale;
+        if (Constants.DB == 1) {
+
+            try {
+                userPref = getLang(username);
+            } catch (DeserializzazioneException e) {
+                e.printStackTrace();
+            }
+            if (newLocale != null) {
+                Locale locale = getLocaleFromString(newLocale);
+                if (locale != userPref)
+                    lDBM.aggiornaPref(username, newLocale);
+
+                return locale;
+            }
+
+        } else {
+
+            ArrayList<Utente> utenteArrayList = null;
+            try {
+                utenteArrayList = (ArrayList<Utente>) DeserializzaOggetti
+                        .deserializza(Constants.UTENTI_PATH);
+            } catch (DeserializzazioneException e) {
+                e.printStackTrace();
+            }
+
+            for (Utente utente : utenteArrayList)
+                if (utente.getUsername().equals(username)) {
+                    Locale userPrefS = utente.getLingua();
+                    if (userPrefS != null && newLocale != null) {
+                        Locale locale = getLocaleFromString(newLocale);
+                        if (locale != userPrefS)
+                            utente.setLingua(locale);
+                    }
+
+                    break;
+                }
+
+            try {
+                SerializzaOggetti.serializza(utenteArrayList,
+                        Constants.UTENTI_PATH);
+            } catch (SerializzazioneException e) {
+                e.printStackTrace();
+            }
+
         }
+
+
+
 
         return userPref;
     }

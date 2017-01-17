@@ -86,11 +86,12 @@ public interface Constants {
 
     //***** Stand alone *****//
     String USER_KEY = "usernameAdmin";
+    String LINGUA_KEY = "linguaAdmin";
 
 
 
     /////////************************************************************////////
     //////******     PER NON USARE IL DATABASE SETTARE IL VALORE A 0    *****//////
     /////////************************************************************////////
-    int DB = 0;
+    int DB = 1;
 }

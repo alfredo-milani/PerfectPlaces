@@ -35,6 +35,7 @@ public class StampaStringhe {
 		ArrayList<Utente> utenti;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		String elenco = bundle.getString("boundaryRimuoviUtente_utenti_presenti");
+		elenco = elenco+'\n';
 		try {
 			utenti = (ArrayList<Utente>) dobj.deserializza(percorsoUtenti);
 
@@ -55,6 +56,7 @@ public class StampaStringhe {
 		ArrayList<Locazione> locazioni;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		String elenco = bundle.getString("boundaryRimuoviUtente_rimossi");
+		elenco = elenco+'\n';
 		File file = new File(percorsoLocazioniRimosse);
 		if(file.length()!=0) {
 			try {

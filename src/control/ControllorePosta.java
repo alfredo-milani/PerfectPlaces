@@ -139,7 +139,7 @@ public class ControllorePosta {
             ArrayList<Utente> elencoUtenti = new ArrayList<>();
             try {
                 elencoUtenti = (ArrayList<Utente>) DeserializzaOggetti
-                        .deserializza(Constants.MSG_PATH);
+                        .deserializza(Constants.UTENTI_PATH);
             } catch (DeserializzazioneException e) {
                 e.printStackTrace();
             }
@@ -164,9 +164,13 @@ public class ControllorePosta {
                 }
             }
 
-            Messaggio messaggio = new Messaggio(oggetto, mittente,
-                    destinatario, contenuto,
-                    calcolaData(), ControllorePosta.assegnaCodice());
+            Messaggio messaggio = new Messaggio(oggetto,
+                    mittente,
+                    destinatario,
+                    contenuto,
+                    calcolaData(),
+                    ControllorePosta.assegnaCodice()
+            );
             elencoMessaggi.add(messaggio);
 
             try {

@@ -1,6 +1,6 @@
 package entity;
 
-public class Messaggio {
+public class Messaggio implements java.io.Serializable {
 
 	private String oggetto;
 	private String mittente;

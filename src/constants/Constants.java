@@ -1,11 +1,9 @@
 package constants;
 
-/**
- * Created by alfredo on 17/09/16.
- */
+
 public interface Constants {
     //***** Percorsi utili *****//
-    String ABS_PATH = "/media/Data/Projects_JetBrains/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
+    String ABS_PATH = "/home/gabriele/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
     String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");
@@ -28,7 +26,7 @@ public interface Constants {
     String PRENOTATI_BEB_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiBeb");
     String PRENOTATI_CASEVACANZA_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiCaseVacanza");
     String PRENOTATI_OSTELLO_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiOstello");
-    String PROVINCE_PATH = ABS_PATH.concat("data/location/fileProvince");
+    String PROVINCE_PATH = ABS_PATH.concat("data/fileProvince");
     String FAQ_PATH = ABS_PATH.concat("data/fileFaq");
     String PACKAGE_LANGUAGE = "language.Lang";
 
@@ -93,5 +91,5 @@ public interface Constants {
     /////////************************************************************////////
     //////******     PER NON USARE IL DATABASE SETTARE IL VALORE A 0    *****//////
     /////////************************************************************////////
-    int DB = 1;
+    int DB = 0;
 }

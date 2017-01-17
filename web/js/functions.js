@@ -1,6 +1,3 @@
-/**
- * Created by alfredo on 16/10/16.
- */
 
 // Script JavaScript per far vedere solo i parametri di ricerca del tipo di locazione cliccato
 function visualizza(id, id1, id2, id3, id4) {

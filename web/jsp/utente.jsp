@@ -156,28 +156,34 @@
 					<div class="post">
 						<h2 class="title"><%=bundle.getString("utente_cliccaImg")%></h2>
 						<table>
+
 						<tr>
-						<td>
-						<br /><br />
-						<h1 class="title">
-						<strong>
-							<a href="areaViaggiatore.jsp" ><%=bundle.getString("utente_viaggiatore")%></a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="areaProprietario.jsp"><%=bundle.getString("utente_proprietario")%></a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%> </a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="posta.jsp"><%=bundle.getString("utente_posta")%></a>
-						</strong>
-						</h1>
-						</td>
+						    <td style="padding-left: 50px"><strong><a href="areaViaggiatore.jsp" ><%=bundle.getString("utente_viaggiatore")%></a></strong></td>
+                            <td style="padding-left: 50px"><strong><a href="areaProprietario.jsp"><%=bundle.getString("utente_proprietario")%></a></strong></td>
+							<td style="padding-left: 50px"><strong><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%> </a></strong></td>
+							<td style="padding-left: 100px"><strong><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></strong></td>
 						</tr>
 							<tr>
 								<td>
-									<br /><br /><br /><br />
-									<br /><br />
-
-								</td>
+                                    <a href="areaViaggiatore.jsp">
+                                        <img  class="imgInizio" src="../css/images/iconaMenuViaggiatore.png"  width="200" height="200" alt="area viaggiatore"/>
+                                    </a>
+                                </td>
+                                <td style="padding-left: 50px">
+                                    <a href="areaProprietario.jsp">
+                                        <img class="imgInizio" src="../css/images/iconaMenuProprietario.png"  width="200" height="200" alt="area proprietario"/>
+                                    </a>
+                                </td>
+                                <td style="padding-left: 50px">
+                                    <a href="profiloUtente.jsp">
+                                        <img class="imgInizio" src="../css/images/iconaMenuProfilo.png"  width="180" height="180" alt="profilo utente"/>
+                                    </a>
+                                </td>
+                                <td style="padding-left: 50px">
+                                    <a href="posta.jsp">
+                                        <img class="imgInizio" src="../css/images/iconaMenuPosta.png"  width="230" height="230" alt="profilo utente"/>
+                                    </a>
+                                </td>
 							</tr>
 						</table>
 					</div>

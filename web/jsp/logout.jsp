@@ -5,12 +5,12 @@
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="boundary.BoundaryLingua" %>
 <%@ page import="control.ControlloreLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -29,9 +29,8 @@
 <body>
 
 <%
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
 	String username = bl.ritornaUsername();
-	Locale locale = boundaryLingua
+	Locale locale = blingua
             .riceviLingua(username);
     ResourceBundle bundle = ControlloreLingua
             .getBundle(locale);

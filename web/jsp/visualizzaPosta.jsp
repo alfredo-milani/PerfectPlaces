@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<%@page import="boundary.BoundaryLingua" %>
+<jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
 <%@page import="boundary.BoundaryPosta" %>
 <%@ page import="entity.Messaggio" %>
 <%@ page import="java.util.ArrayList" %>
@@ -28,10 +28,9 @@
 </head>
 
 <%
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
-    Locale locale = boundaryLingua
+    Locale locale = blingua
             .riceviLingua(bl.ritornaUsername());
-    ResourceBundle bundle = boundaryLingua
+    ResourceBundle bundle = blingua
             .riceviBundle(locale);
 
     String username = bl.ritornaUsername();

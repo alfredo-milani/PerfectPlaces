@@ -5,8 +5,8 @@
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="boundary.BoundaryLingua" %>
+    <jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="constants.Constants" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="java.util.Locale" %>
@@ -30,7 +30,6 @@
 <body>
 
 <%
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
     String un = request.getParameter("username");
     String pw = request.getParameter("password");
     String lang = request.getParameter("lang");
@@ -45,24 +44,24 @@
 
     Locale currentLocale;
     if (lang != null) {
-        currentLocale = boundaryLingua.riceviLocaleDaString(lang);
+        currentLocale = blingua.riceviLocaleDaString(lang);
     } else {
         lang = Constants.LANG_DEFAULT;
-        currentLocale = boundaryLingua.riceviLinguaDefault();
+        currentLocale = blingua.riceviLinguaDefault();
     }
 
     if (bl.controlloAccesso()) {
         String pref = request.getParameter("pref");
         if (pref != null && Integer.parseInt(pref) == 1) {
-            currentLocale = boundaryLingua
+            currentLocale = blingua
                     .aggiornaPreferenze(bl.ritornaUsername(), lang);
         } else {
-            currentLocale = boundaryLingua
+            currentLocale = blingua
                     .riceviLingua(bl.ritornaUsername());
         }
     }
 
-    ResourceBundle bundle = boundaryLingua
+    ResourceBundle bundle = blingua
 			.riceviBundle(currentLocale);
 %>
 

@@ -18,7 +18,7 @@ import java.util.Locale;
 // Classe che consente la gestione del profilo personale, in particolare la restituzione dei valori
 // associati ad un particolare getUtente, modificarli, e modificare l'immagine.
 public class ControlloreProfiloAmministratore
-        extends ControlloreProfilo {
+extends ControlloreProfilo {
 
     // Costruttore
     public ControlloreProfiloAmministratore() {

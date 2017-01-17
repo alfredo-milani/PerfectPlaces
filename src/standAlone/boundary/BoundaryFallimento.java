@@ -1,12 +1,15 @@
 package standAlone.boundary;
 
-import java.awt.Font;
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreProfiloAmministratore;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class BoundaryFallimento {
@@ -33,6 +36,20 @@ public class BoundaryFallimento {
 	
 	public BoundaryFallimento(String errore)
 	{
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
 		this.errore = errore;
 		int border = 5;
 		
@@ -59,11 +76,10 @@ public class BoundaryFallimento {
         
 		panelButtonHome.setLayout(null);
 		panelButtonHome.setSize(BoundaryAvvio.Confine.getWidth(), 150);
-		panelButtonHome.setLocation(5, 30); 
+		panelButtonHome.setLocation(5, 30);
+
 		
-		
-		
-		bHome = new JButton("Torna alla Home");
+		bHome = new JButton(bundle.getString("logout_home"));
 		bHome.setLocation(300,100);
 		bHome.setSize(panelTitolo.getWidth()/4,50);
 		bHome.setFont(new Font("Arial", 0, 20));

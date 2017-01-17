@@ -8,8 +8,8 @@
 <jsp:useBean id="bgl" scope="session" class="boundary.BoundaryGestioneLocazioni" />
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <jsp:useBean id="bp" scope="session" class="boundary.BoundaryProfilo"/>
+<jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="boundary.BoundaryLingua"%>
 <%@page import="constants.Constants"%>
 <%@page import="entity.Locazione" %>
 <%@page import="entity.Utente" %>
@@ -37,8 +37,7 @@
     String username = bl.ritornaUsername();
     Utente u = bp.ritornaUtente(username);
 
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
-    ResourceBundle bundle = boundaryLingua
+    ResourceBundle bundle = blingua
             .riceviBundle(u.getLingua());
 
     String indirizzoImmagine = Constants.IMGS_PATH_REL_S + u.getImmagine();

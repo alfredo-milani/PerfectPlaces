@@ -1,11 +1,16 @@
 package standAlone.boundary;
+
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreProfiloAmministratore;
+import standAlone.control.ControlloreRispondiFaq;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-
-
-import standAlone.control.ControlloreRispondiFaq;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 /**
@@ -54,6 +59,20 @@ public class BoundaryRispostaFaq {
 
         public BoundaryRispostaFaq()
         {
+            ControlloreProfiloAmministratore cp =
+                    new ControlloreProfiloAmministratore();
+            Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+            Locale langLocale;
+            if (utente != null) {
+                langLocale = utente.getLingua();
+            } else {
+                langLocale = Locale.getDefault();
+            }
+
+            ResourceBundle bundle = ResourceBundle
+                    .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
             int border = 5;
             //pannello esterno che contiene tutto
             pannelloFaqRisposta = new JPanel();
@@ -87,7 +106,7 @@ public class BoundaryRispostaFaq {
             titolo.setSize(panelTitolo.getWidth(), 35);
             titolo.setHorizontalAlignment(JLabel.CENTER);
             titolo.setVerticalAlignment(JLabel.CENTER);
-            titolo.setText("Rispondi alle domande degli utenti");
+            titolo.setText(bundle.getString("boundaryFaq_rispondi_domande_utente"));
 
 
 
@@ -97,20 +116,20 @@ public class BoundaryRispostaFaq {
             rispondiLabel.setFont(new Font("Verdana", Font.BOLD, 15));
             rispondiLabel.setLocation(75,30);
             rispondiLabel.setSize(panelTitolo.getWidth()/2, 30);
-            rispondiLabel.setText("Inserisci una risposta per la domanda selezionata : ");
+            rispondiLabel.setText(bundle.getString("boundaryFaq_inserisci_risposta"));
 
 
 
-            bRispondi = new JButton("Rispondi");
+            bRispondi = new JButton(bundle.getString("visualizzaPosta_rispondi"));
             bRispondi.setLocation(150,50);
             bRispondi.setSize(panelTitolo.getWidth()/4, 50);
             bRispondi.setFont(new Font("Arial", 0, 20));
 
-            bIndietro = new JButton("Indietro");
+            bIndietro = new JButton(bundle.getString("visualizzaPosta_rispondi"));
             bIndietro.setLocation(300+panelTitolo.getWidth()/4, 50);
             bIndietro.setSize(panelTitolo.getWidth()/4, 50);
             bIndietro.setFont(new Font("Arial", 0, 20));
-            bIndietro.setToolTipText("Torna alla schermata precedente");
+            bIndietro.setToolTipText(bundle.getString("boundaryAmministrazione_schermata_prec"));
 
             panelRisposta.setLayout(new BorderLayout());
             panelRisposta.setSize(BoundaryAvvio.Confine.getWidth()*5/6, BoundaryAvvio.Confine.getHeight()/6);

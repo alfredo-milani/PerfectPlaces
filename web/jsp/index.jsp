@@ -6,26 +6,25 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="boundary.BoundaryLingua" %>
 <%@ page import="constants.Constants" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 <jsp:useBean id="br" scope="session" class="boundary.BoundaryRegistrazione"/>
+<jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
 
 <%
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
     String lang = request.getParameter("lang");
     Locale selectedLang;
     if (lang != null) {
-        selectedLang = boundaryLingua.riceviLocaleDaString(lang);
+        selectedLang = blingua.riceviLocaleDaString(lang);
     } else {
-        selectedLang = boundaryLingua.riceviLinguaDefault();
-        lang = boundaryLingua.riceviStringDaLocale(selectedLang);
+        selectedLang = blingua.riceviLinguaDefault();
+        lang = blingua.riceviStringDaLocale(selectedLang);
     }
 
-    ResourceBundle bundle = boundaryLingua
+    ResourceBundle bundle = blingua
             .riceviBundle(selectedLang);
 %>
 

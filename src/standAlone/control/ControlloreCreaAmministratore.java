@@ -15,7 +15,6 @@ import java.util.Locale;
 public class ControlloreCreaAmministratore {
 
 	//Costruttore
-	
 	public ControlloreCreaAmministratore(){
 		
 	}
@@ -24,7 +23,8 @@ public class ControlloreCreaAmministratore {
 	//viene inserito nell'arraylist del file degli amministratori.
 	
 	@SuppressWarnings("unchecked")
-	public void creaAmministratore(String username, char[] password ) throws DeserializzazioneException, SerializzazioneException{
+	public void creaAmministratore(String username, char[] password )
+			throws DeserializzazioneException, SerializzazioneException{
 
         String pw = String.valueOf(password);
         ArrayList<Utente> amministratori ;

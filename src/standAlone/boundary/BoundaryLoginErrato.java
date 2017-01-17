@@ -1,13 +1,15 @@
 package standAlone.boundary;
 
-import java.awt.Font;
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreProfiloAmministratore;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class BoundaryLoginErrato extends JFrame {
@@ -33,6 +35,20 @@ private static final long	serialVersionUID	= 1L;
 	
 	public BoundaryLoginErrato()
 	{
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
 		int border = 5;
 		
 		pannelloLoginErrato = new JPanel();
@@ -51,7 +67,7 @@ private static final long	serialVersionUID	= 1L;
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("I parametri inseriti sono errati!");
+        titolo.setText(bundle.getString("boundaryLoginerrato_parametri_errati"));
         
         pannelloLoginErrato.add(panelTitolo);	
         
@@ -61,11 +77,11 @@ private static final long	serialVersionUID	= 1L;
 		
 		
 		
-		bIndietro = new JButton("Indietro");
+		bIndietro = new JButton(bundle.getString("visualizzaPosta_indietro"));
 		bIndietro.setLocation(300,100);
 		bIndietro.setSize(panelTitolo.getWidth()/4,50);
 		bIndietro.setFont(new Font("Arial", 0, 20));
-		bIndietro.setToolTipText("Torna Indietro"); 
+		bIndietro.setToolTipText(bundle.getString("visualizzaPosta_indietro"));
 		
 		panelButtonIndietro.add(bIndietro);
         	

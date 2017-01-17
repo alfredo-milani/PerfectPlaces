@@ -1,5 +1,8 @@
 package standAlone.boundary;
 
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreProfiloAmministratore;
 import standAlone.control.ControlloreRimuoviUtente;
 import standAlone.utils.StampaStringhe;
 
@@ -7,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class BoundaryRimuoviUtente {
 	
@@ -45,6 +50,20 @@ public class BoundaryRimuoviUtente {
 	
 	public BoundaryRimuoviUtente()
 	{
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
 		int border = 5;
 		
 		pannelloRimuovi = new JPanel();
@@ -73,7 +92,7 @@ public class BoundaryRimuoviUtente {
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("Inserisci l'utente da rimuovere tra quelli nell'elenco");
+        titolo.setText(bundle.getString("boundaryRimuoviUtente"));
         
         pannelloRimuovi.add(panelTitolo);
         
@@ -83,7 +102,7 @@ public class BoundaryRimuoviUtente {
         rimuoviLabel.setFont(new Font("Verdana", Font.BOLD, 15));
         rimuoviLabel.setLocation(150, 50);
         rimuoviLabel.setSize(panelTitolo.getWidth()/2, 30);
-        rimuoviLabel.setText("Username: ");
+        rimuoviLabel.setText(bundle.getString("index_nomeUtente"));
 		
         
 		rimuoviF = new JTextField("", 60); 
@@ -92,21 +111,21 @@ public class BoundaryRimuoviUtente {
 		rimuoviF.setSize(panelTitolo.getWidth()/2, 30);
 			
 		// Creazione bottone
-		bVisualizza = new JButton("Visualizza Utenti");
+		bVisualizza = new JButton(bundle.getString("boundaryRimuoviUtente_visualizza_utenti"));
 		bVisualizza.setLocation(330,0);
 		bVisualizza.setSize(panelTitolo.getWidth()/4, 50);
 		bVisualizza.setFont(new Font("Arial", 0, 20));
 
-		bRimuovi = new JButton("Rimuovi Utente");
+		bRimuovi = new JButton(bundle.getString("boundaryGestioneUtenti_rimuovi_utente"));
 		bRimuovi.setLocation(200,10);
 		bRimuovi.setSize(panelTitolo.getWidth()/4, 50);
 		bRimuovi.setFont(new Font("Arial", 0, 20));
 
-        bIndietro = new JButton("Indietro");
+        bIndietro = new JButton(bundle.getString("boundaryProfilo_indietro"));
         bIndietro.setLocation(300+panelTitolo.getWidth()/4, 10);
         bIndietro.setSize(panelTitolo.getWidth()/4, 50);
         bIndietro.setFont(new Font("Arial", 0, 20));
-        bIndietro.setToolTipText("Torna alla schermata precedente");
+        bIndietro.setToolTipText(bundle.getString("boundaryAmministrazione_schermata_prec"));
 
 		panelUser.setLayout(null);
 		panelUser.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/5);

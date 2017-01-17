@@ -1,11 +1,16 @@
 package standAlone.boundary;
 
+import constants.Constants;
+import entity.Utente;
 import standAlone.control.ControlloreCreaAmministratore;
+import standAlone.control.ControlloreProfiloAmministratore;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class BoundaryCreaAmministratore {
 
@@ -37,6 +42,20 @@ public class BoundaryCreaAmministratore {
 
 	public BoundaryCreaAmministratore()
 	{
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
 		int border = 5;
 
 		pannelloCreazione = new JPanel();
@@ -56,7 +75,7 @@ public class BoundaryCreaAmministratore {
 		titolo.setSize(panelTitolo.getWidth(), 35);
 		titolo.setHorizontalAlignment(JLabel.CENTER);
 		titolo.setVerticalAlignment(JLabel.CENTER);
-		titolo.setText("Completa i campi indicati");
+		titolo.setText(bundle.getString("boundaryCreaAmministratore_completa_campi"));
 
 		pannelloCreazione.add(panelTitolo);
 
@@ -66,7 +85,7 @@ public class BoundaryCreaAmministratore {
 		usernameLabel.setFont(new Font("Verdana", Font.BOLD, 15));
 		usernameLabel.setLocation(150, 50);
 		usernameLabel.setSize(panelTitolo.getWidth()/2, 30);
-		usernameLabel.setText("Username: ");
+		usernameLabel.setText(bundle.getString("index_nomeUtente"));
 
 
 		usernameF = new JTextField("", 60);
@@ -77,7 +96,7 @@ public class BoundaryCreaAmministratore {
 		passwordLabel.setFont(new Font("Verdana", Font.BOLD, 15));
 		passwordLabel.setLocation(150, 50);
 		passwordLabel.setSize(panelTitolo.getWidth()/2, 30);
-		passwordLabel.setText("Password: ");
+		passwordLabel.setText(bundle.getString("index_password"));
 
 
 		passwordF = new JPasswordField("", 60);
@@ -86,16 +105,16 @@ public class BoundaryCreaAmministratore {
 		passwordF.setFont(new Font("Verdana", 0, 15));
 
 		// Creazione bottoni
-		bNomina = new JButton("Crea Amministratore");
+		bNomina = new JButton(bundle.getString("boundaryAmministrazione_crea"));
 		bNomina.setLocation(150,50);
 		bNomina.setSize(panelTitolo.getWidth()/3, 50);
 		bNomina.setFont(new Font("Arial", 0, 20));
 
-		bIndietro = new JButton("Indietro");
+		bIndietro = new JButton(bundle.getString("boundaryProfilo_indietro"));
 		bIndietro.setLocation(300+panelTitolo.getWidth()/4, 50);
 		bIndietro.setSize(panelTitolo.getWidth()/4, 50);
 		bIndietro.setFont(new Font("Arial", 0, 20));
-		bIndietro.setToolTipText("Torna alla schermata precedente");
+		bIndietro.setToolTipText(bundle.getString("boundaryAmministrazione_schermata_prec"));
 
 		panelUsername.setLayout(null);
 		panelUsername.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/5);
@@ -146,6 +165,20 @@ public class BoundaryCreaAmministratore {
 		{
 			try
 			{
+                ControlloreProfiloAmministratore cp =
+                        new ControlloreProfiloAmministratore();
+                Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+                Locale langLocale;
+                if (utente != null) {
+                    langLocale = utente.getLingua();
+                } else {
+                    langLocale = Locale.getDefault();
+                }
+
+                ResourceBundle bundle = ResourceBundle
+                        .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
 				pannelloCreazione.setVisible(false);
 				if (!usernameF.getText()
                         .equals("root")) {
@@ -154,7 +187,7 @@ public class BoundaryCreaAmministratore {
                     return;
                 }
 
-                new BoundaryFallimento("Username non valido");
+                new BoundaryFallimento(bundle.getString("boundaryCreaAmministratore_user_invalid"));
 			}
 			catch (Exception e)
 			{

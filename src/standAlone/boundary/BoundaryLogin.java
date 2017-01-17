@@ -1,16 +1,16 @@
 package standAlone.boundary;
 
-import java.awt.Color;
-import java.awt.Font;
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreLoginAmministratore;
+import standAlone.control.ControlloreProfiloAmministratore;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import standAlone.control.ControlloreLoginAmministratore;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class BoundaryLogin extends JFrame
 {
@@ -43,6 +43,20 @@ public class BoundaryLogin extends JFrame
 
     public BoundaryLogin()
     {
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
         int border = 5;
 
         pannelloLogin = new JPanel();
@@ -62,14 +76,14 @@ public class BoundaryLogin extends JFrame
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("Inserire le proprie credenziali: Login e Password");
+        titolo.setText(bundle.getString("boundaryLogin_credenziali"));
 
         pannelloLogin.add(panelTitolo);
 
         loginLabel.setFont(new Font("Verdana", Font.BOLD, 15));
         loginLabel.setLocation(150, 50);
         loginLabel.setSize(panelTitolo.getWidth()/2, 30);
-        loginLabel.setText("Login: ");
+        loginLabel.setText(bundle.getString("index_nomeUtente"));
 
 
         loginF = new JTextField("", 60);
@@ -82,7 +96,7 @@ public class BoundaryLogin extends JFrame
         passwordLabel.setFont(new Font("Verdana", Font.BOLD, 15));
         passwordLabel.setLocation(150, 50);
         passwordLabel.setSize(panelTitolo.getWidth()/2, 30);
-        passwordLabel.setText("Password: ");
+        passwordLabel.setText(bundle.getString("index_password"));
 
         passwordF = new JPasswordField("", 60);
         passwordF.setLocation(300,50);
@@ -90,7 +104,7 @@ public class BoundaryLogin extends JFrame
         passwordF.setFont(new Font("Verdana", 0, 15));
 
         // Creazione bottone
-        bLogin = new JButton("Login");
+        bLogin = new JButton(bundle.getString("index_accedi"));
         bLogin.setLocation(300,50);
         bLogin.setSize(panelTitolo.getWidth()/4, 50);
         bLogin.setFont(new Font("Arial", 0, 20));
@@ -145,7 +159,6 @@ public class BoundaryLogin extends JFrame
                 pannelloLogin.setVisible(false);
                 ControlloreLoginAmministratore cla = new ControlloreLoginAmministratore();
                 cla.login(loginF.getText(), passwordF.getPassword());
-
             }
             catch (Exception e)
             {

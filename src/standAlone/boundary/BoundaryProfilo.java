@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -27,6 +28,7 @@ public class BoundaryProfilo {
     private JPanel panelLingua;
     private JPanel panelButtonSelect;
     private JPanel panelBox;
+    private JPanel panelResultOp;
 
     private JComboBox<String> box;
     private JScrollPane scrollPane;
@@ -48,6 +50,7 @@ public class BoundaryProfilo {
     private JLabel emailLabel;
     private JTextField emailF;
     private JLabel boxLabel;
+    private JLabel resultLabel;
 
 
     // Ascoltatore di bottone e relativa azioni
@@ -56,7 +59,6 @@ public class BoundaryProfilo {
     private BoxSelectItem ascoltatoreBox;
 
     private ControlloreProfiloAmministratore cp;
-
     private Utente utente;
 
     public BoundaryProfilo() {
@@ -84,6 +86,7 @@ public class BoundaryProfilo {
         this.panelLingua = new JPanel();
         this.panelButtonSelect = new JPanel();
         this.panelBox = new JPanel();
+        this.panelResultOp = new JPanel();
 
         // Bottoni di interazione
         this.bSalva = new JButton(bundle.getString("modificaProfiloUtente_salva"));
@@ -99,6 +102,7 @@ public class BoundaryProfilo {
         this.newPasswordF = new JPasswordField();
         this.emailLabel = new JLabel();
         this.emailF = new JTextField(email);
+        this.resultLabel = new JLabel();
 
         // Box scelta lingua sistema
         this.box = new JComboBox<>(Constants.LANGS);
@@ -198,9 +202,20 @@ public class BoundaryProfilo {
         this.emailF.setLocation(300,15);
         this.emailF.setSize(panelTitolo.getWidth()/2, 30);
 
+        // Composizione pannello risultato operazione
+        this.panelResultOp.setLayout(null);
+        this.panelResultOp.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/10);
+        this.panelResultOp.setLocation(5, 400);
+        this.panelResultOp.add(resultLabel);
+
+        this.resultLabel.setFont(new Font("Verdana", Font.BOLD, 20));
+        this.resultLabel.setLocation(400, 20);
+        this.resultLabel.setSize(panelTitolo.getWidth()/2, 30);
+        this.resultLabel.setVisible(false);
+
         // Composizione box selettore lingua
         this.panelBox.setLayout(new FlowLayout());
-        this.panelBox.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/5);
+        this.panelBox.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/12);
         this.panelBox.setLocation(5, 350);
         this.panelBox.add(boxLabel);
         this.panelBox.add(box);
@@ -233,44 +248,99 @@ public class BoundaryProfilo {
         this.pannelloWrapper.add(panelNewPassword);
         this.pannelloWrapper.add(panelEmail);
         this.pannelloWrapper.add(panelBox);
+        this.pannelloWrapper.add(panelResultOp);
         this.pannelloWrapper.add(panelButtonSelect);
 
         //Listeners per interazione utente con button
-        this.ascoltatoreBSalva = new Salva();
+        this.ascoltatoreBSalva = new Salva(this.getClass());
         this.ascoltatoreBIndietro = new TornaIndietroAA();
-        this.ascoltatoreBox = new BoxSelectItem();
+        this.ascoltatoreBox = new BoxSelectItem(this.getClass());
         this.bSalva.addActionListener(ascoltatoreBSalva);
         this.bIndietro.addActionListener(ascoltatoreBIndietro);
         this.box.addActionListener(ascoltatoreBox);
     }
 
+    public BoundaryProfilo(int result) {
+        this();
+        switch (result) {
+            case -1:
+                resultLabel.setText("Errore durante la serializzazione/deserializzazione");
+                resultLabel.setForeground(Color.RED);
+                break;
+
+            case 0:
+                resultLabel.setText("Modifiche effettuate");
+                resultLabel.setForeground(Color.GREEN);
+                break;
+
+            case 1:
+                resultLabel.setText("psw vecchia sbagliata");
+                resultLabel.setForeground(Color.RED);
+                break;
+
+            case 3:
+                resultLabel.setText("nuova psw vuota");
+                resultLabel.setForeground(Color.RED);
+                break;
+
+            default:
+                resultLabel.setText("Errore sconosciuto");
+                resultLabel.setForeground(Color.RED);
+                break;
+        }
+
+        resultLabel.setVisible(true);
+    }
 
 
-    private class BoxSelectItem implements ActionListener {
+
+    public class BoxSelectItem implements ActionListener {
+        // Reflection
+        private Class<?> aClass;
+
+        BoxSelectItem(Class<?> aClass) {
+            this.aClass = aClass;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             JComboBox combo = (JComboBox) e.getSource();
 
-            if (combo.getSelectedIndex() != -1) {
-                System.out.println("DIO: " + combo
-                .getSelectedItem().toString());
-
+            if (combo.getSelectedIndex() != -1 &&
+                    utente != null) {
                 String selectedLang = combo
-                        .getSelectedItem().toString();
+                        .getSelectedItem()
+                        .toString();
                 cp.modificaProfilo(
                       utente.getUsername(), utente.getEmail(),
                         "", "", "",
                         new Locale(selectedLang, "")
                 );
 
-
                 pannelloWrapper.setVisible(false);
-                new BoundaryProfilo();
+
+                try {
+                    this.aClass
+                            .getConstructor(int.class)
+                            .newInstance(0);
+                } catch (IllegalAccessException |
+                        InstantiationException |
+                        NoSuchMethodException |
+                        InvocationTargetException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
 
     private class Salva implements ActionListener {
+        // Reflection
+        private Class<?> aClass;
+
+        Salva(Class<?> aClass) {
+            this.aClass = aClass;
+        }
+
         public void actionPerformed(ActionEvent arg0) {
             pannelloWrapper.setVisible(false);
             int response = cp.modificaProfilo(usernameF.getText(),
@@ -281,32 +351,15 @@ public class BoundaryProfilo {
                     null
             );
 
-
-            String responseStr;
-            switch (response) {
-                case -1:
-                    responseStr = "Errore durante la serializzazione/deserializzazione";
-                    new BoundaryFallimento(responseStr);
-                    break;
-
-                case 0:
-                    new BoundarySuccesso();
-                    break;
-
-                case 1:
-                    responseStr = "psw vecchia sbagliata";
-                    new BoundaryFallimento(responseStr);
-                    break;
-
-                case 3:
-                    responseStr = "nuova psw vuota";
-                    new BoundaryFallimento(responseStr);
-                    break;
-
-                default:
-                    responseStr = "Errore sconosciuto";
-                    new BoundaryFallimento(responseStr);
-                    break;
+            try {
+                this.aClass
+                        .getConstructor(int.class)
+                        .newInstance(response);
+            } catch (IllegalAccessException |
+                    InstantiationException |
+                    NoSuchMethodException |
+                    InvocationTargetException ex) {
+                ex.printStackTrace();
             }
         }
     }

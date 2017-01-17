@@ -2,6 +2,7 @@ package standAlone.control;
 
 import constants.Constants;
 import entity.Faq;
+import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import standAlone.boundary.BoundaryFallimento;
@@ -11,6 +12,8 @@ import utils.SerializzaOggetti;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by maria on 11/01/17.
@@ -27,12 +30,26 @@ public class ControlloreRispondiFaq {
     }
 
     public void rispondiComeSuperUtente(String domanda,String risposta) throws DeserializzazioneException, SerializzazioneException {
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();
         faqArray=(ArrayList<Faq>) dobj.deserializza(path);
 
         if(risposta.equals("")) {
-            new BoundaryFallimento("Spiacente, non è possibile inserire risposte vuote");
+            new BoundaryFallimento(bundle.getString("boundaryFaq_risposte_vuote"));
             return;
         }
 

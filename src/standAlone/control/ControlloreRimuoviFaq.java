@@ -2,6 +2,7 @@ package standAlone.control;
 
 import constants.Constants;
 import entity.Faq;
+import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import standAlone.boundary.BoundaryFallimento;
@@ -11,6 +12,8 @@ import utils.SerializzaOggetti;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ControlloreRimuoviFaq {
 
@@ -23,9 +26,22 @@ public class ControlloreRimuoviFaq {
     }
 
     public void rimuovi(String domanda) throws DeserializzazioneException, SerializzazioneException {
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
 
         if(domanda.equals("")) {
-            new BoundaryFallimento("Spiacente, domanda non presente");
+            new BoundaryFallimento(bundle.getString("boundaryFaq_domanda_non_presente"));
             return;
         }
         SerializzaOggetti sobj= new SerializzaOggetti();
@@ -41,13 +57,27 @@ public class ControlloreRimuoviFaq {
             }
         }
 
-        new BoundaryFallimento("Spiacente, domanda non presente");
+        new BoundaryFallimento(bundle.getString("boundaryFaq_domanda_non_presente"));
     }
 
     public void visualizzaDomandeSenzaRisposta(){
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
         ArrayList<Faq> faq;
         DeserializzaOggetti dobj= new DeserializzaOggetti();
-        String domande= "DOMANDE SENZA RISPOSTA: \n";
+        String domande= bundle.getString("boundaryFaq_domande_senza_risposta");
         try{
             faq = (ArrayList<Faq>) dobj.deserializza(path);
             for(Faq f: faq ){

@@ -8,36 +8,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <jsp:useBean id="bp" scope="session" class="boundary.BoundaryProfilo"/>
-<%@page import="boundary.BoundaryLingua"%>
+<jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
 <%@ page import="constants.Constants" %>
 <%@ page import="entity.Utente" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 
 <%
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
     String lang = request.getParameter("lang");
 
     Locale currentLocale;
     if (lang != null) {
-        currentLocale = boundaryLingua.riceviLocaleDaString(lang);
+        currentLocale = blingua.riceviLocaleDaString(lang);
     } else {
         lang = Constants.LANG_DEFAULT;
-        currentLocale = boundaryLingua.riceviLinguaDefault();
+        currentLocale = blingua.riceviLinguaDefault();
     }
 
     if (bl.controlloAccesso()) {
         String pref = request.getParameter("pref");
         if (pref != null && Integer.parseInt(pref) == 1) {
-            currentLocale = boundaryLingua
+            currentLocale = blingua
                     .aggiornaPreferenze(bl.ritornaUsername(), lang);
         } else {
-            currentLocale = boundaryLingua
+            currentLocale = blingua
                     .riceviLingua(bl.ritornaUsername());
         }
     }
 
-    ResourceBundle bundle = boundaryLingua
+    ResourceBundle bundle = blingua
             .riceviBundle(currentLocale);
 %>
 

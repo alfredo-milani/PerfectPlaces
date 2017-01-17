@@ -5,18 +5,18 @@
   Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="boundary.BoundaryLingua" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <jsp:useBean id="bposta" scope="session" class="boundary.BoundaryPosta"/>
+<jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
+
 
 <%
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
-    Locale locale = boundaryLingua
+    Locale locale = blingua
             .riceviLingua(bl.ritornaUsername());
-    ResourceBundle bundle = boundaryLingua
+    ResourceBundle bundle = blingua
             .riceviBundle(locale);
 
     String param = request.getParameter("Msg");

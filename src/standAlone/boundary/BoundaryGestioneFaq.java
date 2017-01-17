@@ -1,13 +1,16 @@
 
 package standAlone.boundary;
 
-import java.awt.Font;
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreProfiloAmministratore;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class BoundaryGestioneFaq {
@@ -34,6 +37,20 @@ public class BoundaryGestioneFaq {
 
     public BoundaryGestioneFaq()
     {
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
         int border = 5;
 
         pannelloAmministrazione = new JPanel();
@@ -52,7 +69,7 @@ public class BoundaryGestioneFaq {
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("Scegli cosa fare");
+        titolo.setText(bundle.getString("posta_azioni"));
 
         pannelloAmministrazione.add(panelTitolo);
 
@@ -60,23 +77,23 @@ public class BoundaryGestioneFaq {
         panelButton.setSize(BoundaryAvvio.Confine.getWidth(),400);
         panelButton.setLocation(5, 30);
 
-        bRispondi = new JButton("Rispondi Faq");
+        bRispondi = new JButton(bundle.getString("boundaryFaq_rispondi_faq"));
         bRispondi.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,80);
         bRispondi.setSize(panelButton.getWidth()/3,50);
         bRispondi.setFont(new Font("Arial", 0, 20));
-        bRispondi.setToolTipText("Rispondi alle domande fatte dagli utenti");
+        bRispondi.setToolTipText(bundle.getString("boundaryFaq_domande_utenti"));
 
-        bRimuoviDati = new JButton("Rimuovi Faq");
+        bRimuoviDati = new JButton(bundle.getString("boundaryFaq_rimuovi"));
         bRimuoviDati.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,160);
         bRimuoviDati.setSize(panelButton.getWidth()/3,50);
         bRimuoviDati.setFont(new Font("Arial", 0, 20));
-        bRimuoviDati.setToolTipText("Rimuovi le faq inappropriate");
+        bRimuoviDati.setToolTipText(bundle.getString("boundaryFaq_inappropriate"));
 
-        bIndietro = new JButton("Indietro");
+        bIndietro = new JButton(bundle.getString("visualizzaPosta_indietro"));
         bIndietro.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,300);
         bIndietro.setSize(panelButton.getWidth()/3, 50);
         bIndietro.setFont(new Font("Arial", 0, 20));
-        bIndietro.setToolTipText("Torna alla schermata precedente");
+        bIndietro.setToolTipText(bundle.getString("boundaryAmministrazione_schermata_prec"));
 
         panelButton.add(bRispondi);
         panelButton.add(bRimuoviDati);

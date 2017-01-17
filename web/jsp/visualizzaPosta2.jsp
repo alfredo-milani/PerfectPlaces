@@ -9,18 +9,15 @@
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <jsp:useBean id="bprofilo" scope="session" class="boundary.BoundaryProfilo"/>
 <jsp:useBean id="bposta" scope="session" class="boundary.BoundaryPosta"/>
-<%@page import="boundary.BoundaryLingua" %>
+<jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
 <%@ page import="entity.Messaggio" %>
 <%@ page import="entity.Utente" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
 
 <%
-    BoundaryLingua boundaryLingua = new BoundaryLingua();
-    Locale locale = boundaryLingua
-            .riceviLingua(bl.ritornaUsername());
-    ResourceBundle bundle = boundaryLingua
-            .riceviBundle(locale);
+    Locale locale = blingua.riceviLingua(bl.ritornaUsername());
+    ResourceBundle bundle = blingua.riceviBundle(locale);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

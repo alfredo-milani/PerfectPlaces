@@ -29,6 +29,10 @@ public class BoundaryAvvio extends StackFrame
     //JFrame
     public static JFrame Confine;
 
+    // Box lingua
+    private BoundaryProfilo.BoxSelectItem ascoltatoreBox;
+
+
     public BoundaryAvvio()
     {
 

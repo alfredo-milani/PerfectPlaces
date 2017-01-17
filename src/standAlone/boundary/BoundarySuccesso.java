@@ -1,12 +1,15 @@
 package standAlone.boundary;
 
-import java.awt.Font;
+import constants.Constants;
+import entity.Utente;
+import standAlone.control.ControlloreProfiloAmministratore;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class BoundarySuccesso {
@@ -30,6 +33,20 @@ public class BoundarySuccesso {
 	
 	public BoundarySuccesso()
 	{
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
 		int border = 5;
 		
 		pannelloSuccesso = new JPanel();
@@ -48,7 +65,7 @@ public class BoundarySuccesso {
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("Operazione eseguita con successo!");
+        titolo.setText(bundle.getString("boundarySuccesso_op"));
         
         pannelloSuccesso.add(panelTitolo);	
         
@@ -58,11 +75,11 @@ public class BoundarySuccesso {
 		
 		
 		
-		bHome = new JButton("Torna alla Home");
+		bHome = new JButton(bundle.getString("logout_home"));
 		bHome.setLocation(300,100);
 		bHome.setSize(panelTitolo.getWidth()/4,50);
 		bHome.setFont(new Font("Arial", 0, 20));
-		bHome.setToolTipText("Torna alla Home"); 
+		bHome.setToolTipText(bundle.getString("logout_home"));
 		
 		panelButtonHome.add(bHome);
         	

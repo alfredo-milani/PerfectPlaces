@@ -1,18 +1,21 @@
 package standAlone.control;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import constants.Constants;
 import control.ControlloreVisualizzaLocazioni;
 import entity.Locazione;
-import standAlone.boundary.BoundaryFallimento;
-import standAlone.boundary.BoundarySuccesso;
 import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
-import utils.*;
+import standAlone.boundary.BoundaryFallimento;
+import standAlone.boundary.BoundarySuccesso;
+import utils.DeserializzaOggetti;
+import utils.SerializzaOggetti;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ControlloreRimuoviUtente {
 	
@@ -35,6 +38,19 @@ public class ControlloreRimuoviUtente {
 	
 	@SuppressWarnings("unchecked")
 	public void rimuovi(String username) throws DeserializzazioneException, SerializzazioneException, InterruptedException, IOException {
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
 
 		File file = new File(percorsoUtenti);
 		if(file.length()!=0) {
@@ -61,7 +77,7 @@ public class ControlloreRimuoviUtente {
 						s.serializza(locazioni, percorsoLocazioniRimosse);
 					}
 
-					System.out.println("L'utente rimosso e':" + utenti.get(i).getUsername());
+					System.out.println(bundle.getString("boundaryRimuoviUtente_utente_rimosso") + utenti.get(i).getUsername());
 					utenti.remove(i);
 					SerializzaOggetti sobj = new SerializzaOggetti();
 					sobj.serializza(utenti, percorsoUtenti);
@@ -69,9 +85,9 @@ public class ControlloreRimuoviUtente {
 					return;
 				}
 			}
-			new BoundaryFallimento("L'utente non è tra quelli presenti nel sistema");
+			new BoundaryFallimento(bundle.getString("boundaryFallimento_rimuovi_utente_1"));
 		}
-		new BoundaryFallimento("Non sono ancora presenti utenti nel sistema");
+		new BoundaryFallimento(bundle.getString("boundaryFallimento_rimuovi_utente_2"));
 
 	}
 }

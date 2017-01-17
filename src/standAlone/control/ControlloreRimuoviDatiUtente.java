@@ -15,6 +15,8 @@ import utils.SerializzaOggetti;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ControlloreRimuoviDatiUtente {
 
@@ -53,6 +55,20 @@ public class ControlloreRimuoviDatiUtente {
     }
     @SuppressWarnings("unchecked")
     private void rimuoviPerUtenteRimosso(String username) throws DeserializzazioneException,SerializzazioneException{
+        ControlloreProfiloAmministratore cp =
+                new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+
+        Locale langLocale;
+        if (utente != null) {
+            langLocale = utente.getLingua();
+        } else {
+            langLocale = Locale.getDefault();
+        }
+
+        ResourceBundle bundle = ResourceBundle
+                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         ArrayList<Locazione> locazioniUtenteRimosso = (ArrayList<Locazione>) dobj.deserializza(percorsoLocazioniRimosse);
 
@@ -69,7 +85,7 @@ public class ControlloreRimuoviDatiUtente {
         }
         SerializzaOggetti sobj = new SerializzaOggetti();
         sobj.serializza(locazioniUtenteRimosso,percorsoLocazioniRimosse);
-        new BoundaryFallimento("username errato");
+        new BoundaryFallimento(bundle.getString("boundaryRimuoviDati_user_errato"));
     }
     @SuppressWarnings("unchecked")
     private void rimuoviPrenotazioni(String username) throws SerializzazioneException, DeserializzazioneException {

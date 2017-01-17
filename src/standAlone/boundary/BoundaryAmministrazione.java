@@ -43,8 +43,6 @@ public class BoundaryAmministrazione {
                 new ControlloreProfiloAmministratore();
         Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
 
-        //System.out.println("DIO: " + utente.getLingua().getDisplayLanguage());
-
         Locale langLocale;
         if (utente != null) {
             langLocale = utente.getLingua();

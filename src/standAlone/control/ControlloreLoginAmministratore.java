@@ -34,7 +34,12 @@ public class ControlloreLoginAmministratore {
         for (Utente anUtenti : utenti) {
             if (anUtenti.getUsername().equals(username)) {
                 if (anUtenti.getPassword().equals(pw)) {
+                    String lang = anUtenti
+                            .getLingua()
+                            .getLanguage();
                     System.setProperty(Constants.USER_KEY, username);
+                    System.setProperty(Constants.LINGUA_KEY, lang);
+
 
                     new BoundaryAmministrazione();
                     return;

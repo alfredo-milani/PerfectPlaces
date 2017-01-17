@@ -1,6 +1,5 @@
 package control.prenotazione;
 
-import entity.Albergo;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;

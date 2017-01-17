@@ -1,7 +1,8 @@
 package control;
 
 import constants.Constants;
-import entity.*;
+import entity.PostiDisponibili;
+import entity.Prenotazione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.CreaArrayDate;

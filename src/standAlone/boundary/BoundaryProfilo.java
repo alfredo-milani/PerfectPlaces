@@ -2,6 +2,7 @@ package standAlone.boundary;
 
 import constants.Constants;
 import entity.Utente;
+import standAlone.control.ControlloreLinguaAmministratore;
 import standAlone.control.ControlloreProfiloAmministratore;
 
 import javax.swing.*;
@@ -25,13 +26,11 @@ public class BoundaryProfilo {
     private JPanel panelOldPassword;
     private JPanel panelNewPassword;
     private JPanel panelEmail;
-    private JPanel panelLingua;
     private JPanel panelButtonSelect;
     private JPanel panelBox;
     private JPanel panelResultOp;
 
     private JComboBox<String> box;
-    private JScrollPane scrollPane;
 
     //Label
     private JLabel titolo;
@@ -59,20 +58,22 @@ public class BoundaryProfilo {
     private BoxSelectItem ascoltatoreBox;
 
     private ControlloreProfiloAmministratore cp;
+    private ControlloreLinguaAmministratore cl;
     private Utente utente;
 
     public BoundaryProfilo() {
+        this.cp = new ControlloreProfiloAmministratore();
+        this.cl = new ControlloreLinguaAmministratore();
 
         String user = System.getProperty(Constants.USER_KEY, "");
 
-        // Controllore Profilo
-        this.cp = new ControlloreProfiloAmministratore();
         this.utente = this.cp.ottieniUtente(user);
-        String email = utente.getEmail();
 
-        Locale langLocale = utente.getLingua();
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+        String email = this.utente != null ?
+                utente.getEmail() :
+                "";
+        ResourceBundle bundle = this.cl.getBundleFromProp();
+
 
         // Pannello wrapper
         this.pannelloWrapper = new JPanel();
@@ -83,7 +84,6 @@ public class BoundaryProfilo {
         this.panelNewPassword = new JPanel();
         this.panelOldPassword = new JPanel();
         this.panelEmail = new JPanel();
-        this.panelLingua = new JPanel();
         this.panelButtonSelect = new JPanel();
         this.panelBox = new JPanel();
         this.panelResultOp = new JPanel();
@@ -107,7 +107,6 @@ public class BoundaryProfilo {
         // Box scelta lingua sistema
         this.box = new JComboBox<>(Constants.LANGS);
         this.boxLabel = new JLabel();
-        this.scrollPane = new JScrollPane(box);
 
 
 
@@ -209,7 +208,7 @@ public class BoundaryProfilo {
         this.panelResultOp.add(resultLabel);
 
         this.resultLabel.setFont(new Font("Verdana", Font.BOLD, 20));
-        this.resultLabel.setLocation(400, 20);
+        this.resultLabel.setLocation(300, 20);
         this.resultLabel.setSize(panelTitolo.getWidth()/2, 30);
         this.resultLabel.setVisible(false);
 
@@ -262,29 +261,32 @@ public class BoundaryProfilo {
 
     public BoundaryProfilo(int result) {
         this();
+
+        ResourceBundle bundle = this.cl.getBundleFromProp();
+
         switch (result) {
             case -1:
-                resultLabel.setText("Errore durante la serializzazione/deserializzazione");
+                resultLabel.setText(bundle.getString("boundaryProfilo_errore_ser_deser"));
                 resultLabel.setForeground(Color.RED);
                 break;
 
             case 0:
-                resultLabel.setText("Modifiche effettuate");
+                resultLabel.setText(bundle.getString("modificaProfiloUtente_modificaCorretta"));
                 resultLabel.setForeground(Color.GREEN);
                 break;
 
             case 1:
-                resultLabel.setText("psw vecchia sbagliata");
+                resultLabel.setText(bundle.getString("modificaProfiloUtente_vecchiaPswErrore"));
                 resultLabel.setForeground(Color.RED);
                 break;
 
             case 3:
-                resultLabel.setText("nuova psw vuota");
+                resultLabel.setText(bundle.getString("modificaProfiloUtente_nuovaPswMancante"));
                 resultLabel.setForeground(Color.RED);
                 break;
 
             default:
-                resultLabel.setText("Errore sconosciuto");
+                resultLabel.setText(bundle.getString("boundaryProfilo_errore"));
                 resultLabel.setForeground(Color.RED);
                 break;
         }
@@ -311,22 +313,16 @@ public class BoundaryProfilo {
                 String selectedLang = combo
                         .getSelectedItem()
                         .toString();
-                cp.modificaProfilo(
-                      utente.getUsername(), utente.getEmail(),
-                        "", "", "",
-                        new Locale(selectedLang, "")
-                );
+
+                System.setProperty(Constants.LINGUA_KEY, selectedLang);
 
                 pannelloWrapper.setVisible(false);
 
                 try {
                     this.aClass
-                            .getConstructor(int.class)
-                            .newInstance(0);
+                            .newInstance();
                 } catch (IllegalAccessException |
-                        InstantiationException |
-                        NoSuchMethodException |
-                        InvocationTargetException ex) {
+                        InstantiationException ex) {
                     ex.printStackTrace();
                 }
             }
@@ -348,7 +344,9 @@ public class BoundaryProfilo {
                     new String(oldPasswordF.getPassword()),
                     new String(newPasswordF.getPassword()),
                     new String(newPasswordF.getPassword()),
-                    null
+                    new Locale(System.getProperty(
+                            Constants.LINGUA_KEY, ""),
+                            "")
             );
 
             try {
@@ -370,6 +368,9 @@ public class BoundaryProfilo {
         {
             try
             {
+                System.setProperty(Constants.LINGUA_KEY,
+                        utente.getLingua().getLanguage());
+
                 pannelloWrapper.setVisible(false);
                 new BoundaryAmministrazione();
 

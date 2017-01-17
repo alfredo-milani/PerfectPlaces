@@ -2,7 +2,6 @@ package standAlone.control;
 
 import constants.Constants;
 import entity.Faq;
-import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import standAlone.boundary.BoundaryFallimento;
@@ -12,7 +11,6 @@ import utils.SerializzaOggetti;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ControlloreRimuoviFaq {
@@ -21,24 +19,15 @@ public class ControlloreRimuoviFaq {
 
     private String path = Constants.FAQ_PATH;
 
+    private ControlloreLinguaAmministratore cl;
+
     public ControlloreRimuoviFaq(JTextArea area){
         this.area = area;
+        this.cl = new ControlloreLinguaAmministratore();
     }
 
     public void rimuovi(String domanda) throws DeserializzazioneException, SerializzazioneException {
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
-
-        Locale langLocale;
-        if (utente != null) {
-            langLocale = utente.getLingua();
-        } else {
-            langLocale = Locale.getDefault();
-        }
-
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+        ResourceBundle bundle = this.cl.getBundleFromProp();
 
         if(domanda.equals("")) {
             new BoundaryFallimento(bundle.getString("boundaryFaq_domanda_non_presente"));
@@ -61,19 +50,7 @@ public class ControlloreRimuoviFaq {
     }
 
     public void visualizzaDomandeSenzaRisposta(){
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
-
-        Locale langLocale;
-        if (utente != null) {
-            langLocale = utente.getLingua();
-        } else {
-            langLocale = Locale.getDefault();
-        }
-
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+        ResourceBundle bundle = this.cl.getBundleFromProp();
 
         ArrayList<Faq> faq;
         DeserializzaOggetti dobj= new DeserializzaOggetti();

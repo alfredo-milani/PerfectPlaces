@@ -1,13 +1,13 @@
 package control;
 
-import java.util.ArrayList;
-
 import constants.Constants;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
+
+import java.util.ArrayList;
 
 // Questa classe serve a rimuovere una locazione dal sistema da parte del proprietario. 
 // Vengono anche eliminate le prenotazioni associate alla locazione da rimuovere

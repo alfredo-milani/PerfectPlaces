@@ -1,9 +1,8 @@
 package standAlone.boundary;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.Stack;
-
-import javax.swing.JFrame;
 
 public class StackFrame extends JFrame implements Serializable
 {	

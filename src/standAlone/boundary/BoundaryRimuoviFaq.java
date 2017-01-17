@@ -1,8 +1,6 @@
 package standAlone.boundary;
 
-import constants.Constants;
-import entity.Utente;
-import standAlone.control.ControlloreProfiloAmministratore;
+import standAlone.control.ControlloreLinguaAmministratore;
 import standAlone.control.ControlloreRimuoviFaq;
 import standAlone.utils.StampaStringhe;
 
@@ -10,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class BoundaryRimuoviFaq {
@@ -49,24 +46,14 @@ public class BoundaryRimuoviFaq {
     private tornaIndietroAA ascoltatoreEtAzioneIndietro;
 
     ControlloreRimuoviFaq crf;
+    private ControlloreLinguaAmministratore cl;
 
     public BoundaryRimuoviFaq()
     {
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+        this.cl = new ControlloreLinguaAmministratore();
+        ResourceBundle bundle = this.cl.getBundleFromProp();
 
-        Locale langLocale;
-        if (utente != null) {
-            langLocale = utente.getLingua();
-        } else {
-            langLocale = Locale.getDefault();
-        }
-
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
-
-         crf = new ControlloreRimuoviFaq(domade_lista);
+        crf = new ControlloreRimuoviFaq(domade_lista);
 
         int border = 5;
 

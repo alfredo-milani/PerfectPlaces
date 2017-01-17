@@ -4,7 +4,6 @@ package control.prenotazione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 
-import java.io.IOException;
 import java.util.GregorianCalendar;
 
 public abstract class ControlloreRegistraPrenotati {

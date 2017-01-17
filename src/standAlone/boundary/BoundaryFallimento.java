@@ -33,12 +33,14 @@ public class BoundaryFallimento {
 	private HomeAA ascoltatoreEtAzioneHome;
 	
 	String errore;
+
+	private ControlloreProfiloAmministratore cp;
 	
 	public BoundaryFallimento(String errore)
 	{
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+        this.cp = new ControlloreProfiloAmministratore();
+        Utente utente = cp.ottieniUtente(
+                System.getProperty(Constants.USER_KEY));
 
         Locale langLocale;
         if (utente != null) {

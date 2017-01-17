@@ -2,7 +2,9 @@ package testJUnit4;
 
 import boundary.BoundaryLogin;
 import boundary.BoundaryRegistrazione;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.util.Locale;
 

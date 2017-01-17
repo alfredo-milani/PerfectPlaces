@@ -4,20 +4,21 @@ import constants.Constants;
 import entity.Locazione;
 import entity.Utente;
 import exception.DeserializzazioneException;
-import standAlone.control.ControlloreProfiloAmministratore;
+import standAlone.control.ControlloreLinguaAmministratore;
 import utils.DeserializzaOggetti;
 
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class StampaStringhe {
 
 	private JTextArea area;
+	private ControlloreLinguaAmministratore cl;
 
 	public StampaStringhe(JTextArea area){
+	    this.cl = new ControlloreLinguaAmministratore();
 		this.area = area;
 	}
 	
@@ -29,19 +30,7 @@ public class StampaStringhe {
 	
 	@SuppressWarnings("unchecked")
 	public void visualizzaUtenti(){
-		ControlloreProfiloAmministratore cp =
-				new ControlloreProfiloAmministratore();
-		Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
-
-		Locale langLocale;
-		if (utente != null) {
-			langLocale = utente.getLingua();
-		} else {
-			langLocale = Locale.getDefault();
-		}
-
-		ResourceBundle bundle = ResourceBundle
-				.getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+		ResourceBundle bundle = this.cl.getBundleFromProp();
 
 		ArrayList<Utente> utenti;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
@@ -61,20 +50,7 @@ public class StampaStringhe {
 
 	@SuppressWarnings("unchecked")
 	public void visualizzaUtentiRimossiMaConDati(){
-
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
-
-        Locale langLocale;
-        if (utente != null) {
-            langLocale = utente.getLingua();
-        } else {
-            langLocale = Locale.getDefault();
-        }
-
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+        ResourceBundle bundle = this.cl.getBundleFromProp();
 
 		ArrayList<Locazione> locazioni;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();

@@ -2,7 +2,6 @@ package standAlone.control;
 
 import constants.Constants;
 import entity.Faq;
-import entity.Utente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import standAlone.boundary.BoundaryFallimento;
@@ -10,9 +9,7 @@ import standAlone.boundary.BoundarySuccesso;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -23,26 +20,14 @@ public class ControlloreRispondiFaq {
     private String path = Constants.FAQ_PATH;
     private ArrayList<Faq> faqArray;
 
-    JTextArea area;
+    private ControlloreLinguaAmministratore cl;
 
     public ControlloreRispondiFaq(){
-
+        this.cl = new ControlloreLinguaAmministratore();
     }
 
     public void rispondiComeSuperUtente(String domanda,String risposta) throws DeserializzazioneException, SerializzazioneException {
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
-
-        Locale langLocale;
-        if (utente != null) {
-            langLocale = utente.getLingua();
-        } else {
-            langLocale = Locale.getDefault();
-        }
-
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+        ResourceBundle bundle = this.cl.getBundleFromProp();
 
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();

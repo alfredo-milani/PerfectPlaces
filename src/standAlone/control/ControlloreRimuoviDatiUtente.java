@@ -15,7 +15,6 @@ import utils.SerializzaOggetti;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ControlloreRimuoviDatiUtente {
@@ -27,6 +26,12 @@ public class ControlloreRimuoviDatiUtente {
     private static String percorsoPrenotazioniOstelli = Constants.PRENOTATI_OSTELLO_PATH;
     private static String percorsoPrenotazioniAppartamenti = Constants.PRENOTATI_APPARTAMENTO_PATH;
     private static String percorsoPrenotazioniCaseVacanza = Constants.PRENOTATI_CASEVACANZA_PATH;
+
+    private ControlloreLinguaAmministratore cl;
+
+    public ControlloreRimuoviDatiUtente() {
+        this.cl = new ControlloreLinguaAmministratore();
+    }
 
     @SuppressWarnings("unchecked")
     public void rimuovi(String username) throws DeserializzazioneException, SerializzazioneException {
@@ -55,19 +60,7 @@ public class ControlloreRimuoviDatiUtente {
     }
     @SuppressWarnings("unchecked")
     private void rimuoviPerUtenteRimosso(String username) throws DeserializzazioneException,SerializzazioneException{
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
-
-        Locale langLocale;
-        if (utente != null) {
-            langLocale = utente.getLingua();
-        } else {
-            langLocale = Locale.getDefault();
-        }
-
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+        ResourceBundle bundle = this.cl.getBundleFromProp();
 
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         ArrayList<Locazione> locazioniUtenteRimosso = (ArrayList<Locazione>) dobj.deserializza(percorsoLocazioniRimosse);

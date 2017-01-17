@@ -1,9 +1,9 @@
 package utils;
 
+import exception.DeserializzazioneException;
+
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-
-import exception.DeserializzazioneException;
 
 public class DeserializzaOggetti {
 	

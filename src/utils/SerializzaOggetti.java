@@ -1,10 +1,10 @@
 package utils;
 
+import exception.SerializzazioneException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-
-import exception.SerializzazioneException;
 
 public class SerializzaOggetti {
 	

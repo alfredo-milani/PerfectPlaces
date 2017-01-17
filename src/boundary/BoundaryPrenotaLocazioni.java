@@ -2,7 +2,7 @@ package boundary;
 
 
 import control.prenotazione.ControllorePrenotazione;
-import entity.*;
+import entity.Locazione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 

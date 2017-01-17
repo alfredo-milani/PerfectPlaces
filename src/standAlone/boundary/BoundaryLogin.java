@@ -1,15 +1,13 @@
 package standAlone.boundary;
 
 import constants.Constants;
-import entity.Utente;
+import standAlone.control.ControlloreLinguaAmministratore;
 import standAlone.control.ControlloreLoginAmministratore;
-import standAlone.control.ControlloreProfiloAmministratore;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class BoundaryLogin extends JFrame
@@ -23,12 +21,17 @@ public class BoundaryLogin extends JFrame
     public JPanel panelCredenzialiLogin = new JPanel();
     public JPanel panelCredenzialiPsw = new JPanel();
     public JPanel panelButtonLogin = new JPanel();
+    public JPanel panelBox = new JPanel();
 
     //Label
     public JLabel titolo = new JLabel();
+    private JLabel boxLabel;
+
+    private BoxSelectItem ascoltatoreBox;
 
     //Bottone
     public JButton bLogin;
+
 
     // Campi e loro etichette
     public JLabel     loginLabel = new JLabel();
@@ -36,26 +39,22 @@ public class BoundaryLogin extends JFrame
     public JLabel     passwordLabel = new JLabel();
     public JPasswordField passwordF= new JPasswordField();
 
+    private JComboBox<String> box;
+
     // Ascoltatore di bottone e relativa azioni
     private LoginAA   ascoltatoreEtAzioneLogin;
+
+    private ControlloreLinguaAmministratore cl;
 
 
 
     public BoundaryLogin()
     {
-        ControlloreProfiloAmministratore cp =
-                new ControlloreProfiloAmministratore();
-        Utente utente = cp.ottieniUtente(System.getProperty(Constants.USER_KEY));
+        this.boxLabel = new JLabel();
+        this.box = new JComboBox<>(Constants.LANGS);
 
-        Locale langLocale;
-        if (utente != null) {
-            langLocale = utente.getLingua();
-        } else {
-            langLocale = Locale.getDefault();
-        }
-
-        ResourceBundle bundle = ResourceBundle
-                .getBundle(Constants.PACKAGE_LANGUAGE, langLocale);
+        this.cl = new ControlloreLinguaAmministratore();
+        ResourceBundle bundle = this.cl.getBundleFromProp();
 
         int border = 5;
 
@@ -77,6 +76,18 @@ public class BoundaryLogin extends JFrame
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
         titolo.setText(bundle.getString("boundaryLogin_credenziali"));
+
+        // Composizione box selettore lingua
+        this.panelBox.setLayout(new FlowLayout());
+        this.panelBox.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/12);
+        this.panelBox.setLocation(0, 480);
+        this.panelBox.add(boxLabel);
+        this.panelBox.add(box);
+
+        this.boxLabel.setFont(new Font("Verdana", Font.BOLD, 15));
+        this.boxLabel.setLocation(450, 20);
+        this.boxLabel.setSize(panelTitolo.getWidth()/2, 30);
+        this.boxLabel.setText(bundle.getString("modificaProfiloUtente_linguaCorrente"));
 
         pannelloLogin.add(panelTitolo);
 
@@ -105,7 +116,7 @@ public class BoundaryLogin extends JFrame
 
         // Creazione bottone
         bLogin = new JButton(bundle.getString("index_accedi"));
-        bLogin.setLocation(300,50);
+        bLogin.setLocation(320,50);
         bLogin.setSize(panelTitolo.getWidth()/4, 50);
         bLogin.setFont(new Font("Arial", 0, 20));
 
@@ -132,19 +143,19 @@ public class BoundaryLogin extends JFrame
         pannelloLogin.add(panelCredenzialiLogin);
         pannelloLogin.add(panelCredenzialiPsw);
         pannelloLogin.add(panelButtonLogin);
-
+        pannelloLogin.add(panelBox);
 
 
         // Ascoltatore di bottone e relativa azione
         ascoltatoreEtAzioneLogin = new LoginAA();
-
+        ascoltatoreBox = new BoxSelectItem(this.getClass());
 
         // Associazione di bottone  a relativo ascoltatore
         bLogin.addActionListener(ascoltatoreEtAzioneLogin);
         passwordF.addActionListener(ascoltatoreEtAzioneLogin);
+        this.box.addActionListener(ascoltatoreBox);
 
         loginF.requestFocusInWindow();
-
     }
     // Fine costruttore
 
@@ -166,4 +177,37 @@ public class BoundaryLogin extends JFrame
             }
         }
     }
+
+    public class BoxSelectItem implements ActionListener {
+        // Reflection
+        private Class<?> aClass;
+
+        BoxSelectItem(Class<?> aClass) {
+            this.aClass = aClass;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JComboBox combo = (JComboBox) e.getSource();
+
+            if (combo.getSelectedIndex() != -1) {
+                String selectedLang = combo
+                        .getSelectedItem()
+                        .toString();
+
+                System.setProperty(Constants.LINGUA_KEY, selectedLang);
+
+                pannelloLogin.setVisible(false);
+
+                try {
+                    this.aClass
+                            .newInstance();
+                } catch (IllegalAccessException |
+                        InstantiationException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

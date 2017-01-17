@@ -1,10 +1,12 @@
 package standAlone.boundary;
 
+import standAlone.control.ControlloreLinguaAmministratore;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ResourceBundle;
 
 
 public class BoundaryAvvio extends StackFrame
@@ -13,15 +15,15 @@ public class BoundaryAvvio extends StackFrame
     private static final long	serialVersionUID	= 1L;
 
     //Pannelli
-    public static JPanel pannello = new JPanel();
-    public JPanel panelTitolo = new JPanel();
-    public JPanel panelButtons = new JPanel();
+    public static JPanel pannello;
+    public JPanel panelTitolo;
+    public JPanel panelButtons;
 
     //Label
-    public JLabel titolo = new JLabel();
+    public JLabel titolo;
 
     //Bottoni
-    public JButton bEntra = new JButton("ENTRA");
+    public JButton bEntra;
 
     //Ascoltatori di bottoni e relative azioni
     private EntraAA	ascoltatoreEtAzioneEntra;
@@ -30,14 +32,23 @@ public class BoundaryAvvio extends StackFrame
     public static JFrame Confine;
 
     // Box lingua
-    private BoundaryProfilo.BoxSelectItem ascoltatoreBox;
+    private ControlloreLinguaAmministratore cl;
 
 
     public BoundaryAvvio()
     {
+        this.pannello = new JPanel();
+        this.panelTitolo = new JPanel();
+        this.panelButtons = new JPanel();
+        this.titolo = new JLabel();
+
+        this.cl = new ControlloreLinguaAmministratore();
+        ResourceBundle bundle = this.cl.getBundleFromProp();
+
+        this.bEntra = new JButton(bundle.getString("boundaryAvvio_entra"));
 
         Confine = this;
-        this.setTitle("PAGINA DI AMMINISTRAZIONE");
+        this.setTitle(bundle.getString("boundaryAvvio_paginaAmm"));
 
         Confine.setLayout(null);
         final int BASECONFINE = 900;
@@ -65,7 +76,7 @@ public class BoundaryAvvio extends StackFrame
         titolo.setSize(panelTitolo.getWidth(), 30);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText("Entra nel pannello di controllo dell'amministratore");
+        titolo.setText(bundle.getString("boundaryAvvio_pannello"));
 
         panelButtons.setLayout(null);
         panelButtons.setSize(getWidth(), 150);
@@ -73,7 +84,7 @@ public class BoundaryAvvio extends StackFrame
 
         panelButtons.add(bEntra);
 
-        bEntra.setToolTipText("Entra nel Pannello");
+        bEntra.setToolTipText(bundle.getString("boundaryAvvio_pannello"));
         bEntra.setBounds((getWidth()/2)-125, 100, 250, 50);
 
         pannello.add(panelTitolo);

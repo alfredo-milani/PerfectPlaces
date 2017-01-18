@@ -36,7 +36,7 @@ public class ControllorePosta {
             ArrayList<Messaggio> elencoMessaggi = new ArrayList<>();
             try {
                 elencoMessaggi = (ArrayList<Messaggio>) DeserializzaOggetti
-                        .deserializza(Constants.UTENTI_PATH);
+                        .deserializza(Constants.MSG_PATH);
             } catch (DeserializzazioneException e) {
                 e.printStackTrace();
             }

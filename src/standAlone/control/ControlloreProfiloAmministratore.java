@@ -27,7 +27,7 @@ extends ControlloreProfilo {
     // Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
     @SuppressWarnings("unchecked")
     @Override
-    public synchronized Utente ottieniUtente(String username) {
+    public Utente ottieniUtente(String username) {
 
         ArrayList<Utente> utenti = null;
         try {
@@ -56,7 +56,7 @@ extends ControlloreProfilo {
     //			0 --> Se tutto va bene
     //         -1 --> Se c'è un errore di serilizzazione/deserializzazione
     @SuppressWarnings("unchecked")
-    public synchronized int modificaProfilo(String username,
+    public int modificaProfilo(String username,
                                             String email,
                                             String vecchiaPassword, String nuovaPassword, String confermaNuovaPassword, Locale lang) {
         ArrayList<Utente> utenti;

@@ -33,7 +33,7 @@ public class ControlloreRegistrazione {
 	// 1 --> C'è qualche campo del form vuoto
 	// 2 --> Le due password non sono uguali
 	// 3 --> Lo username inserito è già stato utilizzato
-	public synchronized int registrazione(String username, String password,
+	public int registrazione(String username, String password,
 										  String password2, String nome,
                                           String cognome, String email, Locale lingua,
                                           String nascita, String sesso)

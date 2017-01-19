@@ -29,7 +29,7 @@ public class ControlloreLogin {
 
 	// Deserializza gli Utenti del file utenti e li posiziona in un ArrayList. Viene fatta una scansione
 	// di tutti gli elementi e viene verificata la corrispondenza di Username e Password inserite
-	public synchronized void login(String username, String password)
+	public void login(String username, String password)
 			throws DeserializzazioneException {
 
 	    if (Constants.DB == 1) {

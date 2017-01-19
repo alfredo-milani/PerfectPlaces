@@ -32,8 +32,9 @@ public class RegistrazioneDBManager {
                     "(?,?,?,?,?,?,?,?,?)"
             );
 
+            PreparedStatement statement = null;
             try {
-                PreparedStatement statement = connection
+                statement = connection
                         .prepareStatement(query);
 
                 statement.setString(1, psw);
@@ -47,10 +48,17 @@ public class RegistrazioneDBManager {
                 statement.setString(9, un);
 
                 statement.executeUpdate();
-                statement.close();
                 result = 1;
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+                }
             }
         }
 

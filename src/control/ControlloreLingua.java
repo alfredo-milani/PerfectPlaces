@@ -70,7 +70,7 @@ public class ControlloreLingua {
     }
 
     // si assume che l'utente 'username' sia loggato
-    public synchronized Locale checkUpdatePref(String username,
+    public Locale checkUpdatePref(String username,
                                                String newLocale) {
 
         if (Constants.DB == 1) {

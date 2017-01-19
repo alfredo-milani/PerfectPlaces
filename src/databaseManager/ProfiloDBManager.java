@@ -38,12 +38,14 @@ public class ProfiloDBManager {
                     Constants.DB_UTENTI_US + "=?"
             );
 
+            PreparedStatement statement = null;
+            ResultSet result = null;
             try {
-                PreparedStatement statement = connection
+                statement = connection
                         .prepareStatement(query);
 
                 statement.setString(1, username);
-                ResultSet result = statement.executeQuery();
+                result = statement.executeQuery();
                 if (result.next()) {
                     utenteInfo[0] = result
                             .getString(Constants.DB_UTENTI_US);
@@ -64,10 +66,23 @@ public class ProfiloDBManager {
                     utenteInfo[8] = result
                             .getString(Constants.DB_UTENTI_SESSO);
                 }
-
-                statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                if (result != null) {
+                    try {
+                        result.close();
+                    } catch (SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+                }
             }
 
             lang = controlloreLingua.getLocaleFromString(utenteInfo[6]);
@@ -99,8 +114,9 @@ public class ProfiloDBManager {
                 Constants.DB_UTENTI_US + "=?"
         );
 
+        PreparedStatement statement = null;
         try {
-            PreparedStatement statement = connection
+            statement = connection
                     .prepareStatement(query);
 
             statement.setString(1, utente.getUsername());
@@ -115,10 +131,16 @@ public class ProfiloDBManager {
             statement.setString(9, utente.getSesso());
             statement.setString(10, utente.getUsername());
             statement.executeUpdate();
-
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ public class ControllorePosta {
 	}
 
     // Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del DB e, se lo trova, lo restituisce.
-    public synchronized Messaggio ricercaMessaggioPerCodice(int codice) {
+    public Messaggio ricercaMessaggioPerCodice(int codice) {
 	    if (Constants.DB == 1) {
 
             return gPDBM.getMessaggioCod(codice);
@@ -57,7 +57,7 @@ public class ControllorePosta {
 	
 	// Metodo che riceve in input uno username, ricerca nel DB tutti i messaggi che hanno quello username come
 	// destinatario e li restituisce in un Array List.
-	public synchronized ArrayList<Messaggio> ricercaMessaggi(String username) {
+	public ArrayList<Messaggio> ricercaMessaggi(String username) {
 
 	    if (Constants.DB == 1) {
 
@@ -99,7 +99,7 @@ public class ControllorePosta {
     //        5 --> Se la sessione dell'utente è scaduta
 	//        6 --> Se il mittente e il destinatario coincidono
 	//        0 --> Se tutto va bene
-	public synchronized int scriviMessaggio(String oggetto, String mittente,
+	public int scriviMessaggio(String oggetto, String mittente,
 											String destinatario, String contenuto) {
 
 	    if (Constants.DB == 1) {
@@ -186,7 +186,7 @@ public class ControllorePosta {
 
 	// Metodo che riceve in input il codice di un messaggio e si occupa della sua eliminazione
     // Ritorna il vaolre 0 se il messaggio non è stato rimosso correttamente altrimenti ritorna il valore 1
-	public synchronized int eliminaMessaggio(int oggetto) {
+	public int eliminaMessaggio(int oggetto) {
         if (Constants.DB == 1) {
 
             return gPDBM.rimuoviMessaggio(oggetto) ? 1 : 0;

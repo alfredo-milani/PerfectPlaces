@@ -28,18 +28,33 @@ public class GestioneDB {
                     Constants.DB_UTENTI_US + "=?"
             );
 
+            PreparedStatement statement = null;
+            ResultSet result = null;
             try {
-                PreparedStatement statement = connection
+                statement = connection
                         .prepareStatement(query);
 
                 statement.setString(1, username);
-                ResultSet result = statement.executeQuery();
+                result = statement.executeQuery();
                 if (result.next())
                     esiste = true;
-
-                statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                if (result != null) {
+                    try {
+                        result.close();
+                    } catch (SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+                }
             }
         }
 

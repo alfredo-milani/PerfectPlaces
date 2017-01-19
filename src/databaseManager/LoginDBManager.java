@@ -32,12 +32,14 @@ public class LoginDBManager {
                     Constants.DB_UTENTI_US + "=?"
             );
 
+            PreparedStatement statement = null;
+            ResultSet result = null;
             try {
-                PreparedStatement statement = connection
+                statement = connection
                         .prepareStatement(query);
 
                 statement.setString(1, username);
-                ResultSet result = statement.executeQuery();
+                result = statement.executeQuery();
                 if (result.next()) {
                     if ((result.getString(Constants.DB_UTENTI_PSW)
                             .compareTo(password) == 0) &&
@@ -46,10 +48,32 @@ public class LoginDBManager {
                         accesso = 1;
                     }
                 }
-
-                statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                // Per liberare lo spazio relativo ai cursori
+                // necessari a gestire le seguenti risorse
+
+                // NOTA: la connessione al DB non viene chiusa SOLO alla chiusura del
+                //       programma dal momento che instaurare una connessione è una
+                //       operazione dispendiosa in termini di risorse
+
+                // NOTA: chiudere lo statement farà chiudere anche il result
+                //       chiudo result in modo manuale per rendere il codice più robusto
+                if (result != null) {
+                    try {
+                        result.close();
+                    } catch (SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException sqle) {
+                        sqle.printStackTrace();
+                    }
+                }
             }
         }
 

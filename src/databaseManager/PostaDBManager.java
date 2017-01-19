@@ -71,12 +71,14 @@ public class PostaDBManager {
                 Constants.DB_MESSAGGI_DEST + "=?"
         );
 
+        PreparedStatement statement = null;
+        ResultSet result = null;
         try {
-            PreparedStatement statement = connection
+            statement = connection
                     .prepareStatement(query);
 
             statement.setString(1, username);
-            ResultSet result = statement.executeQuery();
+            result = statement.executeQuery();
             while (result.next()) {
                 String oggettoTmp = result
                         .getString(Constants.DB_MESSAGGI_OBJ);
@@ -95,10 +97,23 @@ public class PostaDBManager {
                         mittenteTmp, destTmp,
                         contTmp, dataTmp, codiceTmp));
             }
-
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+            }
         }
 
         return messaggi;
@@ -113,8 +128,9 @@ public class PostaDBManager {
                 "(DEFAULT,?,?,?,?,?)"
         );
 
+        PreparedStatement statement = null;
         try {
-            PreparedStatement statement = connection
+            statement = connection
                     .prepareStatement(query);
 
             statement.setString(1, oggetto);
@@ -124,9 +140,16 @@ public class PostaDBManager {
             statement.setString(5, data);
 
             statement.executeUpdate();
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+            }
         }
     }
 
@@ -138,18 +161,26 @@ public class PostaDBManager {
                 Constants.DB_MESSAGGI_COD + "=?"
         );
 
+        PreparedStatement statement = null;
         try {
-            PreparedStatement statement = connection
+            statement = connection
                     .prepareStatement(query);
 
             statement.setInt(1, codice);
 
             statement.executeUpdate();
-            statement.close();
             esito = true;
         } catch (SQLException e) {
             esito = false;
             e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+            }
         }
 
         return esito;

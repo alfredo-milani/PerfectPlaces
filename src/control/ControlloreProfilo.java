@@ -26,7 +26,7 @@ public class ControlloreProfilo {
 	
 	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
     // Se l'oggetto non viene trovato viene restituito l'oggetto utente fittizio "errore".
-	public synchronized Utente ottieniUtente(String username) {
+	public Utente ottieniUtente(String username) {
 	    if (Constants.DB == 1) {
 
             Utente utente = gPDBM.getUtente(username);
@@ -69,7 +69,7 @@ public class ControlloreProfilo {
     //          5 --> Informazini campo "Sesso" errate
     //          6 --> Formato data errato
 	//			0 --> Se tutto va bene
-	public synchronized int modificaProfilo(String username, String nome, String cognome,
+	public int modificaProfilo(String username, String nome, String cognome,
                                             String email, String sesso, String nascita,
                                             String vecchiaPassword, String nuovaPassword,
                                             String confermaNuovaPassword) {

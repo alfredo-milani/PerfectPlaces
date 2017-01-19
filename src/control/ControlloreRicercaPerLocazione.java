@@ -1,6 +1,5 @@
 package control;
 
-import entity.Locazione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 

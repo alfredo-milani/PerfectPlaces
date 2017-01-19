@@ -77,7 +77,7 @@
 					
 					<center>
 					<div class="post">
-					<table>
+					<table width="100%">
 						<tr>
                             <td><h1><center><%=bundle.getString("posta_clientEsterno")%></center></h1></td>
 							<td><h1><center><%=bundle.getString("posta_scrivi")%></center></h1></td>

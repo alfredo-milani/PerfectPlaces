@@ -125,7 +125,7 @@
                             </tr>
                         </table>
 
-                        <table>
+                        <table width="100%">
                             <tr>
                                 <td>
                                     <h1 class="title"><strong><%=bundle.getString("profiloUtente_locazioni")%></strong></h1>

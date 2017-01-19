@@ -15,7 +15,6 @@ public class Locazione implements Serializable {
 	protected boolean parcheggio;
 	protected boolean wifi;
 	protected boolean pet;
-	private String tipo;
 	
 	// Costruttori
 	public Locazione(){
@@ -105,14 +104,6 @@ public class Locazione implements Serializable {
 
 	public void setPet(boolean pet) {
 		this.pet = pet;
-	}
-		
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public void setPostiTotali(String postiTotali) {

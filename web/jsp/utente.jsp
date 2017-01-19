@@ -107,7 +107,7 @@
 
 				<!--  Parte getUtente loggato -->
 					<div class="language">
-						<table>
+						<table style="width: 100%">
 							<tr>
 								<td>
 									<label for="select"> <%=bundle.getString("index_lingua")%> </label>
@@ -155,7 +155,8 @@
 
 					<div class="post">
 						<h2 class="title"><%=bundle.getString("utente_cliccaImg")%></h2>
-						<table>
+                        <br><br><br>
+						<table style="width: 100%" >
 
 						<tr>
 						    <td style="padding-left: 50px"><strong><a href="areaViaggiatore.jsp" ><%=bundle.getString("utente_viaggiatore")%></a></strong></td>

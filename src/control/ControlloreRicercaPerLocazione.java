@@ -9,10 +9,10 @@ import java.io.IOException;
 
 public interface ControlloreRicercaPerLocazione {
 
-    Object ricerca(Locazione l, String provincia, String prezzo,int numeroGiorni)throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException;
+    Object ricerca(String tipo, String provincia, String prezzo,int numeroGiorni) throws ClassNotFoundException,
+            InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException, InterruptedException;
 
 
-    Object ricercaAvanzata(Locazione l, String provincia,String prezzo,int numeroGiorni, String parcheggio, String wifi, String pet,String caratteristica)throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException;
+    Object ricercaAvanzata(String tipo, String provincia,String prezzo,int numeroGiorni, String parcheggio, String wifi, String pet,String caratteristica) throws ClassNotFoundException,
+            InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException, InterruptedException;
 }

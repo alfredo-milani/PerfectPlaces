@@ -344,10 +344,8 @@
                         </div>
                     </div>
                     <div style="clear: both"></div>
-
+                    </div>
                 </div>
-
-            </div>
             <div style="clear: both;">&nbsp;</div>
         </div>
         <!-- end #sidebar -->

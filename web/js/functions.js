@@ -125,7 +125,11 @@ function visualizzaRimozione(num) {
     var x = document.getElementsByClassName("btnRimozione");
     if(document.getElementById) {
         for(var i = 0; i<num; ++i) {
-            x[i].style.display = 'block';
+            if(x[i].style.display=='none') {
+                x[i].style.display = 'block';
+            }else {
+                x[i].style.display = 'none';
+            }
         }
 
     }

@@ -39,7 +39,6 @@ public class ControlloreVisualizzaLocazioni {
             locazioniProvvisorio = (ArrayList<Locazione>) dobj.deserializza(percorsoAlbergo);
             for (Locazione aLocazioniProvvisorio : locazioniProvvisorio) {
                 if (aLocazioniProvvisorio.getUserLocatore().equals(username)) {
-                    aLocazioniProvvisorio.setTipo("albergo");
                     locazioni.add(aLocazioniProvvisorio);
                 }
             }
@@ -54,7 +53,6 @@ public class ControlloreVisualizzaLocazioni {
             locazioniProvvisorio = (ArrayList<Locazione>) dobj.deserializza(percorsoAppartamento);
             for (int i = 0; i < locazioniProvvisorio.size(); i++) {
                 if (locazioniProvvisorio.get(i).getUserLocatore().equals(username)) {
-                    locazioniProvvisorio.get(i).setTipo("appartamento");
                     locazioni.add(locazioniProvvisorio.get(i));
                 }
             }
@@ -69,7 +67,6 @@ public class ControlloreVisualizzaLocazioni {
             locazioniProvvisorio = (ArrayList<Locazione>) dobj.deserializza(percorsoBeb);
             for (int i = 0; i < locazioniProvvisorio.size(); i++) {
                 if (locazioniProvvisorio.get(i).getUserLocatore().equals(username)) {
-                    locazioniProvvisorio.get(i).setTipo("beb");
                     locazioni.add(locazioniProvvisorio.get(i));
                 }
             }
@@ -84,7 +81,6 @@ public class ControlloreVisualizzaLocazioni {
             locazioniProvvisorio = (ArrayList<Locazione>) dobj.deserializza(percorsoCasaVacanza);
             for (int i = 0; i < locazioniProvvisorio.size(); i++) {
                 if (locazioniProvvisorio.get(i).getUserLocatore().equals(username)) {
-                    locazioniProvvisorio.get(i).setTipo("casavacanza");
                     locazioni.add(locazioniProvvisorio.get(i));
                 }
             }
@@ -99,7 +95,6 @@ public class ControlloreVisualizzaLocazioni {
             locazioniProvvisorio = (ArrayList<Locazione>) dobj.deserializza(percorsoOstello);
             for (int i = 0; i < locazioniProvvisorio.size(); i++) {
                 if (locazioniProvvisorio.get(i).getUserLocatore().equals(username)) {
-                    locazioniProvvisorio.get(i).setTipo("ostello");
                     locazioni.add(locazioniProvvisorio.get(i));
                 }
             }

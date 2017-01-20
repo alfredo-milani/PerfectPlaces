@@ -1,4 +1,3 @@
-<%@ page import="boundary.BoundaryGestionePrenotazioni" %>
 <%@ page import="entity.Prenotazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="java.util.ArrayList" %>
@@ -19,9 +18,9 @@
 </head>
 <body>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="bvp" scope="page" class="boundary.BoundaryGestionePrenotazioni"/>
 
 <%
-    BoundaryGestionePrenotazioni bvp = new BoundaryGestionePrenotazioni();
     ArrayList<Prenotazione> elencoPrenotazione =new ArrayList<>();
     try {
         elencoPrenotazione = bvp.visualizzaPerViaggiatore(bl.ritornaUsername());

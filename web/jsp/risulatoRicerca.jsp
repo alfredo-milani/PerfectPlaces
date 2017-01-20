@@ -13,15 +13,13 @@
 </head>
 <body>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<%@page import="boundary.BoundaryRicercaLocazione" %>
+<jsp:useBean id="brl" scope="page" class="boundary.BoundaryRicercaLocazione"/>
 <%@ page import="entity.*" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%
-
-	BoundaryRicercaLocazione brl =  new BoundaryRicercaLocazione();
 
 String nomeLocazione;
 String indirizzo;

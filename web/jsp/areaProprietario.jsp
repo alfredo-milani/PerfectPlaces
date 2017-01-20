@@ -68,11 +68,11 @@
 							
 					</div>
 					<div class="post">
-					<table>
+					<table width="100%">
 						<tr>
 							<td><h1>Visualizza</h1></td>
-							<td><h1>Inserisci</h1></td>
-							<td><h1>Rimuovi</h1></td>
+							<td style="padding-left: 50px" ><h1>Inserisci</h1></td>
+							<td style="padding-left: 50px"><h1>Rimuovi</h1></td>
 							<td><h1>Prenotazioni</h1></td>
 
 						</tr>
@@ -86,7 +86,6 @@
 
 						</table>
 					</div>
-					</center>
 				
 					
 					

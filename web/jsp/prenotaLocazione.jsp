@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<%@page import="boundary.BoundaryPrenotaLocazioni" %>
+<jsp:useBean id="bpl" scope="page" class="boundary.BoundaryPrenotaLocazioni"/>
 <%@page import="entity.Locazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
@@ -20,7 +20,6 @@
 
 <%
 
-	BoundaryPrenotaLocazioni bpl =  new BoundaryPrenotaLocazioni();
 
 String dataInizio = request.getParameter("dataInizio");
 String dataFine = request.getParameter("dataFine");

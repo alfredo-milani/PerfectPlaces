@@ -1,4 +1,3 @@
-<%@ page import="boundary.BoundaryGestionePrenotazioni" %>
 <%@ page import="entity.Prenotazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="java.util.ArrayList" %>
@@ -19,9 +18,9 @@
 </head>
 <body>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
+<jsp:useBean id="bvp" scope="page" class="boundary.BoundaryGestionePrenotazioni"/>
 
 <%
-    BoundaryGestionePrenotazioni bvp = new BoundaryGestionePrenotazioni();
     ArrayList<Prenotazione> elencoPrenotazione =new ArrayList<>();
     try {
         elencoPrenotazione = bvp.visualizzaPerProprietario(bl.ritornaUsername());
@@ -78,7 +77,7 @@
         <div id="page-bgbtm">
             <div id="content">
                 <h2><strong>Le tue prenotazioni</strong></h2>
-               <!-- <p id="<% out.println(numeroPrenotazioni);%>" class="cliccaQui" onclick="visualizzaRimozione(this.id)"  >Clicca qui se vuoi rimuovere una prenotazione  </p>-->
+               <% out.println(numeroPrenotazioni);%>
                 <%
                     if(elencoPrenotazione.size()==0){
                 %>

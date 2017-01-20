@@ -75,7 +75,7 @@
                                     <strong>
                                         <p style="font-size: 30px">Visualizza/Rimuovi Prenotazioni</p>
                                         <a href="visualizzaPrenotazioniPerViaggiatore.jsp" >
-                                            <img class="imgInizio" src="../css/images/visualizzaPrenotazioni.jpg"   width="250" height="250"  alt="visualizza prenotazioni">
+                                            <img class="imgInizio" src="../css/images/visualizzaPrenotazioni.jpg" style="margin-left: 90px"  width="250" height="250"  alt="visualizza prenotazioni">
                                         </a>
                             </td>
                             <td style="clear: both"></td>

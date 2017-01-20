@@ -11,14 +11,13 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<%@page import="boundary.BoundaryGestionePrenotazioni" %>
 <%@ page import="entity.Prenotazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
 <%@ page import="java.util.ArrayList" %>
+<jsp:useBean id="bp" scope="page" class="boundary.BoundaryGestionePrenotazioni"/>
 <%
 
-    BoundaryGestionePrenotazioni bp = new BoundaryGestionePrenotazioni();
 
 
     String id = request.getParameter("id");

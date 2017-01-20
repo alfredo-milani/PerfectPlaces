@@ -11,8 +11,8 @@ import java.sql.SQLException;
  */
 public class RegistrazioneDBManager {
 
-    private Connection connection;
-    private GestioneDB gDB;
+    private final Connection connection;
+    private final GestioneDB gDB;
 
     public RegistrazioneDBManager() {
         this.connection = DBConnection.getSingleConn();
@@ -32,31 +32,33 @@ public class RegistrazioneDBManager {
                     "(?,?,?,?,?,?,?,?,?)"
             );
 
-            PreparedStatement statement = null;
-            try {
-                statement = connection
-                        .prepareStatement(query);
+            synchronized (this.connection) {
+                PreparedStatement statement = null;
+                try {
+                    statement = connection
+                            .prepareStatement(query);
 
-                statement.setString(1, psw);
-                statement.setString(2, nome);
-                statement.setString(3, cognome);
-                statement.setString(4, email);
-                statement.setString(5, immagine);
-                statement.setString(6, lingua);
-                statement.setString(7, nascita);
-                statement.setString(8, sesso);
-                statement.setString(9, un);
+                    statement.setString(1, psw);
+                    statement.setString(2, nome);
+                    statement.setString(3, cognome);
+                    statement.setString(4, email);
+                    statement.setString(5, immagine);
+                    statement.setString(6, lingua);
+                    statement.setString(7, nascita);
+                    statement.setString(8, sesso);
+                    statement.setString(9, un);
 
-                statement.executeUpdate();
-                result = 1;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                if (statement != null) {
-                    try {
-                        statement.close();
-                    } catch (SQLException sqle) {
-                        sqle.printStackTrace();
+                    statement.executeUpdate();
+                    result = 1;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (statement != null) {
+                        try {
+                            statement.close();
+                        } catch (SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
                     }
                 }
             }
@@ -68,6 +70,4 @@ public class RegistrazioneDBManager {
     public boolean controlloUsername(String username) {
         return gDB.usernameEsistente(username);
     }
-
-
 }

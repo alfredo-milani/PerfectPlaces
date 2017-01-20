@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class GestioneDB {
 
-    private Connection connection;
+    private final Connection connection;
 
     public GestioneDB() {
         this.connection = DBConnection.getSingleConn();
@@ -28,31 +28,33 @@ public class GestioneDB {
                     Constants.DB_UTENTI_US + "=?"
             );
 
-            PreparedStatement statement = null;
-            ResultSet result = null;
-            try {
-                statement = connection
-                        .prepareStatement(query);
+            synchronized (this.connection) {
+                PreparedStatement statement = null;
+                ResultSet result = null;
+                try {
+                    statement = connection
+                            .prepareStatement(query);
 
-                statement.setString(1, username);
-                result = statement.executeQuery();
-                if (result.next())
-                    esiste = true;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                if (result != null) {
-                    try {
-                        result.close();
-                    } catch (SQLException sqle) {
-                        sqle.printStackTrace();
+                    statement.setString(1, username);
+                    result = statement.executeQuery();
+                    if (result.next())
+                        esiste = true;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (result != null) {
+                        try {
+                            result.close();
+                        } catch (SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
                     }
-                }
-                if (statement != null) {
-                    try {
-                        statement.close();
-                    } catch (SQLException sqle) {
-                        sqle.printStackTrace();
+                    if (statement != null) {
+                        try {
+                            statement.close();
+                        } catch (SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
                     }
                 }
             }

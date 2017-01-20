@@ -12,36 +12,40 @@ import java.sql.SQLException;
  */
 public class LinguaDBManager {
 
-    private Connection connection;
+    private final Connection connection;
 
     public LinguaDBManager() {
         this.connection = DBConnection.getSingleConn();
     }
 
     public void aggiornaPref(String username, String lang) {
-        String query = String.format(
-                Constants.DB_QUERY_UPDATE,
-                Constants.DB_TABLE_UTENTI,
-                Constants.DB_UTENTI_LINGUA + "=?",
-                Constants.DB_UTENTI_US + "=?"
-        );
+        if (this.connection != null) {
+            String query = String.format(
+                    Constants.DB_QUERY_UPDATE,
+                    Constants.DB_TABLE_UTENTI,
+                    Constants.DB_UTENTI_LINGUA + "=?",
+                    Constants.DB_UTENTI_US + "=?"
+            );
 
-        PreparedStatement statement = null;
-        try {
-            statement = connection
-                    .prepareStatement(query);
-
-            statement.setString(1, lang);
-            statement.setString(2, username);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (statement != null) {
+            synchronized (this.connection) {
+                PreparedStatement statement = null;
                 try {
-                    statement.close();
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
+                    statement = connection
+                            .prepareStatement(query);
+
+                    statement.setString(1, lang);
+                    statement.setString(2, username);
+                    statement.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (statement != null) {
+                        try {
+                            statement.close();
+                        } catch (SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
+                    }
                 }
             }
         }
@@ -56,33 +60,37 @@ public class LinguaDBManager {
                 Constants.DB_UTENTI_US + "=?"
         );
 
-        PreparedStatement statement = null;
-        ResultSet result = null;
-        try {
-            statement = connection
-                    .prepareStatement(query);
+        if (this.connection != null) {
+            synchronized (this.connection) {
+                PreparedStatement statement = null;
+                ResultSet result = null;
+                try {
+                    statement = connection
+                            .prepareStatement(query);
 
-            statement.setString(1, username);
-            result = statement.executeQuery();
-            if (result.next()) {
-                lang = result
-                        .getString(Constants.DB_UTENTI_LINGUA);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (result != null) {
-                try {
-                    result.close();
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
+                    statement.setString(1, username);
+                    result = statement.executeQuery();
+                    if (result.next()) {
+                        lang = result
+                                .getString(Constants.DB_UTENTI_LINGUA);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (result != null) {
+                        try {
+                            result.close();
+                        } catch (SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
+                    }
+                    if (statement != null) {
+                        try {
+                            statement.close();
+                        } catch (SQLException sqle) {
+                            sqle.printStackTrace();
+                        }
+                    }
                 }
             }
         }

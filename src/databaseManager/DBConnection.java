@@ -14,6 +14,8 @@ public class DBConnection {
     // Creato all'atto di caricamento in memoria della classe, thread-safe
     private final static DBConnection CONNECTION = new DBConnection();
     // Si noti che l'accesso alla variabile Connection deve essere thread-safe da parte del chiamante
+    // Si è preferito usare una sola connessione al DB in modo da risparmiare risorse in termini di
+    // tempo computazionale necessario a ristabilire la connessione ad ogni richiesta e in termini di spazio
     private Connection connection;
 
     // Costruttore privato, in quanto la creazione dell'istanza deve essere controllata.

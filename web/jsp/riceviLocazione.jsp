@@ -51,7 +51,6 @@
     }
     locazione.setUserLocatore(username);
 
-    out.println("command" + b.getCommand());
     switch (b.getCommand()) {
         case "0": {
             // Caso Albergo

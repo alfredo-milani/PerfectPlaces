@@ -14,13 +14,16 @@ function visualizza(id, id1, id2, id3, id4) {
     }
 }
 
+
 //funzioni per Area viaggiatore
-function visualizzaPerViaggiatore(id, id1, id2, id3, id4, btnAvanzata,formAvanzataAttuale,formAvanzata1,formAvanzata2,formAvanzata3,formAvanzata4) {
+function visualizzaPerViaggiatore(id, id1, id2, id3, id4,btnStandard, btnAvanzata,formAvanzataAttuale,formAvanzata1,formAvanzata2,formAvanzata3,formAvanzata4) {
 
     if (document.getElementById) {
-        if (document.getElementById(id).style.display == 'none' && document.getElementById(btnAvanzata).style.display == 'none') {
+        if (document.getElementById(id).style.display == 'none' && document.getElementById(btnAvanzata).style.display == 'none' ) {
             document.getElementById(id).style.display = 'block';
+            document.getElementById(btnStandard).style.display='block';
             document.getElementById(btnAvanzata).style.display = 'block';
+
 
             //nascondi tutti gli altri form
             document.getElementById(id1).style.display = 'none';
@@ -34,19 +37,23 @@ function visualizzaPerViaggiatore(id, id1, id2, id3, id4, btnAvanzata,formAvanza
             document.getElementById(formAvanzata4).style.display = 'none';
         }
         else {
+            if(document.getElementById(btnAvanzata).value =="standard")
+                document.getElementById(btnAvanzata).value ="avanzata";
+            else
+                document.getElementById(btnAvanzata).value ="standard";
+
             document.getElementById(id).style.display = 'none';
             document.getElementById(btnAvanzata).style.display = 'none';
             document.getElementById(formAvanzataAttuale).style.display = 'none';
         }
     }
 }
-
 function visualizzaRicercaAvanzata(bottoneRicerca,bottoneAvanzata,formStandard, formAvanzata) {
     if(document.getElementById) {
-        if(document.getElementById(bottoneAvanzata).value =="+ opzioni")
-            document.getElementById(bottoneAvanzata).value ="- opzioni";
+        if(document.getElementById(bottoneAvanzata).value =="avanzata")
+            document.getElementById(bottoneAvanzata).value ="standard";
         else
-            document.getElementById(bottoneAvanzata).value ="+ opzioni";
+            document.getElementById(bottoneAvanzata).value ="avanzata";
 
         if (document.getElementById(formAvanzata).style.display == 'none') {
             document.getElementById(formAvanzata).style.display = 'block';
@@ -60,7 +67,6 @@ function visualizzaRicercaAvanzata(bottoneRicerca,bottoneAvanzata,formStandard, 
         }
     }
 }
-
 function nascondiBtnAvanzata(btn1,btn2,btn3,btn4){
     if(document.getElementById) {
         document.getElementById(btn1).style.display = 'none';

@@ -28,32 +28,38 @@ public class ControlloreRimuoviPrenotazione {
     private static String percorsoPrenotazioniCaseVacanza = Constants.PRENOTAZIONE_CASAVACANZA_PATH;
 
 
-    /**
-     *metodo che rimuove una prenotazione per farlo oltre ad eliminare una classe prenotati(che registra i clienti) deve
-     *eliminare anche tante CamerePrenotati quante sono le date per le quali l'utente si era precedentente prenotazione
+    /*
+     *metodo che rimuove una prenotazione, per farlo oltre ad eliminare un oggettp prenotazione deve
+     *eliminare anche i posti occupati relativi alle date per le quali l'utente si era precedentente prenotato
      */
     public void rimuoviPrenotazione(Prenotazione prenotazione) throws DeserializzazioneException, SerializzazioneException, IOException {
 
-        if (prenotazione.getTipo().equals("Albergo")) {
-            rimuoviPrenotati(prenotazione,percorsoPrenotatiAlbergo);
-            rimuoviPerNonCase(prenotazione,  percorsoPrenotazioniAlberghi);
+        switch (prenotazione.getTipo()) {
+            case "Albergo":
+                rimuoviPrenotati(prenotazione, percorsoPrenotatiAlbergo);
+                rimuoviPerNonCase(prenotazione, percorsoPrenotazioniAlberghi);
 
-        } else if (prenotazione.getTipo().equals("Appartamento")) {
-            rimuoviPrenotati(prenotazione,percorsoPrenotatiAppartamento);
-            rimuoviPerCase(prenotazione, percorsoPrenotazioniAppartamenti);
+                break;
+            case "Appartamento":
+                rimuoviPrenotati(prenotazione, percorsoPrenotatiAppartamento);
+                rimuoviPerCase(prenotazione, percorsoPrenotazioniAppartamenti);
 
-        } else if (prenotazione.getTipo().equals("Beb")) {
-            rimuoviPrenotati(prenotazione,percorsoPrenotatiBeb);
-            rimuoviPerNonCase(prenotazione, percorsoPrenotazioniBeb);
+                break;
+            case "Beb":
+                rimuoviPrenotati(prenotazione, percorsoPrenotatiBeb);
+                rimuoviPerNonCase(prenotazione, percorsoPrenotazioniBeb);
 
-        } else if (prenotazione.getTipo().equals("CasaVacanza")) {
-            rimuoviPrenotati(prenotazione,percorsoPrenotatiCasaVacanza);
-            rimuoviPerCase(prenotazione, percorsoPrenotazioniCaseVacanza);
+                break;
+            case "CasaVacanza":
+                rimuoviPrenotati(prenotazione, percorsoPrenotatiCasaVacanza);
+                rimuoviPerCase(prenotazione, percorsoPrenotazioniCaseVacanza);
 
 
-        } else {
-            rimuoviPrenotati(prenotazione,percorsoPrenotatiOstello);
-            rimuoviPerNonCase(prenotazione,percorsoPrenotazioniOstelli);
+                break;
+            case "Ostello":
+                rimuoviPrenotati(prenotazione, percorsoPrenotatiOstello);
+                rimuoviPerNonCase(prenotazione, percorsoPrenotazioniOstelli);
+                break;
         }
 
 

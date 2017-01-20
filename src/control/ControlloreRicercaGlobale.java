@@ -25,8 +25,8 @@ public class ControlloreRicercaGlobale {
 
     public ArrayList<Locazione> ricercaGlobale(String provincia, String prezzo,int numeroGiorni) throws DeserializzazioneException, InterruptedException {
 
-        List<Locazione> locazioni = Collections.synchronizedList(new ArrayList<Locazione>());
-
+       // List<Locazione> locazioni = Collections.synchronizedList(new ArrayList<Locazione>());
+        List<Locazione> locazioni = new ArrayList<>();
 
         ArrayList<Locazione> locazioniTotali = new ArrayList<>();
 
@@ -42,19 +42,20 @@ public class ControlloreRicercaGlobale {
         Thread t4 = new Thread(tCasa);
         Thread t5 = new Thread(tOst);
 
-        synchronized (locazioni) {
+     //   synchronized (locazioni) {
             t1.start();
             t2.start();
             t3.start();
             t4.start();
             t5.start();
-        }
+     //   }
 
         t1.join();
         t2.join();
         t3.join();
         t4.join();
         t5.join();
+
 
 
 /*

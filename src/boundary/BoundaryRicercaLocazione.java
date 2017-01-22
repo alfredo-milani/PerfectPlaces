@@ -3,7 +3,7 @@ package boundary;
 import control.AdapterRicercaPerLocazione;
 import control.ControlloreRicercaGlobale;
 import control.ControlloreRicercaPerLocazione;
-import entity.*;
+import entity.Locazione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.CreaArrayDate;

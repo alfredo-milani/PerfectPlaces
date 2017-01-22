@@ -3,12 +3,8 @@ package control;
 import constants.Constants;
 import entity.Locazione;
 import exception.DeserializzazioneException;
-import utils.DeserializzaOggetti;
 
-import java.awt.datatransfer.StringSelection;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ControlloreRicercaGlobale {

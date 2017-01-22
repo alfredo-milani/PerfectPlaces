@@ -32,18 +32,20 @@ public class DBConnection {
             if (this.connection != null) {
                 System.out.println("Connected to " + Constants.DB_URL);
             } else {
-                System.out.println("Connection failed to " + Constants.DB_URL);
+                System.err.println("Connection failed to " + Constants.DB_URL);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
+
     /**
      * Punto di accesso a DBConnection.
      * @return il Singleton corrispondente
      */
     public static Connection getSingleConn() {
+        //return CONNECTION.connection;
         return CONNECTION.connection;
     }
 

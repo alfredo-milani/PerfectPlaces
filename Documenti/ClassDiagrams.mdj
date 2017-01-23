@@ -8805,7 +8805,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "-connection: Connectino",
+											"text": "-connection: Connection",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -8958,7 +8958,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 72,
-									"top": -208,
+									"top": -216,
 									"width": 10,
 									"height": 10,
 									"autoResize": false
@@ -8982,7 +8982,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 72,
-									"top": -208,
+									"top": -216,
 									"width": 10,
 									"height": 10,
 									"autoResize": false
@@ -10110,7 +10110,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": -424,
-									"top": -56,
+									"top": -64,
 									"width": 10,
 									"height": 10,
 									"autoResize": false
@@ -10134,7 +10134,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": -424,
-									"top": -56,
+									"top": -64,
 									"width": 10,
 									"height": 10,
 									"autoResize": false
@@ -14149,7 +14149,7 @@
 							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
-							"type": "Connectino",
+							"type": "Connection",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,

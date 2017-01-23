@@ -12,7 +12,7 @@ public class DeserializzaOggetti {
 		
 	}
 	
-	// Metodo che prende come input il percorso del file, effettua la deserializzazione e ritorna l'oggetto che verr� castato dal chiamante.
+	// Metodo che prende come input il percorso del file, effettua la deserializzazione e ritorna l'oggetto che verrà castato dal chiamante.
 	public static Object deserializza(String percorso)
 			throws DeserializzazioneException {
 		try{

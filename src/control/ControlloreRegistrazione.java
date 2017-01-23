@@ -12,14 +12,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
-// Questa classe si occupa della registrazione degli utenti.
-
 public class ControlloreRegistrazione {
 
 	private ArrayList<Utente> utenti;
 	private RegistrazioneDBManager rDBM;
 
-	// Costruttore
 	public ControlloreRegistrazione() {
 	    if (Constants.DB == 1) {
             this.rDBM = new RegistrazioneDBManager();
@@ -27,12 +24,27 @@ public class ControlloreRegistrazione {
             this.utenti = new ArrayList<>();
         }
 	}
-	
-	//Inserimento nuovo getUtente nel file utenti. Viene restituito un intero che indica il tipo di errore.
-	// 0 --> Tutto ok
-	// 1 --> C'è qualche campo del form vuoto
-	// 2 --> Le due password non sono uguali
-	// 3 --> Lo username inserito è già stato utilizzato
+
+
+    /**
+     * Inserimento nuovo Utente nel sistema.
+     * Viene restituito un intero che indica il tipo di errore.
+     * @param username nome utente univoco che identifica l'utente nel sistema
+     * @param password codice di sicurezza associato a @username per accedere ai servizi del sistema
+     * @param password2 conferma del corretto inserimento di @password
+     * @param nome nome dell'utente che intende rgistrarsi nel sistema
+     * @param cognome cognome dell'utente che intende registrarsi nel sistema
+     * @param email indirizzo e-mail dell'utente che intende registrarsi nel sistema
+     * @param lingua lingua corrente del sistema su ci si effettua la registrazione
+     * @param nascita data di nascita dell'utente
+     * @param sesso sesso dell'utente
+     * @return  0 --> Tutto ok
+     *          1 --> C'è qualche campo del form vuoto
+     *          2 --> Le due password non sono uguali
+     *          3 --> Lo username inserito è già stato utilizzato
+     * @throws DeserializzazioneException
+     * @throws SerializzazioneException
+     */
 	public int registrazione(String username, String password,
 										  String password2, String nome,
                                           String cognome, String email, Locale lingua,

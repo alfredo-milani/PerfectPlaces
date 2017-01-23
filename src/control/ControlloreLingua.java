@@ -24,6 +24,14 @@ public class ControlloreLingua {
             this.lDBM = new LinguaDBManager();
     }
 
+
+    /**
+     * Metodo che fornisce il giusto ResourceBundle corrispondente al path (PACKAGE_LANGUAGE),
+     * in funzione della lingua scelta
+     * @param locale lingua scelta dall'utente
+     * @return ResourceBundle corrispondente alla lingua scelta contenente informazioni
+     *      del tipo key=value
+     */
     public static ResourceBundle getBundle(Locale locale) {
         if (locale != null)
             return ResourceBundle
@@ -33,14 +41,28 @@ public class ControlloreLingua {
                     .getBundle(Constants.PACKAGE_LANGUAGE, Locale.getDefault());
     }
 
+    /**
+     * Conversione informazioni riguardante la scelta della lingua
+     * @param lang lingua scelta in formato String
+     * @return lingua scelta in formato Locale
+     */
     public Locale getLocaleFromString(String lang) {
         return new Locale(lang, "");
     }
 
+    /**
+     * Ottiene la lingua di default del sistema corrente
+     * @return Informazioni sulla lingua in formato Locale
+     */
     public Locale getLang() {
         return new Locale(Constants.LANG_DEFAULT, "");
     }
 
+    /**
+     * Ottiene la lingua preferita dall utente @loggedUser
+     * @param loggedUser utente che richiede informazioni sull sua preferenza
+     * @return lingua preferita dall'utente in formato Locale
+     */
     public Locale getLang(String loggedUser) {
 
         if (Constants.DB == 1) {
@@ -69,7 +91,13 @@ public class ControlloreLingua {
         }
     }
 
-    // si assume che l'utente 'username' sia loggato
+    /**
+     * Si assume che l'utente @username abbia già fatto l'accesso al sistema
+     * Il seguente metodo, nel caso in cui sia necessario, aggiorna le preferenze dell'utente
+     * @param username nome utente dell'attore che necessita di aggiornare le proprie preferenze
+     * @param newLocale nuova preferenza dell'utente da salvare
+     * @return
+     */
     public Locale checkUpdatePref(String username,
                                                String newLocale) {
 
@@ -118,6 +146,12 @@ public class ControlloreLingua {
 
     }
 
+    /**
+     * Conversione di formato dell'informazione riguardante la preferenza sulla lingua dal formato
+     * Locale a String
+     * @param locale oggetto da convertire
+     * @return oggetto convertito (in formato String)
+     */
     public String getStringFromLocale(Locale locale) {
         if (locale.getDisplayLanguage()
                 .equals(Locale.ENGLISH.getDisplayLanguage()))

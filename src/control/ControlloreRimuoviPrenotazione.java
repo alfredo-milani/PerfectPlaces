@@ -29,7 +29,7 @@ public class ControlloreRimuoviPrenotazione {
 
 
     /*
-     *metodo che rimuove una prenotazione, per farlo oltre ad eliminare un oggettp prenotazione deve
+     *metodo che rimuove una prenotazione, per farlo oltre ad eliminare un oggetto prenotazione deve
      *eliminare anche i posti occupati relativi alle date per le quali l'utente si era precedentente prenotato
      */
     public void rimuovi(Prenotazione prenotazione) throws DeserializzazioneException, SerializzazioneException, IOException {

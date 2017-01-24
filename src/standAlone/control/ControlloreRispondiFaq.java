@@ -9,6 +9,7 @@ import standAlone.boundary.BoundarySuccesso;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -59,23 +60,29 @@ public class ControlloreRispondiFaq {
         ArrayList<Faq> faqArray;
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         ArrayList<String> domande = new ArrayList<String>();
+
         String dom[];
 
         dom=null;
-        try {
-            faqArray = (ArrayList<Faq>)dobj.deserializza(path);
+        File file = new File(path);
+        if(file.length()!=0) {
+            try {
 
-            for (Faq faq : faqArray ){
-                if(!faq.getSettaRisposta())
-                    domande.add(faq.getDomanda());
-            }
-            dom = new String[domande.size()];
-            for(int i=0; i< domande.size() ; ++i) {
-                dom[i] = domande.get(i);
-            }
 
-        } catch (DeserializzazioneException e) {
-            e.printStackTrace();
+                faqArray = (ArrayList<Faq>) dobj.deserializza(path);
+
+                for (Faq faq : faqArray) {
+                    if (!faq.getSettaRisposta())
+                        domande.add(faq.getDomanda());
+                }
+                dom = new String[domande.size()];
+                for (int i = 0; i < domande.size(); ++i) {
+                    dom[i] = domande.get(i);
+                }
+
+            } catch (DeserializzazioneException e) {
+                e.printStackTrace();
+            }
         }
         return dom;
     }

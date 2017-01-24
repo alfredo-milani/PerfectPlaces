@@ -27,7 +27,7 @@ public class ControlloreInserimentoLocazione {
     private String percorsoCasaVacanza = Constants.CASEVACANZA_PATH;
     private String percorsoOstello = Constants.OSTELLI_PATH;
 
-    private String command;
+    private String command; //il command, settato dalla boundary quado chiama il controllore serve per identificare il tipo di locazione da creare
     private String path;
 
 
@@ -35,6 +35,7 @@ public class ControlloreInserimentoLocazione {
         this.command = command;
     }
 
+    //metodo che chiama la factory, ne cambia lo stato, e richiede la creazione della locazione oppurtuna passandogli command
     public Locazione inserisciLocazione(String nomeLocazione, String postiTotali, String provincia, String indirizzo, String userLocatore, String prezzo,
                                         String descrizione, boolean parcheggio, boolean wifi, boolean pet) throws Exception {
 
@@ -47,6 +48,7 @@ public class ControlloreInserimentoLocazione {
 
     }
 
+    //metodo di utilità per selezionare il percorso corretto per la serializzazione del nuovo oggetto creato
     public void selezionaPercorso(){
         switch (command){
             case "0": {
@@ -72,6 +74,7 @@ public class ControlloreInserimentoLocazione {
         }
     }
 
+    //metodo che serializza effettivamente la nuova locazione creata
     public void serializzaLocazione(Locazione locazione) throws SerializzazioneException, DeserializzazioneException {
 
         File file = new File(path);

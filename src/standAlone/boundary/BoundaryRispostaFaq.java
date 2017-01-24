@@ -10,9 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 
-/**
- * Created by maria on 11/01/17.
- */
 public class BoundaryRispostaFaq {
 
 
@@ -73,10 +70,7 @@ public class BoundaryRispostaFaq {
             panelBox.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/5);
             panelBox.setLocation(5, 50);
 
-            domande = crf.visualizzaDomandeSenzaRisposta();
-
-
-            box = new JComboBox(domande);
+            this.costrusciComboBox();
 
             panelEtichetta.setLayout(null);
             panelEtichetta.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight()/10);
@@ -113,7 +107,7 @@ public class BoundaryRispostaFaq {
             bRispondi.setSize(panelTitolo.getWidth()/4, 50);
             bRispondi.setFont(new Font("Arial", 0, 20));
 
-            bIndietro = new JButton(bundle.getString("visualizzaPosta_rispondi"));
+            bIndietro = new JButton(bundle.getString("visualizzaPosta_indietro"));
             bIndietro.setLocation(300+panelTitolo.getWidth()/4, 50);
             bIndietro.setSize(panelTitolo.getWidth()/4, 50);
             bIndietro.setFont(new Font("Arial", 0, 20));
@@ -138,7 +132,7 @@ public class BoundaryRispostaFaq {
             panelButtons.add(bRispondi);
             panelButtons.add(bIndietro);
 
-            panelBox.add(box);
+
 
             //aggiunta pannelli a quello piuù esterno
             pannelloFaqRisposta.add(panelRisposta);
@@ -159,6 +153,25 @@ public class BoundaryRispostaFaq {
             // Associazione di bottone a relativo ascoltatore
             bRispondi.addActionListener(ascoltatoreEtAzioneRispondi);
             bIndietro.addActionListener(ascoltatoreEtAzioneIndietro);
+
+        }
+        // Fine costruttore
+
+        //metodo privato chiamato dalla BoundaryRispostaFaq stessa, a cui viene delegata la corretta costruzione della ComboBox, usando opportuni controlli
+
+        private void costrusciComboBox(){
+
+            domande = crf.visualizzaDomandeSenzaRisposta();
+            if (domande==null || domande.length==0){
+                pannelloFaqRisposta.setVisible(false);
+                new BoundaryFallimento("Al momento non sono presenti domande a cui rispondere");
+                return;
+            }
+            box = new JComboBox(domande);
+            //aggiunge la box al pannello di competenza
+            panelBox.add(box);
+
+            //aggiunge l'ascoltatore relativo
             box.addActionListener(e -> {
                         int index;
                         index = box.getSelectedIndex();
@@ -166,11 +179,11 @@ public class BoundaryRispostaFaq {
                         domanda= domande[index];
 
 
-            }
+                    }
 
             );
+
         }
-        // Fine costruttore
 
         //Ascoltatore
 

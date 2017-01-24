@@ -9,7 +9,7 @@ public class ControlloreVisualizzaPrezzo {
 
 
     PrezzoBase prezzoBase;
-    ComponentePrezzo component;
+    ComponentePrezzo component; //oggetto necessario per applicare le varie decorazioni
     int prezzo;
 
     public ControlloreVisualizzaPrezzo(){
@@ -17,7 +17,7 @@ public class ControlloreVisualizzaPrezzo {
     }
 
 
-
+    //metodo che calcola il prezzo base e lo assegna al component
     public void applicaPrezzoBase(Locazione locazione,int numeroGiorni, String tipoPensione){
 
 
@@ -43,7 +43,7 @@ public class ControlloreVisualizzaPrezzo {
 
     }
 
-
+    // metodo che applica opportunamente le decorazioni richieste
    public void applicaServizi(int numeroGiorni, String parcheggio, String wifi, String pet){
 
        int prezzo_aggiuntivo = 0;
@@ -67,10 +67,12 @@ public class ControlloreVisualizzaPrezzo {
 
    }
 
+   //metodo che mostra effettivamente l'applicazione di uno o più decorazioni, stampando il prezzo risultante
    public int ritornaPrezzoConServizi(){
        return this.component.calcolaPrezzo();
    }
 
+   //metodo che ritorna il prezzo base
    public int ritornaPrezzoBase(){
         return this.prezzoBase.calcolaPrezzo();
 

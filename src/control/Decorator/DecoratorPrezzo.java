@@ -3,6 +3,7 @@ package control.Decorator;
 /**
  * Created by maria on 13/01/17.
  */
+//Decorator
 public abstract class DecoratorPrezzo extends ComponentePrezzo {
 
     private ComponentePrezzo component;

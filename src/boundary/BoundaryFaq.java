@@ -29,4 +29,6 @@ public class BoundaryFaq {
     public void inserisciDomanda(String nuovaDomanda, String type) throws SerializzazioneException, DeserializzazioneException {
         cf.inserisciDomanda(nuovaDomanda, Integer.parseInt(type));
     }
+
+
 }

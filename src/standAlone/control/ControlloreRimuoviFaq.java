@@ -10,6 +10,7 @@ import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -54,18 +55,29 @@ public class ControlloreRimuoviFaq {
 
         ArrayList<Faq> faq;
         DeserializzaOggetti dobj= new DeserializzaOggetti();
-        String domande= bundle.getString("boundaryFaq_domande_senza_risposta");
-        try{
-            faq = (ArrayList<Faq>) dobj.deserializza(path);
-            for(Faq f: faq ){
-                if(!f.getSettaRisposta()) {
-                    domande = domande + f.getDomanda() + '\n';
-                }
-            }
-            area.insert(domande,0);
-        }catch (DeserializzazioneException e){
-            e.printStackTrace();
-        }
+        File file = new File(path);
+        String incipit= bundle.getString("boundaryFaq_domande_senza_risposta");
+        String domande = "";
+
+         if(file.length()!=0) {
+             try {
+                 faq = (ArrayList<Faq>) dobj.deserializza(path);
+                 for (Faq f : faq) {
+                     if (!f.getSettaRisposta()) {
+                         domande = domande + f.getDomanda() + '\n';
+                     }
+                 }
+                 area.setText("");
+                 area.insert(incipit + '\n'+ domande, 0);
+             } catch (DeserializzazioneException e) {
+                 e.printStackTrace();
+             }
+         }
+
+         else {
+             area.setText("");
+             area.insert(incipit + '\n' + domande, 0);
+         }
 
 
     }

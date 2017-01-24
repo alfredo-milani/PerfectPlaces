@@ -11,6 +11,7 @@ public class FactoryInserimentoLocazione {
 
     private static FactoryInserimentoLocazione instance = null;
 
+    //stato comune a tutte le locazioni
     private String nomeLocazione;
     private String postiTotali;
     private String provincia;
@@ -26,6 +27,7 @@ public class FactoryInserimentoLocazione {
 
     }
 
+    //metodo che permette di cambiare lo stato del singleton, viene chiamato ad ogni nuovo inserimento per settare opportunamente i parametri
     public void changeSettings(String nomeLocazione,String postiTotali,String provincia, String indirizzo, String userLocatore, String prezzo,
                                String descrizione, boolean parcheggio, boolean wifi, boolean pet) {
         this.nomeLocazione = nomeLocazione;
@@ -40,12 +42,15 @@ public class FactoryInserimentoLocazione {
         this.pet = pet;
     }
 
+
+    //metodo che ritorna l'istanza (singleton) della factory
     public synchronized static final FactoryInserimentoLocazione getFactoryInstance(){
         if (FactoryInserimentoLocazione.instance == null)
             FactoryInserimentoLocazione.instance = new FactoryInserimentoLocazione();
         return instance;
     }
 
+    // metodo che effettivamente crea il tipo di locazione richiesto ritornando puerò un oggetto di tipo Locazione
     public Locazione createGenericLocation(String type) throws Exception {
 
         switch (type){

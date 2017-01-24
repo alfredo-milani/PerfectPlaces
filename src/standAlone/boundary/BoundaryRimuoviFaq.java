@@ -24,8 +24,8 @@ public class BoundaryRimuoviFaq {
     public JLabel titolo = new JLabel();
 
     //Area di testo
-    JTextArea domade_lista = new JTextArea();
-    JScrollPane lista_scroll = new JScrollPane(domade_lista,
+    JTextArea domande_lista = new JTextArea();
+    JScrollPane lista_scroll = new JScrollPane(domande_lista,
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -53,7 +53,7 @@ public class BoundaryRimuoviFaq {
         this.cl = new ControlloreLinguaAmministratore();
         ResourceBundle bundle = this.cl.getBundleFromProp();
 
-        crf = new ControlloreRimuoviFaq(domade_lista);
+        crf = new ControlloreRimuoviFaq(domande_lista);
 
         int border = 5;
 
@@ -67,9 +67,9 @@ public class BoundaryRimuoviFaq {
         panelTextArea.setSize(BoundaryAvvio.Confine.getWidth()*8/9, BoundaryAvvio.Confine.getHeight()/6);
         panelTextArea.setLocation(50, 50);
 
-        domade_lista.setEditable(false);
-        domade_lista.setLineWrap(true);
-        domade_lista.setWrapStyleWord(true);
+        domande_lista.setEditable(false);
+        domande_lista.setLineWrap(true);
+        domande_lista.setWrapStyleWord(true);
         panelTextArea.add(lista_scroll,BorderLayout.CENTER);
 
 
@@ -184,8 +184,9 @@ public class BoundaryRimuoviFaq {
         {
             try
             {
-                StampaStringhe vu = new StampaStringhe(domade_lista);
+
                 crf.visualizzaDomandeSenzaRisposta();
+
 
             }
             catch (Exception e)

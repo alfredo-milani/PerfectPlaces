@@ -41,6 +41,7 @@ public class ControlloreRimuoviLocazione {
 	}
 
 	//metodo che passa al metodo privato "rimuovi" la locazione scelta dall'utente e il percorso corrispondente
+	//chiama dunque anche le operazioni per rimuovere le corrispondenti CamerePrenotate e Prenotati corrispondenti a quella locazione
 	@SuppressWarnings("unchecked")
 	public String rimuoviLocazione(Locazione locazione) throws DeserializzazioneException, SerializzazioneException{
 
@@ -101,6 +102,7 @@ public class ControlloreRimuoviLocazione {
 		sobj.serializza(locazioni,percorso);
 	}
 
+	//metodo che rimuove le camere prenotata legate ad una determinata locazione
 	@SuppressWarnings("unchecked")
 	private void rimuoviCamerePrenotate(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
 		String nomeLocazione = locazione.getNomeLocazione();
@@ -119,6 +121,7 @@ public class ControlloreRimuoviLocazione {
 
 	}
 
+	//metodo che rimuove i prenotati legati ad una determinata locazione
 	@SuppressWarnings("unchecked")
 	private void rimuoviPrenotati(Locazione locazione,String percorso) throws DeserializzazioneException, SerializzazioneException {
 		String nomeLocazione = locazione.getNomeLocazione();

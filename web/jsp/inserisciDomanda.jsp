@@ -130,7 +130,7 @@
 
                     <div >
                         <% if (type.equals("0")) {%>
-                                <a href="faqViaggiatore.jsp">Torna alla pagina precedente></a>
+                                <a href="faqViaggiatore.jsp">Torna alla pagina precedente</a>
                         <% } else { %>
                                 <a href="faqProprietario.jsp">Torna alla pagina precedente</a>
                         <% } %>

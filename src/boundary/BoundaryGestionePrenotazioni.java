@@ -32,6 +32,6 @@ public class BoundaryGestionePrenotazioni {
 
     public void avvioRimozione(Prenotazione prenotazione) throws DeserializzazioneException, SerializzazioneException, IOException {
         crp = new ControlloreRimuoviPrenotazione();
-        crp.rimuoviPrenotazione(prenotazione);
+        crp.rimuovi(prenotazione);
     }
 }

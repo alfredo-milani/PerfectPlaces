@@ -6,7 +6,6 @@ import utils.DeserializzaOggetti;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by gabriele on 19/01/17.
@@ -15,9 +14,9 @@ public class ThreadRicerca implements Runnable{
 
     private String percorso, provincia, prezzo;
     private int numeroGiorni;
-    private List<Locazione> locazioni;
+    private ArrayList<Locazione> locazioni;
 
-    public ThreadRicerca(String percorso,String provincia,String prezzo,int numeroGiorni,List<Locazione> locazioni){
+    public ThreadRicerca(String percorso,String provincia,String prezzo,int numeroGiorni,ArrayList<Locazione> locazioni){
         this.percorso=percorso;
         this.provincia=provincia;
         this.prezzo=prezzo;

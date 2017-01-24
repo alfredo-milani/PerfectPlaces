@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-// Classe che consente la gestione del profilo personale.
 public class ControlloreProfilo {
 	
 	private ProfiloDBManager gPDBM;
@@ -23,9 +22,14 @@ public class ControlloreProfilo {
 	    if (Constants.DB == 1)
 	        this.gPDBM = new ProfiloDBManager();
 	}
-	
-	// Viene dato in input un username, il metodo ricerca nel file l'oggetto Utente corrispondente e lo restituisce.
-    // Se l'oggetto non viene trovato viene restituito l'oggetto utente fittizio "errore".
+
+
+    /**
+     * Metodo per ricercare un tente all'interno del sistema
+     * @param username utente che si intende cercare all'interno del sistema
+     * @return istanza dell'entità Utente contenente tutte le informazione
+     * necessarie dell'utente selezionato
+     */
 	public Utente ottieniUtente(String username) {
 	    if (Constants.DB == 1) {
 
@@ -57,18 +61,29 @@ public class ControlloreProfilo {
 
         }
 	}
-	
-	// Metodo che consente la modifca del profilo, viene effettuato un controllo sull'input per verificare che tutti i parametri
-	// siano corretti, se tutto è corretto prende l'getUtente corrispondente dal file, ne modifica i parametri e lo salva sul file.
-	// L'unico campo che non è modificabile èl'username, perchè consente di identificare univocamente l'getUtente nel sistema.
-	
-	// Ritorna: 1 --> Password vecchia non corretta
-	// 		    2 --> La nuova password e la conferma della nuova password non sono uguali
-	//			3 --> La nuova password è vuota
-	//			4 --> Sessione utente scaduta
-    //          5 --> Informazini campo "Sesso" errate
-    //          6 --> Formato data errato
-	//			0 --> Se tutto va bene
+
+    /**
+     * Metodo che consente la modifca del profilo. Viene effettuato un controllo
+     * sull'input per verificare che tutti i parametri siano corretti, se tutto
+     * è corretto seleziona l'Utente corrispondente e ne aggiorna i parametri
+     * ai valori correnti.
+     * @param username nome utente dell'utente che intende modificare il profilo
+     * @param nome nome dell'utente
+     * @param cognome cognome dell'utente
+     * @param email indirizzo e-mail dell'utente
+     * @param sesso sesso dell'utente
+     * @param nascita data di nascita dell'utente
+     * @param vecchiaPassword vecchia password dell'utente
+     * @param nuovaPassword nuova password dell'utente
+     * @param confermaNuovaPassword conferma della nuova password dell'utente
+     * @return  1 --> Password vecchia non corretta
+     *          2 --> La nuova password e la conferma della nuova password non sono uguali
+     *          3 --> La nuova password è vuota
+     *          4 --> Sessione utente scaduta
+     *          5 --> Informazini campo "Sesso" errate
+     *          6 --> Formato data errato
+     *          0 --> Se tutto va bene
+     */
 	public int modificaProfilo(String username, String nome, String cognome,
                                             String email, String sesso, String nascita,
                                             String vecchiaPassword, String nuovaPassword,

@@ -22,7 +22,7 @@ public class ControlloreRicercaGlobale {
     public ArrayList<Locazione> ricercaGlobale(String provincia, String prezzo,int numeroGiorni) throws DeserializzazioneException, InterruptedException {
 
        // List<Locazione> locazioni = Collections.synchronizedList(new ArrayList<Locazione>());
-        List<Locazione> locazioni = new ArrayList<>();
+        ArrayList<Locazione> locazioni = new ArrayList<>();
 
         ArrayList<Locazione> locazioniTotali = new ArrayList<>();
 

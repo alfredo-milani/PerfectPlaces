@@ -9,7 +9,6 @@ import utils.DeserializzaOggetti;
 import java.io.File;
 import java.util.ArrayList;
 
-// Classe che gestisce il login al sistema.
 public class ControlloreLogin {
 
 	private String username;
@@ -27,8 +26,13 @@ public class ControlloreLogin {
 		this.logged_in = false;
 	}
 
-	// Deserializza gli Utenti del file utenti e li posiziona in un ArrayList. Viene fatta una scansione
-	// di tutti gli elementi e viene verificata la corrispondenza di Username e Password inserite
+
+	/**
+	 * Se @username e @password sono presenti nel sistema, l'utente a cui corrisponde @username viene
+     * autenticato e può accedere ai servizi offerti dal sistema
+	 * @param username utente che vuole usufruire di servizi del sistema
+	 * @param password codice personale dell'utente che gli permette l'accesso al sistema
+	 */
 	public void login(String username, String password)
 			throws DeserializzazioneException {
 
@@ -68,25 +72,36 @@ public class ControlloreLogin {
 
 	    }
     }
-	
-	// Check se l'getUtente è loggato o meno
+
+    /**
+     * Ritorna lo stato di autenticazione dell'utente
+     * @return stato di autenticazione corrente
+     */
 	public boolean getLogged(){
 		return this.logged_in;
 	}
-	
-	// Viene effettuato il logout settando la variabile logged_in
+
+    /**
+     * L'utente vine deautenticato dal sistema
+     */
 	public void logout(){
 		this.username = "";
 		this.password = "";
 		this.logged_in = false;
 	}
-	
-	// Restituisce l'username associato all'istanza
+
+    /**
+     * Restituisce l'username dell'utente associato all'istanza corrente
+     * @return usernmae dell'utente corrente
+     */
 	public String getUser(){
 		return this.username;
 	}
 
-	// Restituisce la password associata all'istanza
+    /**
+     * Restituisce la passowrd dell'utente associato all'istanza corrente
+     * @return password dell'utente corrente
+     */
 	public String getPsw() {
         return this.password;
     }

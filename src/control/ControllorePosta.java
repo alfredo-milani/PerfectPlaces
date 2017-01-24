@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-// Classe che si occupa della gestione della posta, sia dell'invio dei messaggi che della ricerca.
 public class ControllorePosta {
 
 	private PostaDBManager gPDBM;
@@ -25,7 +24,12 @@ public class ControllorePosta {
 	        this.gPDBM = new PostaDBManager();
 	}
 
-    // Metodo che riceve in input il codice di un messaggio, lo cerca all'interno del DB e, se lo trova, lo restituisce.
+
+    /**
+     * Metodo che restituisce il messaggio corrispondente al codice @codice
+     * @param codice codice identificativo del messaggio
+     * @return istanza dell'entità Messaggio contenente il messaggio identificato da @codice
+     */
     public Messaggio ricercaMessaggioPerCodice(int codice) {
 	    if (Constants.DB == 1) {
 
@@ -54,9 +58,12 @@ public class ControllorePosta {
 
         }
     }
-	
-	// Metodo che riceve in input uno username, ricerca nel DB tutti i messaggi che hanno quello username come
-	// destinatario e li restituisce in un Array List.
+
+    /**
+     * Metodo che seleziona i messaggi aventi come destinatario @username
+     * @param username mittente dei messaggi da cercare all'interno del sistema
+     * @return ArrayList contenente tutti e soli i messaggi inviati da @username
+     */
 	public ArrayList<Messaggio> ricercaMessaggi(String username) {
 
 	    if (Constants.DB == 1) {
@@ -89,16 +96,23 @@ public class ControllorePosta {
 
         }
 	}
-	
-	// Metodo che permette di inviare un messaggio. Effettua un controllo sull'input ritornando un codice specifico se
-	// viene riscontrato qualche errore. Se non c'è nessun errore, aggiunge al DB il messaggio
-	// Restituisce: 1 --> Se il destinatario è vuoto
-	// 		  2 --> Se l'oggetto è vuoto
-	//        3 --> Se il contenuto è vuoto
-	//        4 --> Se il destinatario non esiste
-    //        5 --> Se la sessione dell'utente è scaduta
-	//        6 --> Se il mittente e il destinatario coincidono
-	//        0 --> Se tutto va bene
+
+    /**
+     * Metodo che permette di inviare un messaggio. Effettua un controllo sull'input
+     * ritornando un codice specifico se viene riscontrato qualche errore.
+     * Se non c'è nessun errore, aggiunge al DB il messaggio
+     * @param oggetto String rappresentante l'oggetto del messaggio che si intende inviare
+     * @param mittente String rappresentate il mittente del messaggio
+     * @param destinatario String rappresentate il destinatario del messaggio
+     * @param contenuto String rappresentante il contenuto del messaggio da inviare
+     * @return  1 --> Se il destinatario è vuoto
+     *          2 --> Se l'oggetto è vuoto
+     *          3 --> Se il contenuto è vuoto
+     *          4 --> Se il destinatario non esiste
+     *          5 --> Se la sessione dell'utente è scaduta
+     *          6 --> Se il mittente e il destinatario coincidono
+     *          0 --> Se tutto va bene
+     */
 	public int scriviMessaggio(String oggetto, String mittente,
 											String destinatario, String contenuto) {
 
@@ -184,8 +198,12 @@ public class ControllorePosta {
         }
 	}
 
-	// Metodo che riceve in input il codice di un messaggio e si occupa della sua eliminazione
-    // Ritorna il vaolre 0 se il messaggio non è stato rimosso correttamente altrimenti ritorna il valore 1
+    /**
+     * Metodo che riceve in input il codice di un messaggio e si occupa della sua eliminazione
+     * @param oggetto codice identificativo del messaggio ceh si intende eliminare
+     * @return 0 --> il messaggio non è stato rimosso correttamente
+     *         n --> il messaggio è stato rimosso correttamente
+     */
 	public int eliminaMessaggio(int oggetto) {
         if (Constants.DB == 1) {
 
@@ -217,6 +235,10 @@ public class ControllorePosta {
         }
 	}
 
+    /**
+     * Calcola la data corrente
+     * @return String rappresentante la data corrente del sistema
+     */
     private String calcolaData() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();

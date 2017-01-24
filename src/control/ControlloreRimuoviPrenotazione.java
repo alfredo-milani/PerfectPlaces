@@ -29,36 +29,36 @@ public class ControlloreRimuoviPrenotazione {
 
 
     /*
-     *metodo che rimuove una prenotazione, per farlo oltre ad eliminare un oggettp prenotazione deve
+     *metodo che rimuove una prenotazione, per farlo oltre ad eliminare un oggetto prenotazione deve
      *eliminare anche i posti occupati relativi alle date per le quali l'utente si era precedentente prenotato
      */
-    public void rimuoviPrenotazione(Prenotazione prenotazione) throws DeserializzazioneException, SerializzazioneException, IOException {
+    public void rimuovi(Prenotazione prenotazione) throws DeserializzazioneException, SerializzazioneException, IOException {
 
         switch (prenotazione.getTipo()) {
             case "Albergo":
-                rimuoviPrenotati(prenotazione, percorsoPrenotatiAlbergo);
-                rimuoviPerNonCase(prenotazione, percorsoPrenotazioniAlberghi);
+                rimuoviPrenotazione(prenotazione, percorsoPrenotatiAlbergo);
+                rimuoviPostiOccupati(prenotazione, percorsoPrenotazioniAlberghi);
 
                 break;
             case "Appartamento":
-                rimuoviPrenotati(prenotazione, percorsoPrenotatiAppartamento);
-                rimuoviPerCase(prenotazione, percorsoPrenotazioniAppartamenti);
+                rimuoviPrenotazione(prenotazione, percorsoPrenotatiAppartamento);
+                rimuoviSingoloPosto(prenotazione, percorsoPrenotazioniAppartamenti);
 
                 break;
             case "Beb":
-                rimuoviPrenotati(prenotazione, percorsoPrenotatiBeb);
-                rimuoviPerNonCase(prenotazione, percorsoPrenotazioniBeb);
+                rimuoviPrenotazione(prenotazione, percorsoPrenotatiBeb);
+                rimuoviPostiOccupati(prenotazione, percorsoPrenotazioniBeb);
 
                 break;
             case "CasaVacanza":
-                rimuoviPrenotati(prenotazione, percorsoPrenotatiCasaVacanza);
-                rimuoviPerCase(prenotazione, percorsoPrenotazioniCaseVacanza);
+                rimuoviPrenotazione(prenotazione, percorsoPrenotatiCasaVacanza);
+                rimuoviSingoloPosto(prenotazione, percorsoPrenotazioniCaseVacanza);
 
 
                 break;
             case "Ostello":
-                rimuoviPrenotati(prenotazione, percorsoPrenotatiOstello);
-                rimuoviPerNonCase(prenotazione, percorsoPrenotazioniOstelli);
+                rimuoviPrenotazione(prenotazione, percorsoPrenotatiOstello);
+                rimuoviPostiOccupati(prenotazione, percorsoPrenotazioniOstelli);
                 break;
         }
 
@@ -67,13 +67,12 @@ public class ControlloreRimuoviPrenotazione {
     }
 
 
-    private void rimuoviPrenotati(Prenotazione prenotazione, String percorsoPrenotati) throws SerializzazioneException, DeserializzazioneException {
+    private void rimuoviPrenotazione(Prenotazione prenotazione, String percorsoPrenotati) throws SerializzazioneException, DeserializzazioneException {
         String nomeLocazione = prenotazione.getNomeLocazione();
         String cliente = prenotazione.getCliente();
         GregorianCalendar dataInizio = prenotazione.getDataInizio();
         GregorianCalendar dataFine = prenotazione.getDataFine();
         ArrayList<Prenotazione> prenotazioniClienti;
-
 
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();
@@ -96,7 +95,7 @@ public class ControlloreRimuoviPrenotazione {
     }
 
     @SuppressWarnings("unchecked")
-    private void rimuoviPerNonCase(Prenotazione prenotazione, String percorsoCamere) throws DeserializzazioneException, SerializzazioneException, IOException {
+    private void rimuoviPostiOccupati(Prenotazione prenotazione, String percorsoCamere) throws DeserializzazioneException, SerializzazioneException, IOException {
         String nomeLocazione = prenotazione.getNomeLocazione();
         GregorianCalendar dataInizio = prenotazione.getDataInizio();
         GregorianCalendar dataFine = prenotazione.getDataFine();
@@ -134,7 +133,7 @@ public class ControlloreRimuoviPrenotazione {
     }
 
     @SuppressWarnings("unchecked")
-    private void rimuoviPerCase(Prenotazione prenotazione, String percorsoCamere) throws DeserializzazioneException, SerializzazioneException, IOException {
+    private void rimuoviSingoloPosto(Prenotazione prenotazione, String percorsoCamere) throws DeserializzazioneException, SerializzazioneException, IOException {
         String nomeLocazione = prenotazione.getNomeLocazione();
         GregorianCalendar dataInizio = prenotazione.getDataInizio();
         GregorianCalendar dataFine = prenotazione.getDataFine();

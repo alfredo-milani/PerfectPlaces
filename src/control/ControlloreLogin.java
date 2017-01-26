@@ -28,7 +28,7 @@ public class ControlloreLogin {
 
 
 	/**
-	 * Se @username e @password sono presenti nel sistema, l'utente a cui corrisponde @username viene
+	 * Se @username e @password sono presenti nel sistema, l'utente associato ad @username viene
      * autenticato e può accedere ai servizi offerti dal sistema
 	 * @param username utente che vuole usufruire di servizi del sistema
 	 * @param password codice personale dell'utente che gli permette l'accesso al sistema

@@ -22,7 +22,7 @@
 <%@page import="exception.DeserializzazioneException" %>
 <%@page import="exception.SerializzazioneException" %>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<jsp:useBean id="b" scope="request" class="boundary.BoundaryInserimentoLocazione"/>
+<jsp:useBean id="b" scope="request" class="boundary.BoundaryGestioneLocazioni"/>
 <jsp:setProperty name="b" property="nomeLocazione"/>
 <jsp:setProperty name="b" property="command"/>
 <jsp:setProperty name="b" property="postiTotali"/>
@@ -38,8 +38,6 @@
 
 	String username = bl.ritornaUsername();
 
-    System.out.println(b.getCommand());
-    System.out.println(b.getNomeLocazione());
 	
 	boolean control=false;
 
@@ -176,7 +174,13 @@
 				<div id="content">
 				
 					<% if(control){
-                            b.memorizzaLocazione(locazione);
+                        try {
+                            b.registraLocazione(locazione);
+                        } catch (SerializzazioneException e) {
+                            e.printStackTrace();
+                        } catch (DeserializzazioneException e) {
+                            e.printStackTrace();
+                        }
                     %>
 
 					<div class="post">

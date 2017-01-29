@@ -18,18 +18,17 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<%@page import="control.ControlloreVisualizzaLocazioni" %>
+<jsp:useBean id="b" scope="request" class="boundary.BoundaryGestioneLocazioni"/>
 <%@page import="entity.*" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="java.util.ArrayList" %>
 <%
 
-ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
 String username = bl.ritornaUsername();
 ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
 	try {
-		locazioni = crl.visualizzaLocazioni(username);
+		locazioni = b.ritornaLocazioni(username);
 	} catch (DeserializzazioneException e) {
 		e.printStackTrace();
 	}
@@ -138,7 +137,7 @@ String descrizione;
 					<div class="post">
                         <h1>Provincia: <%out.println(provincia); %></h1>
 						<h1>Indirizzo: <%out.println(indirizzo); %></h1>
-						<h1>Prezzo: <%out.println(prezzo); %></h1>
+						<h1>Prezzo Pernottamento: <%out.println(prezzo); %></h1>
 						<h1>Descrizione: <%out.println(descrizione); %></h1>
 					</div>
 					

@@ -41,16 +41,18 @@
             <ul class="topnav" id=myTopnav">
 
                 <% if (bl.controlloAccesso()){ %>
-                <li><a href="utente.jsp">HOME</a></li>
-                <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
-                <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
-                <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
-                <li><a href="posta.jsp">Posta</a></li>
-                <li><a href="logout.jsp">Esci</a></li>
+                    <li><a href="utente.jsp">HOME</a></li>
+                    <li><a href="areaViaggiatore.jsp">Area Viaggiatore</a></li>
+                    <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
+                    <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
+                    <li><a href="posta.jsp">Posta</a></li>
+                    <li><a href="areaFaq.jsp">FAQ</a></li>
+                    <li><a href="logout.jsp">Esci</a></li>
                 <% } else {%>
-                <li><a href="index.jsp">HOME</a></li>
+                    <li><a href="index.jsp">HOME</a></li>
+                    <li><a href="areaFaq.jsp">FAQ</a></li>
                 <%} %>
-                <li><a href="areaFaq.jsp">FAQ</a></li>
+
 
             </ul>
             <div id="page-bgbtm">

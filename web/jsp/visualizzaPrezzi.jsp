@@ -35,11 +35,6 @@
 
 
     id = id.substring(0,1);
-    /*System.out.println("id  " + id);
-    System.out.println("servizio parcheggio "+SerParcheggio);
-    System.out.println("servizio wifi "+SerWifi);
-    System.out.println("servizio pet "+SerPet);*/
-
 
 
 
@@ -57,8 +52,6 @@
         e.printStackTrace();
     }
 
-    System.out.println("prezzo base "+prezzoBase);
-    System.out.println("prezzo con servizi "+prezzoConServizi);
 
     String nomeLocazione = elencoLocazioni.get(Integer.parseInt(id)).getNomeLocazione();
 
@@ -72,8 +65,7 @@
     int giornoFine = Integer.parseInt(dataFine.substring(0, 2));
     int meseFine = Integer.parseInt(dataFine.substring(3, 5));
     int annoFine = Integer.parseInt(dataFine.substring(6, 10));
-    String al = giornoFine + "/" + meseFine +"/"+ annoFine;
-*/
+    String al = giornoFine + "/" + meseFine +"/"+ annoFine;*/
 
     int giornoInizio = Integer.parseInt(dataInizio.substring(8, 10));
     int meseInizio = Integer.parseInt(dataInizio.substring(5, 7));

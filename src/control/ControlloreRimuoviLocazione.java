@@ -7,6 +7,7 @@ import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;
 import utils.SerializzaOggetti;
 
+import java.io.File;
 import java.util.ArrayList;
 
 // Questa classe serve a rimuovere una locazione dal sistema da parte del proprietario. 
@@ -49,29 +50,54 @@ public class ControlloreRimuoviLocazione {
 
 		if(locazione.getClass()==Albergo.class){
 			rimuovi(locazione,percorsoAlbergo);
-			rimuoviCamerePrenotate(locazione,percorsoPrenotazioniAlberghi);
-			rimuoviPrenotati(locazione,percorsoPrenotatiAlbergo);
+			File fPrenotazioni = new File(percorsoPrenotazioniAlberghi);
+			File fPrenotati = new File(percorsoPrenotatiAlbergo);
+
+			if(fPrenotazioni.length() != 0)
+				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniAlberghi);
+			if(fPrenotati.length() != 0)
+				rimuoviPrenotati(locazione,percorsoPrenotatiAlbergo);
 
 		}
 		else if(locazione.getClass()==Appartamento.class){
 			rimuovi(locazione,percorsoAppartamento);
-			rimuoviCamerePrenotate(locazione,percorsoPrenotazioniAppartamenti);
-			rimuoviPrenotati(locazione,percorsoPrenotatiAppartamento);
+			File fPrenotazioni = new File(percorsoPrenotazioniAppartamenti);
+			File fPrenotati = new File(percorsoPrenotatiAppartamento);
+
+			if(fPrenotazioni.length() != 0)
+				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniAppartamenti);
+			if(fPrenotati.length() != 0)
+				rimuoviPrenotati(locazione,percorsoPrenotatiAppartamento);
 		}
 		else if(locazione.getClass()==Beb.class){
 			rimuovi(locazione,percorsoBeb);
-			rimuoviCamerePrenotate(locazione,percorsoPrenotazioniBeb);
-			rimuoviPrenotati(locazione,percorsoPrenotatiBeb);
+			File fPrenotazioni = new File(percorsoPrenotazioniBeb);
+			File fPrenotati = new File(percorsoPrenotatiBeb);
+
+			if(fPrenotazioni.length() != 0)
+				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniBeb);
+			if(fPrenotati.length() != 0)
+				rimuoviPrenotati(locazione,percorsoPrenotatiBeb);
 		}
 		else if(locazione.getClass()==CasaVacanza.class){
 			rimuovi(locazione,percorsoCasaVacanza);
-			rimuoviCamerePrenotate(locazione,percorsoPrenotazioniCaseVacanza);
-			rimuoviPrenotati(locazione,percorsoPrenotatiCasaVacanza);
+			File fPrenotazioni = new File(percorsoPrenotazioniCaseVacanza);
+			File fPrenotati = new File(percorsoPrenotatiCasaVacanza);
+
+			if(fPrenotazioni.length() != 0)
+				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniCaseVacanza);
+			if(fPrenotati.length() != 0)
+				rimuoviPrenotati(locazione,percorsoPrenotatiCasaVacanza);
 		}
 		else {
 			rimuovi(locazione,percorsoOstello);
-			rimuoviCamerePrenotate(locazione,percorsoPrenotazioniOstelli);
-			rimuoviPrenotati(locazione,percorsoPrenotatiOstello);
+			File fPrenotazioni = new File(percorsoPrenotazioniOstelli);
+			File fPrenotati = new File(percorsoPrenotatiOstello);
+
+			if(fPrenotazioni.length() != 0)
+				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniOstelli);
+			if(fPrenotati.length() != 0)
+				rimuoviPrenotati(locazione,percorsoPrenotatiOstello);
 
 
 		}
@@ -102,7 +128,7 @@ public class ControlloreRimuoviLocazione {
 		sobj.serializza(locazioni,percorso);
 	}
 
-	//metodo che rimuove le camere prenotata legate ad una determinata locazione
+	//metodo che rimuove le camere prenotate legate ad una determinata locazione
 	@SuppressWarnings("unchecked")
 	private void rimuoviCamerePrenotate(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
 		String nomeLocazione = locazione.getNomeLocazione();

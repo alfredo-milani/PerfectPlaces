@@ -53,7 +53,7 @@
 
     ArrayList<Locazione> locazioni = new ArrayList<>();
     try {
-        locazioni = bgl.ritonaLocazioni(username);
+        locazioni = bgl.ritornaLocazioni(username);
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }

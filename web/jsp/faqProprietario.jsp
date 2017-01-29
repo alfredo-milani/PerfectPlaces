@@ -48,7 +48,12 @@
         e.printStackTrace();
     }
 
-    ArrayList<String> domande = bf.ritornaDomande(type);
+    ArrayList<String> domande = null;
+    try {
+        domande = bf.ritornaDomande(type);
+    } catch (DeserializzazioneException e) {
+        e.printStackTrace();
+    }
 
 %>
 
@@ -79,7 +84,13 @@
     <div class="box">
 
         <div id="testo"><a href="#" onclick="visualizza('<%out.print(i);%>')"><%out.println(Integer.toString(i+1)+". "+domande.get(i));%></a></div>
-        <div id="<%out.print(i);%>" style="visibility: hidden;"><%out.println(bf.ritornaRisposta(domande.get(i)));%></div>
+        <div id="<%out.print(i);%>" style="visibility: hidden;"><%
+            try {
+                out.println(bf.ritornaRisposta(domande.get(i)));
+            } catch (DeserializzazioneException e) {
+                e.printStackTrace();
+            }
+        %></div>
 
     </div>
     <%

@@ -11,13 +11,12 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<%@page import="boundary.BoundaryGestioneLocazioni" %>
+<jsp:useBean id="b" scope="request" class="boundary.BoundaryGestioneLocazioni"/>
 <%@page import="entity.Locazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-    BoundaryGestioneLocazioni bgl = new BoundaryGestioneLocazioni();
 
     String id = request.getParameter("id");
     id = id.substring(0,1);
@@ -27,7 +26,7 @@
 
     ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("locDaRimuovere");
     try {
-        nomeLocazioneRimossa=bgl.avvioRimozione(elencoLocazioni.get(Integer.parseInt(id)));
+        nomeLocazioneRimossa=b.avvioRimozione(elencoLocazioni.get(Integer.parseInt(id)));
     } catch (SerializzazioneException | DeserializzazioneException e) {
         e.printStackTrace();
     }

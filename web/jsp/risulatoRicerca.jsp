@@ -291,7 +291,7 @@ Object elencoLocazioni = new Object();
 
 							<tr>
 								<td><b>Username locatore:</b> <%out.println(userLocatore);%></td>
-								<td><b>Prezzo pernottamento:</b> <%out.println(prezzo);%></td>
+								<td><b>Prezzo Pernottamento:</b> <%out.println(prezzo);%></td>
 							</tr>
 							<tr>
 								<td><b>Provincia:</b> <%out.println(provincia);%></td>

@@ -2,7 +2,6 @@ package standAlone.boundary;
 
 import standAlone.control.ControlloreLinguaAmministratore;
 import standAlone.control.ControlloreRimuoviFaq;
-import standAlone.utils.StampaStringhe;
 
 import javax.swing.*;
 import java.awt.*;

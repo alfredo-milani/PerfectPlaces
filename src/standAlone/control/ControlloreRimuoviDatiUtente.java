@@ -1,8 +1,8 @@
 package standAlone.control;
 
 import constants.Constants;
-import control.ControlloreRimuoviLocazione;
-import control.ControlloreVisualizzaLocazioni;
+import control.ControlloreGestioneLocazione.ControlloreRimuoviLocazione;
+import control.ControlloreGestioneLocazione.ControlloreVisualizzaLocazioni;
 import entity.Locazione;
 import entity.Prenotazione;
 import entity.Utente;
@@ -48,7 +48,7 @@ public class ControlloreRimuoviDatiUtente {
 
                 for(int i =0; i<locazioniUtenteNonRimosso.size(); ++i) {
                     ControlloreRimuoviLocazione crl = new ControlloreRimuoviLocazione();
-                    crl.rimuoviLocazione(locazioniUtenteNonRimosso.get(i));
+                    crl.rimuovi(locazioniUtenteNonRimosso.get(i));
                 }
                  rimuoviPrenotazioni(username);
                  new BoundarySuccesso();
@@ -69,7 +69,7 @@ public class ControlloreRimuoviDatiUtente {
             if (locazioniUtenteRimosso.get(i).getUserLocatore().equals(username)) {
                 System.out.println("username utente tra quelli  rimossi "+ username+" la prima delle sue locazioni "+ locazioniUtenteRimosso.get(0).getNomeLocazione());
                 ControlloreRimuoviLocazione crl = new ControlloreRimuoviLocazione();
-                crl.rimuoviLocazione(locazioniUtenteRimosso.get(i));
+                crl.rimuovi(locazioniUtenteRimosso.get(i));
                 rimuoviPrenotazioni(username);
                 locazioniUtenteRimosso.remove(i);
                 new BoundarySuccesso();

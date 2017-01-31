@@ -10,22 +10,22 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 
-public class BoundaryGestioneFaq {
+class BoundaryGestioneFaq {
 
     // Pannelli
-    public JPanel pannelloAmministrazione;
-    public JPanel panelTitolo = new JPanel();
-    public JPanel panelButton = new JPanel();
+    private JPanel pannelloAmministrazione;
+    private JPanel panelTitolo = new JPanel();
+    private JPanel panelButton = new JPanel();
 
     // Label
-    public JLabel titolo = new JLabel();
+    private JLabel titolo = new JLabel();
 
     //Bottoni
-    public JButton bRispondi;
-    public JButton bRimuoviDati;
-    public JButton bIndietro;
+    private JButton bRispondi;
+    private JButton bRimuoviDati;
+    private JButton bIndietro;
 
-    // Ascoltatore di bottone e relativa azioni
+    // Ascoltatore di bottone e relative azioni
     private RispondiAA ascoltatoreEtAzioneRispondi;
     private RimuoviFaqAA ascoltatoreEtAzioneRimuoviFaq;
     private TornaIndietro ascoltatoreTornaIndietro;
@@ -34,7 +34,7 @@ public class BoundaryGestioneFaq {
 
 
 
-    public BoundaryGestioneFaq()
+    BoundaryGestioneFaq()
     {
         this.cl = new ControlloreLinguaAmministratore();
         ResourceBundle bundle = this.cl.getBundleFromProp();

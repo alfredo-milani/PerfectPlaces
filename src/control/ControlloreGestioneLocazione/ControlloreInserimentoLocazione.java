@@ -1,6 +1,7 @@
-package control;
+package control.ControlloreGestioneLocazione;
 
 import constants.Constants;
+import control.FactoryInserimentoLocazione;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;

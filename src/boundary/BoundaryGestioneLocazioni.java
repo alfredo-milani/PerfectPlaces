@@ -1,8 +1,8 @@
 package boundary;
 
-import control.ControlloreInserimentoLocazione;
-import control.ControlloreRimuoviLocazione;
-import control.ControlloreVisualizzaLocazioni;
+import control.ControlloreGestioneLocazione.ControlloreInserimentoLocazione;
+import control.ControlloreGestioneLocazione.ControlloreRimuoviLocazione;
+import control.ControlloreGestioneLocazione.ControlloreVisualizzaLocazioni;
 import entity.*;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
@@ -176,7 +176,7 @@ public class BoundaryGestioneLocazioni {
 
 
 
-    public ArrayList<Locazione> ritornaLocazioni(String username) throws DeserializzazioneException {
+    public ArrayList<Locazione> chiamaControlloreVisualizza(String username) throws DeserializzazioneException {
             ControlloreVisualizzaLocazioni crl = new ControlloreVisualizzaLocazioni();
 
             ArrayList<Locazione> locazioni;
@@ -186,10 +186,10 @@ public class BoundaryGestioneLocazioni {
 
     }
 
-    public String  avvioRimozione(Locazione locazione) throws SerializzazioneException, DeserializzazioneException {
+    public String chiamaControlloreRimozione(Locazione locazione) throws SerializzazioneException, DeserializzazioneException {
             ControlloreRimuoviLocazione cr =  new ControlloreRimuoviLocazione();
 
-            return cr.rimuoviLocazione(locazione);
+            return cr.rimuovi(locazione);
     }
 
 

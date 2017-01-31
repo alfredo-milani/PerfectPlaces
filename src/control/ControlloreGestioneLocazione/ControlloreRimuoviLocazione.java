@@ -1,4 +1,4 @@
-package control;
+package control.ControlloreGestioneLocazione;
 
 import constants.Constants;
 import entity.*;
@@ -41,15 +41,15 @@ public class ControlloreRimuoviLocazione {
 		
 	}
 
-	//metodo che passa al metodo privato "rimuovi" la locazione scelta dall'utente e il percorso corrispondente
+	//metodo che passa al metodo privato "rimuoviLocazione" la locazione scelta dall'utente e il percorso corrispondente
 	//chiama dunque anche le operazioni per rimuovere le corrispondenti CamerePrenotate e Prenotati corrispondenti a quella locazione
 	@SuppressWarnings("unchecked")
-	public String rimuoviLocazione(Locazione locazione) throws DeserializzazioneException, SerializzazioneException{
+	public String rimuovi(Locazione locazione) throws DeserializzazioneException, SerializzazioneException{
 
 		String nomeLocazione = locazione.getNomeLocazione();
 
 		if(locazione.getClass()==Albergo.class){
-			rimuovi(locazione,percorsoAlbergo);
+			rimuoviLocazione(locazione,percorsoAlbergo);
 			File fPrenotazioni = new File(percorsoPrenotazioniAlberghi);
 			File fPrenotati = new File(percorsoPrenotatiAlbergo);
 
@@ -60,7 +60,7 @@ public class ControlloreRimuoviLocazione {
 
 		}
 		else if(locazione.getClass()==Appartamento.class){
-			rimuovi(locazione,percorsoAppartamento);
+			rimuoviLocazione(locazione,percorsoAppartamento);
 			File fPrenotazioni = new File(percorsoPrenotazioniAppartamenti);
 			File fPrenotati = new File(percorsoPrenotatiAppartamento);
 
@@ -70,7 +70,7 @@ public class ControlloreRimuoviLocazione {
 				rimuoviPrenotati(locazione,percorsoPrenotatiAppartamento);
 		}
 		else if(locazione.getClass()==Beb.class){
-			rimuovi(locazione,percorsoBeb);
+			rimuoviLocazione(locazione,percorsoBeb);
 			File fPrenotazioni = new File(percorsoPrenotazioniBeb);
 			File fPrenotati = new File(percorsoPrenotatiBeb);
 
@@ -80,7 +80,7 @@ public class ControlloreRimuoviLocazione {
 				rimuoviPrenotati(locazione,percorsoPrenotatiBeb);
 		}
 		else if(locazione.getClass()==CasaVacanza.class){
-			rimuovi(locazione,percorsoCasaVacanza);
+			rimuoviLocazione(locazione,percorsoCasaVacanza);
 			File fPrenotazioni = new File(percorsoPrenotazioniCaseVacanza);
 			File fPrenotati = new File(percorsoPrenotatiCasaVacanza);
 
@@ -90,7 +90,7 @@ public class ControlloreRimuoviLocazione {
 				rimuoviPrenotati(locazione,percorsoPrenotatiCasaVacanza);
 		}
 		else {
-			rimuovi(locazione,percorsoOstello);
+			rimuoviLocazione(locazione,percorsoOstello);
 			File fPrenotazioni = new File(percorsoPrenotazioniOstelli);
 			File fPrenotati = new File(percorsoPrenotatiOstello);
 
@@ -107,7 +107,7 @@ public class ControlloreRimuoviLocazione {
 	}
 	//metodo che rimuove una locazione da un file
 	@SuppressWarnings("unchecked")
-	private void rimuovi(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
+	private void rimuoviLocazione(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
 		String nomeLocazione = locazione.getNomeLocazione();
 		String provincia =locazione.getProvincia();
 		String indirizzo = locazione.getIndirizzo();

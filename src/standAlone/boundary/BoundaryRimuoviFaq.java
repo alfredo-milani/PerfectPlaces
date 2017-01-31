@@ -13,32 +13,32 @@ import java.util.ResourceBundle;
 public class BoundaryRimuoviFaq {
 
     //Pannelli
-    public JPanel pannelloRimuovi;
-    public JPanel panelTitolo = new JPanel();
-    public JPanel panelDomanda = new JPanel();
-    public JPanel panelButton = new JPanel();
-    public JPanel panelVisualButton= new JPanel();
-    public JPanel panelTextArea = new JPanel();
+    private JPanel pannelloRimuovi;
+    private JPanel panelTitolo = new JPanel();
+    private JPanel panelDomanda = new JPanel();
+    private JPanel panelButton = new JPanel();
+    private JPanel panelVisualButton= new JPanel();
+    private JPanel panelTextArea = new JPanel();
 
     //Label
     public JLabel titolo = new JLabel();
 
     //Area di testo
-    JTextArea domande_lista = new JTextArea();
-    JScrollPane lista_scroll = new JScrollPane(domande_lista,
+    private JTextArea domande_lista = new JTextArea();
+    private JScrollPane lista_scroll = new JScrollPane(domande_lista,
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 
     //Bottone
-    public JButton bVisualizza;
-    public JButton bRimuovi;
-    public JButton bIndietro;
+    private JButton bVisualizza;
+    private JButton bRimuovi;
+    private JButton bIndietro;
 
 
     // Campi e loro etichette
-    public JLabel rimuoviLabel = new JLabel();
-    public JTextField rimuoviF = new JTextField();
+    private JLabel rimuoviLabel = new JLabel();
+    private JTextField rimuoviF = new JTextField();
 
     // Ascoltatore di bottone e relative azioni
     private RimuoviAA ascoltatoreEtAzioneRimuovi;

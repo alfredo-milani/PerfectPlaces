@@ -16,15 +16,15 @@ public class BoundarySuccesso {
 	
 	
 	//Pannelli
-	public JPanel pannelloSuccesso;
-	public JPanel panelTitolo = new JPanel();
-	public JPanel panelButtonHome = new JPanel();
+	private JPanel pannelloSuccesso;
+	private JPanel panelTitolo = new JPanel();
+	private JPanel panelButtonHome = new JPanel();
 	
 	//Label
-	public JLabel titolo = new JLabel();
+	private JLabel titolo = new JLabel();
 	
 	//Bottone
-	public JButton bHome; 
+	private JButton bHome;
 	
 	// Ascoltatore di bottone e relativa azioni
 	private HomeAA ascoltatoreEtAzioneHome;

@@ -9,7 +9,7 @@ public class Locazione implements Serializable {
 	private String postiTotali;
 	protected String provincia;
 	protected String indirizzo;
-	private String userLocatore;
+	protected String userLocatore;
 	protected String prezzo;
 	protected String descrizione;
 	protected boolean parcheggio;

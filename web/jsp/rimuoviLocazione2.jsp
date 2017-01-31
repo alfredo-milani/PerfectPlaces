@@ -26,7 +26,7 @@
 
     ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("locDaRimuovere");
     try {
-        nomeLocazioneRimossa=b.avvioRimozione(elencoLocazioni.get(Integer.parseInt(id)));
+        nomeLocazioneRimossa=b.chiamaControlloreRimozione(elencoLocazioni.get(Integer.parseInt(id)));
     } catch (SerializzazioneException | DeserializzazioneException e) {
         e.printStackTrace();
     }

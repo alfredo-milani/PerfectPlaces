@@ -55,7 +55,7 @@ public class ControlloreRispondiFaq {
     }
 
 
-    public String[] visualizzaDomandeSenzaRisposta(){
+    public String[] ritornaDomandeSenzaRisposta(){
 
         ArrayList<Faq> faqArray;
         DeserializzaOggetti dobj = new DeserializzaOggetti();

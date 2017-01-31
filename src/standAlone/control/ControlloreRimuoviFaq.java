@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class ControlloreRimuoviFaq {
 
-    JTextArea area;
+    private JTextArea area;
 
     private String path = Constants.FAQ_PATH;
 

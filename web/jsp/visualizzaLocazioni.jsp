@@ -28,7 +28,7 @@
 String username = bl.ritornaUsername();
 ArrayList<Locazione> locazioni = new ArrayList<Locazione>();
 	try {
-		locazioni = b.ritornaLocazioni(username);
+		locazioni = b.chiamaControlloreVisualizza(username);
 	} catch (DeserializzazioneException e) {
 		e.printStackTrace();
 	}

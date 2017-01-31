@@ -161,7 +161,7 @@ public class BoundaryRispostaFaq {
 
         private void costrusciComboBox(){
 
-            domande = crf.visualizzaDomandeSenzaRisposta();
+            domande = crf.ritornaDomandeSenzaRisposta();
             if (domande==null || domande.length==0){
                 pannelloFaqRisposta.setVisible(false);
                 new BoundaryFallimento("Al momento non sono presenti domande a cui rispondere");

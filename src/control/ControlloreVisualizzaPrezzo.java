@@ -8,9 +8,8 @@ import entity.Ostello;
 public class ControlloreVisualizzaPrezzo {
 
 
-    PrezzoBase prezzoBase;
-    ComponentePrezzo component; //oggetto necessario per applicare le varie decorazioni
-    int prezzo;
+    private PrezzoBase prezzoBase;
+    private ComponentePrezzo component; //oggetto necessario per applicare le varie decorazioni
 
     public ControlloreVisualizzaPrezzo(){
 
@@ -20,22 +19,22 @@ public class ControlloreVisualizzaPrezzo {
     //metodo che calcola il prezzo base e lo assegna al component
     public void applicaPrezzoBase(Locazione locazione,int numeroGiorni, String tipoPensione){
 
-
+        int prezzo;
 
         if(locazione.getClass()== Albergo.class) {
             if (tipoPensione.equals("completa"))
-                this.prezzo =(((Integer.parseInt(locazione.getPrezzo().trim())) +40) * numeroGiorni );
+                prezzo =(((Integer.parseInt(locazione.getPrezzo().trim())) +40) * numeroGiorni );
             else {
-                this.prezzo = (((Integer.parseInt(locazione.getPrezzo().trim())) + 20 )* numeroGiorni);
+                prezzo = (((Integer.parseInt(locazione.getPrezzo().trim())) + 20 )* numeroGiorni);
             }
         }else if(locazione.getClass()== Ostello.class){
             if (tipoPensione.equals("completa"))
-                this.prezzo =(((Integer.parseInt(locazione.getPrezzo().trim())) +20) * numeroGiorni );
+                prezzo =(((Integer.parseInt(locazione.getPrezzo().trim())) +20) * numeroGiorni );
             else {
                 prezzo = (((Integer.parseInt(locazione.getPrezzo().trim())) + 10 )* numeroGiorni);
             }
         }else {
-                this.prezzo= numeroGiorni * (Integer.parseInt(locazione.getPrezzo().trim()));
+                prezzo= numeroGiorni * (Integer.parseInt(locazione.getPrezzo().trim()));
             }
         this.prezzoBase = new PrezzoBase(prezzo);
         this.component=this.prezzoBase;

@@ -53,7 +53,7 @@
 
     ArrayList<Locazione> locazioni = new ArrayList<>();
     try {
-        locazioni = bgl.ritornaLocazioni(username);
+        locazioni = bgl.chiamaControlloreVisualizza(username);
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }

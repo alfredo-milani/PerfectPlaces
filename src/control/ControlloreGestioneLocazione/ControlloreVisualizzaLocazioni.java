@@ -1,4 +1,4 @@
-package control;
+package control.ControlloreGestioneLocazione;
 
 import constants.Constants;
 import entity.Locazione;

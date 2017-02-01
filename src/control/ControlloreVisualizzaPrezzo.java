@@ -16,7 +16,7 @@ public class ControlloreVisualizzaPrezzo {
     }
 
 
-    //metodo che calcola il prezzo base e lo assegna al component
+    //Metodo che calcola il prezzo base e lo assegna al component
     public void applicaPrezzoBase(Locazione locazione,int numeroGiorni, String tipoPensione){
 
         int prezzo;

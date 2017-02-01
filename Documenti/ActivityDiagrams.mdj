@@ -19647,7 +19647,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "[Dati accettati dal server]",
+									"text": "[Dati accettati]",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": false
@@ -19791,7 +19791,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "[dati rifiutati dal server]",
+									"text": "[dati rifiutati]",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5,
 									"wordWrap": false
@@ -20432,7 +20432,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFZ3QEElf8QL5o="
 					},
-					"name": "[Dati accettati dal server]",
+					"name": "[Dati accettati]",
 					"source": {
 						"$ref": "AAAAAAFZ3RnejQESNQo="
 					},
@@ -20447,7 +20447,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFZ3QEElf8QL5o="
 					},
-					"name": "[dati rifiutati dal server]",
+					"name": "[dati rifiutati]",
 					"source": {
 						"$ref": "AAAAAAFZ3RnejQESNQo="
 					},

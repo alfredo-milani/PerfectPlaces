@@ -68,9 +68,9 @@ public class BoundaryGestioneUtenti {
         bRimuovi.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,80);
         bRimuovi.setSize(panelButton.getWidth()/3,50);
         bRimuovi.setFont(new Font("Arial", 0, 20));
-        bRimuovi.setToolTipText(bundle.getString("boundaryAmministrazione_rimuovi"));
+        bRimuovi.setToolTipText(bundle.getString("boundaryGestioneUtenti_rimuovi_utente"));
 
-        bRimuoviDati = new JButton(bundle.getString("boundaryGestioneUtenti_rimuovi_utente"));
+        bRimuoviDati = new JButton(bundle.getString("boundaryGestioneUtenti_rimuovi_dati"));
         bRimuoviDati.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,160);
         bRimuoviDati.setSize(panelButton.getWidth()/3,50);
         bRimuoviDati.setFont(new Font("Arial", 0, 20));

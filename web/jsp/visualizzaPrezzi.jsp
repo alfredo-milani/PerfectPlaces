@@ -56,7 +56,7 @@
     String nomeLocazione = elencoLocazioni.get(Integer.parseInt(id)).getNomeLocazione();
 
 
-/*PER FIREFOX
+//PER FIREFOX
 
     int giornoInizio = Integer.parseInt(dataInizio.substring(0, 2));
     int meseInizio = Integer.parseInt(dataInizio.substring(3, 5));
@@ -65,16 +65,16 @@
     int giornoFine = Integer.parseInt(dataFine.substring(0, 2));
     int meseFine = Integer.parseInt(dataFine.substring(3, 5));
     int annoFine = Integer.parseInt(dataFine.substring(6, 10));
-    String al = giornoFine + "/" + meseFine +"/"+ annoFine;*/
+    String al = giornoFine + "/" + meseFine +"/"+ annoFine;
 
-    int giornoInizio = Integer.parseInt(dataInizio.substring(8, 10));
+/*    int giornoInizio = Integer.parseInt(dataInizio.substring(8, 10));
     int meseInizio = Integer.parseInt(dataInizio.substring(5, 7));
     int annoInizio = Integer.parseInt(dataInizio.substring(0, 4));
     String dal = giornoInizio + "/" + meseInizio +"/"+ annoInizio;
     int giornoFine = Integer.parseInt(dataFine.substring(8, 10));
     int meseFine = Integer.parseInt(dataFine.substring(5, 7));
     int annoFine = Integer.parseInt(dataFine.substring(0, 4));
-    String al = giornoFine + "/" + meseFine +"/"+ annoFine;
+    String al = giornoFine + "/" + meseFine +"/"+ annoFine; */
 %>
 
 <body>

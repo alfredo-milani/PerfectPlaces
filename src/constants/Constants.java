@@ -3,7 +3,7 @@ package constants;
 
 public interface Constants {
     //***** Percorsi utili *****//
-    String ABS_PATH = "/home/gabriele/IdeaProjects/PerfectPlaces/"; /* NON MODIFICARE */
+    String ABS_PATH = "/home/maria/Scrivania/Workspace/PerfectPlaces-new/"; /* NON MODIFICARE */
     String ALBERGHI_PATH =    ABS_PATH.concat("data/location/alberghi");
     String ADMIN_PATH =       ABS_PATH.concat("data/amministratori");
     String APPART_PATH =      ABS_PATH.concat("data/location/appartamenti");

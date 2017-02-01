@@ -12,8 +12,8 @@
 </head>
 <body>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<jsp:useBean id="bpl" scope="page" class="boundary.BoundaryPrenotaLocazioni"/>
-<%@page import="entity.Locazione" %>
+<jsp:useBean id="bgp" scope="page" class="boundary.BoundaryGestionePrenotazioni"/>
+<%@ page import="entity.Locazione" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
 <%@ page import="java.util.ArrayList" %>
@@ -30,7 +30,7 @@ boolean controllo = false;
 
 	ArrayList<Locazione> elencoLocazioni= (ArrayList<Locazione>) request.getSession().getAttribute("loc");
 	try {
-		controllo=bpl.prenotaLocazione(elencoLocazioni.get(Integer.parseInt(id)), bl.ritornaUsername(),dataInizio,dataFine,numeroPersone);
+		controllo= bgp.effettuaPrenotazione(elencoLocazioni.get(Integer.parseInt(id)), bl.ritornaUsername(),dataInizio,dataFine,numeroPersone);
 	} catch (DeserializzazioneException | SerializzazioneException e) {
 		e.printStackTrace();
 	}

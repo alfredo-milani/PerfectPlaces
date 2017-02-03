@@ -6,6 +6,7 @@ import utils.DeserializzaOggetti;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by gabriele on 19/01/17.
@@ -14,14 +15,15 @@ public class ThreadRicerca implements Runnable{
 
     private String percorso, provincia, prezzo;
     private int numeroGiorni;
-    private ArrayList<Locazione> locazioni;
+    private static ArrayList<Locazione> locazioni;
+    private static ReentrantLock l = new ReentrantLock();
 
     public ThreadRicerca(String percorso,String provincia,String prezzo,int numeroGiorni,ArrayList<Locazione> locazioni){
         this.percorso=percorso;
         this.provincia=provincia;
         this.prezzo=prezzo;
         this.numeroGiorni=numeroGiorni;
-        this.locazioni=locazioni;
+        ThreadRicerca.locazioni =locazioni;
     }
     @Override
     public void run() {
@@ -39,7 +41,12 @@ public class ThreadRicerca implements Runnable{
             for (Locazione loc : locazioniTemp) {
                 if ((loc.getProvincia().equals(provincia)) &&  //controllo sulla provincia
                         ((Integer.parseInt(loc.getPrezzo().trim()))*numeroGiorni) <= ((Integer.parseInt(prezzo.trim()))*numeroGiorni)) {//controllo sul prezzo
-                    locazioni.add(loc);
+                            l.lock();
+                            try{
+                                locazioni.add(loc);
+                            }finally {
+                                l.unlock();
+                            }
                 }
             }
         }

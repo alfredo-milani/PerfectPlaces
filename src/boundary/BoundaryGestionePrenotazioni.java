@@ -33,12 +33,12 @@ public class BoundaryGestionePrenotazioni {
     }
 
 
-    public ArrayList<Prenotazione> visualizzaPerViaggiatore(String cliente) throws DeserializzazioneException {
+    public ArrayList<Prenotazione> visualizzaPerViaggiatore(String cliente) throws DeserializzazioneException, InterruptedException {
         cvp = new ControlloreVisualizzaPrenotazioni();
         return cvp.visualizzaPrenotazioniPerViaggiatore(cliente);
     }
 
-    public ArrayList<Prenotazione> visualizzaPerProprietario(String proprietario) throws DeserializzazioneException {
+    public ArrayList<Prenotazione> visualizzaPerProprietario(String proprietario) throws DeserializzazioneException, InterruptedException {
         cvp= new ControlloreVisualizzaPrenotazioni();
         return cvp.visualizzaPrenotazioniPerProprietario(proprietario);
     }

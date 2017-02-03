@@ -77,7 +77,7 @@
         <div id="page-bgbtm">
             <div id="content">
                 <h2><strong>Le tue prenotazioni</strong></h2>
-               <% out.println(numeroPrenotazioni);%>
+               <%// out.println(numeroPrenotazioni);%>
                 <%
                     if(elencoPrenotazione.size()==0){
                 %>

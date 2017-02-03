@@ -38,13 +38,11 @@ public class ControlloreRicercaGlobale {
         Thread t4 = new Thread(tCasa);
         Thread t5 = new Thread(tOst);
 
-     //   synchronized (locazioni) {
-            t1.start();
-            t2.start();
-            t3.start();
-            t4.start();
-            t5.start();
-     //   }
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
 
         t1.join();
         t2.join();
@@ -109,6 +107,7 @@ public class ControlloreRicercaGlobale {
             System.out.println(loc.getNomeLocazione());
             System.out.println(loc.getUserLocatore());
             System.out.println(loc.getIndirizzo());
+            System.out.println("------------------------------\n");
         }
     }
 }

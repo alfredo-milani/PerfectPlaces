@@ -46,26 +46,26 @@ public class ControlloreVisualizzaPrenotazioni {
         /*
         prenotazioneTotali.clear();
 
-        prenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiAlbergo);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiAppartamento);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiBeb);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiCasaVacanza);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiOstello);
-        if(!prenotazione.isEmpty()){
-           prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiAlbergo);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiAppartamento);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiBeb);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiCasaVacanza);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiOstello);
+        if(!factoryPrenotazione.isEmpty()){
+           prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
 
         */
         prenotazioneTotali.addAll(prenotazioni);
@@ -122,26 +122,26 @@ public class ControlloreVisualizzaPrenotazioni {
         /*
         prenotazioneTotali.clear();
 
-        prenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiAlbergo);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiAppartamento);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiBeb);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiCasaVacanza);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
-        prenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiOstello);
-        if(!prenotazione.isEmpty()){
-            prenotazioneTotali.addAll(prenotazione);}
-        prenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiAlbergo);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiAppartamento);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiBeb);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiCasaVacanza);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
+        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiOstello);
+        if(!factoryPrenotazione.isEmpty()){
+            prenotazioneTotali.addAll(factoryPrenotazione);}
+        factoryPrenotazione.clear();
         */
         prenotazioneTotali.addAll(prenotazioni);
 

@@ -8,9 +8,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Created by gabriele on 19/01/17.
- */
 public class ThreadRicerca implements Runnable{
 
     private String percorso, provincia, prezzo;

@@ -1,4 +1,4 @@
-package control.prenotazione;
+package control.factoryPrenotazione;
 
 
 public class FactoryPrenotazionePiùPosti extends FactoryPrenotazione {
@@ -26,7 +26,7 @@ public class FactoryPrenotazionePiùPosti extends FactoryPrenotazione {
     }
 
     @Override
-    public ControlloreRegistraPrenotati creaControlloreRegistraPrenotati() {
+    public ControlloreRegistraPrenotazione creaControlloreRegistraPrenotati() {
         return new ControlloreRegistraPrenotazioniPiùPosti();
     }
 }

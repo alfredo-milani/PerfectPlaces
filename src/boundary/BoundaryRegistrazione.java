@@ -6,9 +6,7 @@ import exception.SerializzazioneException;
 
 import java.util.Locale;
 
-/**
- * Created by alfredo on 18/12/16.
- */
+
 public class BoundaryRegistrazione {
 
     private ControlloreRegistrazione cR;

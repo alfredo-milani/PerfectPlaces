@@ -2,7 +2,7 @@ package boundary;
 
 import control.ControlloreRimuoviPrenotazione;
 import control.ControlloreVisualizzaPrenotazioni;
-import control.prenotazione.ControllorePrenotazione;
+import control.factoryPrenotazione.ControllorePrenotazione;
 import entity.Locazione;
 import entity.Prenotazione;
 import exception.DeserializzazioneException;

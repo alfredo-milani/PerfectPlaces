@@ -8,6 +8,9 @@ import utils.DeserializzaOggetti;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Created by maria
+ */
 
 public class ControlloreVisualizzaLocazioni {
     private String percorsoAlbergo = Constants.ALBERGHI_PATH;

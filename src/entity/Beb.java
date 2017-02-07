@@ -1,6 +1,8 @@
 package entity;
 
 
+import constants.Constants;
+
 public class Beb extends Locazione {
 	
 	// Variabili
@@ -17,6 +19,12 @@ public class Beb extends Locazione {
 			String descrizione, boolean parcheggio, boolean wifi, boolean pet, String orarioColazione) {
 		super(nomeLocazione,postiTotali,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
 		this.orarioColazione = orarioColazione;
+	}
+
+	@Override
+	public String selectPath()
+	{
+		return Constants.BEB;
 	}
 	
 	// Getters e Setters

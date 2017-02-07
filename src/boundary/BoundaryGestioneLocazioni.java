@@ -168,7 +168,7 @@ public class BoundaryGestioneLocazioni {
 
     public void registraLocazione(Locazione locazione) throws SerializzazioneException, DeserializzazioneException {
 
-        cil.selezionaPercorso();
+        cil.selezionaPercorso(locazione);
         cil.serializzaLocazione(locazione);
 
     }

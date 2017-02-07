@@ -5,7 +5,7 @@ import entity.*;
 
 
 /**
- * Created by maria on 15/12/16.
+ * Created by maria
  */
 public class FactoryInserimentoLocazione {
 

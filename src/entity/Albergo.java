@@ -1,6 +1,7 @@
 package entity;
 
 
+import constants.Constants;
 
 public class Albergo extends Locazione{
 	
@@ -26,6 +27,24 @@ public class Albergo extends Locazione{
 		this.orarioPranzo = orarioPranzo;
 		this.orarioCena = orarioCena;
 		
+	}
+
+
+	//metodo che calcola il prezzo base, aggiungendo al prezzo per notte il costo della pensione e moltiplicandolo per il numero di giorni
+	@Override
+	public int calcolaPrezzoBase(Locazione locazione,int numeroGiorni, String tipoPensione){
+		if (tipoPensione.equals("completa"))
+			return (((Integer.parseInt(locazione.getPrezzo().trim())) +40) * numeroGiorni );
+		else {
+			return (((Integer.parseInt(locazione.getPrezzo().trim())) + 20 )* numeroGiorni);
+		}
+
+	}
+
+	@Override
+	public String selectPath()
+	{
+		return Constants.ALBERGHI_PATH;
 	}
 	
 	// Getters e Setters

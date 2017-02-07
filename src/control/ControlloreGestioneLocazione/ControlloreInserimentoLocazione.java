@@ -13,20 +13,12 @@ import java.util.ArrayList;
 
 
 /**
- * Created by maria on 16/12/16.
+ * Created by maria
  */
 public class ControlloreInserimentoLocazione {
 
-    private ArrayList<Appartamento> appartamentoList = new ArrayList<Appartamento>();
-    private ArrayList<Beb> bebList = new ArrayList<Beb>();
-    private ArrayList<Albergo> albergoList = new ArrayList<Albergo>();
-    private ArrayList<CasaVacanza> vacanzaList = new ArrayList<CasaVacanza>();
-    private ArrayList<Ostello> ostelloList = new ArrayList<Ostello>();
-    private String percorsoAlbergo = Constants.ALBERGHI_PATH;
-    private String percorsoAppartamento = Constants.APPART_PATH;
-    private String percorsoBeb = Constants.BEB;
-    private String percorsoCasaVacanza = Constants.CASEVACANZA_PATH;
-    private String percorsoOstello = Constants.OSTELLI_PATH;
+
+    private ArrayList<Locazione> locazioniList = new ArrayList<>();
 
     private String command; //il command, settato dalla boundary quado chiama il controllore serve per identificare il tipo di locazione da creare
     private String path;
@@ -50,29 +42,10 @@ public class ControlloreInserimentoLocazione {
     }
 
     //metodo di utilità per selezionare il percorso corretto per la serializzazione del nuovo oggetto creato
-    public void selezionaPercorso(){
-        switch (command){
-            case "0": {
-                path = percorsoAlbergo;
-                break;
-            }
-            case "1": {
-                path = percorsoAppartamento;
-                break;
-            }
-            case "2": {
-                path = percorsoBeb;
-                break;
-            }
-            case "3": {
-                path = percorsoCasaVacanza;
-                break;
-            }
-            case "4": {
-                path=percorsoOstello;
-                break;
-            }
-        }
+    public void selezionaPercorso(Locazione locazione){
+
+        path = locazione.selectPath();
+        System.out.println(path);
     }
 
     //metodo che serializza effettivamente la nuova locazione creata
@@ -83,84 +56,19 @@ public class ControlloreInserimentoLocazione {
         DeserializzaOggetti dobj = new DeserializzaOggetti();
 
 
-        switch (command) {
-            case "0": {
 
-                Albergo albergo=(Albergo)locazione;
-                if (file.length() == 0) {
-                    albergoList.clear();
-                    albergoList.add(albergo);
-                    sobj.serializza(albergoList, path);
-                    break;
-                }
-
-                albergoList = (ArrayList<Albergo>) dobj.deserializza(path);
-                albergoList.add(albergo);
-                sobj.serializza(albergoList, percorsoAlbergo);
-                break;
-            }
-            case "1": {
-
-                Appartamento appartamento=(Appartamento) locazione;
-                if (file.length() == 0) {
-                    appartamentoList.clear();
-                    appartamentoList.add(appartamento);
-                    sobj.serializza(appartamentoList, path);
-                    break;
-                }
-
-                appartamentoList = (ArrayList<Appartamento>) dobj.deserializza(path);
-                appartamentoList.add(appartamento);
-                sobj.serializza(appartamentoList, path);
-                break;
-            }
-            case "2": {
-
-                Beb beb=(Beb) locazione;
-                if (file.length() == 0) {
-                    bebList.clear();
-                    bebList.add(beb);
-                    sobj.serializza(bebList, path);
-                    break;
-                }
-
-                bebList = (ArrayList<Beb>) dobj.deserializza(path);
-                bebList.add(beb);
-                sobj.serializza(bebList, path);
-                break;
-            }
-            case "3": {
-
-                CasaVacanza casaVacanza=(CasaVacanza) locazione;
-                if (file.length() == 0) {
-                    vacanzaList.clear();
-                    vacanzaList.add(casaVacanza);
-                    sobj.serializza(vacanzaList, path);
-                    break;
-                }
-
-                vacanzaList = (ArrayList<CasaVacanza>) dobj.deserializza(path);
-                vacanzaList.add(casaVacanza);
-                sobj.serializza(vacanzaList, path);
-                break;
-            }
-            case "4": {
-
-                Ostello ostello=(Ostello) locazione;
-                if (file.length() == 0) {
-                    ostelloList.clear();
-                    ostelloList.add(ostello);
-                    sobj.serializza(ostelloList, path);
-                    break;
-                }
-
-                ostelloList = (ArrayList<Ostello>) dobj.deserializza(path);
-                ostelloList.add(ostello);
-                sobj.serializza(ostelloList, path);
-                break;
-            }
-
+        if (file.length() == 0) {
+            locazioniList.clear();
+            locazioniList.add(locazione);
+            sobj.serializza(locazioniList, path);
         }
+
+        locazioniList = (ArrayList<Locazione>) dobj.deserializza(path);
+        locazioniList.add(locazione);
+        sobj.serializza(locazioniList, path);
+
+
+
 
     }
 }

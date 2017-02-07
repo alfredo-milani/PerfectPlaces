@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * Created by maria on 21/12/16.
+ * Created by maria
  */
 public class ControlloreFaq {
 

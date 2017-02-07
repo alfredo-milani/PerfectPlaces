@@ -10,6 +10,10 @@ import utils.SerializzaOggetti;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Created by maria
+ */
+
 // Questa classe serve a rimuovere una locazione dal sistema da parte del proprietario. 
 // Vengono anche eliminate le prenotazioni associate alla locazione da rimuovere
 
@@ -17,11 +21,6 @@ public class ControlloreRimuoviLocazione {
 	
 	// Percorsi
 	
-	private String percorsoAlbergo = Constants.ALBERGHI_PATH;
-	private String percorsoAppartamento = Constants.APPART_PATH;
-	private String percorsoBeb = Constants.BEB;
-	private String percorsoCasaVacanza = Constants.CASEVACANZA_PATH;
-	private String percorsoOstello = Constants.OSTELLI_PATH;
 
 	private static String percorsoPrenotatiAlbergo = Constants.PRENOTATI_ALBERGO_PATH;
 	private static String percorsoPrenotatiAppartamento = Constants.PRENOTATI_APPARTAMENTO_PATH;
@@ -48,8 +47,11 @@ public class ControlloreRimuoviLocazione {
 
 		String nomeLocazione = locazione.getNomeLocazione();
 
+		//generale per tutti i tipi di locazioni
+		rimuoviLocazione(locazione,locazione.selectPath());
+
 		if(locazione.getClass()==Albergo.class){
-			rimuoviLocazione(locazione,percorsoAlbergo);
+
 			File fPrenotazioni = new File(percorsoPrenotazioniAlberghi);
 			File fPrenotati = new File(percorsoPrenotatiAlbergo);
 
@@ -60,7 +62,7 @@ public class ControlloreRimuoviLocazione {
 
 		}
 		else if(locazione.getClass()==Appartamento.class){
-			rimuoviLocazione(locazione,percorsoAppartamento);
+
 			File fPrenotazioni = new File(percorsoPrenotazioniAppartamenti);
 			File fPrenotati = new File(percorsoPrenotatiAppartamento);
 
@@ -70,7 +72,7 @@ public class ControlloreRimuoviLocazione {
 				rimuoviPrenotati(locazione,percorsoPrenotatiAppartamento);
 		}
 		else if(locazione.getClass()==Beb.class){
-			rimuoviLocazione(locazione,percorsoBeb);
+
 			File fPrenotazioni = new File(percorsoPrenotazioniBeb);
 			File fPrenotati = new File(percorsoPrenotatiBeb);
 
@@ -80,7 +82,7 @@ public class ControlloreRimuoviLocazione {
 				rimuoviPrenotati(locazione,percorsoPrenotatiBeb);
 		}
 		else if(locazione.getClass()==CasaVacanza.class){
-			rimuoviLocazione(locazione,percorsoCasaVacanza);
+
 			File fPrenotazioni = new File(percorsoPrenotazioniCaseVacanza);
 			File fPrenotati = new File(percorsoPrenotatiCasaVacanza);
 
@@ -90,7 +92,7 @@ public class ControlloreRimuoviLocazione {
 				rimuoviPrenotati(locazione,percorsoPrenotatiCasaVacanza);
 		}
 		else {
-			rimuoviLocazione(locazione,percorsoOstello);
+
 			File fPrenotazioni = new File(percorsoPrenotazioniOstelli);
 			File fPrenotati = new File(percorsoPrenotatiOstello);
 

@@ -1,5 +1,7 @@
 package entity;
 
+import constants.Constants;
+
 public class CasaVacanza extends Locazione {
 	
 	// Variabili
@@ -24,6 +26,12 @@ public class CasaVacanza extends Locazione {
 		this.numeroBagni = numeroBagni;
 		this.giardino = giardino;
 		this.numeroLetti = numeroLetti;
+	}
+
+	@Override
+	public String selectPath()
+	{
+		return Constants.CASEVACANZA_PATH;
 	}
 	
 	// Getters e Setters

@@ -1,6 +1,8 @@
 package entity;
 
 
+import constants.Constants;
+
 public class Ostello extends Locazione {
 	
 	// Variabili
@@ -19,7 +21,24 @@ public class Ostello extends Locazione {
 		super(nomeLocazione,postiTotali,provincia, indirizzo, userLocatore, prezzo, descrizione, parcheggio, wifi, pet);
 		this.tipoPensione=tipoPensione;
 	}
-	
+
+	//metodo che calcola il prezzo base, aggiungendo al prezzo per notte il costo della pensione e moltiplicandolo per il numero di giorni
+	@Override
+	public int calcolaPrezzoBase(Locazione locazione,int numeroGiorni, String tipoPensione){
+		if (tipoPensione.equals("completa"))
+			return (((Integer.parseInt(locazione.getPrezzo().trim())) +20) * numeroGiorni );
+		else {
+			return (((Integer.parseInt(locazione.getPrezzo().trim())) + 10 )* numeroGiorni);
+		}
+
+	}
+
+	@Override
+	public String selectPath()
+	{
+		return Constants.OSTELLI_PATH;
+	}
+
 	// Getters e Setters
 
 	public String getTipoPensione() {

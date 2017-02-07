@@ -27,7 +27,7 @@ public class BoundaryVisualizzaPrezzo {
     public int ritornaPrezzoConServizi(String dataInizio, String dataFine, String parcheggio, String wifi,String pet) throws DeserializzazioneException, SerializzazioneException, IOException {
 
         int numeroGiorni = calcolaNumeroGiorni(dataInizio,dataFine);
-        cvp.applicaServizi( numeroGiorni,parcheggio,wifi,pet );
+        cvp.applicaServizi( numeroGiorni,Boolean.parseBoolean(parcheggio),Boolean.parseBoolean(wifi),Boolean.parseBoolean(pet) );
         return cvp.ritornaPrezzoConServizi();
     }
 

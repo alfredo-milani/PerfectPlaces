@@ -33,7 +33,16 @@ public class Locazione implements Serializable {
 		this.wifi = wifi;
 		this.pet = pet;
 	}
-	
+
+	//metodo che moltiplica il prezzo per notte per il numero di giorni
+	public int calcolaPrezzoBase(Locazione locazione,int numeroGiorni, String tipoPensione){
+		return numeroGiorni * (Integer.parseInt(this.getPrezzo().trim()));
+	}
+
+	public String selectPath()
+	{
+		return "";
+	}
 	// Getters e Setters
 	public String getNomeLocazione() {
 		return nomeLocazione;

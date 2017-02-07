@@ -1,7 +1,7 @@
 package control.Decorator;
 
 /**
- * Created by maria on 13/01/17.
+ * Created by maria
  */
 //ConcreteDecorator 3
 public class DecoratorPrezzoWifi extends DecoratorPrezzo {

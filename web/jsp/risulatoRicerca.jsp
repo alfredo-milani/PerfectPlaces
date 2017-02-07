@@ -142,9 +142,7 @@ Object elencoLocazioni = new Object();
 						Il prezzo,le date inserite o la provincia non sono accettabili
 						</h2>
 						<br><br>
-						<h4 style="font-size: 100%">Ricorda di completare tutti i campi, di inserire una provincia con il primo carattere in maiuscolo(es. Roma),<br>
-							se la provincia è composta da più parole ognuna di queste deve essere inserita con il primo carattere in maiuscolo (es. Reggio Di Calabria)<br>
-							e di inserire date nel formato gg/mm/aaaa (es. 10/10/2016)</h4>
+						<h4 style="font-size: 100%">Ricorda di completare tutti i campi e di inserire date nel formato gg/mm/aaaa (es. 10/10/2016)</h4>
 						<br>
 						<h2><a style="color: #4b7091" href="ricercaLocazione.jsp">Torna alla ricerca</a></h2>
 					</div>
@@ -280,7 +278,7 @@ Object elencoLocazioni = new Object();
 										 		<input type="hidden" name="id" value="<%out.println(i);%>">
 										 		<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 										 		<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-                                                <td style="float: right"><input type="submit" class="btnBlueborder" value="riepilogo prezzi"></td>
+                                                <td style="float: right"><input type="submit" class="btnBlueborder" value="Info&Dettagli"></td>
 									 </tr>
 									</table>
 
@@ -437,7 +435,7 @@ Object elencoLocazioni = new Object();
 													<input type="hidden" name="id" value="<%out.println(i);%>">
 													<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 													<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-													<td style="float: right"><input type="submit" class="btnBlueborder" value="riepilogo prezzi"></td>
+													<td style="float: right"><input type="submit" class="btnBlueborder" value="Info&Dettagli"></td>
 												</tr>
 											</table>
 
@@ -596,7 +594,7 @@ Object elencoLocazioni = new Object();
 												<input type="hidden" name="id" value="<%out.println(i);%>">
 												<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 												<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-												<td style="float: right"><input type="submit" class="btnBlueborder" value="riepilogo prezzi"></td>
+												<td style="float: right"><input type="submit" class="btnBlueborder" value="Info&Dettagli"></td>
 											</tr>
 										</table>
 
@@ -735,7 +733,7 @@ Object elencoLocazioni = new Object();
 												<input type="hidden" name="id" value="<%out.println(i);%>">
 												<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 												<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-												<td style="float: right"><input type="submit" class="btnBlueborder" value="riepilogo prezzi"></td>
+												<td style="float: right"><input type="submit" class="btnBlueborder" value="Info&Dettagli"></td>
 											</tr>
 										</table>
 
@@ -889,7 +887,7 @@ Object elencoLocazioni = new Object();
 											<input type="hidden" name="id" value="<%out.println(i);%>">
 											<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 											<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-											<td style="float: right"><input type="submit" class="btnBlueborder" value="riepilogo prezzi"></td>
+											<td style="float: right"><input type="submit" class="btnBlueborder" value="Info&Dettagli"></td>
 										</tr>
 									</table>
 
@@ -1033,7 +1031,7 @@ Object elencoLocazioni = new Object();
 											<input type="hidden" name="id" value="<%out.println(i);%>">
 											<input type="hidden" name="dataInizio" value="<%out.println(dataInizio);%>">
 											<input type="hidden" name="dataFine" value="<%out.println(dataFine);%>">
-											<td style="float: right"><input type="submit" class="btnBlueborder" value="riepilogo prezzi"></td>
+											<td style="float: right"><input type="submit" class="btnBlueborder" value="Info&Dettagli"></td>
 										</tr>
 									</table>
 

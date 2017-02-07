@@ -32,7 +32,6 @@
     String nomeCliente;
     GregorianCalendar dataInizio;
     GregorianCalendar dataFine;
-    int numeroPrenotazioni = elencoPrenotazione.size();
     int numeroPersone;
 %>
 <div id="menu-wrapper">
@@ -77,7 +76,6 @@
         <div id="page-bgbtm">
             <div id="content">
                 <h2><strong>Le tue prenotazioni</strong></h2>
-               <%// out.println(numeroPrenotazioni);%>
                 <%
                     if(elencoPrenotazione.size()==0){
                 %>

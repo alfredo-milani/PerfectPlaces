@@ -29,8 +29,12 @@ public class ControlloreRimuoviPrenotazione {
 
 
     /*
-     *metodo che rimuove una factoryPrenotazione, per farlo oltre ad eliminare un oggetto factoryPrenotazione deve
-     *eliminare anche i posti occupati relativi alle date per le quali l'utente si era precedentente prenotato
+     metodo che rimuove una prenotazione, per farlo oltre ad eliminare un oggetto prenotazione deve
+     eliminare anche i posti occupati relativi alle date per le quali l'utente si era precedentente prenotato
+     per questo motivo se la prenotazione è relativa ad una locazione con più posti al giorno(come un albergo)
+     viene sfruttato il metodo privato "rimuoviPostiOccupati" mentre se la prenotazione è relativa ad un locazione
+     come una casa vacanza che viene considerata come una locazione con un singolo posto quindi viene invato il
+     metodo privato "rimuoviSingoloPosto"
      */
     public void rimuovi(Prenotazione prenotazione) throws DeserializzazioneException, SerializzazioneException, IOException {
 
@@ -78,7 +82,6 @@ public class ControlloreRimuoviPrenotazione {
         SerializzaOggetti sobj = new SerializzaOggetti();
 
         prenotazioniClienti=(ArrayList<Prenotazione>) dobj.deserializza(percorsoPrenotati);
-        System.out.println("Dimensione Prenotazione prima della rimozione "+ prenotazioniClienti.size());
 
         for(int i=0; i<prenotazioniClienti.size();++i){
             if(prenotazioniClienti.get(i).getNomeLocazione().equals(nomeLocazione)&&
@@ -89,7 +92,7 @@ public class ControlloreRimuoviPrenotazione {
             }
 
         }
-        System.out.println("Dimensione prenotati dopo della rimozione "+ prenotazioniClienti.size());
+
         sobj.serializza(prenotazioniClienti,percorsoPrenotati);
 
     }
@@ -109,13 +112,11 @@ public class ControlloreRimuoviPrenotazione {
         SerializzaOggetti sobj = new SerializzaOggetti();
 
         postiDisponibili = (ArrayList<PostiDisponibili>) dobj.deserializza(percorsoCamere);
-        System.out.println("Dimensione postiDisponibili prima della rimozione "+ postiDisponibili.size());
         for( GregorianCalendar data: datePrenotazione){
             for (int i = 0; i< postiDisponibili.size(); ++i){
                 if(postiDisponibili.get(i).getNomeLocazion().equals(nomeLocazione) && postiDisponibili.get(i).getData().equals(data)){
                      //se  è presente in postiDisponibili il contatore è almeno 1--> ha senso decrementarlo
                     int contatore_aggiornato=(postiDisponibili.get(i).getContatore()-postiOccupati);
-                    System.out.println("contatore aggiornato " + contatore_aggiornato);
                     if(contatore_aggiornato == 0) {
                         postiDisponibili.remove(i);
                     }
@@ -128,7 +129,6 @@ public class ControlloreRimuoviPrenotazione {
 
             }
         }
-        System.out.println("Dimensione postiDisponibili dopo della rimozione "+ postiDisponibili.size());
         sobj.serializza(postiDisponibili,percorsoCamere);
     }
 
@@ -148,7 +148,6 @@ public class ControlloreRimuoviPrenotazione {
 
 
         postiDisponibili = (ArrayList<PostiDisponibili>) dobj.deserializza(percorsoCamere);
-        System.out.println("Dimensione postiDisponibili prima della rimozione "+ postiDisponibili.size());
         for( GregorianCalendar data: datePrenotazione){
             for (int i = 0; i< postiDisponibili.size(); ++i){
                 if(postiDisponibili.get(i).getNomeLocazion().equals(nomeLocazione) && postiDisponibili.get(i).getData().equals(data)){
@@ -157,7 +156,6 @@ public class ControlloreRimuoviPrenotazione {
 
             }
         }
-        System.out.println("Dimensione postiDisponibili dopo della rimozione "+ postiDisponibili.size());
         sobj.serializza(postiDisponibili,percorsoCamere);
     }
 

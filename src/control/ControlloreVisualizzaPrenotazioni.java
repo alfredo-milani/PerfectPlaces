@@ -3,9 +3,7 @@ package control;
 import constants.Constants;
 import entity.Prenotazione;
 import exception.DeserializzazioneException;
-import utils.DeserializzaOggetti;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class ControlloreVisualizzaPrenotazioni {
@@ -15,6 +13,12 @@ public class ControlloreVisualizzaPrenotazioni {
     private static String percorsoPrenotatiBeb = Constants.PRENOTATI_BEB_PATH;
     private static String percorsoPrenotatiCasaVacanza = Constants.PRENOTATI_CASEVACANZA_PATH;
     private static String percorsoPrenotatiOstello = Constants.PRENOTATI_OSTELLO_PATH;
+
+    /*
+    metodo utilizzato per restituire le prenotazioni effettuate dal viaggiatore, essendo le prenotazioni
+    salvate su 5 file (distinti dal tipo locazione), vengono sfruttati 5 thread ognuno dei quali restitusce
+    le prenotazioni associate al viaggiatore
+     */
 
     public ArrayList<Prenotazione> visualizzaPrenotazioniPerViaggiatore (String cliente) throws DeserializzazioneException, InterruptedException {
         ArrayList<Prenotazione> prenotazioni = new ArrayList<>();
@@ -43,53 +47,17 @@ public class ControlloreVisualizzaPrenotazioni {
         t3.join();
         t4.join();
         t5.join();
-        /*
-        prenotazioneTotali.clear();
 
-        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiAlbergo);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiAppartamento);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiBeb);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiCasaVacanza);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerViaggiatore(cliente,percorsoPrenotatiOstello);
-        if(!factoryPrenotazione.isEmpty()){
-           prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-
-        */
         prenotazioneTotali.addAll(prenotazioni);
 
         return prenotazioneTotali;
     }
-    @SuppressWarnings("unchecked")
-    private ArrayList<Prenotazione> restituisciPrenotazioniPerViaggiatore(String cliente, String percorso) throws DeserializzazioneException {
-        ArrayList<Prenotazione> listaPrenotazioni;
-        ArrayList<Prenotazione> listaPrenotazioniCliente = new ArrayList<>();
 
-        File file = new File(percorso);
-        if (file.length() != 0) {
-            DeserializzaOggetti dobj = new DeserializzaOggetti();
-            listaPrenotazioni = (ArrayList<Prenotazione>) dobj.deserializza(percorso);
-
-            for (Prenotazione locazioni : listaPrenotazioni) {
-                if (locazioni.getCliente().equals(cliente)) {
-                    listaPrenotazioniCliente.add(locazioni);
-                }
-            }
-        }
-        return listaPrenotazioniCliente;
-    }
+    /*
+    metodo utilizzato per restituire le prenotazioni relative alle locazioni
+    del proprietario, essendo le prenotazioni salvate su 5 file (distinti dal tipo locazione),
+    vengono sfruttati 5 thread ognuno dei quali restituscele prenotazioni associate al viaggiatore
+     */
 
     public ArrayList<Prenotazione> visualizzaPrenotazioniPerProprietario (String proprietario) throws DeserializzazioneException, InterruptedException {
         ArrayList<Prenotazione> prenotazioni = new ArrayList<>();
@@ -119,53 +87,12 @@ public class ControlloreVisualizzaPrenotazioni {
         t4.join();
         t5.join();
 
-        /*
-        prenotazioneTotali.clear();
 
-        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiAlbergo);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiAppartamento);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiBeb);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiCasaVacanza);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        factoryPrenotazione =restituisciPrenotazioniPerProprietario(proprietario,percorsoPrenotatiOstello);
-        if(!factoryPrenotazione.isEmpty()){
-            prenotazioneTotali.addAll(factoryPrenotazione);}
-        factoryPrenotazione.clear();
-        */
         prenotazioneTotali.addAll(prenotazioni);
 
         return prenotazioneTotali;
     }
 
-    @SuppressWarnings("unchecked")
-    private ArrayList<Prenotazione> restituisciPrenotazioniPerProprietario(String proprietario, String percorso) throws DeserializzazioneException {
-        ArrayList<Prenotazione> listaPrenotazioni;
-        ArrayList<Prenotazione> listaPrenotazioniCliente = new ArrayList<>();
-
-        File file = new File(percorso);
-        if (file.length() != 0) {
-            DeserializzaOggetti dobj = new DeserializzaOggetti();
-            listaPrenotazioni = (ArrayList<Prenotazione>) dobj.deserializza(percorso);
-
-            for (Prenotazione locazioni : listaPrenotazioni) {
-                if (locazioni.getProprietario().equals(proprietario)) {
-                    listaPrenotazioniCliente.add(locazioni);
-                }
-            }
-        }
-        return listaPrenotazioniCliente;
-    }
 
 
 

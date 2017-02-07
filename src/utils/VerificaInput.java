@@ -54,7 +54,7 @@ public class VerificaInput {
                 s = b.readLine();
                 if (s == null)
                     break;
-                if (s.trim().equals(pr))
+                if (s.trim().equalsIgnoreCase(pr))
                     return true;
             }
             return false;

@@ -1,4 +1,4 @@
-<%@ page import="boundary.BoundaryFaq" %>
+<%@ page import="boundary.BoundaryAiuto" %>
 <%@ page import="exception.DeserializzazioneException" %>
 
 <%@ page import="java.util.ArrayList" %><%--
@@ -40,10 +40,10 @@
 
 <link href='http://fonts.googleapis.com/css?family=Lato:400,100,300,700' rel='stylesheet' type='text/css'>
 <%
-    String type="0"; //faqViaggiatore
-    BoundaryFaq bf = null;
+    String type="1"; //domandeProprietario
+    BoundaryAiuto bf = null;
     try {
-        bf = new BoundaryFaq();
+        bf = new BoundaryAiuto();
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
@@ -58,54 +58,54 @@
 %>
 
 <body class="bf" >
-<div class="faq" id="header" >
-    <h1>FAQ Viaggiatore</h1>
-    <p><a href="areaFaq.jsp">Torna all'area FAQ</a></p>
+<div class="domandaUtente" id="header" >
+    <h1>AIUTO Proprietario</h1>
+    <p><a href="areaAiuto.jsp">Torna all'area generale</a></p>
 
 </div>
 
 <div class="content">
     <% if(domande==null) {%>
-        <div class="box">
+    <div class="box">
 
-            <div ><p>Al momento in questa sezione non sono presenti domande con annesse risposte</p></div>
+        <div ><p>Al momento in questa sezione non sono presenti domande con annesse risposte</p></div>
 
 
-        </div>
+    </div>
 
 
     <% } else {%>
 
 
 
-            <%
-                for(int i=0; i<domande.size(); ++i){
-            %>
-            <div class="box">
+    <%
+        for(int i=0; i<domande.size(); ++i){
+    %>
+    <div class="box">
 
-                <div id="testo"><a href="#" onclick="visualizza('<%out.print(i);%>')"><%out.println(Integer.toString(i+1)+". "+domande.get(i));%></a></div>
-                <div id="<%out.print(i);%>" style="visibility: hidden"><%
-                    try {
-                        out.println(bf.ritornaRisposta(domande.get(i)));
-                    } catch (DeserializzazioneException e) {
-                        e.printStackTrace();
-                    }
-                %></div>
+        <div id="testo"><a href="#" onclick="visualizza('<%out.print(i);%>')"><%out.println(Integer.toString(i+1)+". "+domande.get(i));%></a></div>
+        <div id="<%out.print(i);%>" style="visibility: hidden;"><%
+            try {
+                out.println(bf.ritornaRisposta(domande.get(i)));
+            } catch (DeserializzazioneException e) {
+                e.printStackTrace();
+            }
+        %></div>
 
-            </div>
-            <%
-                }
-            %>
+    </div>
+    <%
+        }
+    %>
 
     <% } %>
 
     <% if (bl.controlloAccesso()) { %>
-                <form action="inserisciDomanda.jsp" method="get" >
-                    <input name="nuovaDomanda" type="text" placeholder="Scrivi qui la tua domanda" value=""  size="60" maxlength="200" />
-                    <input type="hidden" name="tipo" value="<%out.print(type);%>">
-                    <input  class="btn_2" name="inserisciFaq" type="submit" value="Invia Domanda" style="display: block; margin: 0 auto; width: 170px;"/>
+    <form action="inserisciDomanda.jsp" method="get" >
+        <input name="nuovaDomanda" type="text" placeholder="Scrivi qui la tua domanda" value=""  size="60" maxlength="200" />
+        <input type="hidden" name="tipo" value="<%out.print(type);%>">
+        <input  class="btn_2" name="inserisciDomanda" type="submit" value="Invia Domanda" style="display: block; margin: 0 auto; width: 170px;"/>
 
-                </form>
+    </form>
     <% } %>
 
 
@@ -114,3 +114,4 @@
 
 </body >
 </html>
+

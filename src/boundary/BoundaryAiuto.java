@@ -1,18 +1,18 @@
 package boundary;
 
-import control.ControlloreFaq;
+import control.ControlloreAiuto;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 
 import java.util.ArrayList;
 
 /**
- * Created by maria on 21/12/16.
+ * Created by maria
  */
-public class BoundaryFaq {
-    ControlloreFaq cf = new ControlloreFaq();
+public class BoundaryAiuto {
+    ControlloreAiuto cf = new ControlloreAiuto();
 
-    public BoundaryFaq() throws DeserializzazioneException {
+    public BoundaryAiuto() throws DeserializzazioneException {
     }
 
     public ArrayList<String> ritornaDomande(String type) throws DeserializzazioneException {

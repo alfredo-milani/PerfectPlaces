@@ -1,7 +1,7 @@
 package standAlone.control;
 
 import constants.Constants;
-import entity.Faq;
+import entity.DomandaUtente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import standAlone.boundary.BoundaryFallimento;
@@ -36,7 +36,7 @@ public class ControlloreRimuoviFaq {
         }
         SerializzaOggetti sobj= new SerializzaOggetti();
         DeserializzaOggetti dobj = new DeserializzaOggetti();
-        ArrayList<Faq> domande = (ArrayList<Faq>) dobj.deserializza(path);
+        ArrayList<DomandaUtente> domande = (ArrayList<DomandaUtente>) dobj.deserializza(path);
 
         for(int i=0; i<domande.size(); ++i){
             if(domande.get(i).getDomanda().equals(domanda)){
@@ -53,7 +53,7 @@ public class ControlloreRimuoviFaq {
     public void visualizzaDomandeSenzaRisposta(){
         ResourceBundle bundle = this.cl.getBundleFromProp();
 
-        ArrayList<Faq> faq;
+        ArrayList<DomandaUtente> domandaUtente;
         DeserializzaOggetti dobj= new DeserializzaOggetti();
         File file = new File(path);
         String incipit= bundle.getString("boundaryFaq_domande_senza_risposta");
@@ -61,8 +61,8 @@ public class ControlloreRimuoviFaq {
 
          if(file.length()!=0) {
              try {
-                 faq = (ArrayList<Faq>) dobj.deserializza(path);
-                 for (Faq f : faq) {
+                 domandaUtente = (ArrayList<DomandaUtente>) dobj.deserializza(path);
+                 for (DomandaUtente f : domandaUtente) {
                      if (!f.getSettaRisposta()) {
                          domande = domande + f.getDomanda() + '\n';
                      }

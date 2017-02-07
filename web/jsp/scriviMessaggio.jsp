@@ -85,7 +85,7 @@
                 <li><a href="areaProprietario.jsp"><%=bundle.getString("utente_areaProprietario")%></a></li>
                 <li><a href="profiloUtente.jsp"><%=bundle.getString("utente_profilo")%></a></li>
                 <li><a href="posta.jsp"><%=bundle.getString("utente_posta")%></a></li>
-                <li><a href="areaFaq.jsp"><%=bundle.getString("index_faq")%></a></li>
+                <li><a href="areaAiuto.jsp"><%=bundle.getString("index_aiuto")%></a></li>
                 <li><a href="logout.jsp"><%=bundle.getString("utente_esci")%></a></li>
             </ul>
 

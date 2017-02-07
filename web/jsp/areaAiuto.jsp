@@ -46,11 +46,11 @@
                     <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
                     <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
                     <li><a href="posta.jsp">Posta</a></li>
-                    <li><a href="areaFaq.jsp">FAQ</a></li>
+                    <li><a href="areaAiuto.jsp">AIUTO</a></li>
                     <li><a href="logout.jsp">Esci</a></li>
                 <% } else {%>
                     <li><a href="index.jsp">HOME</a></li>
-                    <li><a href="areaFaq.jsp">FAQ</a></li>
+                    <li><a href="areaAiuto.jsp">AIUTO</a></li>
                 <%} %>
 
 
@@ -60,7 +60,7 @@
 
 
                     <div class="post">
-                        <h2><strong>Scegli la sezione FAQ di interesse</strong></h2>
+                        <h2><strong>Scegli la sezione di interesse</strong></h2>
 
                     </div>
                     <div class="post">
@@ -70,8 +70,8 @@
                                 <td><h1>Proprietario</h1></td>
                             </tr>
                             <tr>
-                                <td style="padding-right: 100px"><h2 class="title"><a href="faqViaggiatore.jsp"><img src="../css/images/valigia.jpg" width="200" height="200" alt="faq cliente"/></a></h2></td>
-                                <td style="margin-left: 50px"><h2 class="title"><a href="faqProprietario.jsp"><img src="../css/images/proprietario.png" width="200" height="200" alt="faq proprietario"/></a></h2></td>
+                                <td style="padding-right: 100px"><h2 class="title"><a href="aiutoViaggiatore.jsp"><img src="../css/images/valigia.jpg" width="200" height="200" alt="domandaUtente cliente"/></a></h2></td>
+                                <td style="margin-left: 50px"><h2 class="title"><a href="aiutoProprietario.jsp"><img src="../css/images/proprietario.png" width="200" height="200" alt="domandaUtente proprietario"/></a></h2></td>
                             </tr>
 
 

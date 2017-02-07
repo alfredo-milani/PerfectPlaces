@@ -58,7 +58,7 @@
                 <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
                 <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
                 <li><a href="posta.jsp">Posta</a></li>
-                <li><a href="areaFaq.jsp">FAQ</a></li>
+                <li><a href="areaAiuto.jsp">AIUTO</a></li>
                 <li><a href="logout.jsp">Esci</a></li>
             </ul>
             <div >

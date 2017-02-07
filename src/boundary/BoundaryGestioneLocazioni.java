@@ -10,7 +10,7 @@ import exception.SerializzazioneException;
 import java.util.ArrayList;
 
 /**
- * Created by maria on 16/12/16.
+ * Created by maria
  */
 public class BoundaryGestioneLocazioni {
 

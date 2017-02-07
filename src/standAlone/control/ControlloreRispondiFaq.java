@@ -1,7 +1,7 @@
 package standAlone.control;
 
 import constants.Constants;
-import entity.Faq;
+import entity.DomandaUtente;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import standAlone.boundary.BoundaryFallimento;
@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class ControlloreRispondiFaq {
 
     private String path = Constants.FAQ_PATH;
-    private ArrayList<Faq> faqArray;
+    private ArrayList<DomandaUtente> faqArray;
 
     private ControlloreLinguaAmministratore cl;
 
@@ -32,17 +32,17 @@ public class ControlloreRispondiFaq {
 
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();
-        faqArray=(ArrayList<Faq>) dobj.deserializza(path);
+        faqArray=(ArrayList<DomandaUtente>) dobj.deserializza(path);
 
         if(risposta.equals("")) {
             new BoundaryFallimento(bundle.getString("boundaryFaq_risposte_vuote"));
             return;
         }
 
-        for(Faq faq: faqArray){
-            if(faq.getDomanda().equals(domanda) && !faq.getSettaRisposta()){
-                faq.setRisposta(risposta);
-                faq.setSettaRisposta(true);
+        for(DomandaUtente domandaUtente : faqArray){
+            if(domandaUtente.getDomanda().equals(domanda) && !domandaUtente.getSettaRisposta()){
+                domandaUtente.setRisposta(risposta);
+                domandaUtente.setSettaRisposta(true);
                 break;
 
             }
@@ -57,7 +57,7 @@ public class ControlloreRispondiFaq {
 
     public String[] ritornaDomandeSenzaRisposta(){
 
-        ArrayList<Faq> faqArray;
+        ArrayList<DomandaUtente> domandaUtenteArray;
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         ArrayList<String> domande = new ArrayList<String>();
 
@@ -69,11 +69,11 @@ public class ControlloreRispondiFaq {
             try {
 
 
-                faqArray = (ArrayList<Faq>) dobj.deserializza(path);
+                domandaUtenteArray = (ArrayList<DomandaUtente>) dobj.deserializza(path);
 
-                for (Faq faq : faqArray) {
-                    if (!faq.getSettaRisposta())
-                        domande.add(faq.getDomanda());
+                for (DomandaUtente domandaUtente : domandaUtenteArray) {
+                    if (!domandaUtente.getSettaRisposta())
+                        domande.add(domandaUtente.getDomanda());
                 }
                 dom = new String[domande.size()];
                 for (int i = 0; i < domande.size(); ++i) {

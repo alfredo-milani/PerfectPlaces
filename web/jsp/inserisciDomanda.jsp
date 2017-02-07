@@ -19,15 +19,15 @@
 </head>
 <body>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<%@ page import="boundary.BoundaryFaq" %>
+<%@ page import="boundary.BoundaryAiuto" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
 
 <%
 
-    BoundaryFaq bf= null;
+    BoundaryAiuto bf= null;
     try {
-        bf = new BoundaryFaq();
+        bf = new BoundaryAiuto();
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
@@ -47,7 +47,7 @@
     <div id="header-wrapper">
         <div id="header">
             <div id="logo">
-                <h1><a href="#">FAQ</a></h1>
+                <h1><a href="#">AIUTO</a></h1>
 
             </div>
         </div>
@@ -62,10 +62,10 @@
                     <li><a href="areaProprietario.jsp">Area Proprietario</a></li>
                     <li><a href="profiloUtente.jsp">Visualizza profilo</a></li>
                     <li><a href="posta.jsp">Posta</a></li>
-                    <li><a href="areaFaq.jsp">FAQ</a></li>
+                    <li><a href="areaAiuto.jsp">AIUTO</a></li>
                     <li><a href="logout.jsp">Esci</a></li>
                 <% } else {%>
-                    <li><a href="areaFaq.jsp">FAQ</a></li>
+                    <li><a href="areaAiuto.jsp">AIUTO</a></li>
 
                 <% } %>
 
@@ -89,9 +89,9 @@
                     <div >
 
                         <% if(type.equals("0")){ %>
-                            <a href="faqViaggiatore.jsp">Torna alla pagina precedente</a>
+                            <a href="aiutoViaggiatore.jsp">Torna alla pagina precedente</a>
                         <% } else { %>
-                            <a href="faqProprietario.jsp">Torna alla pagina precedente</a>
+                            <a href="aiutoProprietario.jsp">Torna alla pagina precedente</a>
                         <% } %>
 
                     </div>
@@ -110,7 +110,7 @@
 
 
                 try {
-                    bf.inserisciDomanda(nuovaDomanda, type); //faqViaggiatore
+                    bf.inserisciDomanda(nuovaDomanda, type); //domadaViaggiatore
                 } catch (DeserializzazioneException | SerializzazioneException e) {
                     e.printStackTrace();
                 }
@@ -133,9 +133,9 @@
 
                     <div >
                         <% if (type.equals("0")) {%>
-                                <a href="faqViaggiatore.jsp">Torna alla pagina precedente</a>
+                                <a href="aiutoViaggiatore.jsp">Torna alla pagina precedente</a>
                         <% } else { %>
-                                <a href="faqProprietario.jsp">Torna alla pagina precedente</a>
+                                <a href="aiutoProprietario.jsp">Torna alla pagina precedente</a>
                         <% } %>
 
                     </div>

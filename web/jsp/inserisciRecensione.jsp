@@ -54,7 +54,7 @@
                     <h2><b>Recensisci una locazione</b></h2>
 
                     <div class="post">
-                        <form method="get" action="riceviRecensione.jsp" enctype="text/plain">
+                        <form method="get" action="riceviRecensione.jsp" enctype="application/x-www-form-urlencoded">
                             <table width="100%">
 
                                 <tr>

@@ -1,11 +1,8 @@
-package control.prenotazione;
+package control.factoryPrenotazione;
 
 
 public class FactoryPrenotazionePiùPosti extends FactoryPrenotazione {
 
-    /*
-    Ho scelto di usare il singleton in modo che avvenga una registrazione alla volta
-     */
 
     private FactoryPrenotazionePiùPosti(){
     }
@@ -26,7 +23,7 @@ public class FactoryPrenotazionePiùPosti extends FactoryPrenotazione {
     }
 
     @Override
-    public ControlloreRegistraPrenotati creaControlloreRegistraPrenotati() {
+    public ControlloreRegistraPrenotazione creaControlloreRegistraPrenotati() {
         return new ControlloreRegistraPrenotazioniPiùPosti();
     }
 }

@@ -56,11 +56,11 @@
         <div id="page-bgbtm">
             <div id="content">
                 <div class="post">
-                    <h2><strong>Ricerca una locazione o gestisci le tue prenotazioni</strong></h2>
+                    <h2><strong>Scegli cosa fare</strong></h2>
                  </div>
                     <table width="100%">
                         <tr>
-                            <td style="padding-left: 220px">
+                            <td>
                                 <br /><br />
                                 <p  class="title">
                                     <strong>
@@ -77,6 +77,15 @@
                                         <a href="visualizzaPrenotazioniPerViaggiatore.jsp" >
                                             <img class="imgInizio" src="../css/images/visualizzaPrenotazioni.jpg" style="margin-left: 90px"  width="250" height="250"  alt="visualizza prenotazioni">
                                         </a>
+                            </td>
+                            <td >
+                                <br /><br />
+                                <p class="title">
+                                    <strong>
+                                <p style="font-size: 30px;margin-left: 30px">Recensisci una locazione </p>
+                                <a href="inserisciRecensione.jsp" >
+                                    <img class="imgInizio" src="../css/images/iconaInserimento.png" style="margin-left: 50px" width="250" height="250"  alt="inserisci recensioni">
+                                </a>
                             </td>
                             <td style="clear: both"></td>
                         </tr>

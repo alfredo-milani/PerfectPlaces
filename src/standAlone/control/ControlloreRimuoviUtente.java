@@ -32,8 +32,8 @@ public class ControlloreRimuoviUtente {
 	}
 	
 	// Viene verificata la presenza dell'utente nel sistema, una volta accertata viene rimosso dall'arraylist, che viene riserializzato.
-	// Vengono utilizzati i utils per stampare a schermo l'array degli utenti prima e dopo la rimozione.
-	// inoltre vengono aggiunte le locazione dell'utente rimosso al file "locazioniRimosse" in modo che possano essere rimosse se
+	// Vengono utilizzati le utils per stampare a schermo l'array degli utenti prima e dopo la rimozione.
+	// inoltre vengono aggiunte le locazioni dell'utente rimosso al file "locazioniRimosse" in modo che possano essere rimosse se
 	// l'utente lo desidera con il ControlloreRimuoviDatiUtente
 	
 	@SuppressWarnings("unchecked")

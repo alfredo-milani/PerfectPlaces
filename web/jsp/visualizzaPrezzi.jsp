@@ -9,9 +9,11 @@
     <title>Perfect Places</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../js/functions.js" ></script>
 </head>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <%@page import="boundary.BoundaryVisualizzaPrezzo" %>
+<jsp:useBean id="bvr" scope="page" class="boundary.BoundaryGestioneRecesioni"/>
 <%@ page import="entity.*" %>
 <%@ page import="exception.DeserializzazioneException" %>
 <%@ page import="exception.SerializzazioneException" %>
@@ -52,12 +54,26 @@
         e.printStackTrace();
     }
 
-
     String nomeLocazione = elencoLocazioni.get(Integer.parseInt(id)).getNomeLocazione();
+
+    ArrayList<Recensione> recensioni = new ArrayList<>();
+    try {
+        recensioni= bvr.visualizzaRecensioni(nomeLocazione);
+    } catch (DeserializzazioneException e) {
+        e.printStackTrace();
+    }
+
+    int numeroRighe = recensioni.size();
+    int mediaRecensioni=0;
+    try {
+         mediaRecensioni += bvr.media(nomeLocazione);
+    } catch (DeserializzazioneException e) {
+        e.printStackTrace();
+    }
 
 
 //PER FIREFOX
-
+/*
     int giornoInizio = Integer.parseInt(dataInizio.substring(0, 2));
     int meseInizio = Integer.parseInt(dataInizio.substring(3, 5));
     int annoInizio = Integer.parseInt(dataInizio.substring(6, 10));
@@ -66,15 +82,15 @@
     int meseFine = Integer.parseInt(dataFine.substring(3, 5));
     int annoFine = Integer.parseInt(dataFine.substring(6, 10));
     String al = giornoFine + "/" + meseFine +"/"+ annoFine;
-
-/*    int giornoInizio = Integer.parseInt(dataInizio.substring(8, 10));
+*/
+   int giornoInizio = Integer.parseInt(dataInizio.substring(8, 10));
     int meseInizio = Integer.parseInt(dataInizio.substring(5, 7));
     int annoInizio = Integer.parseInt(dataInizio.substring(0, 4));
     String dal = giornoInizio + "/" + meseInizio +"/"+ annoInizio;
     int giornoFine = Integer.parseInt(dataFine.substring(8, 10));
     int meseFine = Integer.parseInt(dataFine.substring(5, 7));
     int annoFine = Integer.parseInt(dataFine.substring(0, 4));
-    String al = giornoFine + "/" + meseFine +"/"+ annoFine; */
+    String al = giornoFine + "/" + meseFine +"/"+ annoFine;
 %>
 
 <body>
@@ -90,7 +106,7 @@
     <div id="header-wrapper">
         <div id="header">
             <div id="logo">
-                <h1><a href="#">Rimozione Locazioni</a></h1>
+                <h1><a href="#">DETTAGLI LOCAZIONE</a></h1>
 
             </div>
         </div>
@@ -125,7 +141,7 @@
 
 
                     <div class="post">
-                        <h2><strong>Riepilogo dei servizi richiesti</strong></h2>
+                        <h2><strong>Riepilogo Prezzi</strong></h2>
                     </div>
                     <div class="post">
                         <%
@@ -249,6 +265,66 @@
                                     </form>
                                 </td>
                             </tr>
+                            <tr>
+                                <%
+                                    if(recensioni.size()==0){%>
+                                <td>non sono presenti recensioni relative a questa locazione</td>
+                                <%}else{ %>
+                            </tr>
+                            <tr>
+                            <%
+
+                                if(mediaRecensioni==0){%>
+                                 <td><p>media voti: 0 stelle</p></td>
+                                <%}
+                                if(mediaRecensioni==1) {%>
+                                <td><p style="float: left">media voti:</p><img src="../css/images/1stella.png"  style="width:150px;height:40px; float: left" ></td>
+                                <%}%>
+                                <%if(mediaRecensioni==2) {%>
+                                <td> <p style="float: left">media voti:</p><img src="../css/images/2stelle.png"  style="width:150px;height:40px; float: left" ></td>
+                                <%}%>
+                                <%if(mediaRecensioni==3) {%>
+                                <td><p style="float: left">media voti:</p><img src="../css/images/3stelle.png"  style="width:150px;height:40px; float: left" ></td>
+                                <%}%>
+                                <%if(mediaRecensioni==4) {%>
+                                <td><p style="float: left">media voti:</p><img src="../css/images/4stelle.png"  style="width:150px;height:40px; float: left" ></td>
+                                <%}%><%if(mediaRecensioni==5) {%>
+                                <td><p style="float: left">media voti:</p><img src="../css/images/5stelle.png"  style="width:150px;height:40px; float: left" ></td>
+                                <%}%>
+                            </tr>
+                            <tr><td><p id="<% out.println(numeroRighe);%>" class="cliccaQui" onclick="visualizzaRecensioni(this.id)">Visualizza recensioni</p></td></tr>
+
+
+                            <%for(Recensione rec: recensioni){
+                                %>
+
+                            <tr><td>
+                                            <div class="recensioni" style="display: none">
+                                                <%if(rec.getNumeroStelle()==0){%>
+                                                <span>(0 stelle)</span>
+                                                <%}%>
+                                                <%if(rec.getNumeroStelle()==1){%>
+                                                        <img src="../css/images/1stella.png"  style="width:80px;height:20px; float: left" >
+                                                <%}%>
+                                                <%if(rec.getNumeroStelle()==2){%>
+                                                <img src="../css/images/2stelle.png"  style="width:80px;height:20px; float: left" >
+                                                <%}%><%if(rec.getNumeroStelle()==3){%>
+                                                <img src="../css/images/3stelle.png"  style="width:80px;height:20px; float: left" >
+                                                <%}%><%if(rec.getNumeroStelle()==4){%>
+                                                <img src="../css/images/4stelle.png"  style="width:80px;height:20px; float: left" >
+                                                <%}%><%if(rec.getNumeroStelle()==5){%>
+                                                <img src="../css/images/5stelle.png"  style="width:80px;height:20px; float: left" >
+                                                <%}%>
+
+
+                                            <b>Recensione di: <%out.println(rec.getNomeRecensore());%></b>
+                                                <br>
+                                                <div style="clear: both;">&nbsp;</div>
+                                            <%out.println(rec.getTestoRecensione());%>
+                                            </div>
+                                        <%}%>
+                                    <%}%>
+                            </td></tr>
                             <tr>
                                 <td>
                                    <h3> <a style="color: #4b7091" href="ricercaLocazione.jsp">oppure torna alla ricerca</a></h3>

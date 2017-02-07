@@ -1,7 +1,7 @@
-package control.prenotazione;
+package control.factoryPrenotazione;
 
 public abstract class FactoryPrenotazione {
 
     public abstract ControlloreDisponibilità creaControlloreDisponibilità();
-    public abstract ControlloreRegistraPrenotati creaControlloreRegistraPrenotati();
+    public abstract ControlloreRegistraPrenotazione creaControlloreRegistraPrenotati();
 }

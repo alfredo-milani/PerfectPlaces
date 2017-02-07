@@ -126,19 +126,33 @@ function changeLang(box, us, psw, pref) {
     http.send(paramsToSend);
 }
 
+
+function visualizzaRecensioni(numRecensioni){
+    var r = document.getElementsByClassName("recensioni");
+    if(document.getElementById) {
+        for (var a = 0; a< numRecensioni; ++a) {
+            if (r[a].style.display == 'none') {
+                r[a].style.display = 'block';
+            } else {
+                r[a].style.display = 'none';
+            }
+        }
+    }
+
+}
+
 function visualizzaRimozione(num) {
 
     var x = document.getElementsByClassName("btnRimozione");
-    if(document.getElementById) {
-        for(var i = 0; i<num; ++i) {
-            if(x[i].style.display=='none') {
+    if (document.getElementById) {
+        for (var i = 0; i < num; ++i) {
+            if (x[i].style.display == 'none') {
                 x[i].style.display = 'block';
-            }else {
+            } else {
                 x[i].style.display = 'none';
             }
         }
 
     }
-
-
 }
+

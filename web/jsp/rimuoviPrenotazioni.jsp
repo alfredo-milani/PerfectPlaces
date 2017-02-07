@@ -26,7 +26,7 @@
 
 
     ArrayList<Prenotazione> elencoPrenotazione = (ArrayList<Prenotazione>) request.getSession().getAttribute("pre");
-    System.out.println("size elenco prenotazione "+ elencoPrenotazione.size());
+    System.out.println("size elenco factoryPrenotazione "+ elencoPrenotazione.size());
     try {
         bp.avvioRimozione(elencoPrenotazione.get(Integer.parseInt(id)));
     } catch (DeserializzazioneException | SerializzazioneException e) {

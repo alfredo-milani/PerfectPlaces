@@ -19,9 +19,14 @@ public class ControlloreRicercaGlobale {
     public ControlloreRicercaGlobale(){
     }
 
+    /*
+    questo metodo ricerca tutte le locazioni presenti nel sistema in base alla provincia e al
+    prezzo(per una notte) calcolato per il numero di giorni richiesti, vengono utilizzati 5 thread
+    in modo da fa partire nello stesso momento la ricerca sui 5 file sui quali sono memorizzati i diversi
+    tipo di locazioni
+     */
     public ArrayList<Locazione> ricercaGlobale(String provincia, String prezzo,int numeroGiorni) throws DeserializzazioneException, InterruptedException {
 
-       // List<Locazione> locazioni = Collections.synchronizedList(new ArrayList<Locazione>());
         ArrayList<Locazione> locazioni = new ArrayList<>();
 
         ArrayList<Locazione> locazioniTotali = new ArrayList<>();
@@ -50,64 +55,9 @@ public class ControlloreRicercaGlobale {
         t4.join();
         t5.join();
 
-
-
-/*
-        locazioni = controllo(percorsoAlbergo, provincia, prezzo,numeroGiorni);
-        locazioniTotali.addAll(locazioni);
-
-        locazioni = controllo(percorsoAppartamento, provincia, prezzo,numeroGiorni);
-        locazioniTotali.addAll(locazioni);
-
-        locazioni = controllo(percorsoBeb,provincia,prezzo,numeroGiorni);
-        locazioniTotali.addAll(locazioni);
-
-        locazioni = controllo(percorsoCasaVacanza, provincia, prezzo,numeroGiorni);
-        locazioniTotali.addAll(locazioni);
-
-        locazioni = controllo(percorsoOstello,provincia,prezzo,numeroGiorni);
-        locazioniTotali.addAll(locazioni);
-
-
-
-        return locazioniTotali; */
         locazioniTotali.addAll(locazioni);
         return locazioniTotali;
 
     }
-    /*
-    @SuppressWarnings("unchecked")
-    private ArrayList<Locazione> controllo (String percorso,String provincia,String prezzo,int numeroGiorni) throws DeserializzazioneException {
-        ArrayList<Locazione> locazioniTemp;
-        ArrayList<Locazione> locazioni= new ArrayList<>();
 
-        File file = new File(percorso);
-        if(file.length()==0)
-            return locazioni;
-        else {
-            DeserializzaOggetti dobj = new DeserializzaOggetti();
-            locazioniTemp = (ArrayList<Locazione>) dobj.deserializza(percorso);
-
-            for (Locazione loc : locazioniTemp) {
-                if ((loc.getProvincia().equals(provincia)) &&                    //controllo sulla provincia
-                        ((Integer.parseInt(loc.getPrezzo().trim()))*numeroGiorni) <= ((Integer.parseInt(prezzo.trim()))*numeroGiorni)) {//controllo sul prezzo
-                    locazioni.add(loc);
-                }
-            }
-            return locazioni;
-        }
-    }
-    */
-
-    public static void main(String[] args) throws DeserializzazioneException, InterruptedException {
-        ControlloreRicercaGlobale crg = new ControlloreRicercaGlobale();
-        List<Locazione> locazioni;
-        locazioni=crg.ricercaGlobale("Frosinone","8000",3);
-        for(Locazione loc: locazioni){
-            System.out.println(loc.getNomeLocazione());
-            System.out.println(loc.getUserLocatore());
-            System.out.println(loc.getIndirizzo());
-            System.out.println("------------------------------\n");
-        }
-    }
 }

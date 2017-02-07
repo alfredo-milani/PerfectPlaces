@@ -14,17 +14,18 @@ public class TrasformaDate {
     public static GregorianCalendar trasformaInGregorianCalendar(String data){
 
         //FIREFOX
+        /*
         int giorno = Integer.parseInt(data.substring(0, 2));
         int meseUtente = Integer.parseInt(data.substring(3, 5));
         int mese= meseUtente-1;
         int anno = Integer.parseInt(data.substring(6, 10));
+        */
 
 
-        /*
         int giorno = Integer.parseInt(data.substring(8, 10));
         int meseUtente = Integer.parseInt(data.substring(5, 7));
         int mese= meseUtente-1;
-        int anno = Integer.parseInt(data.substring(0, 4));*/
+        int anno = Integer.parseInt(data.substring(0, 4));
 
         if(mese==0)
             return new GregorianCalendar(anno,Calendar.JANUARY,giorno);

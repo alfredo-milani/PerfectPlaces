@@ -8,9 +8,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Created by gabriele on 22/01/17.
- */
+
 public class ThreadVisualizzaPrenotazioniProprietario implements Runnable {
 
     private String proprietario;

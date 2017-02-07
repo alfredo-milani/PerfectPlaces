@@ -18,7 +18,13 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
         this.crg = c;
     }
 
+    /*
+    questa viene utilizzata per adattare le funzionalità implementate nel ControlloreRicercaGlobale
+     */
 
+    /*
+    questo metodo filtra per tipo di locazione le locazione restituite dal metodo "ricercaGlobale"
+     */
     @Override@SuppressWarnings("unchecked")
     public Object ricerca(String tipoLocazione, String provincia, String prezzo,int numeroGiorni) throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException, InterruptedException {
@@ -87,6 +93,9 @@ public class AdapterRicercaPerLocazione implements ControlloreRicercaPerLocazion
          }
 
     }
+    /*
+   questo metodo filtra in base a determinate caratteristiche le locazioni restituite del metodo "ricerca"
+    */
     @Override@SuppressWarnings("unchecked")
     public Object ricercaAvanzata(String tipoLocazione,String provincia, String prezzo,int numeroGiorni, String sParchegio, String sWifi, String sPet ,String caratteristica) throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, DeserializzazioneException, IOException, SerializzazioneException, InterruptedException {

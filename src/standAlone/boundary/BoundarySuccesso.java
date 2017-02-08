@@ -77,7 +77,7 @@ public class BoundarySuccesso {
 		
 		bHome = new JButton(bundle.getString("logout_home"));
 		bHome.setLocation(300,100);
-		bHome.setSize(panelTitolo.getWidth()/4,50);
+		bHome.setSize(panelTitolo.getWidth()/3,50);
 		bHome.setFont(new Font("Arial", 0, 20));
 		bHome.setToolTipText(bundle.getString("logout_home"));
 		

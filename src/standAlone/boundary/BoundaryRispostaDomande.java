@@ -160,11 +160,12 @@ public class BoundaryRispostaDomande {
         //metodo privato chiamato dalla BoundaryRispostaDomande stessa, a cui viene delegata la corretta costruzione della ComboBox, usando opportuni controlli
 
         private void costrusciComboBox(){
+            ResourceBundle bundle = this.cl.getBundleFromProp();
 
             domande = crf.ritornaDomandeSenzaRisposta();
             if (domande==null || domande.length==0){
                 pannelloFaqRisposta.setVisible(false);
-                new BoundaryFallimento("Al momento non sono presenti domande a cui rispondere");
+                new BoundaryFallimento(bundle.getString("boundaryDomande_domande_nonpresenti"));
                 return;
             }
             box = new JComboBox(domande);
@@ -175,7 +176,6 @@ public class BoundaryRispostaDomande {
             box.addActionListener(e -> {
                         int index;
                         index = box.getSelectedIndex();
-                        System.out.println("Risposta scritta: " + ris_lista.getText());
                         domanda= domande[index];
 
 

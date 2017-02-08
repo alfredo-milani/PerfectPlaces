@@ -78,12 +78,15 @@ public class ControlloreInserimentoRecensione {
                 break;
         }
 
+        File file = new File(percorsoLocazioni);
+        if(file.length()!=0) {
+
             ArrayList<Locazione> locazioni = (ArrayList<Locazione>) DeserializzaOggetti.deserializza(percorsoLocazioni);
-            for(Locazione loc: locazioni){
-                if(loc.getNomeLocazione().equalsIgnoreCase(nomeLocazione))
+            for (Locazione loc : locazioni) {
+                if (loc.getNomeLocazione().equalsIgnoreCase(nomeLocazione))
                     return true;
             }
-
+        }
             return false;
 
     }
@@ -110,12 +113,16 @@ public class ControlloreInserimentoRecensione {
                 break;
         }
 
-        ArrayList<Prenotazione> prenotazioni = (ArrayList<Prenotazione>) DeserializzaOggetti.deserializza(percorsoPrenotazioni);
+        File file = new File(percorsoPrenotazioni);
+        if(file.length()!=0) {
 
-        for(Prenotazione pre : prenotazioni){
-            if(pre.getNomeLocazione().equals(nomeLocazione)&&
-                pre.getCliente().equals(nomeRecensore))
-                return true;
+            ArrayList<Prenotazione> prenotazioni = (ArrayList<Prenotazione>) DeserializzaOggetti.deserializza(percorsoPrenotazioni);
+
+            for (Prenotazione pre : prenotazioni) {
+                if (pre.getNomeLocazione().equals(nomeLocazione) &&
+                        pre.getCliente().equals(nomeRecensore))
+                    return true;
+            }
         }
 
         return false;

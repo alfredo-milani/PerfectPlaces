@@ -13,8 +13,8 @@ public class ControllorePrenotazione {
     FactoryPrenotazione fp;
 
 /*
-questo metodo a seconda del tipo di locazione istanzia una factory che si occupera di creare i corrispondenti controllori
-
+questo metodo a seconda del tipo di locazione istanzia una factory che si occuperà
+di creare i corrispondenti controllori
  */
 
     public boolean controlloPrenotazione(Locazione locazione, String cliente, String dataInizio, String dataFine, String numeroPersone) throws DeserializzazioneException, SerializzazioneException, IOException {

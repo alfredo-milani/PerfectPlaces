@@ -80,7 +80,7 @@ public class ControlloreInserimentoRecensione {
 
             ArrayList<Locazione> locazioni = (ArrayList<Locazione>) DeserializzaOggetti.deserializza(percorsoLocazioni);
             for(Locazione loc: locazioni){
-                if(loc.getNomeLocazione().equals(nomeLocazione))
+                if(loc.getNomeLocazione().equalsIgnoreCase(nomeLocazione))
                     return true;
             }
 

@@ -66,9 +66,15 @@ public class VerificaInput {
         if(dataInizio.trim().equals("")||dataInizio.equals(""))
             return false;
 
+        GregorianCalendar gcInizio;
+        GregorianCalendar gcFine;
 
-        GregorianCalendar gcInizio = TrasformaDate.trasformaInGregorianCalendar(dataInizio);
-        GregorianCalendar gcFine = TrasformaDate.trasformaInGregorianCalendar(dataFine);
+        try {
+            gcInizio = TrasformaDate.trasformaInGregorianCalendar(dataInizio);
+            gcFine = TrasformaDate.trasformaInGregorianCalendar(dataFine);
+        }catch (Exception e ){
+            return  false;
+        }
 
         //controlla che le data non siano di anni passati
         if(gcInizio.get(Calendar.YEAR)<2017|| gcFine.get(Calendar.YEAR)<2017){

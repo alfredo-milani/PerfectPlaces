@@ -18,7 +18,7 @@ public class ControlloreInserimentoRecensione {
     private String percorsoRecensioni = Constants.RECENSIONI_PATH;
 
     /*
-    metodo utilizzato per inserire una nuova locazione, prima di farlo vengono controllati i possibili errrori
+    metodo utilizzato per inserire una nuova recensione, prima di farlo vengono controllati i possibili errrori
     e restituiti degli interi ad indicare l'errore:
     1) per indicare che non è stato inserito il nome della locazione
     2) per indicare che la locazioni che si vuole recensire è presente nel sistema

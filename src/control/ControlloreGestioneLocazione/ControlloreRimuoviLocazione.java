@@ -41,7 +41,7 @@ public class ControlloreRimuoviLocazione {
 	}
 
 	//metodo che passa al metodo privato "rimuoviLocazione" la locazione scelta dall'utente e il percorso corrispondente
-	//chiama dunque anche le operazioni per rimuovere le corrispondenti CamerePrenotate e Prenotati corrispondenti a quella locazione
+	//chiama dunque anche le operazioni per rimuovere le corrispondenti PostiDisponibili,Prenotazioni e Recensioni corrispondenti a quella locazione
 	@SuppressWarnings("unchecked")
 	public String rimuovi(Locazione locazione) throws DeserializzazioneException, SerializzazioneException{
 
@@ -49,6 +49,7 @@ public class ControlloreRimuoviLocazione {
 
 		//generale per tutti i tipi di locazioni
 		rimuoviLocazione(locazione,locazione.selectPath());
+		rimuoviRecensioni(locazione);
 
 		if(locazione.getClass()==Albergo.class){
 
@@ -56,9 +57,9 @@ public class ControlloreRimuoviLocazione {
 			File fPrenotati = new File(percorsoPrenotatiAlbergo);
 
 			if(fPrenotazioni.length() != 0)
-				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniAlberghi);
+				rimuoviPostiDisponibili(locazione,percorsoPrenotazioniAlberghi);
 			if(fPrenotati.length() != 0)
-				rimuoviPrenotati(locazione,percorsoPrenotatiAlbergo);
+				rimuoviPrenotazione(locazione,percorsoPrenotatiAlbergo);
 
 		}
 		else if(locazione.getClass()==Appartamento.class){
@@ -67,9 +68,9 @@ public class ControlloreRimuoviLocazione {
 			File fPrenotati = new File(percorsoPrenotatiAppartamento);
 
 			if(fPrenotazioni.length() != 0)
-				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniAppartamenti);
+				rimuoviPostiDisponibili(locazione,percorsoPrenotazioniAppartamenti);
 			if(fPrenotati.length() != 0)
-				rimuoviPrenotati(locazione,percorsoPrenotatiAppartamento);
+				rimuoviPrenotazione(locazione,percorsoPrenotatiAppartamento);
 		}
 		else if(locazione.getClass()==Beb.class){
 
@@ -77,9 +78,9 @@ public class ControlloreRimuoviLocazione {
 			File fPrenotati = new File(percorsoPrenotatiBeb);
 
 			if(fPrenotazioni.length() != 0)
-				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniBeb);
+				rimuoviPostiDisponibili(locazione,percorsoPrenotazioniBeb);
 			if(fPrenotati.length() != 0)
-				rimuoviPrenotati(locazione,percorsoPrenotatiBeb);
+				rimuoviPrenotazione(locazione,percorsoPrenotatiBeb);
 		}
 		else if(locazione.getClass()==CasaVacanza.class){
 
@@ -87,9 +88,9 @@ public class ControlloreRimuoviLocazione {
 			File fPrenotati = new File(percorsoPrenotatiCasaVacanza);
 
 			if(fPrenotazioni.length() != 0)
-				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniCaseVacanza);
+				rimuoviPostiDisponibili(locazione,percorsoPrenotazioniCaseVacanza);
 			if(fPrenotati.length() != 0)
-				rimuoviPrenotati(locazione,percorsoPrenotatiCasaVacanza);
+				rimuoviPrenotazione(locazione,percorsoPrenotatiCasaVacanza);
 		}
 		else {
 
@@ -97,9 +98,9 @@ public class ControlloreRimuoviLocazione {
 			File fPrenotati = new File(percorsoPrenotatiOstello);
 
 			if(fPrenotazioni.length() != 0)
-				rimuoviCamerePrenotate(locazione,percorsoPrenotazioniOstelli);
+				rimuoviPostiDisponibili(locazione,percorsoPrenotazioniOstelli);
 			if(fPrenotati.length() != 0)
-				rimuoviPrenotati(locazione,percorsoPrenotatiOstello);
+				rimuoviPrenotazione(locazione,percorsoPrenotatiOstello);
 
 
 		}
@@ -130,41 +131,59 @@ public class ControlloreRimuoviLocazione {
 		sobj.serializza(locazioni,percorso);
 	}
 
-	//metodo che rimuove le camere prenotate legate ad una determinata locazione
+	//metodo che rimuove i posti disponibili legate ad una determinata locazione
 	@SuppressWarnings("unchecked")
-	private void rimuoviCamerePrenotate(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
+	private void rimuoviPostiDisponibili(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
 		String nomeLocazione = locazione.getNomeLocazione();
-		ArrayList<PostiDisponibili> camerePrenotate;
+		ArrayList<PostiDisponibili> postiDisponibili;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		SerializzaOggetti sobj = new SerializzaOggetti();
 
-		camerePrenotate = (ArrayList<PostiDisponibili>) dobj.deserializza(percorso);
+		postiDisponibili = (ArrayList<PostiDisponibili>) dobj.deserializza(percorso);
 
-		for(int i=0; i<camerePrenotate.size(); ++i){
-			if(camerePrenotate.get(i).getNomeLocazion().equals(nomeLocazione)) {
-				camerePrenotate.remove(i);
+		for(int i=0; i<postiDisponibili.size(); ++i){
+			if(postiDisponibili.get(i).getNomeLocazion().equals(nomeLocazione)) {
+				postiDisponibili.remove(i);
 			}
 		}
-		sobj.serializza(camerePrenotate,percorso);
+		sobj.serializza(postiDisponibili,percorso);
 
 	}
 
-	//metodo che rimuove i prenotati legati ad una determinata locazione
+	//metodo che rimuove le prenotazioni legate ad una determinata locazione
 	@SuppressWarnings("unchecked")
-	private void rimuoviPrenotati(Locazione locazione,String percorso) throws DeserializzazioneException, SerializzazioneException {
+	private void rimuoviPrenotazione(Locazione locazione, String percorso) throws DeserializzazioneException, SerializzazioneException {
 		String nomeLocazione = locazione.getNomeLocazione();
-		ArrayList<Prenotazione> prenotati;
+		ArrayList<Prenotazione> prenotazioni;
 		DeserializzaOggetti dobj = new DeserializzaOggetti();
 		SerializzaOggetti sobj = new SerializzaOggetti();
 
-		prenotati = (ArrayList<Prenotazione>) dobj.deserializza(percorso);
+		prenotazioni = (ArrayList<Prenotazione>) dobj.deserializza(percorso);
 
-		for(int i=0; i< prenotati.size(); ++i){
-			if(prenotati.get(i).getNomeLocazione().equals(nomeLocazione)){
-				prenotati.remove(i);
+		for(int i=0; i< prenotazioni.size(); ++i){
+			if(prenotazioni.get(i).getNomeLocazione().equals(nomeLocazione)){
+				prenotazioni.remove(i);
 			}
 		}
-		sobj.serializza(prenotati,percorso);
+		sobj.serializza(prenotazioni,percorso);
+
+	}
+
+	//metodo che rimuove le recensioni legate ad una determinata locazione
+	private void rimuoviRecensioni(Locazione locazione) throws DeserializzazioneException, SerializzazioneException {
+		String nomeLocazione = locazione.getNomeLocazione();
+		ArrayList<Recensione> recensioni;
+
+
+		recensioni = (ArrayList<Recensione>) DeserializzaOggetti.deserializza(Constants.RECENSIONI_PATH);
+
+		for(int i=0; i< recensioni.size(); ++i){
+			if(recensioni.get(i).getNomeLocazione().equals(nomeLocazione)){
+				recensioni.remove(i);
+			}
+		}
+		SerializzaOggetti.serializza(recensioni,Constants.RECENSIONI_PATH);
+
 
 	}
 }

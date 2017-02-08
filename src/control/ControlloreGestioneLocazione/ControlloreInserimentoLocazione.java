@@ -2,7 +2,7 @@ package control.ControlloreGestioneLocazione;
 
 
 import control.FactoryInserimentoLocazione;
-import entity.*;
+import entity.Locazione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;

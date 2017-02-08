@@ -1,9 +1,7 @@
 package control;
 
 import control.Decorator.*;
-import entity.Albergo;
 import entity.Locazione;
-import entity.Ostello;
 
 /**
  * Created by maria

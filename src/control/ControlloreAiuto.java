@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class ControlloreAiuto {
 
-    private String path = Constants.FAQ_PATH;
+    private String percorso = Constants.FAQ_PATH;
     private ArrayList<DomandaUtente> domArray =new ArrayList<>();
 
     public ControlloreAiuto()  {
@@ -24,16 +24,17 @@ public class ControlloreAiuto {
 
     //ritorna la lista delle sole domande, per cui è già stata fornita una risposta
     public ArrayList<String> ritornaDomande(int type) throws DeserializzazioneException {
-        File file = new File(path);
+        File file = new File(percorso);
         DeserializzaOggetti dobj = new DeserializzaOggetti();
 
 
         ArrayList<String> domandeList = new ArrayList<String>();
 
-        if(file.length()==0)
+        if(file.length()==0) {
             return null;
+        }
 
-        this.domArray =(ArrayList<DomandaUtente>) dobj.deserializza(path);
+        this.domArray =(ArrayList<DomandaUtente>) dobj.deserializza(percorso);
 
         for(DomandaUtente domandaUtente : domArray) {
             if (domandaUtente.getSettaRisposta() && domandaUtente.getType()==type) {
@@ -50,7 +51,7 @@ public class ControlloreAiuto {
     //metodo che ritorna la risposta associata ad una specifica domanda
     public String ritornaRisposta (String domanda) throws DeserializzazioneException {
         DeserializzaOggetti dobj = new DeserializzaOggetti();
-        this.domArray =(ArrayList<DomandaUtente>) dobj.deserializza(path);
+        this.domArray =(ArrayList<DomandaUtente>) dobj.deserializza(percorso);
 
         String risposta = "";
 
@@ -69,25 +70,25 @@ public class ControlloreAiuto {
     // e marcandola come domanda per cui non è stata ancora fornita una risposta
     public void inserisciDomanda(String domanda, int type) throws DeserializzazioneException, SerializzazioneException {
 
-        File file = new File(path);
+        File file = new File(percorso);
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();
         DomandaUtente domandaUtente = new DomandaUtente(domanda, "", false, type);
 
         if(file.length()==0){
             domArray.add(domandaUtente);
-            sobj.serializza(domArray,path);
+            sobj.serializza(domArray, percorso);
         }
         else {
-            domArray = (ArrayList<DomandaUtente>) dobj.deserializza(path);
+            domArray = (ArrayList<DomandaUtente>) dobj.deserializza(percorso);
             domArray.add(domandaUtente);
-            sobj.serializza(domArray, path);
+            sobj.serializza(domArray, percorso);
         }
     }
 
     //metodo di utilità per rimuovere una DomandaUtente
     public void cancellaFaq(String domanda) throws DeserializzazioneException, SerializzazioneException {
-        File file = new File(path);
+        File file = new File(percorso);
         DeserializzaOggetti dobj = new DeserializzaOggetti();
         SerializzaOggetti sobj = new SerializzaOggetti();
 
@@ -95,7 +96,7 @@ public class ControlloreAiuto {
             return;
         }
         else {
-            domArray = (ArrayList<DomandaUtente>) dobj.deserializza(path);
+            domArray = (ArrayList<DomandaUtente>) dobj.deserializza(percorso);
             for(int i = 0; i< domArray.size(); ++i){
 
                 if (domanda.equals(domArray.get(i).getDomanda())) {
@@ -106,7 +107,7 @@ public class ControlloreAiuto {
             }
 
 
-            sobj.serializza(domArray, path);
+            sobj.serializza(domArray, percorso);
         }
 
 

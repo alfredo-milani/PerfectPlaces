@@ -4,8 +4,6 @@
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: maria
-  Date: 13/11/16
-  Time: 20.21
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -58,8 +56,8 @@
 %>
 
 <body class="bf" >
-<div class="domandaUtente" id="header" >
-    <h1>AIUTO Viaggiatore</h1>
+<div class="faq" id="header" >
+    <h1>Viaggiatore</h1>
     <p><a href="areaAiuto.jsp">Torna all'area generale</a></p>
 
 </div>

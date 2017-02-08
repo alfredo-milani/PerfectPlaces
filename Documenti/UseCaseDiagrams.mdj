@@ -8199,7 +8199,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Gestione Faq",
+											"text": "Aiuto",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -8264,7 +8264,7 @@
 									"containerExtending": false,
 									"left": 1123.5,
 									"top": 716.5,
-									"width": 94,
+									"width": 93,
 									"height": 25,
 									"autoResize": false,
 									"stereotypeLabel": {
@@ -10981,7 +10981,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFZy9EaA7Kb9hk="
 					},
-					"name": "Gestione Faq",
+					"name": "Aiuto",
 					"ownedElements": [
 						{
 							"_type": "UMLExtend",
@@ -13375,13 +13375,13 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 696,
+											"left": 712.5,
 											"top": 683.5,
-											"width": 79,
+											"width": 160,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Gestione faq",
+											"text": "Gestione domandaUtente",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -13444,9 +13444,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 691,
+									"left": 707.5,
 									"top": 676.5,
-									"width": 90,
+									"width": 171,
 									"height": 25,
 									"autoResize": false,
 									"stereotypeLabel": {
@@ -13594,7 +13594,7 @@
 							"containerExtending": false,
 							"left": 672,
 							"top": 672,
-							"width": 127,
+							"width": 241,
 							"height": 35,
 							"autoResize": false,
 							"stereotypeDisplay": "label",
@@ -17147,7 +17147,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFZy/Y4RnMR1mI="
 					},
-					"name": "Gestione faq",
+					"name": "Gestione domandaUtente",
 					"visibility": "public",
 					"isAbstract": false,
 					"isFinalSpecialization": false,

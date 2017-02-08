@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ControlloreRimuoviFaq {
+public class ControlloreRimuoviDomande {
 
     private JTextArea area;
 
@@ -22,7 +22,7 @@ public class ControlloreRimuoviFaq {
 
     private ControlloreLinguaAmministratore cl;
 
-    public ControlloreRimuoviFaq(JTextArea area){
+    public ControlloreRimuoviDomande(JTextArea area){
         this.area = area;
         this.cl = new ControlloreLinguaAmministratore();
     }
@@ -31,7 +31,7 @@ public class ControlloreRimuoviFaq {
         ResourceBundle bundle = this.cl.getBundleFromProp();
 
         if(domanda.equals("")) {
-            new BoundaryFallimento(bundle.getString("boundaryFaq_domanda_non_presente"));
+            new BoundaryFallimento(bundle.getString("boundaryDomande_domanda_non_presente"));
             return;
         }
         SerializzaOggetti sobj= new SerializzaOggetti();
@@ -47,7 +47,7 @@ public class ControlloreRimuoviFaq {
             }
         }
 
-        new BoundaryFallimento(bundle.getString("boundaryFaq_domanda_non_presente"));
+        new BoundaryFallimento(bundle.getString("boundaryDomande_domanda_non_presente"));
     }
 
     public void visualizzaDomandeSenzaRisposta(){
@@ -56,7 +56,7 @@ public class ControlloreRimuoviFaq {
         ArrayList<DomandaUtente> domandaUtente;
         DeserializzaOggetti dobj= new DeserializzaOggetti();
         File file = new File(path);
-        String incipit= bundle.getString("boundaryFaq_domande_senza_risposta");
+        String incipit= bundle.getString("boundaryDomande_domande_senza_risposta");
         String domande = "";
 
          if(file.length()!=0) {

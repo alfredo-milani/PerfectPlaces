@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Created by maria on 11/01/17.
+ * Created by maria
  */
-public class ControlloreRispondiFaq {
+public class ControlloreRispondiDomande {
 
     private String path = Constants.FAQ_PATH;
     private ArrayList<DomandaUtente> faqArray;
 
     private ControlloreLinguaAmministratore cl;
 
-    public ControlloreRispondiFaq(){
+    public ControlloreRispondiDomande(){
         this.cl = new ControlloreLinguaAmministratore();
     }
 
@@ -35,7 +35,7 @@ public class ControlloreRispondiFaq {
         faqArray=(ArrayList<DomandaUtente>) dobj.deserializza(path);
 
         if(risposta.equals("")) {
-            new BoundaryFallimento(bundle.getString("boundaryFaq_risposte_vuote"));
+            new BoundaryFallimento(bundle.getString("boundaryDomande_risposte_vuote"));
             return;
         }
 

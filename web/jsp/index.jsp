@@ -268,7 +268,7 @@
 </div>
 <!-- end #page -->
 <div id="footer">
-    <p><a href="areaAiuto.jsp"><%=bundle.getString("index_aiuto")%></a></p>
+    <p ><a href="areaAiuto.jsp" style="font-size: large"><%=bundle.getString("index_aiuto")%></a></p>
 </div>
 <!-- end #footer -->
 </body>

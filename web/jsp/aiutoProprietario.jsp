@@ -4,8 +4,6 @@
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: maria
-  Date: 13/11/16
-  Time: 20.21
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -41,16 +39,16 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:400,100,300,700' rel='stylesheet' type='text/css'>
 <%
     String type="1"; //domandeProprietario
-    BoundaryAiuto bf = null;
+    BoundaryAiuto ba = null;
     try {
-        bf = new BoundaryAiuto();
+        ba = new BoundaryAiuto();
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
 
     ArrayList<String> domande = null;
     try {
-        domande = bf.ritornaDomande(type);
+        domande = ba.ritornaDomande(type);
     } catch (DeserializzazioneException e) {
         e.printStackTrace();
     }
@@ -58,8 +56,8 @@
 %>
 
 <body class="bf" >
-<div class="domandaUtente" id="header" >
-    <h1>AIUTO Proprietario</h1>
+<div class="faq" id="header" >
+    <h1>Proprietario</h1>
     <p><a href="areaAiuto.jsp">Torna all'area generale</a></p>
 
 </div>
@@ -86,7 +84,7 @@
         <div id="testo"><a href="#" onclick="visualizza('<%out.print(i);%>')"><%out.println(Integer.toString(i+1)+". "+domande.get(i));%></a></div>
         <div id="<%out.print(i);%>" style="visibility: hidden;"><%
             try {
-                out.println(bf.ritornaRisposta(domande.get(i)));
+                out.println(ba.ritornaRisposta(domande.get(i)));
             } catch (DeserializzazioneException e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,7 @@
 package standAlone.boundary;
 
 import standAlone.control.ControlloreLinguaAmministratore;
-import standAlone.control.ControlloreRispondiFaq;
+import standAlone.control.ControlloreRispondiDomande;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 
-public class BoundaryRispostaFaq {
+public class BoundaryRispostaDomande {
 
 
-        ControlloreRispondiFaq crf = new ControlloreRispondiFaq();
+        ControlloreRispondiDomande crf = new ControlloreRispondiDomande();
 
         //Pannelli
         private JPanel pannelloFaqRisposta;
@@ -53,7 +53,7 @@ public class BoundaryRispostaFaq {
 
         private ControlloreLinguaAmministratore cl;
 
-        public BoundaryRispostaFaq()
+        public BoundaryRispostaDomande()
         {
             this.cl = new ControlloreLinguaAmministratore();
             ResourceBundle bundle = this.cl.getBundleFromProp();
@@ -88,7 +88,7 @@ public class BoundaryRispostaFaq {
             titolo.setSize(panelTitolo.getWidth(), 35);
             titolo.setHorizontalAlignment(JLabel.CENTER);
             titolo.setVerticalAlignment(JLabel.CENTER);
-            titolo.setText(bundle.getString("boundaryFaq_rispondi_domande_utente"));
+            titolo.setText(bundle.getString("boundaryDomande_rispondi_domande_utente"));
 
 
 
@@ -98,7 +98,7 @@ public class BoundaryRispostaFaq {
             rispondiLabel.setFont(new Font("Verdana", Font.BOLD, 15));
             rispondiLabel.setLocation(75,30);
             rispondiLabel.setSize(panelTitolo.getWidth()/2, 30);
-            rispondiLabel.setText(bundle.getString("boundaryFaq_inserisci_risposta"));
+            rispondiLabel.setText(bundle.getString("boundaryDomande_inserisci_risposta"));
 
 
 
@@ -157,7 +157,7 @@ public class BoundaryRispostaFaq {
         }
         // Fine costruttore
 
-        //metodo privato chiamato dalla BoundaryRispostaFaq stessa, a cui viene delegata la corretta costruzione della ComboBox, usando opportuni controlli
+        //metodo privato chiamato dalla BoundaryRispostaDomande stessa, a cui viene delegata la corretta costruzione della ComboBox, usando opportuni controlli
 
         private void costrusciComboBox(){
 

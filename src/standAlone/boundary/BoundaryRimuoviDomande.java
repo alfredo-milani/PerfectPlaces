@@ -1,7 +1,7 @@
 package standAlone.boundary;
 
 import standAlone.control.ControlloreLinguaAmministratore;
-import standAlone.control.ControlloreRimuoviFaq;
+import standAlone.control.ControlloreRimuoviDomande;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
-public class BoundaryRimuoviFaq {
+public class BoundaryRimuoviDomande {
 
     //Pannelli
     private JPanel pannelloRimuovi;
@@ -44,15 +44,15 @@ public class BoundaryRimuoviFaq {
     private VisualizzaAA ascoltatoreEtAzioneVisualizza;
     private tornaIndietroAA ascoltatoreEtAzioneIndietro;
 
-    ControlloreRimuoviFaq crf;
+    ControlloreRimuoviDomande crf;
     private ControlloreLinguaAmministratore cl;
 
-    public BoundaryRimuoviFaq()
+    public BoundaryRimuoviDomande()
     {
         this.cl = new ControlloreLinguaAmministratore();
         ResourceBundle bundle = this.cl.getBundleFromProp();
 
-        crf = new ControlloreRimuoviFaq(domande_lista);
+        crf = new ControlloreRimuoviDomande(domande_lista);
 
         int border = 5;
 
@@ -82,7 +82,7 @@ public class BoundaryRimuoviFaq {
         titolo.setSize(panelTitolo.getWidth(), 35);
         titolo.setHorizontalAlignment(JLabel.CENTER);
         titolo.setVerticalAlignment(JLabel.CENTER);
-        titolo.setText(bundle.getString("boundaryFaq_inserisci_domanda_rimozione"));
+        titolo.setText(bundle.getString("boundaryDomande_inserisci_domanda_rimozione"));
 
         pannelloRimuovi.add(panelTitolo);
 
@@ -92,7 +92,7 @@ public class BoundaryRimuoviFaq {
         rimuoviLabel.setFont(new Font("Verdana", Font.BOLD, 15));
         rimuoviLabel.setLocation(150, 50);
         rimuoviLabel.setSize(panelTitolo.getWidth()/2, 30);
-        rimuoviLabel.setText(bundle.getString("boundaryFaq_domanda"));
+        rimuoviLabel.setText(bundle.getString("boundaryDomande_domanda"));
 
 
         rimuoviF = new JTextField("", 60);
@@ -101,12 +101,12 @@ public class BoundaryRimuoviFaq {
         rimuoviF.setSize(panelTitolo.getWidth()/2, 30);
 
         // Creazione bottone
-        bVisualizza = new JButton(bundle.getString("boundaryFaq_visualizza_domande"));
+        bVisualizza = new JButton(bundle.getString("boundaryDomande_visualizza_domande"));
         bVisualizza.setLocation(300,0);
         bVisualizza.setSize(panelTitolo.getWidth()/3, 50);
         bVisualizza.setFont(new Font("Arial", 0, 20));
 
-        bRimuovi = new JButton(bundle.getString("boundaryFaq_rimuovi_domanda"));
+        bRimuovi = new JButton(bundle.getString("boundaryDomande_rimuovi_domanda"));
         bRimuovi.setLocation(200,10);
         bRimuovi.setSize(panelTitolo.getWidth()/4, 50);
         bRimuovi.setFont(new Font("Arial", 0, 20));

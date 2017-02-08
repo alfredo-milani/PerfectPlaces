@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 
-class BoundaryGestioneFaq {
+class BoundaryGestioneDomande {
 
     // Pannelli
     private JPanel pannelloAmministrazione;
@@ -34,7 +34,7 @@ class BoundaryGestioneFaq {
 
 
 
-    BoundaryGestioneFaq()
+    BoundaryGestioneDomande()
     {
         this.cl = new ControlloreLinguaAmministratore();
         ResourceBundle bundle = this.cl.getBundleFromProp();
@@ -65,17 +65,17 @@ class BoundaryGestioneFaq {
         panelButton.setSize(BoundaryAvvio.Confine.getWidth(),400);
         panelButton.setLocation(5, 30);
 
-        bRispondi = new JButton(bundle.getString("boundaryFaq_rispondi_faq"));
+        bRispondi = new JButton(bundle.getString("boundaryDomande_rispondi_domande"));
         bRispondi.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,80);
         bRispondi.setSize(panelButton.getWidth()/3,50);
         bRispondi.setFont(new Font("Arial", 0, 20));
-        bRispondi.setToolTipText(bundle.getString("boundaryFaq_domande_utenti"));
+        bRispondi.setToolTipText(bundle.getString("boundaryDomande_domande_utenti"));
 
-        bRimuoviDati = new JButton(bundle.getString("boundaryFaq_rimuovi"));
+        bRimuoviDati = new JButton(bundle.getString("boundaryDomande_rimuovi"));
         bRimuoviDati.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,160);
         bRimuoviDati.setSize(panelButton.getWidth()/3,50);
         bRimuoviDati.setFont(new Font("Arial", 0, 20));
-        bRimuoviDati.setToolTipText(bundle.getString("boundaryFaq_inappropriate"));
+        bRimuoviDati.setToolTipText(bundle.getString("boundaryDomande_inappropriate"));
 
         bIndietro = new JButton(bundle.getString("visualizzaPosta_indietro"));
         bIndietro.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,300);
@@ -114,7 +114,7 @@ class BoundaryGestioneFaq {
             try
             {
                 pannelloAmministrazione.setVisible(false);
-                new BoundaryRispostaFaq();
+                new BoundaryRispostaDomande();
 
             }
             catch (Exception e)
@@ -131,7 +131,7 @@ class BoundaryGestioneFaq {
             try
             {
                 pannelloAmministrazione.setVisible(false);
-                new BoundaryRimuoviFaq();
+                new BoundaryRimuoviDomande();
 
             }
             catch (Exception e)

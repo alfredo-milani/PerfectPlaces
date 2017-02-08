@@ -28,6 +28,7 @@ public interface Constants {
     String PRENOTATI_OSTELLO_PATH = ABS_PATH.concat("data/prenotazioni/clientiPrenotati/prenotatiOstello");
     String PROVINCE_PATH = ABS_PATH.concat("data/fileProvince");
     String FAQ_PATH = ABS_PATH.concat("data/fileFaq");
+    String RECENSIONI_PATH = ABS_PATH.concat("data/recensioni");
     String PACKAGE_LANGUAGE = "language.Lang";
 
 

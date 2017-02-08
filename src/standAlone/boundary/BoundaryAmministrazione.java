@@ -95,11 +95,11 @@ public class BoundaryAmministrazione {
         bIndietro.setFont(new Font("Arial", 0, 20));
         bIndietro.setToolTipText(bundle.getString("boundaryAmministrazione_schermata_prec"));
 
-		bRisposta = new JButton(bundle.getString("boundaryAmministrazione_faq"));
+		bRisposta = new JButton(bundle.getString("boundaryAmministrazione_domande"));
 		bRisposta.setLocation(panelButton.getWidth()/2 - panelButton.getWidth()/6,240);
 		bRisposta.setSize(panelButton.getWidth()/3, 50);
 		bRisposta.setFont(new Font("Arial", 0, 20));
-		bRisposta.setToolTipText(bundle.getString("boundaryAmministrazione_faq"));
+		bRisposta.setToolTipText(bundle.getString("boundaryAmministrazione_domande"));
 
 		panelButton.add(bRimuovi);
 		panelButton.add(bNomina);
@@ -194,7 +194,7 @@ public class BoundaryAmministrazione {
 			try
 			{
 				pannelloAmministrazione.setVisible(false);
-				new BoundaryGestioneFaq();
+				new BoundaryGestioneDomande();
 
 			}
 			catch (Exception e)

@@ -42,7 +42,7 @@ public class ControlloreVisualizzaRecensioni {
      per la locazione considerata allora viene ritornato il valore 6 che è un valore non presente tra le
      possibili soluzioni(dato che i voti possibili variano da zero a sei
      */
-    public int calcolaMedia(String nomeLocazione) throws DeserializzazioneException {
+   public int calcolaMedia(String nomeLocazione) throws DeserializzazioneException {
         ArrayList<Recensione>recensioni = ritornaRecensioni(nomeLocazione);
         int numeroRecensioni = recensioni.size();
 

@@ -10,24 +10,24 @@ import java.util.ArrayList;
  * Created by maria
  */
 public class BoundaryAiuto {
-    ControlloreAiuto cf = new ControlloreAiuto();
+    ControlloreAiuto ca = new ControlloreAiuto();
 
     public BoundaryAiuto() throws DeserializzazioneException {
     }
 
     public ArrayList<String> ritornaDomande(String type) throws DeserializzazioneException {
 
-        return cf.ritornaDomande(Integer.parseInt(type));
+        return ca.ritornaDomande(Integer.parseInt(type));
     }
 
 
     public String ritornaRisposta(String domanda) throws DeserializzazioneException {
 
-        return cf.ritornaRisposta(domanda);
+        return ca.ritornaRisposta(domanda);
     }
 
     public void inserisciDomanda(String nuovaDomanda, String type) throws SerializzazioneException, DeserializzazioneException {
-        cf.inserisciDomanda(nuovaDomanda, Integer.parseInt(type));
+        ca.inserisciDomanda(nuovaDomanda, Integer.parseInt(type));
     }
 
 

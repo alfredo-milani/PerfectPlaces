@@ -5,7 +5,6 @@ import entity.Locazione;
 import exception.DeserializzazioneException;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ControlloreRicercaGlobale {
     //percorsi

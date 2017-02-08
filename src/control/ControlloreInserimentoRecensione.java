@@ -2,7 +2,9 @@ package control;
 
 
 import constants.Constants;
-import entity.*;
+import entity.Locazione;
+import entity.Prenotazione;
+import entity.Recensione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import utils.DeserializzaOggetti;

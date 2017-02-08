@@ -1,5 +1,5 @@
-<%@ page import="exception.SerializzazioneException" %>
 <%@ page import="exception.DeserializzazioneException" %>
+<%@ page import="exception.SerializzazioneException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html >

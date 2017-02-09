@@ -40,8 +40,11 @@ public class ControlloreInserimentoRecensione {
         if(testoRecensione.length()>300)
             return 5;
 
+        String testoFormattato = formattaTesto(testoRecensione);
+
+
         ArrayList<Recensione> recensioni = new ArrayList<>();
-        Recensione recensione = new Recensione(nomeLocazione, nomeRecensore, numeroStelle, testoRecensione);
+        Recensione recensione = new Recensione(nomeLocazione, nomeRecensore, numeroStelle, testoFormattato);
         File file = new File(percorsoRecensioni);
         if(file.length()==0) {
             recensioni.add(recensione);
@@ -126,5 +129,56 @@ public class ControlloreInserimentoRecensione {
         }
 
         return false;
+    }
+
+    private String formattaTesto(String testo){
+        char[] array = new char[2048];
+        int j=0,i=0;
+
+        for(; i<testo.length();++i){
+            if(testo.charAt(i)=='è'){
+                System.out.println("è trovata");
+                //per &egrave
+                array[j+1] = '&';
+                array[j+2] = 'e';
+                array[j+3] = 'g';
+                array[j+4] = 'r';
+                array[j+5] = 'a';
+                array[j+6] = 'v';
+                array[j+7] = 'e';
+                j+=8;
+                ++i;
+            }
+            if(testo.charAt(i)=='ù'){
+                //per &ugrave
+                array[j+1] = '&';
+                array[j+2] = 'u';
+                array[j+3] = 'g';
+                array[j+4] = 'r';
+                array[j+5] = 'a';
+                array[j+6] = 'v';
+                array[j+7] = 'e';
+                j+=8;
+            }
+            if(i==80 || i==160 || i==240){
+                //per <br>
+                for (int a = 0; a < 50; ++a) {
+                    if(testo.charAt(a+i)== ' ' ) {
+                        array[j + 1] = '<';
+                        array[j + 2] = 'b';
+                        array[j + 3] = 'r';
+                        array[j + 4] = '>';
+                        j += a + 5;
+                        break;
+                    }
+                }
+            }
+            else {
+                array[j] = testo.charAt(i);
+                ++j;
+            }
+        }
+
+        return new String(array);
     }
 }

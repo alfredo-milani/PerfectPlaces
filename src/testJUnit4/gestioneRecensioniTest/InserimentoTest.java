@@ -77,11 +77,5 @@ public class InserimentoTest {
 
     }
 
-    @Test
-    public  void  test(){
-        String s = "Appartamento Rossi";
-        boolean b =s.equalsIgnoreCase("appartamento rossi");
-        Assert.assertTrue(b);
-    }
 
 }

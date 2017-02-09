@@ -10,7 +10,7 @@
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <html>
 <head>
-    <title>Frequently asked questions</title>
+    <title>Aiuto</title>
     <script type="text/javascript" language="javascript">
         function visualizza(id){
             if (document.getElementById){

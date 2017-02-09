@@ -1,5 +1,5 @@
 
-<!DOCTYPE>
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -10,6 +10,7 @@
     <title>Perfect Places</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+
 </head>
 <style>
     input[type=text], select {
@@ -54,7 +55,7 @@
                     <h2><b>Recensisci una locazione</b></h2>
 
                     <div class="post">
-                        <form method="get" action="riceviRecensione.jsp" enctype="application/x-www-form-urlencoded">
+                        <form method="get"  action="riceviRecensione.jsp" >
                             <table width="100%">
 
                                 <tr>
@@ -101,15 +102,13 @@
 
                                 <tr><td><label for="recensione">Recensione</label></td></tr>
                                 <tr>
-                                    <td>
-                                        <textarea id="recensione" name="testoRecensione" placeholder="Scrivi qui la tua recensione" class="btn" rows="10" cols="100%"></textarea>
-                                    </td>
+                                    <td><input id="recensione" style= "width: 100%" type="text" maxlength="400"  name="testoRecensione" placeholder="Scrivi qui la tua recensione"></td>
                                 </tr>
                                 <br><br>
 
                                 <tr>
                                         <td>
-                                            <input class="btnBlueRecensione" type="submit" value="INVIA" />
+                                            <input class="btnBlueRecensione" type="submit" value="INVIA"  />
                                         </td>
                                 </tr>
                             </table>

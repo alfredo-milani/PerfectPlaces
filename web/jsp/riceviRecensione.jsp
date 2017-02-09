@@ -105,7 +105,7 @@
                             <h3>Il testo della recensione deve essere composto da almeno 10 caratteri</h3>
                         <%}%>
                         <%if(controllo==5){%>
-                            <h3>Il testo della recensione non può essere composto da più di 300 caratteri</h3>
+                            <h3>Il testo della recensione non può essere composto da più di 500 caratteri</h3>
                         <%}%>
                         <br><br><br>
                         <h3><a style="color: #4b7091" href="inserisciRecensione.jsp">Torna alla pagina di inserimento recensione</a></h3>

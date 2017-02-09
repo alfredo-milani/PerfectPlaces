@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html PUBLIC >
+<!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="keywords" content="" />
@@ -320,7 +320,7 @@
                                             <b>Recensione di: <%out.println(rec.getNomeRecensore());%></b>
                                                 <br>
                                                 <div style="clear: both;">&nbsp;</div>
-                                            <%out.println(rec.getTestoRecensione());%>
+                                                <div><p><%out.println(rec.getTestoRecensione());%></p></div>
                                             </div>
                                         <%}%>
                                     <%}%>

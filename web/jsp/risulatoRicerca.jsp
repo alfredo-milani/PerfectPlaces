@@ -11,6 +11,17 @@
 	<link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="../js/functions.js" ></script>
 </head>
+<style>
+	input[type=text], select {
+		width: 60%;
+		padding: 3px 40px;
+		margin: 0px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+</style>
 <body>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
 <jsp:useBean id="brl" scope="page" class="boundary.BoundaryRicercaLocazione"/>
@@ -226,16 +237,31 @@ Object elencoLocazioni = new Object();
 									<input type="radio" style="display:none" name="SerPet" value="" checked="checked" >
 									<input type="radio" style="display:none" name="tipoPensione" value="" checked="checked" >
 									<table style="width: 100%;">
-									<tr>
-										<%
-											if(elencoGlobale.get(i).getClass()==Albergo.class||elencoGlobale.get(i).getClass()==Ostello.class){
-										%>
-										<td><b>Tipo Pensione</b>
-											completa<input type="radio" name="tipoPensione" value="completa" />
-											mezza pensione<input type="radio" name="tipoPensione" value="mezza pensione" /><br /><br />
-										</td>
-										<%}%>
-									</tr>
+										<tr>
+											<%
+												if(elencoGlobale.get(i).getClass()==Albergo.class){
+													Albergo albergo = (Albergo) elencoGlobale.get(i);
+													if(albergo.getTipoPensione().equals("completa")){%>
+											<td><b>Tipo Pensione</b>
+												completa<input type="radio" name="tipoPensione" value="completa" />
+												mezza pensione<input type="radio" name="tipoPensione" value="mezza pensione" /><br /><br />
+											</td>
+											<%
+													}
+												}%>
+											<%
+												if(elencoGlobale.get(i).getClass()==Ostello.class){
+													Ostello ostello = (Ostello) elencoGlobale.get(i);
+													if(ostello.getTipoPensione().equals("completa")){%>
+											<td><b>Tipo Pensione</b>
+												completa<input type="radio" name="tipoPensione" value="completa" />
+												mezza pensione<input type="radio" name="tipoPensione" value="mezza pensione" /><br /><br />
+											</td>
+											<%
+													}
+												}%>
+
+										</tr>
 							<%       if(elencoGlobale.get(i).isParcheggio()){
 									%>
 									 <tr>
@@ -388,10 +414,16 @@ Object elencoLocazioni = new Object();
 											<input type="radio" style="display:none" name="tipoPensione" value="" checked="checked" >
 											<table style="width: 100%;">
 												<tr>
+													<%
+
+															if(elencoAlberghi.get(i).getTipoPensione().equals("completa")){%>
 													<td><b>Tipo Pensione</b>
 														completa<input type="radio" name="tipoPensione" value="completa" />
 														mezza pensione<input type="radio" name="tipoPensione" value="mezza pensione" /><br /><br />
 													</td>
+													<%}%>
+
+
 												</tr>
 												<%       if(elencoAlberghi.get(i).isParcheggio()){
 												%>
@@ -983,11 +1015,16 @@ Object elencoLocazioni = new Object();
 									<input type="radio" style="display:none" name="tipoPensione" value="" checked="checked" >
 									<table style="width: 100%;">
 										<tr>
+											<%
+
+													if(elencoOstelli.get(i).getTipoPensione().equals("completa")){%>
 											<td><b>Tipo Pensione</b>
 												completa<input type="radio" name="tipoPensione" value="completa" />
 												mezza pensione<input type="radio" name="tipoPensione" value="mezza pensione" /><br /><br />
 											</td>
-											</td>
+											<%
+													}%>
+
 										</tr>
 										<%       if(elencoOstelli.get(i).isParcheggio()){
 										%>

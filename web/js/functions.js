@@ -141,6 +141,7 @@ function visualizzaRecensioni(numRecensioni){
 
 }
 
+
 function visualizzaRimozione(num) {
 
     var x = document.getElementsByClassName("btnRimozione");

@@ -37,6 +37,19 @@ public class VisualizzazzioneTest {
 
         Assert.assertTrue(controllo);
 
+    }
+
+
+    @Test
+    public void testBello() throws DeserializzazioneException {
+        ControlloreVisualizzaRecensioni cvr = new ControlloreVisualizzaRecensioni();
+        ArrayList<Recensione> recensioni = cvr.ritornaRecensioni("Albergo Bello");
+        System.out.println(recensioni.get(1).getTestoRecensione());
+
+        int numeroRecensioni = recensioni.size();
+        boolean controllo = numeroRecensioni==3;
+
+        Assert.assertTrue(controllo);
 
     }
 

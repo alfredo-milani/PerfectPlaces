@@ -320,7 +320,7 @@
                                             <b>Recensione di: <%out.println(rec.getNomeRecensore());%></b>
                                                 <br>
                                                 <div style="clear: both;">&nbsp;</div>
-                                                <div><p><%out.println(rec.getTestoRecensione());%></p></div>
+                                                <div><%out.println(rec.getTestoRecensione());%></div>
                                             </div>
                                         <%}%>
                                     <%}%>

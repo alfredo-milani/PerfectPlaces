@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -6,7 +6,7 @@
 <head>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"  />
     <title>Perfect Places</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
@@ -102,7 +102,7 @@
 
                                 <tr><td><label for="recensione">Recensione</label></td></tr>
                                 <tr>
-                                    <td><input id="recensione" style= "width: 100%" type="text" maxlength="400"  name="testoRecensione" placeholder="Scrivi qui la tua recensione"></td>
+                                    <td><textarea id="recensione" class="btn" rows="10" cols="100%"  maxlength="400"   name="testoRecensione" placeholder="Scrivi qui la tua recensione"></textarea></td>
                                 </tr>
                                 <br><br>
 

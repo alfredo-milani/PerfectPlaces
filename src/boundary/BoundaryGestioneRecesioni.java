@@ -1,8 +1,7 @@
 package boundary;
 
 
-import control.ControlloreInserimentoRecensione;
-import control.ControlloreVisualizzaRecensioni;
+import control.ControlloreRecensione;
 import entity.Recensione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
@@ -11,26 +10,24 @@ import java.util.ArrayList;
 
 public class BoundaryGestioneRecesioni {
 
-    private ControlloreInserimentoRecensione cir;
-    private ControlloreVisualizzaRecensioni cvr;
+    private ControlloreRecensione cr = new ControlloreRecensione();
 
 
     public int inserisciRecensione(String nomeLocazione,String tipoLocazione, String nomeRecensore, String Stelle, String testoRecensione) throws SerializzazioneException, DeserializzazioneException {
-        int numeroStelle = Integer.parseInt(Stelle);
-        cir = new ControlloreInserimentoRecensione();
 
-        return cir.inserisci(nomeLocazione,tipoLocazione,nomeRecensore,numeroStelle,testoRecensione);
+        int numeroStelle = Integer.parseInt(Stelle);
+
+        return cr.inserisci(nomeLocazione,tipoLocazione,nomeRecensore,numeroStelle,testoRecensione);
     }
 
     public ArrayList<Recensione> visualizzaRecensioni(String nomeLocazione) throws DeserializzazioneException {
-        cvr= new ControlloreVisualizzaRecensioni();
 
-        return cvr.ritornaRecensioni(nomeLocazione);
+        return cr.ritornaRecensioni(nomeLocazione);
     }
 
     public int media(String nomeLocazione) throws DeserializzazioneException {
-        cvr= new ControlloreVisualizzaRecensioni();
-        return cvr.calcolaMedia(nomeLocazione);
+
+        return cr.calcolaMedia(nomeLocazione);
     }
 
 

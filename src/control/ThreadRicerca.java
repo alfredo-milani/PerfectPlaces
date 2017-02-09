@@ -27,6 +27,9 @@ public class ThreadRicerca implements Runnable{
         ArrayList<Locazione> locazioniTemp = new ArrayList<>();
 
         File file = new File(percorso);
+        if(file.length()==0){
+            return;
+        }
         if(file.length()!=0){
             DeserializzaOggetti dobj = new DeserializzaOggetti();
             try {
@@ -36,7 +39,7 @@ public class ThreadRicerca implements Runnable{
             }
 
             for (Locazione loc : locazioniTemp) {
-                if ((loc.getProvincia().equals(provincia)) &&  //controllo sulla provincia
+                if ((loc.getProvincia().equalsIgnoreCase(provincia)) &&  //controllo sulla provincia
                         ((Integer.parseInt(loc.getPrezzo().trim()))*numeroGiorni) <= ((Integer.parseInt(prezzo.trim()))*numeroGiorni)) {//controllo sul prezzo
                             l.lock();
                             try{

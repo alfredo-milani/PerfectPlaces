@@ -248,6 +248,7 @@
                                         </div>
                                 </td>
                             </tr>
+
                             <tr>
                                  <td>
 
@@ -292,6 +293,10 @@
                                 <td><p style="float: left">media voti:</p><img src="../css/images/5stelle.png"  style="width:150px;height:40px; float: left" ></td>
                                 <%}%>
                             </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <table>
                             <tr><td><p id="<% out.println(numeroRighe);%>" class="cliccaQui" onclick="visualizzaRecensioni(this.id)">Visualizza recensioni</p></td></tr>
 
 

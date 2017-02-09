@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class RicercaTest {
 /*
 test svolti sapendo che al momento erano presenti nel sistema locazioni
-- situate a Frosione
+- situate a Frosinone
 - non erano presenti situate a Viterbo
 - non erano presenti locazione con il prezzo per una notte inferiore a 10
  */

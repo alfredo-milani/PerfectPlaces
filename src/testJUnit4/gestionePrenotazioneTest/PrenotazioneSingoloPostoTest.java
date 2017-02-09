@@ -18,7 +18,7 @@ public class PrenotazioneSingoloPostoTest{
 
 /*
 test sviluppati sapendo che:
- -l'appartamento non ha più disponibile dal 5/01/2017 al 9/01/2017
+ -l'appartamento non è più disponibile dal 5/01/2017 al 9/01/2017
  */
 
     @Test

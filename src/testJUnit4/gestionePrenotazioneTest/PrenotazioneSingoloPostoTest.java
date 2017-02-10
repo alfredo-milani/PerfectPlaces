@@ -3,7 +3,6 @@ package testJUnit4.gestionePrenotazioneTest;
 
 import control.factoryPrenotazione.ControlloreDisponibilità;
 import control.factoryPrenotazione.ControlloreDisponibilitàSingoloPosto;
-import entity.Albergo;
 import entity.Appartamento;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;

@@ -60,7 +60,8 @@ public class BoundaryLogin extends JFrame
 
         pannelloLogin = new JPanel();
 
-        pannelloLogin.setSize(BoundaryAvvio.Confine.getWidth(), BoundaryAvvio.Confine.getHeight());
+        pannelloLogin.setSize(BoundaryAvvio.Confine.getWidth(),
+                BoundaryAvvio.Confine.getHeight());
         BoundaryAvvio.Confine.add(pannelloLogin);
         pannelloLogin.setLayout(null);
 

@@ -1,25 +1,17 @@
 package testJUnit4.gestioneRecensioniTest;
 
 
-import constants.Constants;
 import control.ControlloreRecensione;
 import entity.Appartamento;
-import entity.Locazione;
 import entity.Prenotazione;
-import entity.Recensione;
 import exception.DeserializzazioneException;
 import exception.SerializzazioneException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import utils.DeserializzaOggetti;
-import utils.SerializzaOggetti;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class InserimentoTest {
 

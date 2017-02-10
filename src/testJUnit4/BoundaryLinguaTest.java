@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.Locale;
 
 /**
- * Created by alfredo on 20/12/16.
+ * Created by alfredo
  */
 public class BoundaryLinguaTest {
 

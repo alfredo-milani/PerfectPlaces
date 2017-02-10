@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.Random;
 
 /**
- * Created by alfredo on 20/12/16.
+ * Created by alfredo
  */
 public class BoundaryRegistrazioneTest {
 

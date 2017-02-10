@@ -14,7 +14,8 @@ public class Prenotazione implements Serializable{
     private String numeroPersone;
 
 
-    public Prenotazione(String nomeLocazione, String proprietario, String cliente, GregorianCalendar dataInizio, GregorianCalendar dataFine, String tipo, String prezzo, String numeroPersone){
+    public Prenotazione(String nomeLocazione, String proprietario, String cliente, GregorianCalendar dataInizio, GregorianCalendar dataFine,
+                        String tipo, String prezzo, String numeroPersone){
         this.nomeLocazione= nomeLocazione;
         this.proprietario = proprietario;
         this.cliente = cliente;

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by alfredo on 27/12/16.
+ * Created by alfredo
  */
 public class GestioneDB {
 

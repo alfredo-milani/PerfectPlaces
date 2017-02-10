@@ -1,8 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
   User: alfredo
-  Date: 20/10/16
-  Time: 15.41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="control.ControlloreLingua" %>

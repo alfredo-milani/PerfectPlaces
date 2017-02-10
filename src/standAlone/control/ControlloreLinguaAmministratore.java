@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Created by alfredo on 17/01/17.
+ * Created by alfredo
  */
 public class ControlloreLinguaAmministratore {
 

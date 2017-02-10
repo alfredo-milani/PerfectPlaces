@@ -6,7 +6,7 @@ import entity.Messaggio;
 import java.util.ArrayList;
 
 /**
- * Created by alfredo on 18/12/16.
+ * Created by alfredo
  */
 public class BoundaryPosta {
 

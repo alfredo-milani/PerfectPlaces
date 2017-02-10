@@ -3,7 +3,7 @@ package entity;
 import java.io.Serializable;
 
 /**
- * Created by maria on 21/12/16.
+ * Created by maria
  */
 public class DomandaUtente implements Serializable{
 

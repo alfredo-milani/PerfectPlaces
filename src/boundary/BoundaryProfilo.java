@@ -4,7 +4,7 @@ import control.ControlloreProfilo;
 import entity.Utente;
 
 /**
- * Created by alfredo on 18/12/16.
+ * Created by alfredo
  */
 public class BoundaryProfilo {
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 /**
- * Created by gabriele on 12/11/16.
+ * Created by gabriele
  */
 public class CamerePrenotate implements Serializable {
 

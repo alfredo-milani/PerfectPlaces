@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Created by alfredo on 15/01/17.
+ * Created by alfredo
  */
 
 // Classe che consente la gestione del profilo personale, in particolare la restituzione dei valori

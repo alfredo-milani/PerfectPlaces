@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Alfredo Milani on 13/12/2016.
+ * Created by Alfredo Milani
  */
 public class PostaDBManager {
 

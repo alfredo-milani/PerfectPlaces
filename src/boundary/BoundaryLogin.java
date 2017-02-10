@@ -4,7 +4,7 @@ import control.ControlloreLogin;
 import exception.DeserializzazioneException;
 
 /**
- * Created by alfredo on 18/12/16.
+ * Created by alfredo
  */
 public class BoundaryLogin {
 

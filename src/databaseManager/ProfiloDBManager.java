@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Locale;
 
 /**
- * Created by Alfredo Milani on 12/12/2016.
+ * Created by Alfredo Milani
  */
 public class ProfiloDBManager {
 

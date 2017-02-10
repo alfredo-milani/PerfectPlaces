@@ -13,7 +13,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * Created by Alfredo Milani on 09/12/2016.
+ * Created by Alfredo Milani
  */
 public class ControlloreLingua {
 

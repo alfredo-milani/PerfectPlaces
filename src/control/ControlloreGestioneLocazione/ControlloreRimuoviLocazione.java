@@ -49,7 +49,11 @@ public class ControlloreRimuoviLocazione {
 
 		//generale per tutti i tipi di locazioni
 		rimuoviLocazione(locazione,locazione.selectPath());
-		rimuoviRecensioni(locazione);
+
+		File fRecensioni= new File(Constants.RECENSIONI_PATH);
+		if (fRecensioni.length()!=0) {
+			rimuoviRecensioni(locazione);
+		}
 
 		if(locazione.getClass()==Albergo.class){
 

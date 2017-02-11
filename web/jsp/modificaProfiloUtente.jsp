@@ -5,7 +5,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="bl" scope="session" class="boundary.BoundaryLogin"/>
-<jsp:useBean id="bp" scope="session" class="boundary.BoundaryProfilo"/>
+<jsp:useBean id="bprofilo" scope="session" class="boundary.BoundaryProfilo"/>
 <jsp:useBean id="blingua" scope="session" class="boundary.BoundaryLingua"/>
 <%@ page import="constants.Constants" %>
 <%@ page import="entity.Utente" %>
@@ -118,7 +118,7 @@
                             <%
                                 } else {
 
-                                    u = bp.ritornaUtente(username);
+                                    u = bprofilo.ritornaUtente(username);
 
                                     if (param != null) {
                                         String nome = request.getParameter("nome");
@@ -130,11 +130,11 @@
                                         String nuovaPassword = request.getParameter("nuovaPassword");
                                         String confermaNuovaPassword = request.getParameter("confermaNuovaPassword");
 
-                                        int controllo = bp.modificaUtente(username, nome, cognome,
+                                        int controllo = bprofilo.modificaUtente(username, nome, cognome,
                                                     email, sesso, nascita, vecchiaPassword,
                                                     nuovaPassword, confermaNuovaPassword);
 
-                                        u = bp.ritornaUtente(username);
+                                        u = bprofilo.ritornaUtente(username);
 
                                         switch (controllo) {
                                             case 0:

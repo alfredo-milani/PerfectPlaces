@@ -47,7 +47,7 @@ public class ControlloreLingua {
      * @return lingua scelta in formato Locale
      */
     public Locale getLocaleFromString(String lang) {
-        return new Locale(lang, "");
+        return lang != null ? new Locale(lang, "") : Locale.getDefault();
     }
 
     /**
